@@ -964,7 +964,7 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
               ) : (
                 <div>
                   <span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span>
-                  <p className="text-[10px] text-muted-foreground">ou {formatBRL(plan.priceOriginal * 1.30)} no cartão</p>
+
                 </div>
               )}
             </div>
@@ -1003,7 +1003,7 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
                 ) : (
                   <div>
                     <span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span>
-                    <p className="text-[10px] text-muted-foreground">ou {formatBRL(plan.priceOriginal * 1.30)} no cartão</p>
+  
                   </div>
                 )}
               </div>
