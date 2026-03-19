@@ -1,18 +1,25 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Check, Sparkles, Crown, Rocket, Star, FileText, X } from "lucide-react"
+import { FileText } from "lucide-react"
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 const regulamento = `DISPOSIÇÕES INICIAIS
 A AMIGOS DA MESA PROP é uma mesa proprietária que oferece planos de avaliação, simulador remunerado e conta real para traders que desejam operar Day Trade, nos termos deste regulamento.
@@ -102,74 +109,379 @@ Os dados pessoais serão tratados conforme a legislação vigente (Lei nº 13.70
 FORO
 Fica eleito o foro da comarca de São Paulo/SP para resolução de eventuais conflitos.`
 
-const plans = [
-  {
-    name: "Starter",
-    icon: Rocket,
-    price: "197",
-    originalPrice: "297",
-    period: "/mês",
-    description: "Para quem quer começar",
-    popular: false,
-    features: [
-      "Acesso à sala de operações",
-      "Análise pré-mercado diária",
-      "Comunidade no Discord",
-      "Estratégias básicas"
-    ]
-  },
-  {
-    name: "Pro",
-    icon: Crown,
-    price: "397",
-    originalPrice: "597",
-    period: "/mês",
-    description: "O mais escolhido",
-    popular: true,
-    features: [
-      "Tudo do Starter",
-      "Operações ao vivo",
-      "Estratégias avançadas",
-      "Revisão semanal",
-      "Acesso VIP",
-      "Suporte prioritário"
-    ]
-  },
-  {
-    name: "Elite",
-    icon: Star,
-    price: "797",
-    originalPrice: "1.197",
-    period: "/mês",
-    description: "Mentoria completa",
-    popular: false,
-    features: [
-      "Tudo do Pro",
-      "Mentoria individual",
-      "Consultoria de carteira",
-      "Grupo exclusivo Elite",
-      "Análises personalizadas",
-      "Suporte 24/7"
-    ]
-  }
+type Category = "exames" | "prime-plus" | "titan" | "senior" | "pegue-monte"
+
+interface Plan {
+  name: string
+  contracts: number
+  asset: string
+  meta: string
+  dailyLimit: string
+  stopGlobal: string
+  options: { label: string; value: string }[]
+}
+
+const plansByCategory: Record<Category, Plan[]> = {
+  "exames": [
+    {
+      name: "PLANO INICIANTE",
+      contracts: 7,
+      asset: "",
+      meta: "R$800,00",
+      dailyLimit: "R$300,00",
+      stopGlobal: "R$1.100,00",
+      options: [
+        { label: "1 Exame - R$97", value: "1-exam" },
+        { label: "2 Exames - R$147", value: "2-exam" },
+        { label: "3 Exames - R$197", value: "3-exam" },
+      ]
+    },
+    {
+      name: "PLANO INTERMEDIÁRIO",
+      contracts: 15,
+      asset: "",
+      meta: "R$1.400,00",
+      dailyLimit: "R$420,00",
+      stopGlobal: "R$1.700,00",
+      options: [
+        { label: "1 Exame - R$147", value: "1-exam" },
+        { label: "2 Exames - R$247", value: "2-exam" },
+        { label: "3 Exames - R$297", value: "3-exam" },
+      ]
+    },
+    {
+      name: "PLANO AVANÇADO",
+      contracts: 25,
+      asset: "",
+      meta: "R$3.950,00",
+      dailyLimit: "R$900,00",
+      stopGlobal: "R$4.250,00",
+      options: [
+        { label: "1 Exame - R$197", value: "1-exam" },
+        { label: "2 Exames - R$347", value: "2-exam" },
+        { label: "3 Exames - R$447", value: "3-exam" },
+      ]
+    },
+    {
+      name: "PLANO UNO 40",
+      contracts: 40,
+      asset: "Dólar",
+      meta: "R$4.980,00",
+      dailyLimit: "R$1.450,00",
+      stopGlobal: "R$6.250,00",
+      options: [
+        { label: "1 Exame - R$297", value: "1-exam" },
+        { label: "2 Exames - R$497", value: "2-exam" },
+        { label: "3 Exames - R$597", value: "3-exam" },
+      ]
+    },
+    {
+      name: "PLANO UNO 40",
+      contracts: 40,
+      asset: "Índice",
+      meta: "R$4.980,00",
+      dailyLimit: "R$1.450,00",
+      stopGlobal: "R$6.250,00",
+      options: [
+        { label: "1 Exame - R$297", value: "1-exam" },
+        { label: "2 Exames - R$497", value: "2-exam" },
+        { label: "3 Exames - R$597", value: "3-exam" },
+      ]
+    },
+    {
+      name: "PLANO MASTER",
+      contracts: 50,
+      asset: "Índice e Dólar",
+      meta: "R$9.950,00",
+      dailyLimit: "R$3.350,00",
+      stopGlobal: "R$10.250,00",
+      options: [
+        { label: "1 Exame - R$397", value: "1-exam" },
+        { label: "2 Exames - R$697", value: "2-exam" },
+        { label: "3 Exames - R$897", value: "3-exam" },
+      ]
+    },
+  ],
+  "prime-plus": [
+    {
+      name: "PRIME PLUS 10",
+      contracts: 10,
+      asset: "",
+      meta: "R$1.200,00",
+      dailyLimit: "R$400,00",
+      stopGlobal: "R$1.500,00",
+      options: [
+        { label: "Mensal - R$297", value: "monthly" },
+        { label: "Trimestral - R$697", value: "quarterly" },
+      ]
+    },
+    {
+      name: "PRIME PLUS 20",
+      contracts: 20,
+      asset: "",
+      meta: "R$2.400,00",
+      dailyLimit: "R$700,00",
+      stopGlobal: "R$3.000,00",
+      options: [
+        { label: "Mensal - R$497", value: "monthly" },
+        { label: "Trimestral - R$1.197", value: "quarterly" },
+      ]
+    },
+    {
+      name: "PRIME PLUS 30",
+      contracts: 30,
+      asset: "",
+      meta: "R$3.600,00",
+      dailyLimit: "R$1.000,00",
+      stopGlobal: "R$4.500,00",
+      options: [
+        { label: "Mensal - R$697", value: "monthly" },
+        { label: "Trimestral - R$1.697", value: "quarterly" },
+      ]
+    },
+  ],
+  "titan": [
+    {
+      name: "TITAN 50",
+      contracts: 50,
+      asset: "Índice",
+      meta: "R$6.000,00",
+      dailyLimit: "R$1.800,00",
+      stopGlobal: "R$7.500,00",
+      options: [
+        { label: "Mensal - R$897", value: "monthly" },
+        { label: "Trimestral - R$2.197", value: "quarterly" },
+      ]
+    },
+    {
+      name: "TITAN 50",
+      contracts: 50,
+      asset: "Dólar",
+      meta: "R$6.000,00",
+      dailyLimit: "R$1.800,00",
+      stopGlobal: "R$7.500,00",
+      options: [
+        { label: "Mensal - R$897", value: "monthly" },
+        { label: "Trimestral - R$2.197", value: "quarterly" },
+      ]
+    },
+    {
+      name: "TITAN 100",
+      contracts: 100,
+      asset: "Índice e Dólar",
+      meta: "R$12.000,00",
+      dailyLimit: "R$3.600,00",
+      stopGlobal: "R$15.000,00",
+      options: [
+        { label: "Mensal - R$1.497", value: "monthly" },
+        { label: "Trimestral - R$3.697", value: "quarterly" },
+      ]
+    },
+  ],
+  "senior": [
+    {
+      name: "SÊNIOR 75",
+      contracts: 75,
+      asset: "Índice",
+      meta: "R$9.000,00",
+      dailyLimit: "R$2.700,00",
+      stopGlobal: "R$11.250,00",
+      options: [
+        { label: "Mensal - R$1.197", value: "monthly" },
+        { label: "Trimestral - R$2.897", value: "quarterly" },
+      ]
+    },
+    {
+      name: "SÊNIOR 75",
+      contracts: 75,
+      asset: "Dólar",
+      meta: "R$9.000,00",
+      dailyLimit: "R$2.700,00",
+      stopGlobal: "R$11.250,00",
+      options: [
+        { label: "Mensal - R$1.197", value: "monthly" },
+        { label: "Trimestral - R$2.897", value: "quarterly" },
+      ]
+    },
+    {
+      name: "SÊNIOR 150",
+      contracts: 150,
+      asset: "Índice e Dólar",
+      meta: "R$18.000,00",
+      dailyLimit: "R$5.400,00",
+      stopGlobal: "R$22.500,00",
+      options: [
+        { label: "Mensal - R$1.997", value: "monthly" },
+        { label: "Trimestral - R$4.897", value: "quarterly" },
+      ]
+    },
+  ],
+  "pegue-monte": [
+    {
+      name: "PEGUE E MONTE BÁSICO",
+      contracts: 5,
+      asset: "",
+      meta: "R$500,00",
+      dailyLimit: "R$150,00",
+      stopGlobal: "R$600,00",
+      options: [
+        { label: "Avulso - R$67", value: "single" },
+        { label: "Pack 3 - R$147", value: "pack3" },
+        { label: "Pack 5 - R$197", value: "pack5" },
+      ]
+    },
+    {
+      name: "PEGUE E MONTE PLUS",
+      contracts: 10,
+      asset: "",
+      meta: "R$1.000,00",
+      dailyLimit: "R$300,00",
+      stopGlobal: "R$1.200,00",
+      options: [
+        { label: "Avulso - R$97", value: "single" },
+        { label: "Pack 3 - R$247", value: "pack3" },
+        { label: "Pack 5 - R$347", value: "pack5" },
+      ]
+    },
+    {
+      name: "PEGUE E MONTE PRO",
+      contracts: 20,
+      asset: "",
+      meta: "R$2.000,00",
+      dailyLimit: "R$600,00",
+      stopGlobal: "R$2.400,00",
+      options: [
+        { label: "Avulso - R$147", value: "single" },
+        { label: "Pack 3 - R$397", value: "pack3" },
+        { label: "Pack 5 - R$547", value: "pack5" },
+      ]
+    },
+  ],
+}
+
+const categories: { id: Category; label: string }[] = [
+  { id: "exames", label: "Exames" },
+  { id: "prime-plus", label: "Prime Plus" },
+  { id: "titan", label: "Titan" },
+  { id: "senior", label: "Sênior" },
+  { id: "pegue-monte", label: "Pegue e Monte" },
 ]
 
+function PlanCard({ plan, isActive }: { plan: Plan; isActive: boolean }) {
+  const [selectedOption, setSelectedOption] = useState("")
+
+  return (
+    <Card className="min-w-[300px] md:min-w-[340px] snap-center bg-card border-border flex-shrink-0">
+      <CardHeader className="text-center pb-4">
+        <h3 className="text-xl font-bold text-foreground">{plan.name}</h3>
+        <p className="text-lg font-semibold text-primary">{plan.contracts} CONTRATOS</p>
+        {plan.asset && (
+          <p className="text-sm text-muted-foreground">{plan.asset}</p>
+        )}
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="text-sm text-muted-foreground space-y-1">
+          <p>
+            <span className="text-foreground">Meta de Aprovação:</span> {plan.meta}
+          </p>
+          <p>
+            <span className="text-foreground">Limite diário*:</span> {plan.dailyLimit}
+          </p>
+          <p>
+            <span className="text-foreground">Stop Global:</span> {plan.stopGlobal}
+          </p>
+        </div>
+
+        <Select value={selectedOption} onValueChange={setSelectedOption}>
+          <SelectTrigger className="w-full bg-background border-border">
+            <SelectValue placeholder="Escolha uma opção" />
+          </SelectTrigger>
+          <SelectContent>
+            {plan.options.map((option) => (
+              <SelectItem key={option.value} value={option.value}>
+                {option.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        <Button 
+          className={`w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold ${
+            isActive ? 'animate-pulse-border' : ''
+          }`}
+          disabled={!selectedOption}
+        >
+          Quero esse plano
+        </Button>
+
+        <p className="text-xs text-muted-foreground text-center">
+          <strong>Limite diário*:</strong> Aplicável de forma opcional para a realização do teste, cabe a você decidir utilizá-lo ou não.
+        </p>
+      </CardContent>
+    </Card>
+  )
+}
+
 export function PricingSection() {
+  const [activeCategory, setActiveCategory] = useState<Category>("exames")
   const [isRegulamentoOpen, setIsRegulamentoOpen] = useState(false)
+  const [activeCardIndex, setActiveCardIndex] = useState(0)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+
+  const plans = plansByCategory[activeCategory]
+
+  useEffect(() => {
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    const handleScroll = () => {
+      const scrollLeft = container.scrollLeft
+      const cardWidth = 340
+      const newIndex = Math.round(scrollLeft / cardWidth)
+      setActiveCardIndex(newIndex)
+    }
+
+    container.addEventListener('scroll', handleScroll)
+    return () => container.removeEventListener('scroll', handleScroll)
+  }, [activeCategory])
+
+  useEffect(() => {
+    setActiveCardIndex(0)
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({ left: 0, behavior: 'smooth' })
+    }
+  }, [activeCategory])
 
   return (
     <section id="planos" className="py-20 bg-background scroll-mt-20">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-8">
-          <Badge variant="outline" className="mb-4 px-4 py-2 text-primary border-primary/30 bg-primary/10">
-            <Sparkles className="w-4 h-4 mr-2" />
-            Escolha Seu Plano
-          </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold text-balance">
-            Qual plano combina com você?
+          <p className="text-sm text-muted-foreground uppercase tracking-wider mb-2">
+            PROPOSTA DE MESA PROPRIETÁRIA
+          </p>
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+            REGULAMENTO GERAL
           </h2>
         </div>
 
+        {/* Category Tabs */}
+        <div className="flex flex-wrap justify-center gap-3 mb-10">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`px-6 py-3 rounded-full font-medium transition-all ${
+                activeCategory === cat.id
+                  ? 'bg-secondary text-foreground'
+                  : 'bg-primary text-primary-foreground hover:bg-primary/90'
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Regulamento Button */}
         <div className="flex justify-center mb-10">
           <Dialog open={isRegulamentoOpen} onOpenChange={setIsRegulamentoOpen}>
             <DialogTrigger asChild>
@@ -180,9 +492,10 @@ export function PricingSection() {
             </DialogTrigger>
             <DialogContent className="max-w-2xl max-h-[80vh]">
               <DialogHeader>
-                <DialogTitle className="flex items-center justify-between">
-                  Regulamento Geral
-                </DialogTitle>
+                <DialogTitle>Regulamento Geral</DialogTitle>
+                <DialogDescription>
+                  Leia atentamente as regras e condições da mesa proprietária.
+                </DialogDescription>
               </DialogHeader>
               <ScrollArea className="h-[60vh] pr-4">
                 <div className="space-y-4 text-sm text-muted-foreground whitespace-pre-line">
@@ -193,83 +506,40 @@ export function PricingSection() {
           </Dialog>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {plans.map((plan, i) => {
-            const Icon = plan.icon
-            
-            return (
-              <Card 
-                key={i}
-                className={`relative bg-card border-2 transition-all duration-300 ${
-                  plan.popular 
-                    ? 'border-primary shadow-lg shadow-primary/10 md:scale-105 z-10' 
-                    : 'border-border hover:border-primary/50'
-                }`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <Badge className="bg-primary text-primary-foreground px-6 py-1.5 text-sm font-bold shadow-lg">
-                      MAIS POPULAR
-                    </Badge>
-                  </div>
-                )}
-                
-                <CardHeader className="pt-10 pb-4 text-center">
-                  <div className={`w-14 h-14 mx-auto rounded-2xl flex items-center justify-center mb-4 shadow-lg ${
-                    plan.popular ? 'bg-primary' : 'bg-secondary'
-                  }`}>
-                    <Icon className={`w-7 h-7 ${plan.popular ? 'text-primary-foreground' : 'text-foreground'}`} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground">{plan.name}</h3>
-                  <p className="text-sm text-muted-foreground">{plan.description}</p>
-                  
-                  <div className="mt-6">
-                    <div className="flex items-center justify-center gap-2 mb-1">
-                      <span className="text-sm text-muted-foreground line-through">R$ {plan.originalPrice}</span>
-                      <Badge variant="secondary" className="text-xs bg-green-500/20 text-green-400 border-0">
-                        ECONOMIA
-                      </Badge>
-                    </div>
-                    <div className="flex items-baseline justify-center">
-                      <span className="text-sm text-muted-foreground mr-1">R$</span>
-                      <span className="text-5xl font-black text-foreground">{plan.price}</span>
-                      <span className="text-muted-foreground">{plan.period}</span>
-                    </div>
-                  </div>
-                </CardHeader>
-                
-                <CardContent className="pt-4 pb-8">
-                  <ul className="space-y-3 mb-8">
-                    {plan.features.map((feature, j) => (
-                      <li key={j} className="flex items-center gap-3">
-                        <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
-                          plan.popular ? 'bg-primary' : 'bg-muted-foreground/20'
-                        }`}>
-                          <Check className={`w-3 h-3 ${plan.popular ? 'text-primary-foreground' : 'text-foreground'}`} />
-                        </div>
-                        <span className="text-foreground text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <Button 
-                    className={`w-full py-6 text-base font-bold ${
-                      plan.popular 
-                        ? 'bg-primary hover:bg-primary/90 text-primary-foreground' 
-                        : 'bg-secondary hover:bg-primary hover:text-primary-foreground text-foreground'
-                    }`}
-                  >
-                    QUERO ESTE
-                  </Button>
-                </CardContent>
-              </Card>
-            )
-          })}
+        {/* Plans Carousel */}
+        <div 
+          ref={scrollContainerRef}
+          className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 px-4 scrollbar-hide"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {plans.map((plan, index) => (
+            <PlanCard 
+              key={`${plan.name}-${plan.asset}-${index}`} 
+              plan={plan} 
+              isActive={index === activeCardIndex}
+            />
+          ))}
         </div>
 
-        <p className="text-center mt-10 text-sm text-muted-foreground">
-          Garantia de 7 dias. Cancele quando quiser.
-        </p>
+        {/* Carousel Dots */}
+        <div className="flex justify-center gap-2 mt-4">
+          {plans.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                const container = scrollContainerRef.current
+                if (container) {
+                  container.scrollTo({ left: index * 340, behavior: 'smooth' })
+                }
+              }}
+              className={`w-2 h-2 rounded-full transition-all ${
+                index === activeCardIndex 
+                  ? 'bg-primary w-6' 
+                  : 'bg-muted-foreground/30'
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   )

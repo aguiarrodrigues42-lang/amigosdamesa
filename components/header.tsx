@@ -36,8 +36,8 @@ export function Header() {
               alt="Logo" 
               width={140} 
               height={45}
-              style={{ width: 'auto', height: '40px' }}
-              className="object-contain md:h-12"
+              style={{ width: 'auto', height: 'auto' }}
+              className="max-h-10 md:max-h-12 object-contain"
               priority
             />
           </div>
