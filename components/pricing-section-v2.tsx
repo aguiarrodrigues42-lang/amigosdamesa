@@ -115,6 +115,7 @@ interface Plan {
   priceOriginal: number      // valor original sem desconto
   pricePix: number           // valor PIX com desconto
   discountPercent: number    // % de desconto (70, 40, 60, 30, 55)
+  pixLink?: string           // link direto para pagamento PIX
   features?: string[]
   // Prime Plus monthly taxes
   taxaOnePix?: number
@@ -145,36 +146,40 @@ const seniorFeaturesCommon = [
 const plansByCategory: Record<Category, Plan[]> = {
   // EXAMES - 70% OFF PIX, Cartão = original * 1.30 / 12
   "exames": [
-    { name: "PLANO INICIANTE",     contracts: 7,  asset: "",               meta: "R$800,00",    dailyLimit: "R$300,00",   stopGlobal: "R$1.100,00",  priceOriginal: 586.09,  pricePix: 175.82, discountPercent: 70 },
-    { name: "PLANO INTERMEDIÁRIO", contracts: 15, asset: "",               meta: "R$1.400,00",  dailyLimit: "R$420,00",   stopGlobal: "R$1.700,00",  priceOriginal: 773.37,  pricePix: 232.01, discountPercent: 70 },
-    { name: "PLANO AVANÇADO",      contracts: 25, asset: "",               meta: "R$3.950,00",  dailyLimit: "R$900,00",   stopGlobal: "R$4.250,00",  priceOriginal: 2107.14, pricePix: 632.14, discountPercent: 70 },
-    { name: "PLANO UNO 40",        contracts: 40, asset: "Dólar",          meta: "R$4.980,00",  dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00",  priceOriginal: 2581.75, pricePix: 774.52, discountPercent: 70 },
-    { name: "PLANO UNO 40",        contracts: 40, asset: "Índice",         meta: "R$4.980,00",  dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00",  priceOriginal: 2581.75, pricePix: 774.52, discountPercent: 70 },
-    { name: "PLANO MASTER",        contracts: 50, asset: "Índice e Dólar", meta: "R$9.950,00",  dailyLimit: "R$3.350,00", stopGlobal: "R$10.250,00", priceOriginal: 3631.12, pricePix: 1089.33, discountPercent: 70 },
+    { name: "PLANO INICIANTE",     contracts: 7,  asset: "",               meta: "R$800,00",    dailyLimit: "R$300,00",   stopGlobal: "R$1.100,00",  priceOriginal: 586.09,  pricePix: 175.82, discountPercent: 70, pixLink: "https://pedido.amigosdamesa.shop/pay/0329b223-fafe-42ba-9bfe-4a493379dd29" },
+    { name: "PLANO INTERMEDIÁRIO", contracts: 15, asset: "",               meta: "R$1.400,00",  dailyLimit: "R$420,00",   stopGlobal: "R$1.700,00",  priceOriginal: 773.37,  pricePix: 232.01, discountPercent: 70, pixLink: "https://pedido.amigosdamesa.shop/pay/6b2b1acd-d1d1-41a4-8bf7-1b6c1c4e272e" },
+    { name: "PLANO AVANÇADO",      contracts: 25, asset: "",               meta: "R$3.950,00",  dailyLimit: "R$900,00",   stopGlobal: "R$4.250,00",  priceOriginal: 2107.14, pricePix: 632.14, discountPercent: 70, pixLink: "https://pedido.amigosdamesa.shop/pay/199072a4-669f-4eff-b10c-7268a9d6a7d9" },
+    { name: "PLANO UNO 40",        contracts: 40, asset: "Dólar",          meta: "R$4.980,00",  dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00",  priceOriginal: 2581.75, pricePix: 774.52, discountPercent: 70, pixLink: "https://pedido.amigosdamesa.shop/pay/6a82aa4a-6920-4e19-bbad-481363faf076" },
+    { name: "PLANO UNO 40",        contracts: 40, asset: "Índice",         meta: "R$4.980,00",  dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00",  priceOriginal: 2581.75, pricePix: 774.52, discountPercent: 70, pixLink: "https://pedido.amigosdamesa.shop/pay/dda19cfd-8cdd-4806-b237-7989809cfc68" },
+    { name: "PLANO MASTER",        contracts: 50, asset: "Índice e Dólar", meta: "R$9.950,00",  dailyLimit: "R$3.350,00", stopGlobal: "R$10.250,00", priceOriginal: 3631.12, pricePix: 1089.33, discountPercent: 70, pixLink: "https://pedido.amigosdamesa.shop/pay/12cfc68c-bb65-49b9-a70a-74058a498bc7" },
   ],
   // PRIME MENSAL - 40% OFF PIX = R$180/mês, Cartão = mensalidade R$300/mês
   "prime-plus": [
     {
       name: "PRIME PLUS 6", contracts: 6,
       meta: "R$1.800,00", dailyLimit: "—", stopGlobal: "R$2.500,00", priceOriginal: 300, pricePix: 180, discountPercent: 40,
+      pixLink: "https://pedido.amigosdamesa.shop/pay/02c6b8ad-5b3f-4f8f-ab27-2c8d7f2ecd18",
       features: ["6 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 2.500,00", "Meta de aprovação R$ 1.800,00"],
       taxaOnePix: 180, taxaProPix: 180, taxaOneOriginal: 300, taxaProOriginal: 300,
     },
     {
       name: "PRIME PLUS 11", contracts: 11,
       meta: "R$4.000,00", dailyLimit: "—", stopGlobal: "R$3.500,00", priceOriginal: 300, pricePix: 180, discountPercent: 40,
+      pixLink: "https://pedido.amigosdamesa.shop/pay/ce773655-e9f5-404e-a739-0e242149f9dc",
       features: ["11 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 3.500,00", "Meta de aprovação R$ 4.000,00"],
       taxaOnePix: 180, taxaProPix: 180, taxaOneOriginal: 300, taxaProOriginal: 300,
     },
     {
       name: "PRIME PLUS 16", contracts: 16,
       meta: "R$7.500,00", dailyLimit: "—", stopGlobal: "R$6.000,00", priceOriginal: 300, pricePix: 180, discountPercent: 40,
+      pixLink: "https://pedido.amigosdamesa.shop/pay/6e43fa96-ce50-46bb-bca7-8c3e9fa86e01",
       features: ["16 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 6.000,00", "Meta de aprovação R$ 7.500,00"],
       taxaOnePix: 180, taxaProPix: 180, taxaOneOriginal: 300, taxaProOriginal: 300,
     },
     {
       name: "PRIME PLUS 21", contracts: 21,
       meta: "R$10.000,00", dailyLimit: "—", stopGlobal: "R$9.000,00", priceOriginal: 300, pricePix: 180, discountPercent: 40,
+      pixLink: "https://pedido.amigosdamesa.shop/pay/2b18719e-4655-40fc-9f5c-f8c698820203",
       features: ["21 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 9.000,00", "Meta de aprovação R$ 10.000,00"],
       taxaOnePix: 180, taxaProPix: 180, taxaOneOriginal: 300, taxaProOriginal: 300,
     },
@@ -184,26 +189,26 @@ const plansByCategory: Record<Category, Plan[]> = {
     {
       name: "TITAN PRO 10", contracts: 10,
       meta: "R$7.000,00", dailyLimit: "R$2.500,00", stopGlobal: "R$10.000,00", priceOriginal: 1980.99, pricePix: 786.60, discountPercent: 60,
+      pixLink: "https://pedido.amigosdamesa.shop/pay/fbd4e538-7f21-4783-adcb-3f6000a9c0b2",
       features: ["10 contratos", ...titanFeatures, "Meta de aprovação R$ 7.000,00", "Stop diário R$ 2.500,00", "Stop Global R$ 10.000,00"],
-      ctaLabel: "Adesão Através do Atendimento", ctaWhatsApp: true,
     },
     {
       name: "TITAN PRO 20", contracts: 20,
       meta: "R$15.000,00", dailyLimit: "R$3.500,00", stopGlobal: "R$17.000,00", priceOriginal: 2980.99, pricePix: 1192.39, discountPercent: 60,
+      pixLink: "https://pedido.amigosdamesa.shop/pay/4fde6089-4713-4ccc-9422-024e66f967e2",
       features: ["20 contratos", ...titanFeatures, "Meta de aprovação R$ 15.000,00", "Stop diário R$ 3.500,00", "Stop Global R$ 17.000,00"],
-      ctaLabel: "Adesão Através do Atendimento", ctaWhatsApp: true,
     },
     {
       name: "TITAN PRO 30", contracts: 30,
       meta: "R$18.000,00", dailyLimit: "R$4.000,00", stopGlobal: "R$20.000,00", priceOriginal: 3980.99, pricePix: 1194.29, discountPercent: 60,
+      pixLink: "https://pedido.amigosdamesa.shop/pay/8eb7fe18-8daf-47e0-8138-67789650ec9f",
       features: ["30 contratos", ...titanFeatures, "Meta de aprovação R$ 18.000,00", "Stop diário R$ 4.000,00", "Stop Global R$ 20.000,00"],
-      ctaLabel: "Adesão Através do Atendimento", ctaWhatsApp: true,
     },
     {
       name: "TITAN PRO 50", contracts: 50,
       meta: "R$22.000,00", dailyLimit: "R$5.500,00", stopGlobal: "R$25.000,00", priceOriginal: 4980.99, pricePix: 1494.29, discountPercent: 60,
+      pixLink: "https://pedido.amigosdamesa.shop/pay/64cc0f6e-4fd2-4bc8-8896-6ac1634fbe6e",
       features: ["50 contratos", ...titanFeatures, "Meta de aprovação R$ 22.000,00", "Stop diário R$ 5.500,00", "Stop Global R$ 25.000,00"],
-      ctaLabel: "Adesão Através do Atendimento", ctaWhatsApp: true,
     },
   ],
   // SÊNIOR (Direto na Mesa) - 30% OFF PIX, Cartão = original * 1.30 / 12
@@ -211,27 +216,32 @@ const plansByCategory: Record<Category, Plan[]> = {
     {
       name: "INICIANTE 7", contracts: 7,
       meta: "—", dailyLimit: "R$300,00", stopGlobal: "R$1.100,00", priceOriginal: 1146.55, pricePix: 802.58, discountPercent: 30,
+      pixLink: "https://pedido.amigosdamesa.shop/pay/2187edc5-6ef4-4edb-b3ae-4596b337b59f",
       features: [...seniorFeaturesCommon, "Stop diário R$ 300,00", "Stop Global R$ 1.100,00"],
     },
     {
       name: "INTERMEDIÁRIO 15", contracts: 15,
       meta: "—", dailyLimit: "R$420,00", stopGlobal: "R$1.700,00", priceOriginal: 1521.45, pricePix: 1065.02, discountPercent: 30,
+      pixLink: "https://pedido.amigosdamesa.shop/pay/82154d2a-0450-43d3-821e-7548d9e421d3",
       features: [...seniorFeaturesCommon, "Stop diário R$ 420,00", "Stop Global R$ 1.700,00"],
     },
     {
       name: "AVANÇADO 25", contracts: 25,
       meta: "—", dailyLimit: "R$900,00", stopGlobal: "R$4.250,00", priceOriginal: 3935.99, pricePix: 2755.19, discountPercent: 30,
+      pixLink: "https://pedido.amigosdamesa.shop/pay/1315e507-8da2-41a4-8d38-d2f5aab94b70",
       features: [...seniorFeaturesCommon, "Stop diário R$ 900,00", "Stop Global R$ 4.250,00"],
     },
     {
       name: "UNO 40", contracts: 40,
       asset: "Índice ou Dólar",
       meta: "—", dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00", priceOriginal: 4885.20, pricePix: 3419.64, discountPercent: 30,
+      pixLink: "https://pedido.amigosdamesa.shop/pay/07644730-388c-4251-b898-55acade00ae8",
       features: [...seniorFeaturesCommon.slice(0,1), "Índice ou Dólar", ...seniorFeaturesCommon.slice(1), "Stop diário R$ 1.450,00", "Stop Global R$ 6.250,00"],
     },
     {
       name: "MASTER 50", contracts: 50,
       meta: "—", dailyLimit: "R$3.350,00", stopGlobal: "R$10.250,00", priceOriginal: 5977.12, pricePix: 4183.98, discountPercent: 30,
+      pixLink: "https://pedido.amigosdamesa.shop/pay/d9d9ec49-2d4d-4472-b498-3b29ed27d1bf",
       features: [...seniorFeaturesCommon, "Stop diário R$ 3.350,00", "Stop Global R$ 10.250,00"],
     },
   ],
@@ -1113,20 +1123,20 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
 // ── Toggle PIX/Cartão ─────────────────────────────────────────────────────────
 function PaymentToggle({ isPix, onChange }: { isPix: boolean; onChange: (v: boolean) => void }) {
   return (
-    <div className="flex items-center justify-center gap-3 bg-secondary/80 backdrop-blur-sm rounded-full px-4 py-2 border border-border">
-      <span className={`text-sm font-semibold transition-colors ${!isPix ? "text-primary" : "text-muted-foreground"}`}>
+    <div className="flex items-center justify-center gap-4 bg-secondary/80 backdrop-blur-sm rounded-full px-6 py-2.5 border border-border">
+      <span className={`text-sm font-semibold transition-colors whitespace-nowrap ${!isPix ? "text-primary" : "text-muted-foreground"}`}>
         Parcelado (12x)
       </span>
       <button
         onClick={() => onChange(!isPix)}
-        className={`relative w-14 h-7 rounded-full transition-colors ${isPix ? "bg-primary" : "bg-muted"}`}
+        className={`relative w-12 h-6 rounded-full transition-colors flex-shrink-0 ${isPix ? "bg-primary" : "bg-muted"}`}
         aria-label="Alternar forma de pagamento"
       >
         <span
-          className={`absolute top-0.5 w-6 h-6 rounded-full bg-background shadow-md transition-transform ${isPix ? "translate-x-7" : "translate-x-0.5"}`}
+          className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-background shadow-md transition-transform duration-200 ${isPix ? "translate-x-6" : "translate-x-0"}`}
         />
       </button>
-      <span className={`text-sm font-semibold transition-colors ${isPix ? "text-primary" : "text-muted-foreground"}`}>
+      <span className={`text-sm font-semibold transition-colors whitespace-nowrap ${isPix ? "text-primary" : "text-muted-foreground"}`}>
         Pix
       </span>
     </div>
@@ -1169,12 +1179,25 @@ export function PricingSection() {
     scrollContainerRef.current?.scrollTo({ left: index * CARD_WIDTH, behavior: "smooth" })
   }
 
-  const handleCta = (planName: string) => {
-    if (activeCategory === "pegue-monte") {
-      setPegueMonteOpen(true)
+  const handleCta = (plan: Plan | string) => {
+    // Se for string (BitPlan), abre modal de lead
+    if (typeof plan === "string") {
+      setLeadModal({ open: true, planName: plan })
       return
     }
-    setLeadModal({ open: true, planName })
+    // Pegue e Monte sempre vai pro WhatsApp
+    if (activeCategory === "pegue-monte" || plan.ctaWhatsApp) {
+      const msg = encodeURIComponent(`Olá! Tenho interesse no plano ${plan.name}`)
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank")
+      return
+    }
+    // PIX com link direto
+    if (isPix && plan.pixLink) {
+      window.open(plan.pixLink, "_blank")
+      return
+    }
+    // Cartão ou sem link PIX -> modal de lead
+    setLeadModal({ open: true, planName: plan.name })
   }
 
   return (
@@ -1255,7 +1278,7 @@ export function PricingSection() {
         </div>
 
         {/* Payment Toggle PIX / Cartão */}
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-8" suppressHydrationWarning>
           <PaymentToggle isPix={isPix} onChange={setIsPix} />
         </div>
 
@@ -1293,7 +1316,7 @@ export function PricingSection() {
                     plan={plan}
                     isActive={index === activeCardIndex}
                     isPix={isPix}
-                    onCta={() => handleCta(plan.name)}
+                    onCta={() => handleCta(plan)}
                   />
                 ))
             }
