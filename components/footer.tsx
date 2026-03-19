@@ -5,8 +5,8 @@ export function Footer() {
     <footer className="py-12 bg-card border-t border-border">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center">
-            <Image src="/images/logo.png" alt="Logo" width={128} height={32} unoptimized style={{ height: "32px", width: "auto" }} />
+          <div style={{ position: "relative", width: "128px", height: "32px" }}>
+            <Image src="/images/logo.png" alt="Logo" fill unoptimized style={{ objectFit: "contain", objectPosition: "left center" }} />
           </div>
 
           <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">

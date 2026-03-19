@@ -338,8 +338,8 @@ export function Header() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <div className="flex items-center">
-              <Image src="/images/logo.png" alt="Logo" width={160} height={40} unoptimized style={{ height: "40px", width: "auto" }} />
+            <div className="flex items-center" style={{ position: "relative", width: "160px", height: "40px" }}>
+              <Image src="/images/logo.png" alt="Logo" fill unoptimized style={{ objectFit: "contain", objectPosition: "left center" }} />
             </div>
 
             {/* Desktop nav */}
