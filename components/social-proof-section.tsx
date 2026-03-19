@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle } from "lucide-react"
 
 const BENEFITS = [
-  "Opera com capital da mesa — sem arriscar dinheiro próprio",
+  "Opera com capital da mesa sem arriscar dinheiro próprio",
   "Repasse de até 95% do lucro líquido por ciclo",
-  "Scalping livre na Conta Real — sem restrição de estilo",
+  "Scalping livre na Conta Real sem restrição de estilo",
   "Plataforma profissional Profit One ou Pro incluída",
   "7 dias de Sala Educacional ao Vivo como bônus",
   "Suporte dedicado e comunidade ativa de traders",
