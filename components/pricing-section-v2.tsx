@@ -237,22 +237,16 @@ const plansByCategory: Record<Category, Plan[]> = {
   ],
   // PEGUE E MONTE - 55% OFF PIX, Cartão = original * 1.30 / 12
   "pegue-monte": [
-    // Exame
-    { name: "PEGUE MONTE EXAME 8", contracts: 8, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 865.95, pricePix: 389.67, discountPercent: 55, features: ["Exame", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: true },
-    { name: "PEGUE MONTE EXAME 12", contracts: 12, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 934.95, pricePix: 420.72, discountPercent: 55, features: ["Exame", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: true },
-    { name: "PEGUE MONTE EXAME 20", contracts: 20, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 1345.50, pricePix: 605.47, discountPercent: 55, features: ["Exame", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: true },
-    { name: "PEGUE MONTE EXAME 27", contracts: 27, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 1690.50, pricePix: 0, discountPercent: 55, features: ["Exame", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Indisponível", ctaWhatsApp: false },
-    { name: "PEGUE MONTE EXAME 32", contracts: 32, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 2120.60, pricePix: 0, discountPercent: 55, features: ["Exame", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Indisponível", ctaWhatsApp: false },
-    // Sênior (Direto)
-    { name: "PEGUE MONTE SÊNIOR 10", contracts: 10, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 714.03, pricePix: 389.67, discountPercent: 55, features: ["Direto no SR", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: true },
-    { name: "PEGUE MONTE SÊNIOR 15", contracts: 15, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 1024.13, pricePix: 420.72, discountPercent: 55, features: ["Direto no SR", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: true },
-    { name: "PEGUE MONTE SÊNIOR 20", contracts: 20, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 1863.11, pricePix: 605.47, discountPercent: 55, features: ["Direto no SR", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: true },
-    { name: "PEGUE MONTE SÊNIOR 30", contracts: 30, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 2433.17, pricePix: 0, discountPercent: 55, features: ["Direto no SR", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Indisponível", ctaWhatsApp: false },
+    { name: "PEGUE E MONTE 8",  contracts: 8,  meta: "R$1.500,00", dailyLimit: "—", stopGlobal: "R$2.500,00", priceOriginal: 865.95,  pricePix: 389.67, discountPercent: 55, features: ["Stop Global R$2.500,00", "Meta de Aprovação R$1.500,00", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: true },
+    { name: "PEGUE E MONTE 12", contracts: 12, meta: "R$1.920,00", dailyLimit: "—", stopGlobal: "R$3.200,00", priceOriginal: 934.95,  pricePix: 420.72, discountPercent: 55, features: ["Stop Global R$3.200,00", "Meta de Aprovação R$1.920,00", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: true },
+    { name: "PEGUE E MONTE 20", contracts: 20, meta: "R$2.832,00", dailyLimit: "—", stopGlobal: "R$4.720,00", priceOriginal: 1345.50, pricePix: 605.47, discountPercent: 55, features: ["Stop Global R$4.720,00", "Meta de Aprovação R$2.832,00", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: true },
+    { name: "PEGUE E MONTE 27", contracts: 27, meta: "R$3.612,00", dailyLimit: "—", stopGlobal: "R$6.020,00", priceOriginal: 1690.50, pricePix: 0,      discountPercent: 55, features: ["Stop Global R$6.020,00", "Meta de Aprovação R$3.612,00", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Indisponível", ctaWhatsApp: false },
+    { name: "PEGUE E MONTE 32", contracts: 32, meta: "R$4.890,00", dailyLimit: "—", stopGlobal: "R$8.150,00", priceOriginal: 2120.60, pricePix: 0,      discountPercent: 55, features: ["Stop Global R$8.150,00", "Meta de Aprovação R$4.890,00", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Indisponível", ctaWhatsApp: false },
   ],
   "bit": [],
 }
 
-// ── BIT plans ─────────────────────────────────────────────────────────────────
+// ── BIT plans ──────────────────────────────────��──────────────────────────────
 interface BitPlan {
   name: string
   bitContracts: number
