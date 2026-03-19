@@ -141,12 +141,12 @@ const seniorFeaturesCommon = [
 const plansByCategory: Record<Category, Plan[]> = {
   // EXAMES - 70% OFF PIX, Cartão = original * 1.30 / 12
   "exames": [
-    { name: "PLANO INICIANTE",     contracts: 7,  asset: "",               meta: "R$800,00",    dailyLimit: "R$300,00",   stopGlobal: "R$1.100,00",  priceOriginal: 586.09,  pricePix: 175.82, discountPercent: 70, pixLink: "https://pedido.amigosdamesa.shop/pay/0329b223-fafe-42ba-9bfe-4a493379dd29" },
-    { name: "PLANO INTERMEDIÁRIO", contracts: 15, asset: "",               meta: "R$1.400,00",  dailyLimit: "R$420,00",   stopGlobal: "R$1.700,00",  priceOriginal: 773.37,  pricePix: 232.01, discountPercent: 70, pixLink: "https://pedido.amigosdamesa.shop/pay/6b2b1acd-d1d1-41a4-8bf7-1b6c1c4e272e" },
-    { name: "PLANO AVANÇADO",      contracts: 25, asset: "",               meta: "R$3.950,00",  dailyLimit: "R$900,00",   stopGlobal: "R$4.250,00",  priceOriginal: 2107.14, pricePix: 632.14, discountPercent: 70, pixLink: "https://pedido.amigosdamesa.shop/pay/199072a4-669f-4eff-b10c-7268a9d6a7d9" },
-    { name: "PLANO UNO 40",        contracts: 40, asset: "Dólar",          meta: "R$4.980,00",  dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00",  priceOriginal: 2581.75, pricePix: 774.52, discountPercent: 70, pixLink: "https://pedido.amigosdamesa.shop/pay/6a82aa4a-6920-4e19-bbad-481363faf076" },
-    { name: "PLANO UNO 40",        contracts: 40, asset: "Índice",         meta: "R$4.980,00",  dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00",  priceOriginal: 2581.75, pricePix: 774.52, discountPercent: 70, pixLink: "https://pedido.amigosdamesa.shop/pay/dda19cfd-8cdd-4806-b237-7989809cfc68" },
-    { name: "PLANO MASTER",        contracts: 50, asset: "Índice e Dólar", meta: "R$9.950,00",  dailyLimit: "R$3.350,00", stopGlobal: "R$10.250,00", priceOriginal: 3631.12, pricePix: 1089.33, discountPercent: 70, pixLink: "https://pedido.amigosdamesa.shop/pay/12cfc68c-bb65-49b9-a70a-74058a498bc7" },
+    { name: "PLANO INICIANTE", contracts: 7, asset: "", meta: "R$800,00", dailyLimit: "R$300,00", stopGlobal: "R$1.100,00", priceOriginal: 586.09, pricePix: 175.82, discountPercent: 70, pixLink: "https://pedido.amigosdamesa.shop/pay/0329b223-fafe-42ba-9bfe-4a493379dd29" },
+    { name: "PLANO INTERMEDIÁRIO", contracts: 15, asset: "", meta: "R$1.400,00", dailyLimit: "R$420,00", stopGlobal: "R$1.700,00", priceOriginal: 773.37, pricePix: 232.01, discountPercent: 70, pixLink: "https://pedido.amigosdamesa.shop/pay/6b2b1acd-d1d1-41a4-8bf7-1b6c1c4e272e" },
+    { name: "PLANO AVANÇADO", contracts: 25, asset: "", meta: "R$3.950,00", dailyLimit: "R$900,00", stopGlobal: "R$4.250,00", priceOriginal: 2107.14, pricePix: 632.14, discountPercent: 70, pixLink: "https://pedido.amigosdamesa.shop/pay/199072a4-669f-4eff-b10c-7268a9d6a7d9" },
+    { name: "PLANO UNO 40", contracts: 40, asset: "Dólar", meta: "R$4.980,00", dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00", priceOriginal: 2581.75, pricePix: 774.52, discountPercent: 70, pixLink: "https://pedido.amigosdamesa.shop/pay/6a82aa4a-6920-4e19-bbad-481363faf076" },
+    { name: "PLANO UNO 40", contracts: 40, asset: "Índice", meta: "R$4.980,00", dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00", priceOriginal: 2581.75, pricePix: 774.52, discountPercent: 70, pixLink: "https://pedido.amigosdamesa.shop/pay/dda19cfd-8cdd-4806-b237-7989809cfc68" },
+    { name: "PLANO MASTER", contracts: 50, asset: "Índice e Dólar", meta: "R$9.950,00", dailyLimit: "R$3.350,00", stopGlobal: "R$10.250,00", priceOriginal: 3631.12, pricePix: 1089.33, discountPercent: 70, pixLink: "https://pedido.amigosdamesa.shop/pay/12cfc68c-bb65-49b9-a70a-74058a498bc7" },
   ],
   // PRIME MENSAL - 40% OFF PIX = R$180/mês, Cartão = mensalidade R$300/mês
   "prime-plus": [
@@ -183,27 +183,27 @@ const plansByCategory: Record<Category, Plan[]> = {
   "titan": [
     {
       name: "TITAN PRO 10", contracts: 10,
-      meta: "R$7.000,00", dailyLimit: "R$2.500,00", stopGlobal: "R$10.000,00", priceOriginal: 1980.99, pricePix: 786.60, discountPercent: 60,
+      meta: "R$5.000,00", dailyLimit: "R$2.500,00", stopGlobal: "R$5.000,00", priceOriginal: 1980.99, pricePix: 792.39, discountPercent: 60,
       pixLink: "https://pedido.amigosdamesa.shop/pay/fbd4e538-7f21-4783-adcb-3f6000a9c0b2",
-      features: ["Meta de aprovação R$ 7.000,00", "Stop diário R$ 2.500,00", "Stop Global R$ 10.000,00"],
+      features: ["Meta de aprovação R$ 5.000,00", "Stop diário R$ 2.500,00", "Stop Global R$ 5.000,00"],
     },
     {
       name: "TITAN PRO 20", contracts: 20,
-      meta: "R$15.000,00", dailyLimit: "R$3.500,00", stopGlobal: "R$17.000,00", priceOriginal: 2980.99, pricePix: 1192.39, discountPercent: 60,
+      meta: "R$8.000,00", dailyLimit: "R$3.500,00", stopGlobal: "R$8.000,00", priceOriginal: 2980.99, pricePix: 1192.39, discountPercent: 60,
       pixLink: "https://pedido.amigosdamesa.shop/pay/4fde6089-4713-4ccc-9422-024e66f967e2",
-      features: ["Meta de aprovação R$ 15.000,00", "Stop diário R$ 3.500,00", "Stop Global R$ 17.000,00"],
+      features: ["Meta de aprovação R$ 8.000,00", "Stop diário R$ 3.500,00", "Stop Global R$ 8.000,00"],
     },
     {
       name: "TITAN PRO 30", contracts: 30,
-      meta: "R$18.000,00", dailyLimit: "R$4.000,00", stopGlobal: "R$20.000,00", priceOriginal: 3980.99, pricePix: 1194.29, discountPercent: 60,
+      meta: "R$14.000,00", dailyLimit: "R$4.000,00", stopGlobal: "R$14.000,00", priceOriginal: 4980.99, pricePix: 1192.40, discountPercent: 60,
       pixLink: "https://pedido.amigosdamesa.shop/pay/8eb7fe18-8daf-47e0-8138-67789650ec9f",
-      features: ["Meta de aprovação R$ 18.000,00", "Stop diário R$ 4.000,00", "Stop Global R$ 20.000,00"],
+      features: ["Meta de aprovação R$ 14.000,00", "Stop diário R$ 4.000,00", "Stop Global R$ 14.000,00"],
     },
     {
       name: "TITAN PRO 50", contracts: 50,
-      meta: "R$22.000,00", dailyLimit: "R$5.500,00", stopGlobal: "R$25.000,00", priceOriginal: 4980.99, pricePix: 1494.29, discountPercent: 60,
+      meta: "R$10.000,00", dailyLimit: "R$5.500,00", stopGlobal: "R$10.000,00", priceOriginal: 3980.99, pricePix: 1592.39, discountPercent: 60,
       pixLink: "https://pedido.amigosdamesa.shop/pay/64cc0f6e-4fd2-4bc8-8896-6ac1634fbe6e",
-      features: ["Meta de aprovação R$ 22.000,00", "Stop diário R$ 5.500,00", "Stop Global R$ 25.000,00"],
+      features: ["Meta de aprovação R$ 10.000,00", "Stop diário R$ 5.500,00", "Stop Global R$ 10.000,00"],
     },
   ],
   // SÊNIOR (Direto na Mesa) - 30% OFF PIX, Cartão = original * 1.30 / 12
@@ -231,7 +231,7 @@ const plansByCategory: Record<Category, Plan[]> = {
       asset: "Índice ou Dólar",
       meta: "—", dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00", priceOriginal: 4885.20, pricePix: 3419.64, discountPercent: 30,
       pixLink: "https://pedido.amigosdamesa.shop/pay/07644730-388c-4251-b898-55acade00ae8",
-      features: [...seniorFeaturesCommon.slice(0,1), "Índice ou Dólar", ...seniorFeaturesCommon.slice(1), "Stop diário R$ 1.450,00", "Stop Global R$ 6.250,00"],
+      features: [...seniorFeaturesCommon.slice(0, 1), "Índice ou Dólar", ...seniorFeaturesCommon.slice(1), "Stop diário R$ 1.450,00", "Stop Global R$ 6.250,00"],
     },
     {
       name: "MASTER 50", contracts: 50,
@@ -243,7 +243,7 @@ const plansByCategory: Record<Category, Plan[]> = {
   // PEGUE E MONTE - 55% OFF PIX, Cartão = original * 1.30 / 12
   "pegue-monte": [
     // Exame
-    { name: "PEGUE MONTE EXAME 8",  contracts: 8,  meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 865.95, pricePix: 389.67, discountPercent: 55, features: ["Exame", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: true },
+    { name: "PEGUE MONTE EXAME 8", contracts: 8, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 865.95, pricePix: 389.67, discountPercent: 55, features: ["Exame", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: true },
     { name: "PEGUE MONTE EXAME 12", contracts: 12, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 934.95, pricePix: 420.72, discountPercent: 55, features: ["Exame", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: true },
     { name: "PEGUE MONTE EXAME 20", contracts: 20, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 1345.50, pricePix: 605.47, discountPercent: 55, features: ["Exame", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: true },
     { name: "PEGUE MONTE EXAME 27", contracts: 27, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 1690.50, pricePix: 0, discountPercent: 55, features: ["Exame", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Indisponível", ctaWhatsApp: false },
@@ -288,7 +288,7 @@ const bitPlans: BitPlan[] = [
       "Stop Diário: R$600,00",
       "Repasse Mensal e Quinzenal",
     ],
-    precoExame: "R$620,90",     precoExameOriginal: "R$1.379,78",
+    precoExame: "R$620,90", precoExameOriginal: "R$1.379,78",
     valorOriginal: 714.03,
     precoPix: "R$389,67",
     precoCartao12x: "R$77,35",  // 714.03 * 1.30 / 12 = 77,35
@@ -305,7 +305,7 @@ const bitPlans: BitPlan[] = [
       "Stop Diário: R$1.000,00",
       "3 Ativos BIT/WIN/WDO",
     ],
-    precoExame: "R$890,55",     precoExameOriginal: "R$1.979,00",
+    precoExame: "R$890,55", precoExameOriginal: "R$1.979,00",
     valorOriginal: 1024.13,
     precoPix: "R$420,72",
     precoCartao12x: "R$110,95", // 1024.13 * 1.30 / 12 = 110,95
@@ -322,7 +322,7 @@ const bitPlans: BitPlan[] = [
       "Stop Diário: R$1.700,00",
       "Vagas Limitadas",
     ],
-    precoExame: "R$1.620,10",   precoExameOriginal: "R$3.600,22",
+    precoExame: "R$1.620,10", precoExameOriginal: "R$3.600,22",
     valorOriginal: 1863.11,
     precoPix: "R$605,47",
     precoCartao12x: "R$201,84", // 1863.11 * 1.30 / 12 = 201,84
@@ -339,7 +339,7 @@ const bitPlans: BitPlan[] = [
       "Stop Diário: R$2.100,00",
       "Exame ou Direto na Mesa",
     ],
-    precoExame: "R$2.115,80",   precoExameOriginal: "R$4.701,78",
+    precoExame: "R$2.115,80", precoExameOriginal: "R$4.701,78",
     valorOriginal: 2433.17,
     precoPix: "INDISPONIVEL",
     precoCartao12x: "R$263,59", // 2433.17 * 1.30 / 12 = 263,59
@@ -438,36 +438,36 @@ function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive
 interface PegueMonteOption { label: string; price: number; description?: string }
 
 const pmContratos: PegueMonteOption[] = [
-  { label: "8 contratos",  price: 753  },
-  { label: "12 contratos", price: 813  },
-  { label: "16 contratos", price: 973  },
+  { label: "8 contratos", price: 753 },
+  { label: "12 contratos", price: 813 },
+  { label: "16 contratos", price: 973 },
   { label: "20 contratos", price: 1133 },
   { label: "25 contratos", price: 1363 },
   { label: "30 contratos", price: 1553 },
 ]
 
 const pmPlataforma: PegueMonteOption[] = [
-  { label: "One",   price: 0,   description: "R$0,00" },
+  { label: "One", price: 0, description: "R$0,00" },
   { label: "PLUS+", price: 160, description: "R$160,00" },
 ]
 
 const pmAtivos: PegueMonteOption[] = [
-  { label: "WIN",   price: 0 },
-  { label: "WDO",   price: 0 },
+  { label: "WIN", price: 0 },
+  { label: "WDO", price: 0 },
   { label: "Ambos", price: 0 },
 ]
 
 const pmModalidade: PegueMonteOption[] = [
   { label: "Day Trade", price: 0 },
-  { label: "Swing",     price: 0 },
+  { label: "Swing", price: 0 },
 ]
 
 const pmStopDiario: PegueMonteOption[] = [
-  { label: "R$500,00",   price: 0   },
-  { label: "R$750,00",   price: 0   },
-  { label: "R$900,00",   price: 0   },
-  { label: "R$1.300,00", price: 0   },
-  { label: "R$1.800,00", price: 0   },
+  { label: "R$500,00", price: 0 },
+  { label: "R$750,00", price: 0 },
+  { label: "R$900,00", price: 0 },
+  { label: "R$1.300,00", price: 0 },
+  { label: "R$1.800,00", price: 0 },
 ]
 
 interface PegueMonteModalProps {
@@ -476,16 +476,16 @@ interface PegueMonteModalProps {
 }
 
 function PegueMonteModal({ open, onClose }: PegueMonteModalProps) {
-  const [nome, setNome]           = useState("")
-  const [email, setEmail]         = useState("")
-  const [whatsapp, setWhatsapp]   = useState("")
+  const [nome, setNome] = useState("")
+  const [email, setEmail] = useState("")
+  const [whatsapp, setWhatsapp] = useState("")
   const [contratos, setContratos] = useState<PegueMonteOption | null>(null)
   const [plataforma, setPlataforma] = useState<PegueMonteOption | null>(null)
-  const [clube, setClube]         = useState(false)
-  const [ativos, setAtivos]       = useState<PegueMonteOption | null>(null)
+  const [clube, setClube] = useState(false)
+  const [ativos, setAtivos] = useState<PegueMonteOption | null>(null)
   const [modalidade, setModalidade] = useState<PegueMonteOption | null>(null)
   const [stopDiario, setStopDiario] = useState<PegueMonteOption | null>(null)
-  const [step, setStep]           = useState<"builder" | "lead">("builder")
+  const [step, setStep] = useState<"builder" | "lead">("builder")
 
   const total = (contratos?.price ?? 0) + (plataforma?.price ?? 0)
 
@@ -528,8 +528,8 @@ function PegueMonteModal({ open, onClose }: PegueMonteModalProps) {
   if (!open) return null
 
   const selectClass = "w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary appearance-none"
-  const inputClass  = "w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-  const labelClass  = "text-xs font-semibold text-muted-foreground uppercase tracking-wide"
+  const inputClass = "w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+  const labelClass = "text-xs font-semibold text-muted-foreground uppercase tracking-wide"
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
@@ -743,12 +743,12 @@ function PegueMonteModal({ open, onClose }: PegueMonteModalProps) {
 }
 
 const categories: { id: Category; label: string }[] = [
-  { id: "exames",      label: "Exames" },
-  { id: "prime-plus",  label: "Prime Plus" },
-  { id: "titan",       label: "Titan" },
-  { id: "senior",      label: "Sênior" },
+  { id: "exames", label: "Exames" },
+  { id: "prime-plus", label: "Prime Plus" },
+  { id: "titan", label: "Titan" },
+  { id: "senior", label: "Sênior" },
   { id: "pegue-monte", label: "Pegue e Monte" },
-  { id: "bit",         label: "BIT" },
+  { id: "bit", label: "BIT" },
 ]
 
 
@@ -998,7 +998,7 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
                 ) : (
                   <div>
                     <span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span>
-  
+
                   </div>
                 )}
               </div>
@@ -1205,30 +1205,30 @@ export function PricingSection() {
             <div className="flex-shrink-0 w-[calc(50vw-184px)] md:hidden" />
             {isBit
               ? bitPlans.map((plan, index) => (
-                  <BitPlanCard
-                    key={`${plan.name}-${index}`}
-                    plan={plan}
-                    isActive={index === activeCardIndex}
-                    isPix={isPix}
-                    onCta={() => {
-                      if (isPix && plan.indisponivel) return
-                      if (isPix && plan.pixLink) {
-                        window.open(plan.pixLink, "_blank")
-                      } else {
-                        handleCta(plan.name)
-                      }
-                    }}
-                  />
-                ))
+                <BitPlanCard
+                  key={`${plan.name}-${index}`}
+                  plan={plan}
+                  isActive={index === activeCardIndex}
+                  isPix={isPix}
+                  onCta={() => {
+                    if (isPix && plan.indisponivel) return
+                    if (isPix && plan.pixLink) {
+                      window.open(plan.pixLink, "_blank")
+                    } else {
+                      handleCta(plan.name)
+                    }
+                  }}
+                />
+              ))
               : plans.map((plan, index) => (
-                  <PlanCard
-                    key={`${plan.name}-${plan.asset ?? ""}-${index}`}
-                    plan={plan}
-                    isActive={index === activeCardIndex}
-                    isPix={isPix}
-                    onCta={() => handleCta(plan)}
-                  />
-                ))
+                <PlanCard
+                  key={`${plan.name}-${plan.asset ?? ""}-${index}`}
+                  plan={plan}
+                  isActive={index === activeCardIndex}
+                  isPix={isPix}
+                  onCta={() => handleCta(plan)}
+                />
+              ))
             }
             <div className="flex-shrink-0 w-[calc(50vw-184px)] md:hidden" />
           </div>
@@ -1251,9 +1251,8 @@ export function PricingSection() {
             <button
               key={index}
               onClick={() => scrollTo(index)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                index === activeCardIndex ? "bg-primary w-6" : "bg-muted-foreground/30 w-2"
-              }`}
+              className={`h-2 rounded-full transition-all duration-300 ${index === activeCardIndex ? "bg-primary w-6" : "bg-muted-foreground/30 w-2"
+                }`}
             />
           ))}
         </div>
