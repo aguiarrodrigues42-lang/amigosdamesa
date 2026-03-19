@@ -131,11 +131,6 @@ const WHATSAPP_NUMBER = "5511988071345"
 
 const seniorFeaturesCommon = [
   "Direto no Simulador Remunerado",
-  "7 dias mínimos operados para repasse",
-  "Repasse de 90%",
-  "Repasse quinzenal ou mensal",
-  "Operadores do Clube do Valor tem 10% de desconto",
-  "Taxa extra: Operadores que NÃO obterem lucros e repasse dentro de 100 dias pagará uma taxa de permanência equivalente ao valor do plano para se manter em SR e ter seu saldo negativo (Loss) zerado",
 ]
 
 const plansByCategory: Record<Category, Plan[]> = {
@@ -231,7 +226,7 @@ const plansByCategory: Record<Category, Plan[]> = {
       asset: "Índice ou Dólar",
       meta: "—", dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00", priceOriginal: 4885.20, pricePix: 3419.64, discountPercent: 30,
       pixLink: "https://pedido.amigosdamesa.shop/pay/07644730-388c-4251-b898-55acade00ae8",
-      features: [...seniorFeaturesCommon.slice(0, 1), "Índice ou Dólar", ...seniorFeaturesCommon.slice(1), "Stop diário R$ 1.450,00", "Stop Global R$ 6.250,00"],
+      features: [...seniorFeaturesCommon, "Stop diário R$ 1.450,00", "Stop Global R$ 6.250,00"],
     },
     {
       name: "MASTER 50", contracts: 50,
@@ -1040,7 +1035,7 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
   )
 }
 
-// ── Toggle PIX/Cartão ─────────────────────────────────────────────────────────
+// ── Toggle PIX/Cartão ─────────────────────────────��───────────────────────────
 function PaymentToggle({ isPix, onChange }: { isPix: boolean; onChange: (v: boolean) => void }) {
   return (
     <div className="flex items-center justify-center gap-4 bg-secondary/80 backdrop-blur-sm rounded-full px-6 py-2.5 border border-border">
