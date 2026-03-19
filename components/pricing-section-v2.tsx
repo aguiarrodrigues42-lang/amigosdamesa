@@ -276,9 +276,9 @@ const bitPlans: BitPlan[] = [
       "Stop Global: R$1.950,00",
       "Stop Diário: R$600,00",
     ],
-    precoExame: "R$620,90", precoExameOriginal: "R$1.379,78",
+    precoExame: "R$714,03", precoExameOriginal: "R$1.379,78",
     valorOriginal: 714.03,
-    precoPix: "R$389,67",
+    precoPix: "R$714,03",
     precoCartao12x: "R$77,35",  // 714.03 * 1.30 / 12 = 77,35
     precoSeniorOriginal: "R$714,03",
     pixLink: "https://pedido.amigosdamesa.shop/pay/79807da1-bbcb-4550-aae1-8d913fd31726",
@@ -292,9 +292,9 @@ const bitPlans: BitPlan[] = [
       "Stop Global: R$3.510,00",
       "Stop Diário: R$1.000,00",
     ],
-    precoExame: "R$890,55", precoExameOriginal: "R$1.979,00",
+    precoExame: "R$1.024,13", precoExameOriginal: "R$1.979,00",
     valorOriginal: 1024.13,
-    precoPix: "R$420,72",
+    precoPix: "R$1.024,13",
     precoCartao12x: "R$110,95", // 1024.13 * 1.30 / 12 = 110,95
     precoSeniorOriginal: "R$1.024,13",
     pixLink: "https://pedido.amigosdamesa.shop/pay/d2f2fd63-96f1-4d80-90f3-eef05991e14e",
@@ -308,9 +308,9 @@ const bitPlans: BitPlan[] = [
       "Stop Global: R$5.900,00",
       "Stop Diário: R$1.700,00",
     ],
-    precoExame: "R$1.620,10", precoExameOriginal: "R$3.600,22",
+    precoExame: "R$1.863,11", precoExameOriginal: "R$3.600,22",
     valorOriginal: 1863.11,
-    precoPix: "R$605,47",
+    precoPix: "R$1.863,11",
     precoCartao12x: "R$201,84", // 1863.11 * 1.30 / 12 = 201,84
     precoSeniorOriginal: "R$1.863,11",
     pixLink: "https://pedido.amigosdamesa.shop/pay/de2547fb-4e56-45e9-b985-df6d5787d6ee",
@@ -324,9 +324,9 @@ const bitPlans: BitPlan[] = [
       "Stop Global: R$7.150,00",
       "Stop Diário: R$2.100,00",
     ],
-    precoExame: "R$2.115,80", precoExameOriginal: "R$4.701,78",
+    precoExame: "R$2.433,17", precoExameOriginal: "R$4.701,78",
     valorOriginal: 2433.17,
-    precoPix: "INDISPONIVEL",
+    precoPix: "R$2.433,17",
     precoCartao12x: "R$263,59", // 2433.17 * 1.30 / 12 = 263,59
     precoSeniorOriginal: "R$2.433,17",
     indisponivel: true,
@@ -371,26 +371,10 @@ function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive
             <span className="text-xs text-muted-foreground font-semibold uppercase tracking-wide">Exame</span>
             <div className="text-right">
               <span className="text-xs line-through text-muted-foreground block">{plan.precoExameOriginal}</span>
-              <span className="text-primary font-black text-base">{plan.precoExame}</span>
-            </div>
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-xs text-muted-foreground font-semibold uppercase tracking-wide">Sênior</span>
-            <div className="text-right">
               {isPix ? (
-                plan.indisponivel ? (
-                  <span className="text-destructive font-black text-sm">INDISPONÍVEL</span>
-                ) : (
-                  <>
-                    <span className="text-xs line-through text-muted-foreground block">{plan.precoSeniorOriginal}</span>
-                    <span className="text-primary font-black text-base">{plan.precoPix}</span>
-                  </>
-                )
+                <span className="text-primary font-black text-base">{plan.precoPix}</span>
               ) : (
-                <>
-                  <span className="text-xs line-through text-muted-foreground block">{plan.precoSeniorOriginal}</span>
-                  <span className="text-primary font-black text-base">12x {plan.precoCartao12x}</span>
-                </>
+                <span className="text-primary font-black text-base">12x {plan.precoCartao12x}</span>
               )}
             </div>
           </div>
@@ -858,7 +842,7 @@ function formatBRL(value: number): string {
   return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
 }
 
-// ── Plan Card ─────────────────────────────────────────────────────────────────
+// ── Plan Card ───────────────────────────────────────────────���─────────────────
 interface PlanCardProps {
   plan: Plan
   isActive: boolean
