@@ -1124,14 +1124,7 @@ export function PricingSection() {
           ))}
         </div>
 
-        {/* BIT sub-tabs — apenas Ultra 1.0 / 3 em 1 */}
-        {isBit && (
-          <div className="flex justify-center mb-5">
-            <span className="px-4 py-1.5 rounded-full text-xs font-semibold bg-primary text-primary-foreground">
-              Ultra 1.0 / 3 em 1
-            </span>
-          </div>
-        )}
+
 
         {/* Regulamento */}
         <div className="flex justify-center mb-6">
