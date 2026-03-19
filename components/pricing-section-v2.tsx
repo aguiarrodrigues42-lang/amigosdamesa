@@ -111,14 +111,16 @@ interface Plan {
   meta: string
   dailyLimit: string
   stopGlobal: string
-  price: string
-  originalPrice?: string   // preço antes do desconto (para riscar)
-  discountLabel?: string   // ex: "70% OFF"
+  // Pricing - numeric for calculations
+  priceOriginal: number      // valor original sem desconto
+  pricePix: number           // valor PIX com desconto
+  discountPercent: number    // % de desconto (70, 40, 60, 30, 55)
   features?: string[]
-  taxaOne?: string
-  taxaPro?: string
-  taxaOneOriginal?: string // preço original da taxa One (para riscar)
-  taxaProOriginal?: string
+  // Prime Plus monthly taxes
+  taxaOnePix?: number
+  taxaProPix?: number
+  taxaOneOriginal?: number
+  taxaProOriginal?: number
   ctaLabel?: string
   ctaWhatsApp?: boolean
 }
@@ -141,116 +143,111 @@ const seniorFeaturesCommon = [
 ]
 
 const plansByCategory: Record<Category, Plan[]> = {
+  // EXAMES - 70% OFF PIX, Cartão = original * 1.30 / 12
   "exames": [
-    { name: "PLANO INICIANTE",     contracts: 7,  asset: "",               meta: "R$800,00",    dailyLimit: "R$300,00",   stopGlobal: "R$1.100,00",  price: "R$97",  originalPrice: "R$323,33", discountLabel: "70% OFF" },
-    { name: "PLANO INTERMEDIÁRIO", contracts: 15, asset: "",               meta: "R$1.400,00",  dailyLimit: "R$420,00",   stopGlobal: "R$1.700,00",  price: "R$147", originalPrice: "R$490,00", discountLabel: "70% OFF" },
-    { name: "PLANO AVANÇADO",      contracts: 25, asset: "",               meta: "R$3.950,00",  dailyLimit: "R$900,00",   stopGlobal: "R$4.250,00",  price: "R$197", originalPrice: "R$656,67", discountLabel: "70% OFF" },
-    { name: "PLANO UNO 40",        contracts: 40, asset: "Dólar",          meta: "R$4.980,00",  dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00",  price: "R$297", originalPrice: "R$990,00", discountLabel: "70% OFF" },
-    { name: "PLANO UNO 40",        contracts: 40, asset: "Índice",         meta: "R$4.980,00",  dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00",  price: "R$297", originalPrice: "R$990,00", discountLabel: "70% OFF" },
-    { name: "PLANO MASTER",        contracts: 50, asset: "Índice e Dólar", meta: "R$9.950,00",  dailyLimit: "R$3.350,00", stopGlobal: "R$10.250,00", price: "R$397", originalPrice: "R$1.323,33", discountLabel: "70% OFF" },
+    { name: "PLANO INICIANTE",     contracts: 7,  asset: "",               meta: "R$800,00",    dailyLimit: "R$300,00",   stopGlobal: "R$1.100,00",  priceOriginal: 586.09,  pricePix: 175.82, discountPercent: 70 },
+    { name: "PLANO INTERMEDIÁRIO", contracts: 15, asset: "",               meta: "R$1.400,00",  dailyLimit: "R$420,00",   stopGlobal: "R$1.700,00",  priceOriginal: 773.37,  pricePix: 232.01, discountPercent: 70 },
+    { name: "PLANO AVANÇADO",      contracts: 25, asset: "",               meta: "R$3.950,00",  dailyLimit: "R$900,00",   stopGlobal: "R$4.250,00",  priceOriginal: 2107.14, pricePix: 632.14, discountPercent: 70 },
+    { name: "PLANO UNO 40",        contracts: 40, asset: "Dólar",          meta: "R$4.980,00",  dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00",  priceOriginal: 2581.75, pricePix: 774.52, discountPercent: 70 },
+    { name: "PLANO UNO 40",        contracts: 40, asset: "Índice",         meta: "R$4.980,00",  dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00",  priceOriginal: 2581.75, pricePix: 774.52, discountPercent: 70 },
+    { name: "PLANO MASTER",        contracts: 50, asset: "Índice e Dólar", meta: "R$9.950,00",  dailyLimit: "R$3.350,00", stopGlobal: "R$10.250,00", priceOriginal: 3631.12, pricePix: 1089.33, discountPercent: 70 },
   ],
+  // PRIME MENSAL - 40% OFF PIX = R$180/mês, Cartão = mensalidade R$300/mês
   "prime-plus": [
     {
       name: "PRIME PLUS 6", contracts: 6,
-      meta: "R$1.800,00", dailyLimit: "—", stopGlobal: "R$2.500,00", price: "",
+      meta: "R$1.800,00", dailyLimit: "—", stopGlobal: "R$2.500,00", priceOriginal: 300, pricePix: 180, discountPercent: 40,
       features: ["6 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 2.500,00", "Meta de aprovação R$ 1.800,00"],
-      taxaOne: "R$300,00", taxaPro: "R$350,00",
-      taxaOneOriginal: "R$500,00", taxaProOriginal: "R$583,33",
-      discountLabel: "40% OFF",
+      taxaOnePix: 180, taxaProPix: 180, taxaOneOriginal: 300, taxaProOriginal: 300,
     },
     {
       name: "PRIME PLUS 11", contracts: 11,
-      meta: "R$4.000,00", dailyLimit: "—", stopGlobal: "R$3.500,00", price: "",
+      meta: "R$4.000,00", dailyLimit: "—", stopGlobal: "R$3.500,00", priceOriginal: 300, pricePix: 180, discountPercent: 40,
       features: ["11 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 3.500,00", "Meta de aprovação R$ 4.000,00"],
-      taxaOne: "R$720,00", taxaPro: "R$780,00",
-      taxaOneOriginal: "R$1.200,00", taxaProOriginal: "R$1.300,00",
-      discountLabel: "40% OFF",
+      taxaOnePix: 180, taxaProPix: 180, taxaOneOriginal: 300, taxaProOriginal: 300,
     },
     {
       name: "PRIME PLUS 16", contracts: 16,
-      meta: "R$7.500,00", dailyLimit: "—", stopGlobal: "R$6.000,00", price: "",
+      meta: "R$7.500,00", dailyLimit: "—", stopGlobal: "R$6.000,00", priceOriginal: 300, pricePix: 180, discountPercent: 40,
       features: ["16 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 6.000,00", "Meta de aprovação R$ 7.500,00"],
-      taxaOne: "R$1.220,00", taxaPro: "R$1.320,00",
-      taxaOneOriginal: "R$2.033,33", taxaProOriginal: "R$2.200,00",
-      discountLabel: "40% OFF",
+      taxaOnePix: 180, taxaProPix: 180, taxaOneOriginal: 300, taxaProOriginal: 300,
     },
     {
       name: "PRIME PLUS 21", contracts: 21,
-      meta: "R$10.000,00", dailyLimit: "—", stopGlobal: "R$9.000,00", price: "",
+      meta: "R$10.000,00", dailyLimit: "—", stopGlobal: "R$9.000,00", priceOriginal: 300, pricePix: 180, discountPercent: 40,
       features: ["21 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 9.000,00", "Meta de aprovação R$ 10.000,00"],
-      taxaOne: "R$1.720,00", taxaPro: "R$1.850,00",
-      taxaOneOriginal: "R$2.866,67", taxaProOriginal: "R$3.083,33",
-      discountLabel: "40% OFF",
+      taxaOnePix: 180, taxaProPix: 180, taxaOneOriginal: 300, taxaProOriginal: 300,
     },
   ],
+  // TITAN - 60% OFF PIX, Cartão = original * 1.30 / 12
   "titan": [
     {
       name: "TITAN PRO 10", contracts: 10,
-      meta: "R$7.000,00", dailyLimit: "R$2.500,00", stopGlobal: "R$10.000,00", price: "",
+      meta: "R$7.000,00", dailyLimit: "R$2.500,00", stopGlobal: "R$10.000,00", priceOriginal: 1980.99, pricePix: 786.60, discountPercent: 60,
       features: ["10 contratos", ...titanFeatures, "Meta de aprovação R$ 7.000,00", "Stop diário R$ 2.500,00", "Stop Global R$ 10.000,00"],
       ctaLabel: "Adesão Através do Atendimento", ctaWhatsApp: true,
     },
     {
-      name: "TITAN PRO 15", contracts: 15,
-      meta: "R$8.500,00", dailyLimit: "R$3.000,00", stopGlobal: "R$16.000,00", price: "",
-      features: ["15 contratos", ...titanFeatures, "Meta de aprovação R$ 8.500,00", "Stop diário R$ 3.000,00", "Stop Global R$ 16.000,00"],
-      ctaLabel: "Adesão Através do Atendimento", ctaWhatsApp: true,
-    },
-    {
       name: "TITAN PRO 20", contracts: 20,
-      meta: "R$15.000,00", dailyLimit: "R$3.500,00", stopGlobal: "R$17.000,00", price: "",
+      meta: "R$15.000,00", dailyLimit: "R$3.500,00", stopGlobal: "R$17.000,00", priceOriginal: 2980.99, pricePix: 1192.39, discountPercent: 60,
       features: ["20 contratos", ...titanFeatures, "Meta de aprovação R$ 15.000,00", "Stop diário R$ 3.500,00", "Stop Global R$ 17.000,00"],
       ctaLabel: "Adesão Através do Atendimento", ctaWhatsApp: true,
     },
     {
       name: "TITAN PRO 30", contracts: 30,
-      meta: "R$18.000,00", dailyLimit: "R$4.000,00", stopGlobal: "R$20.000,00", price: "",
+      meta: "R$18.000,00", dailyLimit: "R$4.000,00", stopGlobal: "R$20.000,00", priceOriginal: 3980.99, pricePix: 1194.29, discountPercent: 60,
       features: ["30 contratos", ...titanFeatures, "Meta de aprovação R$ 18.000,00", "Stop diário R$ 4.000,00", "Stop Global R$ 20.000,00"],
       ctaLabel: "Adesão Através do Atendimento", ctaWhatsApp: true,
     },
+    {
+      name: "TITAN PRO 50", contracts: 50,
+      meta: "R$22.000,00", dailyLimit: "R$5.500,00", stopGlobal: "R$25.000,00", priceOriginal: 4980.99, pricePix: 1494.29, discountPercent: 60,
+      features: ["50 contratos", ...titanFeatures, "Meta de aprovação R$ 22.000,00", "Stop diário R$ 5.500,00", "Stop Global R$ 25.000,00"],
+      ctaLabel: "Adesão Através do Atendimento", ctaWhatsApp: true,
+    },
   ],
+  // SÊNIOR (Direto na Mesa) - 30% OFF PIX, Cartão = original * 1.30 / 12
   "senior": [
     {
       name: "INICIANTE 7", contracts: 7,
-      meta: "—", dailyLimit: "R$300,00", stopGlobal: "R$1.100,00", price: "R$ 997,00",
-      originalPrice: "R$ 1.424,29", discountLabel: "30% OFF",
+      meta: "—", dailyLimit: "R$300,00", stopGlobal: "R$1.100,00", priceOriginal: 1146.55, pricePix: 802.58, discountPercent: 30,
       features: [...seniorFeaturesCommon, "Stop diário R$ 300,00", "Stop Global R$ 1.100,00"],
     },
     {
       name: "INTERMEDIÁRIO 15", contracts: 15,
-      meta: "—", dailyLimit: "R$420,00", stopGlobal: "R$1.700,00", price: "R$ 1.323,00",
-      originalPrice: "R$ 1.890,00", discountLabel: "30% OFF",
+      meta: "—", dailyLimit: "R$420,00", stopGlobal: "R$1.700,00", priceOriginal: 1521.45, pricePix: 1065.02, discountPercent: 30,
       features: [...seniorFeaturesCommon, "Stop diário R$ 420,00", "Stop Global R$ 1.700,00"],
     },
     {
       name: "AVANÇADO 25", contracts: 25,
-      meta: "—", dailyLimit: "R$900,00", stopGlobal: "R$4.250,00", price: "R$ 3.422,60",
-      originalPrice: "R$ 4.889,43", discountLabel: "30% OFF",
+      meta: "—", dailyLimit: "R$900,00", stopGlobal: "R$4.250,00", priceOriginal: 3935.99, pricePix: 2755.19, discountPercent: 30,
       features: [...seniorFeaturesCommon, "Stop diário R$ 900,00", "Stop Global R$ 4.250,00"],
     },
     {
       name: "UNO 40", contracts: 40,
       asset: "Índice ou Dólar",
-      meta: "—", dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00", price: "R$ 4.248,00",
-      originalPrice: "R$ 6.068,57", discountLabel: "30% OFF",
+      meta: "—", dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00", priceOriginal: 4885.20, pricePix: 3419.64, discountPercent: 30,
       features: [...seniorFeaturesCommon.slice(0,1), "Índice ou Dólar", ...seniorFeaturesCommon.slice(1), "Stop diário R$ 1.450,00", "Stop Global R$ 6.250,00"],
     },
     {
       name: "MASTER 50", contracts: 50,
-      meta: "—", dailyLimit: "R$3.350,00", stopGlobal: "R$10.250,00", price: "R$ 5.197,50",
-      originalPrice: "R$ 7.425,00", discountLabel: "30% OFF",
+      meta: "—", dailyLimit: "R$3.350,00", stopGlobal: "R$10.250,00", priceOriginal: 5977.12, pricePix: 4183.98, discountPercent: 30,
       features: [...seniorFeaturesCommon, "Stop diário R$ 3.350,00", "Stop Global R$ 10.250,00"],
     },
   ],
+  // PEGUE E MONTE - 55% OFF PIX, Cartão = original * 1.30 / 12
   "pegue-monte": [
-    {
-      name: "PEGUE E MONTE",
-      contracts: 0,
-      meta: "—", dailyLimit: "—", stopGlobal: "—", price: "",
-      features: ["Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"],
-      ctaLabel: "Monte seu plano",
-      ctaWhatsApp: false,
-    },
+    // Exame
+    { name: "PEGUE MONTE EXAME 8",  contracts: 8,  meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 865.95, pricePix: 389.67, discountPercent: 55, features: ["Exame", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: true },
+    { name: "PEGUE MONTE EXAME 12", contracts: 12, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 934.95, pricePix: 420.72, discountPercent: 55, features: ["Exame", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: true },
+    { name: "PEGUE MONTE EXAME 20", contracts: 20, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 1345.50, pricePix: 605.47, discountPercent: 55, features: ["Exame", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: true },
+    { name: "PEGUE MONTE EXAME 27", contracts: 27, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 1690.50, pricePix: 0, discountPercent: 55, features: ["Exame", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Indisponível", ctaWhatsApp: false },
+    { name: "PEGUE MONTE EXAME 32", contracts: 32, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 2120.60, pricePix: 0, discountPercent: 55, features: ["Exame", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Indisponível", ctaWhatsApp: false },
+    // Sênior (Direto)
+    { name: "PEGUE MONTE SÊNIOR 10", contracts: 10, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 714.03, pricePix: 389.67, discountPercent: 55, features: ["Direto no SR", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: true },
+    { name: "PEGUE MONTE SÊNIOR 15", contracts: 15, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 1024.13, pricePix: 420.72, discountPercent: 55, features: ["Direto no SR", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: true },
+    { name: "PEGUE MONTE SÊNIOR 20", contracts: 20, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 1863.11, pricePix: 605.47, discountPercent: 55, features: ["Direto no SR", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: true },
+    { name: "PEGUE MONTE SÊNIOR 30", contracts: 30, meta: "—", dailyLimit: "—", stopGlobal: "—", priceOriginal: 2433.17, pricePix: 0, discountPercent: 55, features: ["Direto no SR", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Indisponível", ctaWhatsApp: false },
   ],
   "bit": [],
 }
@@ -940,18 +937,35 @@ function LeadModal({ planName, open, onClose }: LeadModalProps) {
   )
 }
 
+// ── Helpers de formatação ─────────────────────────────────────────────────────
+function formatBRL(value: number): string {
+  return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
+}
+
 // ── Plan Card ─────────────────────────────────────────────────────────────────
 interface PlanCardProps {
   plan: Plan
   isActive: boolean
+  isPix: boolean // true = PIX, false = Cartão 12x
   onCta: () => void
 }
 
-function PlanCard({ plan, isActive, onCta }: PlanCardProps) {
+function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
   const hasFeatures = !!plan.features
-  const isPrimePlus = hasFeatures && !!plan.taxaOne
-  const isTitanOrSenior = hasFeatures && !plan.taxaOne
+  const isPrimePlus = hasFeatures && !!plan.taxaOnePix
+  const isTitanOrSenior = hasFeatures && !plan.taxaOnePix
   const ctaLabel = plan.ctaLabel ?? "Quero esse plano"
+  const isUnavailable = plan.pricePix === 0 && plan.ctaLabel === "Indisponível"
+
+  // Calcular preços
+  const priceCartao12x = (plan.priceOriginal * 1.30) / 12
+
+  // Preço a exibir
+  const displayPrice = isPix ? plan.pricePix : priceCartao12x
+  const displayOriginal = plan.priceOriginal
+
+  // Taxa mensal Prime Plus
+  const taxaDisplay = isPix ? plan.taxaOnePix : plan.taxaOneOriginal
 
   return (
     <div
@@ -960,6 +974,7 @@ function PlanCard({ plan, isActive, onCta }: PlanCardProps) {
         rounded-2xl border-2 bg-card flex flex-col
         transition-all duration-300
         ${isActive ? "border-primary shadow-[0_0_0_2px_theme(colors.orange.500)]" : "border-border opacity-80"}
+        ${isUnavailable ? "opacity-50 pointer-events-none" : ""}
       `}
     >
       {/* Header */}
@@ -967,11 +982,9 @@ function PlanCard({ plan, isActive, onCta }: PlanCardProps) {
         <h3 className="text-sm font-black uppercase tracking-wide text-primary-foreground leading-tight">
           {plan.name}
         </h3>
-        {plan.discountLabel && (
-          <span className="bg-primary-foreground text-primary text-[10px] font-black px-2 py-0.5 rounded-full flex-shrink-0">
-            {plan.discountLabel}
-          </span>
-        )}
+        <span className="bg-primary-foreground text-primary text-[10px] font-black px-2 py-0.5 rounded-full flex-shrink-0">
+          {plan.discountPercent}% OFF
+        </span>
       </div>
 
       {/* Body */}
@@ -987,19 +1000,12 @@ function PlanCard({ plan, isActive, onCta }: PlanCardProps) {
               ))}
             </ul>
             <div className="border-t border-border pt-3">
-              <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-1">Taxa após aprovado</p>
+              <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-1">Taxa mensal após aprovado</p>
               <div className="flex items-center justify-between">
-                <span className="text-xs text-muted-foreground">ONE</span>
+                <span className="text-xs text-muted-foreground">{isPix ? "PIX" : "CARTÃO"}</span>
                 <div className="text-right">
-                  {plan.taxaOneOriginal && <span className="text-xs line-through text-muted-foreground mr-1">{plan.taxaOneOriginal}</span>}
-                  <strong className="text-primary text-sm">{plan.taxaOne}</strong>
-                </div>
-              </div>
-              <div className="flex items-center justify-between mt-1">
-                <span className="text-xs text-muted-foreground">PRO</span>
-                <div className="text-right">
-                  {plan.taxaProOriginal && <span className="text-xs line-through text-muted-foreground mr-1">{plan.taxaProOriginal}</span>}
-                  <strong className="text-primary text-sm">{plan.taxaPro}</strong>
+                  <span className="text-xs line-through text-muted-foreground mr-1">{formatBRL(plan.taxaOneOriginal!)}</span>
+                  <strong className="text-primary text-sm">{formatBRL(taxaDisplay!)}</strong>
                 </div>
               </div>
             </div>
@@ -1016,14 +1022,17 @@ function PlanCard({ plan, isActive, onCta }: PlanCardProps) {
                 </li>
               ))}
             </ul>
-            {plan.price && (
-              <div className="border-t border-border pt-3 text-center">
-                {plan.originalPrice && (
-                  <p className="text-xs text-muted-foreground line-through">{plan.originalPrice}</p>
-                )}
-                <span className="text-2xl font-black text-primary">{plan.price}</span>
-              </div>
-            )}
+            <div className="border-t border-border pt-3 text-center">
+              <p className="text-xs text-muted-foreground line-through">{formatBRL(displayOriginal)}</p>
+              {isPix ? (
+                <span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}</span>
+              ) : (
+                <div>
+                  <span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span>
+                  <p className="text-[10px] text-muted-foreground">ou {formatBRL(plan.priceOriginal * 1.30)} no cartão</p>
+                </div>
+              )}
+            </div>
           </>
         )}
 
@@ -1047,12 +1056,21 @@ function PlanCard({ plan, isActive, onCta }: PlanCardProps) {
                 <span className="text-sm font-semibold text-foreground">{plan.stopGlobal}</span>
               </div>
             </div>
-            {plan.price && (
+            {isUnavailable ? (
+              <div className="text-center py-2">
+                <span className="text-sm font-bold text-destructive">INDISPONÍVEL</span>
+              </div>
+            ) : (
               <div className="text-center">
-                {plan.originalPrice && (
-                  <p className="text-xs text-muted-foreground line-through">{plan.originalPrice}</p>
+                <p className="text-xs text-muted-foreground line-through">{formatBRL(displayOriginal)}</p>
+                {isPix ? (
+                  <span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}</span>
+                ) : (
+                  <div>
+                    <span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span>
+                    <p className="text-[10px] text-muted-foreground">ou {formatBRL(plan.priceOriginal * 1.30)} no cartão</p>
+                  </div>
                 )}
-                <span className="text-2xl font-black text-primary">{plan.price}</span>
               </div>
             )}
           </>
@@ -1067,19 +1085,22 @@ function PlanCard({ plan, isActive, onCta }: PlanCardProps) {
         {/* CTA */}
         <button
           onClick={onCta}
+          disabled={isUnavailable}
           className={`
             w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide
             transition-all duration-300 mt-auto
-            ${isActive
-              ? "bg-primary text-primary-foreground"
-              : "bg-secondary text-foreground border border-border"
+            ${isUnavailable
+              ? "bg-muted text-muted-foreground cursor-not-allowed"
+              : isActive
+                ? "bg-primary text-primary-foreground"
+                : "bg-secondary text-foreground border border-border"
             }
           `}
         >
           {ctaLabel}
         </button>
 
-        {!hasFeatures && (
+        {!hasFeatures && !isUnavailable && (
           <p className="text-[10px] text-muted-foreground text-center leading-relaxed">
             *Limite diário aplicável de forma opcional. Cabe a você decidir utilizá-lo ou não.
           </p>
@@ -1089,11 +1110,35 @@ function PlanCard({ plan, isActive, onCta }: PlanCardProps) {
   )
 }
 
+// ── Toggle PIX/Cartão ─────────────────────────────────────────────────────────
+function PaymentToggle({ isPix, onChange }: { isPix: boolean; onChange: (v: boolean) => void }) {
+  return (
+    <div className="flex items-center justify-center gap-3 bg-secondary/80 backdrop-blur-sm rounded-full px-4 py-2 border border-border">
+      <span className={`text-sm font-semibold transition-colors ${!isPix ? "text-primary" : "text-muted-foreground"}`}>
+        Parcelado (12x)
+      </span>
+      <button
+        onClick={() => onChange(!isPix)}
+        className={`relative w-14 h-7 rounded-full transition-colors ${isPix ? "bg-primary" : "bg-muted"}`}
+        aria-label="Alternar forma de pagamento"
+      >
+        <span
+          className={`absolute top-0.5 w-6 h-6 rounded-full bg-background shadow-md transition-transform ${isPix ? "translate-x-7" : "translate-x-0.5"}`}
+        />
+      </button>
+      <span className={`text-sm font-semibold transition-colors ${isPix ? "text-primary" : "text-muted-foreground"}`}>
+        Pix
+      </span>
+    </div>
+  )
+}
+
 // ── Pricing Section ───────────────────────────────────────────────────────────
 export function PricingSection() {
   const [activeCategory, setActiveCategory] = useState<Category>("exames")
   const [bitSubCategory, setBitSubCategory] = useState<BitSubCategory>("ultra")
   const [activeCardIndex, setActiveCardIndex] = useState(0)
+  const [isPix, setIsPix] = useState(true) // default to PIX
   const [leadModal, setLeadModal] = useState<{ open: boolean; planName: string }>({ open: false, planName: "" })
   const [pegueMonteOpen, setPegueMonteOpen] = useState(false)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -1185,7 +1230,7 @@ export function PricingSection() {
         )}
 
         {/* Regulamento */}
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-6">
           <Dialog>
             <DialogTrigger asChild>
               <Button variant="outline" size="sm" className="gap-2 text-xs">
@@ -1207,6 +1252,11 @@ export function PricingSection() {
               </div>
             </DialogContent>
           </Dialog>
+        </div>
+
+        {/* Payment Toggle PIX / Cartão */}
+        <div className="flex justify-center mb-8">
+          <PaymentToggle isPix={isPix} onChange={setIsPix} />
         </div>
 
         {/* Carousel */}
@@ -1242,6 +1292,7 @@ export function PricingSection() {
                     key={`${plan.name}-${plan.asset ?? ""}-${index}`}
                     plan={plan}
                     isActive={index === activeCardIndex}
+                    isPix={isPix}
                     onCta={() => handleCta(plan.name)}
                   />
                 ))
