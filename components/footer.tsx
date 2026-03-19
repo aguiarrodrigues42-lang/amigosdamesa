@@ -1,18 +1,15 @@
-import Image from "next/image"
-
 export function Footer() {
   return (
     <footer className="py-12 bg-card border-t border-border">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2">
-            <Image 
-              src="/images/logo.png" 
-              alt="Amigos da Mesa PRO" 
-              width={32} 
-              height={32}
+          <div className="flex items-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/logo.png"
+              alt="Logo"
+              style={{ height: "32px", width: "auto" }}
             />
-            <span className="font-bold text-foreground">Amigos da Mesa PRO</span>
           </div>
 
           <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">

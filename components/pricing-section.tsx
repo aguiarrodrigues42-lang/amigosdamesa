@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { FileText, ChevronLeft, ChevronRight } from "lucide-react"
+import { FileText, ChevronLeft, ChevronRight, X } from "lucide-react"
 import {
   Dialog,
   DialogContent,
@@ -111,11 +111,29 @@ interface Plan {
   dailyLimit: string
   stopGlobal: string
   price: string
-  // Prime Plus extras
   features?: string[]
   taxaOne?: string
   taxaPro?: string
+  ctaLabel?: string // custom CTA text
+  ctaWhatsApp?: boolean // open whatsapp modal instead of checkout
 }
+
+const WHATSAPP_NUMBER = "5511988071345"
+
+const titanFeatures = [
+  "30 dias corridos, o prazo pode ser prorrogado para 60 dias corridos mediante o pagamento da Profit",
+  "Repasse de 90%",
+  "Repasse mensal",
+]
+
+const seniorFeaturesCommon = [
+  "Direto no Simulador Remunerado",
+  "7 dias mínimos operados para repasse",
+  "Repasse de 90%",
+  "Repasse quinzenal ou mensal",
+  "Operadores do Clube do Valor tem 10% de desconto",
+  "Taxa extra: Operadores que NÃO obterem lucros e repasse dentro de 100 dias pagará uma taxa de permanência equivalente ao valor do plano para se manter em SR e ter seu saldo negativo (Loss) zerado",
+]
 
 const plansByCategory: Record<Category, Plan[]> = {
   "exames": [
@@ -153,14 +171,58 @@ const plansByCategory: Record<Category, Plan[]> = {
     },
   ],
   "titan": [
-    { name: "TITAN 50",  contracts: 50,  asset: "Índice",         meta: "R$6.000,00",  dailyLimit: "R$1.800,00", stopGlobal: "R$7.500,00",  price: "R$897/mês" },
-    { name: "TITAN 50",  contracts: 50,  asset: "Dólar",          meta: "R$6.000,00",  dailyLimit: "R$1.800,00", stopGlobal: "R$7.500,00",  price: "R$897/mês" },
-    { name: "TITAN 100", contracts: 100, asset: "Índice e Dólar", meta: "R$12.000,00", dailyLimit: "R$3.600,00", stopGlobal: "R$15.000,00", price: "R$1.497/mês" },
+    {
+      name: "TITAN PRO 10", contracts: 10,
+      meta: "R$7.000,00", dailyLimit: "R$2.500,00", stopGlobal: "R$10.000,00", price: "",
+      features: ["10 contratos", ...titanFeatures, "Meta de aprovação R$ 7.000,00", "Stop diário R$ 2.500,00", "Stop Global R$ 10.000,00"],
+      ctaLabel: "Adesão Através do Atendimento", ctaWhatsApp: true,
+    },
+    {
+      name: "TITAN PRO 15", contracts: 15,
+      meta: "R$8.500,00", dailyLimit: "R$3.000,00", stopGlobal: "R$16.000,00", price: "",
+      features: ["15 contratos", ...titanFeatures, "Meta de aprovação R$ 8.500,00", "Stop diário R$ 3.000,00", "Stop Global R$ 16.000,00"],
+      ctaLabel: "Adesão Através do Atendimento", ctaWhatsApp: true,
+    },
+    {
+      name: "TITAN PRO 20", contracts: 20,
+      meta: "R$15.000,00", dailyLimit: "R$3.500,00", stopGlobal: "R$17.000,00", price: "",
+      features: ["20 contratos", ...titanFeatures, "Meta de aprovação R$ 15.000,00", "Stop diário R$ 3.500,00", "Stop Global R$ 17.000,00"],
+      ctaLabel: "Adesão Através do Atendimento", ctaWhatsApp: true,
+    },
+    {
+      name: "TITAN PRO 30", contracts: 30,
+      meta: "R$18.000,00", dailyLimit: "R$4.000,00", stopGlobal: "R$20.000,00", price: "",
+      features: ["30 contratos", ...titanFeatures, "Meta de aprovação R$ 18.000,00", "Stop diário R$ 4.000,00", "Stop Global R$ 20.000,00"],
+      ctaLabel: "Adesão Através do Atendimento", ctaWhatsApp: true,
+    },
   ],
   "senior": [
-    { name: "SÊNIOR 75",  contracts: 75,  asset: "Índice",         meta: "R$9.000,00",  dailyLimit: "R$2.700,00", stopGlobal: "R$11.250,00", price: "R$1.197/mês" },
-    { name: "SÊNIOR 75",  contracts: 75,  asset: "Dólar",          meta: "R$9.000,00",  dailyLimit: "R$2.700,00", stopGlobal: "R$11.250,00", price: "R$1.197/mês" },
-    { name: "SÊNIOR 150", contracts: 150, asset: "Índice e Dólar", meta: "R$18.000,00", dailyLimit: "R$5.400,00", stopGlobal: "R$22.500,00", price: "R$1.997/mês" },
+    {
+      name: "INICIANTE 7", contracts: 7,
+      meta: "—", dailyLimit: "R$300,00", stopGlobal: "R$1.100,00", price: "R$ 997,00",
+      features: [...seniorFeaturesCommon, "Stop diário R$ 300,00", "Stop Global R$ 1.100,00"],
+    },
+    {
+      name: "INTERMEDIÁRIO 15", contracts: 15,
+      meta: "—", dailyLimit: "R$420,00", stopGlobal: "R$1.700,00", price: "R$ 1.323,00",
+      features: [...seniorFeaturesCommon, "Stop diário R$ 420,00", "Stop Global R$ 1.700,00"],
+    },
+    {
+      name: "AVANÇADO 25", contracts: 25,
+      meta: "—", dailyLimit: "R$900,00", stopGlobal: "R$4.250,00", price: "R$ 3.422,60",
+      features: [...seniorFeaturesCommon, "Stop diário R$ 900,00", "Stop Global R$ 4.250,00"],
+    },
+    {
+      name: "UNO 40", contracts: 40,
+      asset: "Índice ou Dólar",
+      meta: "—", dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00", price: "R$ 4.248,00",
+      features: [...seniorFeaturesCommon.slice(0,1), "Índice ou Dólar", ...seniorFeaturesCommon.slice(1), "Stop diário R$ 1.450,00", "Stop Global R$ 6.250,00"],
+    },
+    {
+      name: "MASTER 50", contracts: 50,
+      meta: "—", dailyLimit: "R$3.350,00", stopGlobal: "R$10.250,00", price: "R$ 5.197,50",
+      features: [...seniorFeaturesCommon, "Stop diário R$ 3.350,00", "Stop Global R$ 10.250,00"],
+    },
   ],
   "pegue-monte": [
     { name: "PEGUE E MONTE BÁSICO", contracts: 5,  meta: "R$500,00",   dailyLimit: "R$150,00", stopGlobal: "R$600,00",   price: "R$67" },
@@ -177,20 +239,142 @@ const categories: { id: Category; label: string }[] = [
   { id: "pegue-monte", label: "Pegue e Monte" },
 ]
 
-function PlanCard({ plan, isActive }: { plan: Plan; isActive: boolean }) {
-  const isPrimePlus = !!plan.features
+// ── WhatsApp Lead Modal ───────────────────────────────────────────────────────
+interface LeadModalProps {
+  planName: string
+  open: boolean
+  onClose: () => void
+}
+
+function LeadModal({ planName, open, onClose }: LeadModalProps) {
+  const [nome, setNome] = useState("")
+  const [email, setEmail] = useState("")
+  const [whatsapp, setWhatsapp] = useState("")
+
+  if (!open) return null
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    const msg = encodeURIComponent(
+      `Olá! Tenho interesse no *${planName}* da Amigos da Mesa PRO.\n\n` +
+      `📋 *Dados do interessado:*\n` +
+      `• Nome: ${nome}\n` +
+      `• E-mail: ${email}\n` +
+      `• WhatsApp: ${whatsapp}\n` +
+      `• Plano escolhido: ${planName}\n\n` +
+      `Gostaria de receber mais informações e iniciar minha adesão. Aguardo o contato da equipe!`
+    )
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank")
+    onClose()
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/70" onClick={onClose} />
+
+      {/* Modal */}
+      <div className="relative z-10 w-full max-w-md bg-card border border-border rounded-2xl shadow-2xl overflow-hidden">
+        {/* Header */}
+        <div className="bg-primary px-6 py-4 flex items-center justify-between">
+          <div>
+            <h3 className="text-primary-foreground font-black text-lg uppercase tracking-wide">
+              Fale com nosso time
+            </h3>
+            <p className="text-primary-foreground/80 text-xs mt-0.5">{planName}</p>
+          </div>
+          <button
+            onClick={onClose}
+            className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Body */}
+        <form onSubmit={handleSubmit} className="px-6 py-6 space-y-4">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Preencha seus dados abaixo e nossa equipe entrará em contato via WhatsApp para finalizar sua adesão ao <strong className="text-foreground">{planName}</strong>.
+          </p>
+
+          <div className="space-y-1">
+            <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Nome completo</label>
+            <input
+              required
+              value={nome}
+              onChange={e => setNome(e.target.value)}
+              placeholder="Seu nome"
+              className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+
+          <div className="space-y-1">
+            <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">E-mail</label>
+            <input
+              required
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              placeholder="seu@email.com"
+              className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+
+          <div className="space-y-1">
+            <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">WhatsApp</label>
+            <input
+              required
+              value={whatsapp}
+              onChange={e => setWhatsapp(e.target.value)}
+              placeholder="(11) 99999-9999"
+              className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+
+          <div className="space-y-1">
+            <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Plano escolhido</label>
+            <div className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground">
+              {planName}
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-3.5 bg-primary text-primary-foreground rounded-xl font-black text-sm uppercase tracking-wide hover:bg-primary/90 transition-colors"
+          >
+            Enviar para WhatsApp
+          </button>
+
+          <p className="text-[10px] text-muted-foreground text-center">
+            Você será redirecionado ao WhatsApp com seus dados preenchidos. Nossa equipe responde em até 2h.
+          </p>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+// ── Plan Card ─────────────────────────────────────────────────────────────────
+interface PlanCardProps {
+  plan: Plan
+  isActive: boolean
+  onCta: () => void
+}
+
+function PlanCard({ plan, isActive, onCta }: PlanCardProps) {
+  const hasFeatures = !!plan.features
+  const isPrimePlus = hasFeatures && !!plan.taxaOne
+  const isTitanOrSenior = hasFeatures && !plan.taxaOne
+
+  const ctaLabel = plan.ctaLabel ?? "Quero esse plano"
 
   return (
     <div
       className={`
         flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center
-        rounded-2xl border-2 bg-card
-        flex flex-col
+        rounded-2xl border-2 bg-card flex flex-col
         transition-all duration-300
-        ${isActive
-          ? "border-primary shadow-[0_0_0_2px_theme(colors.orange.500)]"
-          : "border-border opacity-80"
-        }
+        ${isActive ? "border-primary shadow-[0_0_0_2px_theme(colors.orange.500)]" : "border-border opacity-80"}
       `}
     >
       {/* Header */}
@@ -202,40 +386,51 @@ function PlanCard({ plan, isActive }: { plan: Plan; isActive: boolean }) {
 
       {/* Body */}
       <div className="flex flex-col flex-1 px-5 py-5 gap-4">
-
-        {isPrimePlus ? (
+        {isPrimePlus && (
           <>
-            {/* Bullet features */}
             <ul className="space-y-1.5">
               {plan.features!.map((feat, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm text-foreground">
-                  <span className="text-primary mt-0.5 text-xs">•</span>
+                  <span className="text-primary mt-0.5 text-xs flex-shrink-0">•</span>
                   <span>{feat}</span>
                 </li>
               ))}
             </ul>
-
-            {/* Taxa pós-aprovado */}
             <div className="border-t border-border pt-3">
               <p className="text-sm font-bold text-foreground leading-snug">
                 Taxa após aprovado:{" "}
-                <span className="text-foreground font-normal">
-                  ONE <span className="font-bold">{plan.taxaOne}</span>{" "}
-                  PRO <span className="font-bold">{plan.taxaPro}</span>
+                <span className="font-normal">
+                  ONE <strong>{plan.taxaOne}</strong> PRO <strong>{plan.taxaPro}</strong>
                 </span>
               </p>
             </div>
           </>
-        ) : (
+        )}
+
+        {isTitanOrSenior && (
           <>
-            {/* Contratos */}
+            <ul className="space-y-1.5">
+              {plan.features!.map((feat, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-foreground">
+                  <span className="text-primary mt-0.5 text-xs flex-shrink-0">•</span>
+                  <span className="leading-snug">{feat}</span>
+                </li>
+              ))}
+            </ul>
+            {plan.price && (
+              <div className="border-t border-border pt-3 text-center">
+                <span className="text-2xl font-black text-primary">{plan.price}</span>
+              </div>
+            )}
+          </>
+        )}
+
+        {!hasFeatures && (
+          <>
             <div className="text-center">
               <p className="text-primary font-bold text-lg">{plan.contracts} CONTRATOS</p>
-              {plan.asset && (
-                <p className="text-muted-foreground text-sm font-medium">{plan.asset}</p>
-              )}
+              {plan.asset && <p className="text-muted-foreground text-sm font-medium">{plan.asset}</p>}
             </div>
-            {/* Info rows */}
             <div className="space-y-2">
               <div className="flex items-center justify-between border-b border-border pb-2">
                 <span className="text-xs text-muted-foreground">Meta de Aprovação</span>
@@ -250,7 +445,6 @@ function PlanCard({ plan, isActive }: { plan: Plan; isActive: boolean }) {
                 <span className="text-sm font-semibold text-foreground">{plan.stopGlobal}</span>
               </div>
             </div>
-            {/* Price */}
             {plan.price && (
               <div className="text-center">
                 <span className="text-2xl font-black text-primary">{plan.price}</span>
@@ -261,6 +455,7 @@ function PlanCard({ plan, isActive }: { plan: Plan; isActive: boolean }) {
 
         {/* CTA */}
         <button
+          onClick={onCta}
           className={`
             w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide
             transition-all duration-300 mt-auto
@@ -270,10 +465,10 @@ function PlanCard({ plan, isActive }: { plan: Plan; isActive: boolean }) {
             }
           `}
         >
-          Quero esse plano
+          {ctaLabel}
         </button>
 
-        {!isPrimePlus && (
+        {!hasFeatures && (
           <p className="text-[10px] text-muted-foreground text-center leading-relaxed">
             *Limite diário aplicável de forma opcional. Cabe a você decidir utilizá-lo ou não.
           </p>
@@ -283,14 +478,15 @@ function PlanCard({ plan, isActive }: { plan: Plan; isActive: boolean }) {
   )
 }
 
+// ── Pricing Section ───────────────────────────────────────────────────────────
 export function PricingSection() {
   const [activeCategory, setActiveCategory] = useState<Category>("exames")
   const [activeCardIndex, setActiveCardIndex] = useState(0)
+  const [leadModal, setLeadModal] = useState<{ open: boolean; planName: string }>({ open: false, planName: "" })
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
   const plans = plansByCategory[activeCategory]
-
-  const CARD_WIDTH = 320 + 16 // card + gap
+  const CARD_WIDTH = 320 + 16
 
   useEffect(() => {
     const container = scrollContainerRef.current
@@ -310,6 +506,18 @@ export function PricingSection() {
 
   const scrollTo = (index: number) => {
     scrollContainerRef.current?.scrollTo({ left: index * CARD_WIDTH, behavior: "smooth" })
+  }
+
+  const handleCta = (plan: Plan) => {
+    if (plan.ctaWhatsApp) {
+      setLeadModal({ open: true, planName: plan.name })
+    } else {
+      // default: open whatsapp for all plans
+      const msg = encodeURIComponent(
+        `Olá! Tenho interesse no plano *${plan.name}* da Amigos da Mesa PRO. Pode me dar mais informações?`
+      )
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank")
+    }
   }
 
   return (
@@ -370,9 +578,8 @@ export function PricingSection() {
           </Dialog>
         </div>
 
-        {/* Carousel wrapper */}
+        {/* Carousel */}
         <div className="relative">
-          {/* Prev button (desktop) */}
           {activeCardIndex > 0 && (
             <button
               onClick={() => scrollTo(activeCardIndex - 1)}
@@ -384,26 +591,23 @@ export function PricingSection() {
             </button>
           )}
 
-          {/* Scrollable cards */}
           <div
             ref={scrollContainerRef}
             className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 px-4"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch" }}
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch" } as React.CSSProperties}
           >
-            {/* leading spacer so first card can center */}
             <div className="flex-shrink-0 w-[calc(50vw-184px)] md:hidden" />
             {plans.map((plan, index) => (
               <PlanCard
                 key={`${plan.name}-${plan.asset ?? ""}-${index}`}
                 plan={plan}
                 isActive={index === activeCardIndex}
+                onCta={() => handleCta(plan)}
               />
             ))}
-            {/* trailing spacer */}
             <div className="flex-shrink-0 w-[calc(50vw-184px)] md:hidden" />
           </div>
 
-          {/* Next button (desktop) */}
           {activeCardIndex < plans.length - 1 && (
             <button
               onClick={() => scrollTo(activeCardIndex + 1)}
@@ -423,14 +627,19 @@ export function PricingSection() {
               key={index}
               onClick={() => scrollTo(index)}
               className={`h-2 rounded-full transition-all duration-300 ${
-                index === activeCardIndex
-                  ? "bg-primary w-6"
-                  : "bg-muted-foreground/30 w-2"
+                index === activeCardIndex ? "bg-primary w-6" : "bg-muted-foreground/30 w-2"
               }`}
             />
           ))}
         </div>
       </div>
+
+      {/* Lead modal for Titan/WhatsApp plans */}
+      <LeadModal
+        open={leadModal.open}
+        planName={leadModal.planName}
+        onClose={() => setLeadModal({ open: false, planName: "" })}
+      />
     </section>
   )
 }
