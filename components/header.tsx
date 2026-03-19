@@ -30,15 +30,15 @@ export function Header() {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center">
             <Image 
               src="/images/logo.png" 
-              alt="Amigos da Mesa PRO" 
-              width={40} 
+              alt="Logo" 
+              width={120} 
               height={40}
-              className="w-8 h-8 md:w-10 md:h-10"
+              style={{ width: 'auto', height: 'auto' }}
+              className="h-8 md:h-10"
             />
-            <span className="font-bold text-lg text-foreground">Amigos da Mesa PRO</span>
           </div>
 
           {/* Desktop Navigation */}
