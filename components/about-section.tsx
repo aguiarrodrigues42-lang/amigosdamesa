@@ -1,78 +1,151 @@
 "use client"
 
-import { Target, Users, TrendingUp, Shield, ChevronRight } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
+import { Shield, TrendingUp, Users, Award } from "lucide-react"
 
-const features = [
+const PILLARS = [
   {
-    icon: Target,
-    title: "Ambiente Estruturado",
-    description: "Opera com regras claras, metas definidas e gestão de risco profissional."
+    icon: TrendingUp,
+    title: "Capital Profissional",
+    description: "Opere com o capital da mesa. Você foca apenas na consistência operacional.",
+  },
+  {
+    icon: Shield,
+    title: "Risco Controlado",
+    description: "Regras claras de stop diário e global protegem você e a mesa em todas as etapas.",
   },
   {
     icon: Users,
     title: "Comunidade Ativa",
-    description: "Troque experiências com traders que buscam o mesmo objetivo que você."
+    description: "Sala educacional ao vivo, suporte e troca de experiências com traders reais.",
   },
   {
-    icon: TrendingUp,
-    title: "Evolução Contínua",
-    description: "Fases de teste, simulador remunerado e conta real para sua progressão."
+    icon: Award,
+    title: "Repasses de até 95%",
+    description: "Membros do Clube do Valor recebem 95% do lucro líquido apurado no ciclo.",
   },
-  {
-    icon: Shield,
-    title: "Gestão de Risco",
-    description: "Proteja seu capital com regras operacionais e limites bem definidos."
-  }
 ]
 
+function useVisible(threshold = 0.15) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true) },
+      { threshold }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [threshold])
+  return { ref, visible }
+}
+
 export function AboutSection() {
-  const scrollToPlans = () => {
-    document.getElementById("planos")?.scrollIntoView({ behavior: "smooth" })
-  }
+  const { ref: imgRef, visible: imgVisible } = useVisible(0.1)
+  const { ref: textRef, visible: textVisible } = useVisible(0.1)
 
   return (
-    <section id="sobre" className="py-20 bg-secondary/30 scroll-mt-20">
+    <section id="sobre" className="py-24 bg-secondary/20 scroll-mt-20 overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">
-            O que é a <span className="text-primary">Mesa Proprietária</span>?
-          </h2>
-          <p className="text-muted-foreground text-lg text-pretty">
-            Uma mesa proprietária oferece capital, estrutura e suporte para traders 
-            operarem Day Trade de forma profissional, com foco em consistência e resultados reais.
-          </p>
+
+        {/* Top: split layout — text left, image right */}
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 mb-20">
+
+          {/* Text side */}
+          <div
+            ref={textRef}
+            className="flex-1 max-w-xl"
+            style={{
+              opacity: textVisible ? 1 : 0,
+              transform: textVisible ? "translateX(0)" : "translateX(-40px)",
+              transition: "opacity 0.7s ease, transform 0.7s ease",
+            }}
+          >
+            <div className="inline-flex items-center gap-2 mb-5 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+              <span className="text-primary text-xs font-bold uppercase tracking-widest">Quem somos</span>
+            </div>
+
+            <h2 className="text-3xl md:text-5xl font-black text-foreground leading-tight mb-6 text-balance">
+              Uma mesa que{" "}
+              <span className="text-primary">investe</span>{" "}
+              no trader certo
+            </h2>
+
+            <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-6 text-pretty">
+              A Amigos da Mesa Prop nasceu para dar oportunidade a traders que já possuem
+              habilidade mas faltam capital e estrutura. Selecionamos os mais consistentes
+              para operar com nosso capital e dividir os lucros.
+            </p>
+
+            <p className="text-muted-foreground text-base leading-relaxed mb-8 text-pretty">
+              Operamos em Day Trade nos mercados de Índice, Dólar e Bitcoin. Nossa metodologia
+              avalia a qualidade das operações — não apenas o resultado — garantindo traders
+              preparados para o mercado real.
+            </p>
+
+            {/* Highlight stat row */}
+            <div className="flex flex-wrap gap-6">
+              {[
+                { n: "5+", l: "anos de mercado" },
+                { n: "2.400+", l: "traders ativos" },
+                { n: "95%", l: "máx. de repasse" },
+              ].map((s, i) => (
+                <div key={i} className="flex flex-col">
+                  <span className="text-2xl font-black text-primary">{s.n}</span>
+                  <span className="text-xs text-muted-foreground uppercase tracking-wide">{s.l}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Image side */}
+          <div
+            ref={imgRef}
+            className="flex-1 w-full max-w-xl"
+            style={{
+              opacity: imgVisible ? 1 : 0,
+              transform: imgVisible ? "translateX(0)" : "translateX(40px)",
+              transition: "opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s",
+            }}
+          >
+            <div className="relative rounded-3xl overflow-hidden aspect-[4/3] shadow-2xl">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/amigos%20da%20mesa%203-atlvqXw8SmvP66KYkz3TpgfGx5NvST.jpeg"
+                alt="Fundadora da Amigos da Mesa Prop sentada à mesa com estátuas de touro e urso dourados"
+                className="w-full h-full object-cover"
+              />
+              {/* subtle vignette */}
+              <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-3xl" />
+              {/* floating badge */}
+              <div className="absolute bottom-4 left-4 bg-black/80 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-3">
+                <p className="text-xs text-white/50 uppercase tracking-widest">Fundada em</p>
+                <p className="text-white font-black text-lg leading-none">2019</p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mb-14">
-          {features.map((feature, i) => {
-            const Icon = feature.icon
+        {/* Bottom: 4 pillars grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {PILLARS.map((p, i) => {
+            const Icon = p.icon
             return (
-              <div 
+              <div
                 key={i}
-                className="bg-card border border-border rounded-xl p-6 hover:border-primary/50 transition-colors"
+                className="bg-card border border-border rounded-2xl p-6 hover:border-primary/50 transition-all hover:-translate-y-1 duration-300"
               >
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <Icon className="w-6 h-6 text-primary" />
+                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                  <Icon className="w-5 h-5 text-primary" />
                 </div>
-                <h3 className="font-semibold text-foreground mb-2">{feature.title}</h3>
-                <p className="text-sm text-muted-foreground">{feature.description}</p>
+                <h3 className="font-bold text-foreground mb-2 text-sm">{p.title}</h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">{p.description}</p>
               </div>
             )
           })}
-        </div>
-
-        <div className="max-w-2xl mx-auto text-center">
-          <p className="text-muted-foreground mb-6">
-            A relação entre a mesa e o trader é de prestação de serviços, com regras próprias 
-            de avaliação, operação e repasse de resultados.
-          </p>
-          <button 
-            onClick={scrollToPlans}
-            className="inline-flex items-center text-primary hover:underline font-medium"
-          >
-            Ver planos disponíveis
-            <ChevronRight className="w-4 h-4 ml-1" />
-          </button>
         </div>
       </div>
     </section>

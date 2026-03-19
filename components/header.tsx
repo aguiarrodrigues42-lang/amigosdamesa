@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X, ChevronRight, ArrowLeft } from "lucide-react"
-import Image from "next/image"
+
 
 interface Topic {
   id: string
@@ -338,8 +338,9 @@ export function Header() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <div className="flex items-center" style={{ position: "relative", width: "160px", height: "40px" }}>
-              <Image src="/images/logo.png" alt="Logo" fill unoptimized style={{ objectFit: "contain", objectPosition: "left center" }} />
+            <div className="flex items-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/logo.png" alt="Logo" style={{ height: "40px", width: "auto", display: "block" }} />
             </div>
 
             {/* Desktop nav */}

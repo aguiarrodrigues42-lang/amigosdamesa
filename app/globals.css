@@ -125,14 +125,21 @@
 }
 
 @keyframes pulse-border {
-  0%, 100% {
-    box-shadow: 0 0 0 0 var(--primary);
-  }
-  50% {
-    box-shadow: 0 0 0 6px transparent;
-  }
+  0%, 100% { box-shadow: 0 0 0 0 var(--primary); }
+  50%       { box-shadow: 0 0 0 6px transparent; }
 }
-
 .animate-pulse-border {
   animation: pulse-border 1.5s ease-in-out infinite;
 }
+
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* hero grid lines blink */
+@keyframes grid-fade {
+  0%, 100% { opacity: 0.04; }
+  50%       { opacity: 0.07; }
+}
+
