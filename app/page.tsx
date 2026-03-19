@@ -1,7 +1,7 @@
 import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
 import { AboutSection } from "@/components/about-section"
-import { PricingSection } from "@/components/pricing-section"
+import { PricingSection } from "@/components/pricing-section-v2"
 import { BenefitsSection } from "@/components/benefits-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { FaqSection } from "@/components/faq-section"

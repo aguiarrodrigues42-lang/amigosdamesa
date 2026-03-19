@@ -6,7 +6,7 @@ export function Footer() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center">
-            <Image src="/images/logo.png" alt="Logo" width={0} height={0} sizes="100vw" unoptimized className="h-8 w-auto" />
+            <Image src="/images/logo.png" alt="Logo" width={128} height={32} unoptimized style={{ height: "32px", width: "auto" }} />
           </div>
 
           <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">

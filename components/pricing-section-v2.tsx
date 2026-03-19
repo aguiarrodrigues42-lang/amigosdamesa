@@ -1,5 +1,5 @@
 "use client"
-// build-v3
+// pricing-section-v2 — no ScrollArea
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { FileText, ChevronLeft, ChevronRight, X, Info } from "lucide-react"
