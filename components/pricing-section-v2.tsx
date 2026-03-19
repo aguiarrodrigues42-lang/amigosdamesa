@@ -102,7 +102,6 @@ FORO
 Fica eleito o foro da comarca de São Paulo/SP para resolução de eventuais conflitos.`
 
 type Category = "exames" | "prime-plus" | "titan" | "senior" | "pegue-monte" | "bit"
-type BitSubCategory = "ultra" | "titan-ultra"
 
 interface Plan {
   name: string
@@ -267,25 +266,23 @@ interface BitPlan {
   name: string
   bitContracts: number
   features: string[]
-  // Ultra pricing
-  precoExame?: string
-  precoExameOriginal?: string
-  precoSenior?: string
-  precoSeniorOriginal?: string
-  // Titan Ultra pricing
-  precoPix?: string
-  precoPixOriginal?: string
-  precoCartao?: string
-  precoCartaoOriginal?: string
-  precoContaAprovada?: string
-  discountLabel?: string
-  subCategory: BitSubCategory
+  // Exame (via exame de proficiência) — Profit One
+  precoExame: string
+  precoExameOriginal: string
+  // Sênior (via Sênior) — Profit One
+  // Valor original = coluna rosa; PIX = 55% OFF; Cartão = original * 1.30 / 12
+  valorOriginal: number        // valor numérico para calcular cartão
+  precoPix: string             // 55% OFF
+  precoCartao12x: string       // (valorOriginal * 1.30 / 12) formatado
+  precoSeniorOriginal: string  // riscado no cartão
+  pixLink?: string
+  indisponivel?: boolean       // ULTRA 30 PIX indisponivel
 }
 
+// Ultra 1.0 / 3 em 1
+// valorOriginal = valor rosa; precoPix = 55% OFF; precoCartao12x = original * 1.30 / 12
 const bitPlans: BitPlan[] = [
-  // Ultra 1.0 / 3 em 1
   {
-    subCategory: "ultra",
     name: "ULTRA 10",
     bitContracts: 5,
     features: [
@@ -293,13 +290,16 @@ const bitPlans: BitPlan[] = [
       "Aprovação: R$900,00",
       "Stop Global: R$1.950,00",
       "Stop Diário: R$600,00",
+      "Repasse Mensal e Quinzenal",
     ],
-    precoExame: "R$620,90",   precoExameOriginal: "R$1.379,78",
-    precoSenior: "R$1.241,00", precoSeniorOriginal: "R$2.757,78",
-    discountLabel: "55% OFF",
+    precoExame: "R$620,90",     precoExameOriginal: "R$1.379,78",
+    valorOriginal: 714.03,
+    precoPix: "R$389,67",
+    precoCartao12x: "R$77,35",  // 714.03 * 1.30 / 12 = 77,35
+    precoSeniorOriginal: "R$714,03",
+    pixLink: "https://pedido.amigosdamesa.shop/pay/79807da1-bbcb-4550-aae1-8d913fd31726",
   },
   {
-    subCategory: "ultra",
     name: "ULTRA 15",
     bitContracts: 10,
     features: [
@@ -307,13 +307,16 @@ const bitPlans: BitPlan[] = [
       "Aprovação: R$2.500,00",
       "Stop Global: R$3.510,00",
       "Stop Diário: R$1.000,00",
+      "3 Ativos BIT/WIN/WDO",
     ],
-    precoExame: "R$890,55",   precoExameOriginal: "R$1.979,00",
-    precoSenior: "R$1.781,10", precoSeniorOriginal: "R$3.958,00",
-    discountLabel: "55% OFF",
+    precoExame: "R$890,55",     precoExameOriginal: "R$1.979,00",
+    valorOriginal: 1024.13,
+    precoPix: "R$420,72",
+    precoCartao12x: "R$110,95", // 1024.13 * 1.30 / 12 = 110,95
+    precoSeniorOriginal: "R$1.024,13",
+    pixLink: "https://pedido.amigosdamesa.shop/pay/d2f2fd63-96f1-4d80-90f3-eef05991e14e",
   },
   {
-    subCategory: "ultra",
     name: "ULTRA 20",
     bitContracts: 15,
     features: [
@@ -321,13 +324,16 @@ const bitPlans: BitPlan[] = [
       "Aprovação: R$3.500,00",
       "Stop Global: R$5.900,00",
       "Stop Diário: R$1.700,00",
+      "Vagas Limitadas",
     ],
-    precoExame: "R$1.620,10",  precoExameOriginal: "R$3.600,22",
-    precoSenior: "R$3.240,20", precoSeniorOriginal: "R$7.200,44",
-    discountLabel: "55% OFF",
+    precoExame: "R$1.620,10",   precoExameOriginal: "R$3.600,22",
+    valorOriginal: 1863.11,
+    precoPix: "R$605,47",
+    precoCartao12x: "R$201,84", // 1863.11 * 1.30 / 12 = 201,84
+    precoSeniorOriginal: "R$1.863,11",
+    pixLink: "https://pedido.amigosdamesa.shop/pay/de2547fb-4e56-45e9-b985-df6d5787d6ee",
   },
   {
-    subCategory: "ultra",
     name: "ULTRA 30",
     bitContracts: 25,
     features: [
@@ -335,87 +341,22 @@ const bitPlans: BitPlan[] = [
       "Aprovação: R$5.500,00",
       "Stop Global: R$7.150,00",
       "Stop Diário: R$2.100,00",
+      "Exame ou Direto na Mesa",
     ],
-    precoExame: "R$2.115,80",  precoExameOriginal: "R$4.701,78",
-    precoSenior: "R$4.231,60", precoSeniorOriginal: "R$9.403,56",
-    discountLabel: "55% OFF",
-  },
-  // Titan Ultra
-  {
-    subCategory: "titan-ultra",
-    name: "TITAN ULTRA 30",
-    bitContracts: 30,
-    features: [
-      "10 CTT BIT / 20 WDO e WIN",
-      "Sem limite de tempo para o exame",
-      "Repasse de 90% após aprovação, 100% membros do Clube do Valor",
-      "Meta de aprovação 7K",
-      "Stop diário 2.500K",
-      "Stop Global 10K",
-    ],
-    precoPix: "R$1.610,00",   precoPixOriginal: "R$4.025,00",
-    precoCartao: "R$1.710,00", precoCartaoOriginal: "R$4.275,00",
-    precoContaAprovada: "R$2.907,90",
-    discountLabel: "60% OFF",
-  },
-  {
-    subCategory: "titan-ultra",
-    name: "TITAN ULTRA 45",
-    bitContracts: 45,
-    features: [
-      "20 CTT BIT / 25 WDO e WIN",
-      "Sem limite de tempo para o exame",
-      "Repasse de 90% após aprovação, 100% membros do Clube do Valor",
-      "Meta de aprovação 8.500K",
-      "Stop diário 3K",
-      "Stop Global 16K",
-    ],
-    precoPix: "R$1.850,00",   precoPixOriginal: "R$4.625,00",
-    precoCartao: "R$1.950,00", precoCartaoOriginal: "R$4.875,00",
-    precoContaAprovada: "R$3.315,90",
-    discountLabel: "60% OFF",
-  },
-  {
-    subCategory: "titan-ultra",
-    name: "TITAN ULTRA 65",
-    bitContracts: 65,
-    features: [
-      "30 CTT BIT / 35 WDO e WIN",
-      "Sem limite de tempo para o exame",
-      "Repasse de 90% após aprovação, 100% membros do Clube do Valor",
-      "Meta de aprovação 15K",
-      "Stop diário 4K",
-      "Stop Global 18K",
-    ],
-    precoPix: "R$2.599,00",   precoPixOriginal: "R$6.497,50",
-    precoCartao: "R$2.699,00", precoCartaoOriginal: "R$6.747,50",
-    precoContaAprovada: "R$4.588,90",
-    discountLabel: "60% OFF",
-  },
-  {
-    subCategory: "titan-ultra",
-    name: "TITAN ULTRA 80",
-    bitContracts: 80,
-    features: [
-      "40 CTT BIT / 40 WDO e WIN",
-      "Sem limite de tempo para o exame",
-      "Repasse de 90% após aprovação, 100% membros do Clube do Valor",
-      "Meta de aprovação 18K",
-      "Stop diário 5.500K",
-      "Stop Global 22K",
-    ],
-    precoPix: "R$3.199,00",   precoPixOriginal: "R$7.997,50",
-    precoCartao: "R$3.299,00", precoCartaoOriginal: "R$8.247,50",
-    precoContaAprovada: "R$5.438,90",
-    discountLabel: "60% OFF",
+    precoExame: "R$2.115,80",   precoExameOriginal: "R$4.701,78",
+    valorOriginal: 2433.17,
+    precoPix: "INDISPONIVEL",
+    precoCartao12x: "R$263,59", // 2433.17 * 1.30 / 12 = 263,59
+    precoSeniorOriginal: "R$2.433,17",
+    indisponivel: true,
+    pixLink: "https://pedido.amigosdamesa.shop/pay/3c1aec92-9457-4f48-8d2c-be7fa6be4200",
   },
 ]
 
 const BONUS_LABEL = "7 dias de Sala Educacional ao Vivo"
 
 // ── BitPlanCard ───────────────────────────────────────────────────────────────
-function BitPlanCard({ plan, isActive, onCta }: { plan: BitPlan; isActive: boolean; onCta: () => void }) {
-  const isTitanUltra = plan.subCategory === "titan-ultra"
+function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive: boolean; isPix: boolean; onCta: () => void }) {
   return (
     <div
       className={`
@@ -428,7 +369,7 @@ function BitPlanCard({ plan, isActive, onCta }: { plan: BitPlan; isActive: boole
       <div className="bg-primary rounded-t-2xl px-5 py-3 flex items-center justify-between">
         <h3 className="text-primary-foreground font-black text-sm uppercase tracking-wide">{plan.name}</h3>
         <span className="bg-primary-foreground text-primary text-xs font-black px-2 py-0.5 rounded-full">
-          {plan.bitContracts} {isTitanUltra ? "CTT" : "BIT"}
+          {plan.bitContracts} BIT
         </span>
       </div>
 
@@ -445,47 +386,34 @@ function BitPlanCard({ plan, isActive, onCta }: { plan: BitPlan; isActive: boole
 
         {/* Pricing rows */}
         <div className="space-y-2 border-t border-border pt-3">
-          {isTitanUltra ? (
-            <>
-              <div className="flex items-center justify-between">
-                <span className="bg-foreground text-background text-xs font-black px-2 py-1 rounded min-w-[52px] text-center">PIX</span>
-                <div className="text-right">
-                  {plan.precoPixOriginal && <span className="text-xs line-through text-muted-foreground block">{plan.precoPixOriginal}</span>}
-                  <span className="text-primary font-black text-sm">{plan.precoPix}</span>
-                </div>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="bg-secondary border border-border text-foreground text-xs font-black px-2 py-1 rounded min-w-[52px] text-center">CARTÃO</span>
-                <div className="text-right">
-                  {plan.precoCartaoOriginal && <span className="text-xs line-through text-muted-foreground block">{plan.precoCartaoOriginal}</span>}
-                  <span className="text-primary font-black text-sm">{plan.precoCartao}</span>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="bg-destructive text-destructive-foreground text-[9px] font-black px-1.5 py-1 rounded leading-tight text-center min-w-[52px]">CONTA<br/>APROVADA</span>
-                <span className="text-foreground font-bold text-sm">{plan.precoContaAprovada}</span>
-              </div>
-              <p className="text-[10px] text-muted-foreground text-center font-semibold tracking-widest pt-1">PROFIT ONE</p>
-            </>
-          ) : (
-            <>
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-muted-foreground font-semibold uppercase tracking-wide">Exame</span>
-                <div className="text-right">
-                  {plan.precoExameOriginal && <span className="text-xs line-through text-muted-foreground block">{plan.precoExameOriginal}</span>}
-                  <span className="text-primary font-black text-base">{plan.precoExame}</span>
-                </div>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-muted-foreground font-semibold uppercase tracking-wide">Sênior</span>
-                <div className="text-right">
-                  {plan.precoSeniorOriginal && <span className="text-xs line-through text-muted-foreground block">{plan.precoSeniorOriginal}</span>}
-                  <span className="text-primary font-black text-base">{plan.precoSenior}</span>
-                </div>
-              </div>
-              <p className="text-[10px] text-muted-foreground text-center font-semibold tracking-widest pt-1">PROFIT ONE</p>
-            </>
-          )}
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-muted-foreground font-semibold uppercase tracking-wide">Exame</span>
+            <div className="text-right">
+              <span className="text-xs line-through text-muted-foreground block">{plan.precoExameOriginal}</span>
+              <span className="text-primary font-black text-base">{plan.precoExame}</span>
+            </div>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-muted-foreground font-semibold uppercase tracking-wide">Sênior</span>
+            <div className="text-right">
+              {isPix ? (
+                plan.indisponivel ? (
+                  <span className="text-destructive font-black text-sm">INDISPONÍVEL</span>
+                ) : (
+                  <>
+                    <span className="text-xs line-through text-muted-foreground block">{plan.precoSeniorOriginal}</span>
+                    <span className="text-primary font-black text-base">{plan.precoPix}</span>
+                  </>
+                )
+              ) : (
+                <>
+                  <span className="text-xs line-through text-muted-foreground block">{plan.precoSeniorOriginal}</span>
+                  <span className="text-primary font-black text-base">12x {plan.precoCartao12x}</span>
+                </>
+              )}
+            </div>
+          </div>
+          <p className="text-[10px] text-muted-foreground text-center font-semibold tracking-widest pt-1">PROFIT ONE</p>
         </div>
 
         {/* Bonus banner */}
@@ -827,10 +755,7 @@ const categories: { id: Category; label: string }[] = [
   { id: "bit",         label: "BIT" },
 ]
 
-const bitSubCategories: { id: BitSubCategory; label: string }[] = [
-  { id: "ultra",       label: "Ultra 1.0 / 3 em 1" },
-  { id: "titan-ultra", label: "Titan Ultra" },
-]
+
 
 // ── WhatsApp Lead Modal ───────────────────────────────────────────────────────
 interface LeadModalProps {
@@ -947,7 +872,7 @@ function LeadModal({ planName, open, onClose }: LeadModalProps) {
   )
 }
 
-// ── Helpers de formatação ─────────────────────────────────────────────────────
+// ── Helpers de formatação ──────────────────────────────────────────���──────────
 function formatBRL(value: number): string {
   return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
 }
@@ -1146,7 +1071,7 @@ function PaymentToggle({ isPix, onChange }: { isPix: boolean; onChange: (v: bool
 // ── Pricing Section ───────────────────────────────────────────────────────────
 export function PricingSection() {
   const [activeCategory, setActiveCategory] = useState<Category>("exames")
-  const [bitSubCategory, setBitSubCategory] = useState<BitSubCategory>("ultra")
+
   const [activeCardIndex, setActiveCardIndex] = useState(0)
   const [isPix, setIsPix] = useState(true) // default to PIX
   const [leadModal, setLeadModal] = useState<{ open: boolean; planName: string }>({ open: false, planName: "" })
@@ -1154,9 +1079,8 @@ export function PricingSection() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
   const isBit = activeCategory === "bit"
-  const bitPlansFiltered = bitPlans.filter(p => p.subCategory === bitSubCategory)
   const plans = plansByCategory[activeCategory]
-  const activeCount = isBit ? bitPlansFiltered.length : plans.length
+  const activeCount = isBit ? bitPlans.length : plans.length
   const CARD_WIDTH = 320 + 16
 
   useEffect(() => {
@@ -1168,12 +1092,12 @@ export function PricingSection() {
     }
     container.addEventListener("scroll", handleScroll, { passive: true })
     return () => container.removeEventListener("scroll", handleScroll)
-  }, [activeCategory, bitSubCategory, activeCount, CARD_WIDTH])
+  }, [activeCategory, activeCount, CARD_WIDTH])
 
   useEffect(() => {
     setActiveCardIndex(0)
     scrollContainerRef.current?.scrollTo({ left: 0, behavior: "instant" as ScrollBehavior })
-  }, [activeCategory, bitSubCategory])
+  }, [activeCategory])
 
   const scrollTo = (index: number) => {
     scrollContainerRef.current?.scrollTo({ left: index * CARD_WIDTH, behavior: "smooth" })
@@ -1233,24 +1157,7 @@ export function PricingSection() {
           ))}
         </div>
 
-        {/* BIT sub-tabs */}
-        {isBit && (
-          <div className="flex justify-center gap-2 mb-5">
-            {bitSubCategories.map(sub => (
-              <button
-                key={sub.id}
-                onClick={() => setBitSubCategory(sub.id)}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all
-                  ${bitSubCategory === sub.id
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-secondary text-foreground border border-border hover:border-primary"
-                  }`}
-              >
-                {sub.label}
-              </button>
-            ))}
-          </div>
-        )}
+
 
         {/* Regulamento */}
         <div className="flex justify-center mb-6">
@@ -1302,12 +1209,20 @@ export function PricingSection() {
           >
             <div className="flex-shrink-0 w-[calc(50vw-184px)] md:hidden" />
             {isBit
-              ? bitPlansFiltered.map((plan, index) => (
+              ? bitPlans.map((plan, index) => (
                   <BitPlanCard
                     key={`${plan.name}-${index}`}
                     plan={plan}
                     isActive={index === activeCardIndex}
-                    onCta={() => handleCta(plan.name)}
+                    isPix={isPix}
+                    onCta={() => {
+                      if (isPix && plan.indisponivel) return
+                      if (isPix && plan.pixLink) {
+                        window.open(plan.pixLink, "_blank")
+                      } else {
+                        handleCta(plan.name)
+                      }
+                    }}
                   />
                 ))
               : plans.map((plan, index) => (
