@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { FileText, ChevronLeft, ChevronRight, X } from "lucide-react"
+import { FileText, ChevronLeft, ChevronRight, X, Info } from "lucide-react"
 import {
   Dialog,
   DialogContent,
@@ -225,10 +225,323 @@ const plansByCategory: Record<Category, Plan[]> = {
     },
   ],
   "pegue-monte": [
-    { name: "PEGUE E MONTE BÁSICO", contracts: 5,  meta: "R$500,00",   dailyLimit: "R$150,00", stopGlobal: "R$600,00",   price: "R$67" },
-    { name: "PEGUE E MONTE PLUS",   contracts: 10, meta: "R$1.000,00", dailyLimit: "R$300,00", stopGlobal: "R$1.200,00", price: "R$97" },
-    { name: "PEGUE E MONTE PRO",    contracts: 20, meta: "R$2.000,00", dailyLimit: "R$600,00", stopGlobal: "R$2.400,00", price: "R$147" },
+    {
+      name: "PEGUE E MONTE",
+      contracts: 0,
+      meta: "—", dailyLimit: "—", stopGlobal: "—", price: "",
+      features: ["Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"],
+      ctaLabel: "Monte seu plano",
+      ctaWhatsApp: false,
+    },
   ],
+}
+
+// ── Pegue e Monte Builder ─────────────────────────────────────────────────────
+interface PegueMonteOption { label: string; price: number; description?: string }
+
+const pmContratos: PegueMonteOption[] = [
+  { label: "8 contratos",  price: 753  },
+  { label: "12 contratos", price: 813  },
+  { label: "16 contratos", price: 973  },
+  { label: "20 contratos", price: 1133 },
+  { label: "25 contratos", price: 1363 },
+  { label: "30 contratos", price: 1553 },
+]
+
+const pmPlataforma: PegueMonteOption[] = [
+  { label: "One",   price: 0,   description: "R$0,00" },
+  { label: "PLUS+", price: 160, description: "R$160,00" },
+]
+
+const pmAtivos: PegueMonteOption[] = [
+  { label: "WIN",   price: 0 },
+  { label: "WDO",   price: 0 },
+  { label: "Ambos", price: 0 },
+]
+
+const pmModalidade: PegueMonteOption[] = [
+  { label: "Day Trade", price: 0 },
+  { label: "Swing",     price: 0 },
+]
+
+const pmStopDiario: PegueMonteOption[] = [
+  { label: "R$500,00",   price: 0   },
+  { label: "R$750,00",   price: 0   },
+  { label: "R$900,00",   price: 0   },
+  { label: "R$1.300,00", price: 0   },
+  { label: "R$1.800,00", price: 0   },
+]
+
+interface PegueMonteModalProps {
+  open: boolean
+  onClose: () => void
+}
+
+function PegueMonteModal({ open, onClose }: PegueMonteModalProps) {
+  const [nome, setNome]           = useState("")
+  const [email, setEmail]         = useState("")
+  const [whatsapp, setWhatsapp]   = useState("")
+  const [contratos, setContratos] = useState<PegueMonteOption | null>(null)
+  const [plataforma, setPlataforma] = useState<PegueMonteOption | null>(null)
+  const [clube, setClube]         = useState(false)
+  const [ativos, setAtivos]       = useState<PegueMonteOption | null>(null)
+  const [modalidade, setModalidade] = useState<PegueMonteOption | null>(null)
+  const [stopDiario, setStopDiario] = useState<PegueMonteOption | null>(null)
+  const [step, setStep]           = useState<"builder" | "lead">("builder")
+
+  const total = (contratos?.price ?? 0) + (plataforma?.price ?? 0)
+
+  const builderComplete = contratos && plataforma && ativos && modalidade && stopDiario
+
+  const handleGoToLead = (e: React.FormEvent) => {
+    e.preventDefault()
+    setStep("lead")
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    const desconto = clube ? " (10% de desconto Clube do Valor)" : ""
+    const msg = encodeURIComponent(
+      `Olá! Quero montar meu plano *PEGUE E MONTE* na Amigos da Mesa PRO.\n\n` +
+      `👤 *Dados do interessado:*\n` +
+      `• Nome: ${nome}\n` +
+      `• E-mail: ${email}\n` +
+      `• WhatsApp: ${whatsapp}\n\n` +
+      `📋 *Configuração do plano montado:*\n` +
+      `• Contratos: ${contratos?.label}\n` +
+      `• Plataforma: ${plataforma?.label}${desconto}\n` +
+      `• Clube do Valor: ${clube ? "Sim" : "Não"}\n` +
+      `• Ativos: ${ativos?.label}\n` +
+      `• Modalidade: ${modalidade?.label}\n` +
+      `• Stop Diário: ${stopDiario?.label}\n\n` +
+      `💰 *Valor total estimado: R$${total.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}*\n\n` +
+      `Aguardo o contato para finalizar minha adesão!`
+    )
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank")
+    onClose()
+    setStep("builder")
+  }
+
+  const handleClose = () => {
+    onClose()
+    setStep("builder")
+  }
+
+  if (!open) return null
+
+  const selectClass = "w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary appearance-none"
+  const inputClass  = "w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+  const labelClass  = "text-xs font-semibold text-muted-foreground uppercase tracking-wide"
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-black/70" onClick={handleClose} />
+      <div className="relative z-10 w-full max-w-lg bg-card border border-border rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+
+        {/* Header */}
+        <div className="bg-primary px-6 py-4 flex items-center justify-between flex-shrink-0">
+          <div>
+            <h3 className="text-primary-foreground font-black text-lg uppercase tracking-wide">
+              {step === "builder" ? "Monte seu Plano" : "Seus Dados"}
+            </h3>
+            <p className="text-primary-foreground/80 text-xs mt-0.5">Pegue e Monte — personalize sua conta</p>
+          </div>
+          <button onClick={handleClose} className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {step === "builder" ? (
+          <form onSubmit={handleGoToLead} className="flex flex-col flex-1 overflow-hidden">
+            <ScrollArea className="flex-1">
+              <div className="px-6 py-6 space-y-5">
+
+                {/* Contratos */}
+                <div className="space-y-1.5">
+                  <label className={labelClass}>Quantidade de Contratos <span className="text-destructive">*</span></label>
+                  <div className="relative">
+                    <select
+                      required
+                      value={contratos?.label ?? ""}
+                      onChange={e => setContratos(pmContratos.find(o => o.label === e.target.value) ?? null)}
+                      className={selectClass}
+                    >
+                      <option value="">Selecionar valor</option>
+                      {pmContratos.map(o => (
+                        <option key={o.label} value={o.label}>{o.label} — R${o.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Plataforma */}
+                <div className="space-y-1.5">
+                  <label className={labelClass}>Plataforma <span className="text-destructive">*</span></label>
+                  <select
+                    required
+                    value={plataforma?.label ?? ""}
+                    onChange={e => setPlataforma(pmPlataforma.find(o => o.label === e.target.value) ?? null)}
+                    className={selectClass}
+                  >
+                    <option value="">Selecionar valor</option>
+                    {pmPlataforma.map(o => (
+                      <option key={o.label} value={o.label}>{o.label} — {o.description}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Clube */}
+                <div className="space-y-1.5">
+                  <label className={labelClass}>Clube do Valor</label>
+                  <div className="flex items-center gap-3">
+                    <button
+                      type="button"
+                      role="switch"
+                      aria-checked={clube}
+                      onClick={() => setClube(v => !v)}
+                      className={`relative w-12 h-6 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary ${clube ? "bg-primary" : "bg-muted"}`}
+                    >
+                      <span className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform duration-300 ${clube ? "translate-x-6" : "translate-x-0"}`} />
+                    </button>
+                    <span className="text-sm text-muted-foreground flex items-center gap-1">
+                      Sim
+                      <Info className="w-3.5 h-3.5 text-muted-foreground" />
+                    </span>
+                  </div>
+                </div>
+
+                {/* Ativos */}
+                <div className="space-y-1.5">
+                  <label className={labelClass}>Ativos <span className="text-destructive">*</span></label>
+                  <select
+                    required
+                    value={ativos?.label ?? ""}
+                    onChange={e => setAtivos(pmAtivos.find(o => o.label === e.target.value) ?? null)}
+                    className={selectClass}
+                  >
+                    <option value="">Selecionar valor</option>
+                    {pmAtivos.map(o => (
+                      <option key={o.label} value={o.label}>{o.label}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Modalidade */}
+                <div className="space-y-1.5">
+                  <label className={labelClass}>Modalidade <span className="text-destructive">*</span></label>
+                  <select
+                    required
+                    value={modalidade?.label ?? ""}
+                    onChange={e => setModalidade(pmModalidade.find(o => o.label === e.target.value) ?? null)}
+                    className={selectClass}
+                  >
+                    <option value="">Selecionar valor</option>
+                    {pmModalidade.map(o => (
+                      <option key={o.label} value={o.label}>{o.label}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Stop Diário */}
+                <div className="space-y-1.5">
+                  <label className={labelClass}>Stop Diário <span className="text-destructive">*</span></label>
+                  <select
+                    required
+                    value={stopDiario?.label ?? ""}
+                    onChange={e => setStopDiario(pmStopDiario.find(o => o.label === e.target.value) ?? null)}
+                    className={selectClass}
+                  >
+                    <option value="">Selecionar valor</option>
+                    {pmStopDiario.map(o => (
+                      <option key={o.label} value={o.label}>{o.label}</option>
+                    ))}
+                  </select>
+                </div>
+
+              </div>
+            </ScrollArea>
+
+            {/* Resumo + CTA */}
+            <div className="px-6 pb-6 pt-4 border-t border-border flex-shrink-0 space-y-4">
+              <div className="bg-secondary rounded-xl px-4 py-3 space-y-1.5">
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>Contratos</span><span>{contratos?.label ?? "—"}</span>
+                </div>
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>Plataforma</span><span>{plataforma?.label ?? "—"}</span>
+                </div>
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>Ativos</span><span>{ativos?.label ?? "—"}</span>
+                </div>
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>Stop Diário</span><span>{stopDiario?.label ?? "—"}</span>
+                </div>
+                <div className="flex justify-between text-sm font-black text-foreground border-t border-border pt-2 mt-1">
+                  <span>Total</span>
+                  <span className="text-primary">
+                    {total > 0 ? `R$${total.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}` : "—"}
+                  </span>
+                </div>
+              </div>
+              <button
+                type="submit"
+                disabled={!builderComplete}
+                className="w-full py-3.5 bg-primary text-primary-foreground rounded-xl font-black text-sm uppercase tracking-wide disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary/90 transition-colors"
+              >
+                Continuar
+              </button>
+            </div>
+          </form>
+        ) : (
+          <form onSubmit={handleSubmit} className="flex flex-col flex-1 overflow-hidden">
+            <ScrollArea className="flex-1">
+              <div className="px-6 py-6 space-y-4">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Preencha seus dados para finalizarmos sua montagem via WhatsApp.
+                </p>
+
+                <div className="space-y-1.5">
+                  <label className={labelClass}>Nome completo</label>
+                  <input required value={nome} onChange={e => setNome(e.target.value)} placeholder="Seu nome" className={inputClass} />
+                </div>
+                <div className="space-y-1.5">
+                  <label className={labelClass}>E-mail</label>
+                  <input required type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="seu@email.com" className={inputClass} />
+                </div>
+                <div className="space-y-1.5">
+                  <label className={labelClass}>WhatsApp</label>
+                  <input required value={whatsapp} onChange={e => setWhatsapp(e.target.value)} placeholder="(11) 99999-9999" className={inputClass} />
+                </div>
+
+                {/* Resumo do plano */}
+                <div className="bg-secondary rounded-xl px-4 py-3 space-y-1.5">
+                  <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-2">Resumo do seu plano</p>
+                  <div className="flex justify-between text-xs text-muted-foreground"><span>Contratos</span><span>{contratos?.label}</span></div>
+                  <div className="flex justify-between text-xs text-muted-foreground"><span>Plataforma</span><span>{plataforma?.label}</span></div>
+                  <div className="flex justify-between text-xs text-muted-foreground"><span>Clube do Valor</span><span>{clube ? "Sim" : "Não"}</span></div>
+                  <div className="flex justify-between text-xs text-muted-foreground"><span>Ativos</span><span>{ativos?.label}</span></div>
+                  <div className="flex justify-between text-xs text-muted-foreground"><span>Modalidade</span><span>{modalidade?.label}</span></div>
+                  <div className="flex justify-between text-xs text-muted-foreground"><span>Stop Diário</span><span>{stopDiario?.label}</span></div>
+                  <div className="flex justify-between text-sm font-black text-foreground border-t border-border pt-2 mt-1">
+                    <span>Total</span>
+                    <span className="text-primary">R${total.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
+                  </div>
+                </div>
+              </div>
+            </ScrollArea>
+            <div className="px-6 pb-6 pt-4 border-t border-border flex-shrink-0 flex flex-col gap-3">
+              <button type="submit" className="w-full py-3.5 bg-primary text-primary-foreground rounded-xl font-black text-sm uppercase tracking-wide hover:bg-primary/90 transition-colors">
+                Enviar para WhatsApp
+              </button>
+              <button type="button" onClick={() => setStep("builder")} className="text-xs text-muted-foreground text-center hover:text-foreground transition-colors">
+                Voltar e editar plano
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
+    </div>
+  )
 }
 
 const categories: { id: Category; label: string }[] = [
@@ -483,6 +796,7 @@ export function PricingSection() {
   const [activeCategory, setActiveCategory] = useState<Category>("exames")
   const [activeCardIndex, setActiveCardIndex] = useState(0)
   const [leadModal, setLeadModal] = useState<{ open: boolean; planName: string }>({ open: false, planName: "" })
+  const [pegueMonteOpen, setPegueMonteOpen] = useState(false)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
   const plans = plansByCategory[activeCategory]
@@ -509,10 +823,13 @@ export function PricingSection() {
   }
 
   const handleCta = (plan: Plan) => {
+    if (activeCategory === "pegue-monte") {
+      setPegueMonteOpen(true)
+      return
+    }
     if (plan.ctaWhatsApp) {
       setLeadModal({ open: true, planName: plan.name })
     } else {
-      // default: open whatsapp for all plans
       const msg = encodeURIComponent(
         `Olá! Tenho interesse no plano *${plan.name}* da Amigos da Mesa PRO. Pode me dar mais informações?`
       )
@@ -639,6 +956,12 @@ export function PricingSection() {
         open={leadModal.open}
         planName={leadModal.planName}
         onClose={() => setLeadModal({ open: false, planName: "" })}
+      />
+
+      {/* Pegue e Monte builder modal */}
+      <PegueMonteModal
+        open={pegueMonteOpen}
+        onClose={() => setPegueMonteOpen(false)}
       />
     </section>
   )

@@ -1,14 +1,17 @@
+import Image from "next/image"
+
 export function Footer() {
   return (
     <footer className="py-12 bg-card border-t border-border">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/images/logo.png"
               alt="Logo"
-              style={{ height: "32px", width: "auto" }}
+              width={112}
+              height={32}
+              style={{ width: "auto", height: "32px" }}
             />
           </div>
 
