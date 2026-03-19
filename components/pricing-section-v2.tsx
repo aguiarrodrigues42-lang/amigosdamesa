@@ -271,6 +271,7 @@ interface BitPlan {
   precoSenior: string
   precoSeniorOriginal: string
   discountLabel: string
+  pixLink?: string
 }
 
 // Ultra 1.0 / 3 em 1 — valores ONE da tabela Pegue e Monte (coluna rosa original, branca com desconto)
@@ -288,6 +289,7 @@ const bitPlans: BitPlan[] = [
     precoExame: "R$620,90",    precoExameOriginal: "R$1.379,78",
     precoSenior: "R$714,03",   precoSeniorOriginal: "R$1.586,73",
     discountLabel: "55% OFF",
+    pixLink: "https://pedido.amigosdamesa.shop/pay/79807da1-bbcb-4550-aae1-8d913fd31726",
   },
   {
     name: "ULTRA 15",
@@ -302,6 +304,7 @@ const bitPlans: BitPlan[] = [
     precoExame: "R$890,55",    precoExameOriginal: "R$1.979,00",
     precoSenior: "R$1.024,13", precoSeniorOriginal: "R$2.275,84",
     discountLabel: "55% OFF",
+    pixLink: "https://pedido.amigosdamesa.shop/pay/d2f2fd63-96f1-4d80-90f3-eef05991e14e",
   },
   {
     name: "ULTRA 20",
@@ -316,6 +319,7 @@ const bitPlans: BitPlan[] = [
     precoExame: "R$1.620,10",  precoExameOriginal: "R$3.600,22",
     precoSenior: "R$1.863,11", precoSeniorOriginal: "R$4.140,24",
     discountLabel: "55% OFF",
+    pixLink: "https://pedido.amigosdamesa.shop/pay/de2547fb-4e56-45e9-b985-df6d5787d6ee",
   },
   {
     name: "ULTRA 30",
@@ -330,13 +334,14 @@ const bitPlans: BitPlan[] = [
     precoExame: "R$2.115,80",  precoExameOriginal: "R$4.701,78",
     precoSenior: "R$2.433,17", precoSeniorOriginal: "R$5.407,04",
     discountLabel: "55% OFF",
+    pixLink: "https://pedido.amigosdamesa.shop/pay/3c1aec92-9457-4f48-8d2c-be7fa6be4200",
   },
 ]
 
 const BONUS_LABEL = "7 dias de Sala Educacional ao Vivo"
 
 // ── BitPlanCard ───────────────────────────────────────────────────────────────
-function BitPlanCard({ plan, isActive, onCta }: { plan: BitPlan; isActive: boolean; onCta: () => void }) {
+function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive: boolean; isPix: boolean; onCta: () => void }) {
   return (
     <div
       className={`
@@ -1181,7 +1186,14 @@ export function PricingSection() {
                     key={`${plan.name}-${index}`}
                     plan={plan}
                     isActive={index === activeCardIndex}
-                    onCta={() => handleCta(plan.name)}
+                    isPix={isPix}
+                    onCta={() => {
+                      if (isPix && plan.pixLink) {
+                        window.open(plan.pixLink, "_blank")
+                      } else {
+                        handleCta(plan.name)
+                      }
+                    }}
                   />
                 ))
               : plans.map((plan, index) => (
