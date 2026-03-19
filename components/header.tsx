@@ -2,121 +2,146 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
+import { Menu, X, ChevronRight } from "lucide-react"
+import Image from "next/image"
 
+const drawerTopics = [
+  "Repasses",
+  "Regras operacionais",
+  "Plataforma e renovação",
+  "Planos profissionais",
+  "Planos convencionais",
+  "Guia rápido",
+  "Cancelamentos",
+  "Campanhas promocionais",
+]
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
+    const handleScroll = () => setIsScrolled(window.scrollY > 50)
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    document.body.style.overflow = isDrawerOpen ? "hidden" : ""
+    return () => { document.body.style.overflow = "" }
+  }, [isDrawerOpen])
+
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
-    setIsMobileMenuOpen(false)
   }
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-background/95 backdrop-blur-md border-b border-border shadow-sm' : 'bg-transparent'
-      }`}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          <div className="flex items-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/logo.png" alt="Logo" style={{ height: "40px", width: "auto", display: "block" }} />
-          </div>
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm" : "bg-transparent"
+        }`}
+      >
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            {/* Logo */}
+            <div className="flex items-center">
+              <Image src="/images/logo.png" alt="Logo" width={0} height={0} sizes="100vw" unoptimized className="h-10 w-auto" />
+            </div>
 
-          <nav className="hidden md:flex items-center gap-8">
-            <button 
-              onClick={() => scrollToSection("sobre")}
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              Sobre a Mesa
-            </button>
-            <button 
-              onClick={() => scrollToSection("planos")}
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              Planos
-            </button>
-            <button 
-              onClick={() => scrollToSection("depoimentos")}
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              Depoimentos
-            </button>
-            <button 
-              onClick={() => scrollToSection("faq")}
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              FAQ
-            </button>
-          </nav>
+            {/* Desktop nav */}
+            <nav className="hidden md:flex items-center gap-8">
+              {[
+                { label: "Sobre a Mesa", id: "sobre" },
+                { label: "Planos", id: "planos" },
+                { label: "Depoimentos", id: "depoimentos" },
+                { label: "FAQ", id: "faq" },
+              ].map(item => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </nav>
 
-          <div className="hidden md:block">
-            <Button 
-              onClick={() => scrollToSection("planos")}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
-            >
-              ENTRAR AGORA
-            </Button>
-          </div>
-
-          <button 
-            className="md:hidden p-2 text-foreground"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Menu"
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-
-        {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border">
-            <nav className="flex flex-col gap-4">
-              <button 
-                onClick={() => scrollToSection("sobre")}
-                className="text-left text-muted-foreground hover:text-primary transition-colors py-2"
-              >
-                Sobre a Mesa
-              </button>
-              <button 
+            {/* Desktop CTA */}
+            <div className="hidden md:block">
+              <Button
                 onClick={() => scrollToSection("planos")}
-                className="text-left text-muted-foreground hover:text-primary transition-colors py-2"
-              >
-                Planos
-              </button>
-              <button 
-                onClick={() => scrollToSection("depoimentos")}
-                className="text-left text-muted-foreground hover:text-primary transition-colors py-2"
-              >
-                Depoimentos
-              </button>
-              <button 
-                onClick={() => scrollToSection("faq")}
-                className="text-left text-muted-foreground hover:text-primary transition-colors py-2"
-              >
-                FAQ
-              </button>
-              <Button 
-                onClick={() => scrollToSection("planos")}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold mt-2"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
               >
                 ENTRAR AGORA
               </Button>
-            </nav>
+            </div>
+
+            {/* Hamburger — opens drawer */}
+            <button
+              className="p-2 text-foreground hover:text-primary transition-colors"
+              onClick={() => setIsDrawerOpen(true)}
+              aria-label="Abrir menu"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
           </div>
-        )}
+        </div>
+      </header>
+
+      {/* Overlay */}
+      {isDrawerOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
+          onClick={() => setIsDrawerOpen(false)}
+        />
+      )}
+
+      {/* Drawer */}
+      <div
+        className={`
+          fixed top-0 right-0 z-50 h-full w-72 bg-card border-l border-border
+          flex flex-col shadow-2xl
+          transition-transform duration-300 ease-in-out
+          ${isDrawerOpen ? "translate-x-0" : "translate-x-full"}
+        `}
+      >
+        {/* Drawer header */}
+        <div className="flex items-center justify-between px-6 py-5 border-b border-border bg-secondary">
+          <span className="font-bold text-sm uppercase tracking-widest text-foreground">Menu</span>
+          <button
+            onClick={() => setIsDrawerOpen(false)}
+            className="text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="Fechar menu"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Topics list */}
+        <nav className="flex-1 overflow-y-auto py-4">
+          {drawerTopics.map((topic, i) => (
+            <button
+              key={i}
+              onClick={() => setIsDrawerOpen(false)}
+              className="w-full flex items-center justify-between px-6 py-4 text-left text-sm text-foreground hover:bg-secondary hover:text-primary transition-colors border-b border-border/50 last:border-0"
+            >
+              <span>{topic}</span>
+              <ChevronRight className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+            </button>
+          ))}
+        </nav>
+
+        {/* Drawer footer CTA */}
+        <div className="px-6 py-5 border-t border-border">
+          <Button
+            onClick={() => { scrollToSection("planos"); setIsDrawerOpen(false) }}
+            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold"
+          >
+            ENTRAR AGORA
+          </Button>
+        </div>
       </div>
-    </header>
+    </>
   )
 }
