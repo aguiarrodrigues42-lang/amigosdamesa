@@ -127,9 +127,7 @@ interface Plan {
 
 const WHATSAPP_NUMBER = "5511988071345"
 
-const titanFeatures = [
-  "Repasse mensal",
-]
+
 
 const seniorFeaturesCommon = [
   "Direto no Simulador Remunerado",
@@ -187,25 +185,25 @@ const plansByCategory: Record<Category, Plan[]> = {
       name: "TITAN PRO 10", contracts: 10,
       meta: "R$7.000,00", dailyLimit: "R$2.500,00", stopGlobal: "R$10.000,00", priceOriginal: 1980.99, pricePix: 786.60, discountPercent: 60,
       pixLink: "https://pedido.amigosdamesa.shop/pay/fbd4e538-7f21-4783-adcb-3f6000a9c0b2",
-      features: [...titanFeatures, "Meta de aprovação R$ 7.000,00", "Stop diário R$ 2.500,00", "Stop Global R$ 10.000,00"],
+      features: ["Meta de aprovação R$ 7.000,00", "Stop diário R$ 2.500,00", "Stop Global R$ 10.000,00"],
     },
     {
       name: "TITAN PRO 20", contracts: 20,
       meta: "R$15.000,00", dailyLimit: "R$3.500,00", stopGlobal: "R$17.000,00", priceOriginal: 2980.99, pricePix: 1192.39, discountPercent: 60,
       pixLink: "https://pedido.amigosdamesa.shop/pay/4fde6089-4713-4ccc-9422-024e66f967e2",
-      features: [...titanFeatures, "Meta de aprovação R$ 15.000,00", "Stop diário R$ 3.500,00", "Stop Global R$ 17.000,00"],
+      features: ["Meta de aprovação R$ 15.000,00", "Stop diário R$ 3.500,00", "Stop Global R$ 17.000,00"],
     },
     {
       name: "TITAN PRO 30", contracts: 30,
       meta: "R$18.000,00", dailyLimit: "R$4.000,00", stopGlobal: "R$20.000,00", priceOriginal: 3980.99, pricePix: 1194.29, discountPercent: 60,
       pixLink: "https://pedido.amigosdamesa.shop/pay/8eb7fe18-8daf-47e0-8138-67789650ec9f",
-      features: [...titanFeatures, "Meta de aprovação R$ 18.000,00", "Stop diário R$ 4.000,00", "Stop Global R$ 20.000,00"],
+      features: ["Meta de aprovação R$ 18.000,00", "Stop diário R$ 4.000,00", "Stop Global R$ 20.000,00"],
     },
     {
       name: "TITAN PRO 50", contracts: 50,
       meta: "R$22.000,00", dailyLimit: "R$5.500,00", stopGlobal: "R$25.000,00", priceOriginal: 4980.99, pricePix: 1494.29, discountPercent: 60,
       pixLink: "https://pedido.amigosdamesa.shop/pay/64cc0f6e-4fd2-4bc8-8896-6ac1634fbe6e",
-      features: [...titanFeatures, "Meta de aprovação R$ 22.000,00", "Stop diário R$ 5.500,00", "Stop Global R$ 25.000,00"],
+      features: ["Meta de aprovação R$ 22.000,00", "Stop diário R$ 5.500,00", "Stop Global R$ 25.000,00"],
     },
   ],
   // SÊNIOR (Direto na Mesa) - 30% OFF PIX, Cartão = original * 1.30 / 12
