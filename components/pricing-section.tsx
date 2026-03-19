@@ -111,36 +111,61 @@ interface Plan {
   dailyLimit: string
   stopGlobal: string
   price: string
+  // Prime Plus extras
+  features?: string[]
+  taxaOne?: string
+  taxaPro?: string
 }
 
 const plansByCategory: Record<Category, Plan[]> = {
   "exames": [
-    { name: "PLANO INICIANTE",    contracts: 7,  asset: "",              meta: "R$800,00",    dailyLimit: "R$300,00",   stopGlobal: "R$1.100,00",  price: "R$97" },
-    { name: "PLANO INTERMEDIÁRIO",contracts: 15, asset: "",              meta: "R$1.400,00",  dailyLimit: "R$420,00",   stopGlobal: "R$1.700,00",  price: "R$147" },
-    { name: "PLANO AVANÇADO",     contracts: 25, asset: "",              meta: "R$3.950,00",  dailyLimit: "R$900,00",   stopGlobal: "R$4.250,00",  price: "R$197" },
-    { name: "PLANO UNO 40",       contracts: 40, asset: "Dólar",        meta: "R$4.980,00",  dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00",  price: "R$297" },
-    { name: "PLANO UNO 40",       contracts: 40, asset: "Índice",       meta: "R$4.980,00",  dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00",  price: "R$297" },
-    { name: "PLANO MASTER",       contracts: 50, asset: "Índice e Dólar",meta: "R$9.950,00", dailyLimit: "R$3.350,00", stopGlobal: "R$10.250,00", price: "R$397" },
+    { name: "PLANO INICIANTE",     contracts: 7,  asset: "",               meta: "R$800,00",    dailyLimit: "R$300,00",   stopGlobal: "R$1.100,00",  price: "R$97" },
+    { name: "PLANO INTERMEDIÁRIO", contracts: 15, asset: "",               meta: "R$1.400,00",  dailyLimit: "R$420,00",   stopGlobal: "R$1.700,00",  price: "R$147" },
+    { name: "PLANO AVANÇADO",      contracts: 25, asset: "",               meta: "R$3.950,00",  dailyLimit: "R$900,00",   stopGlobal: "R$4.250,00",  price: "R$197" },
+    { name: "PLANO UNO 40",        contracts: 40, asset: "Dólar",          meta: "R$4.980,00",  dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00",  price: "R$297" },
+    { name: "PLANO UNO 40",        contracts: 40, asset: "Índice",         meta: "R$4.980,00",  dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00",  price: "R$297" },
+    { name: "PLANO MASTER",        contracts: 50, asset: "Índice e Dólar", meta: "R$9.950,00",  dailyLimit: "R$3.350,00", stopGlobal: "R$10.250,00", price: "R$397" },
   ],
   "prime-plus": [
-    { name: "PRIME PLUS 10", contracts: 10, meta: "R$1.200,00", dailyLimit: "R$400,00",   stopGlobal: "R$1.500,00", price: "R$297/mês" },
-    { name: "PRIME PLUS 20", contracts: 20, meta: "R$2.400,00", dailyLimit: "R$700,00",   stopGlobal: "R$3.000,00", price: "R$497/mês" },
-    { name: "PRIME PLUS 30", contracts: 30, meta: "R$3.600,00", dailyLimit: "R$1.000,00", stopGlobal: "R$4.500,00", price: "R$697/mês" },
+    {
+      name: "PRIME PLUS 6", contracts: 6,
+      meta: "R$1.800,00", dailyLimit: "—", stopGlobal: "R$2.500,00", price: "",
+      features: ["6 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 2.500,00", "Meta de aprovação R$ 1.800,00"],
+      taxaOne: "R$300,00", taxaPro: "R$350,00",
+    },
+    {
+      name: "PRIME PLUS 11", contracts: 11,
+      meta: "R$4.000,00", dailyLimit: "—", stopGlobal: "R$3.500,00", price: "",
+      features: ["11 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 3.500,00", "Meta de aprovação R$ 4.000,00"],
+      taxaOne: "R$720,00", taxaPro: "R$780,00",
+    },
+    {
+      name: "PRIME PLUS 16", contracts: 16,
+      meta: "R$7.500,00", dailyLimit: "—", stopGlobal: "R$6.000,00", price: "",
+      features: ["16 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 6.000,00", "Meta de aprovação R$ 7.500,00"],
+      taxaOne: "R$1.220,00", taxaPro: "R$1.320,00",
+    },
+    {
+      name: "PRIME PLUS 21", contracts: 21,
+      meta: "R$10.000,00", dailyLimit: "—", stopGlobal: "R$9.000,00", price: "",
+      features: ["21 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 9.000,00", "Meta de aprovação R$ 10.000,00"],
+      taxaOne: "R$1.720,00", taxaPro: "R$1.850,00",
+    },
   ],
   "titan": [
-    { name: "TITAN 50",  contracts: 50,  asset: "Índice",        meta: "R$6.000,00",  dailyLimit: "R$1.800,00", stopGlobal: "R$7.500,00",  price: "R$897/mês" },
-    { name: "TITAN 50",  contracts: 50,  asset: "Dólar",         meta: "R$6.000,00",  dailyLimit: "R$1.800,00", stopGlobal: "R$7.500,00",  price: "R$897/mês" },
-    { name: "TITAN 100", contracts: 100, asset: "Índice e Dólar",meta: "R$12.000,00", dailyLimit: "R$3.600,00", stopGlobal: "R$15.000,00", price: "R$1.497/mês" },
+    { name: "TITAN 50",  contracts: 50,  asset: "Índice",         meta: "R$6.000,00",  dailyLimit: "R$1.800,00", stopGlobal: "R$7.500,00",  price: "R$897/mês" },
+    { name: "TITAN 50",  contracts: 50,  asset: "Dólar",          meta: "R$6.000,00",  dailyLimit: "R$1.800,00", stopGlobal: "R$7.500,00",  price: "R$897/mês" },
+    { name: "TITAN 100", contracts: 100, asset: "Índice e Dólar", meta: "R$12.000,00", dailyLimit: "R$3.600,00", stopGlobal: "R$15.000,00", price: "R$1.497/mês" },
   ],
   "senior": [
-    { name: "SÊNIOR 75",  contracts: 75,  asset: "Índice",        meta: "R$9.000,00",  dailyLimit: "R$2.700,00", stopGlobal: "R$11.250,00", price: "R$1.197/mês" },
-    { name: "SÊNIOR 75",  contracts: 75,  asset: "Dólar",         meta: "R$9.000,00",  dailyLimit: "R$2.700,00", stopGlobal: "R$11.250,00", price: "R$1.197/mês" },
-    { name: "SÊNIOR 150", contracts: 150, asset: "Índice e Dólar",meta: "R$18.000,00", dailyLimit: "R$5.400,00", stopGlobal: "R$22.500,00", price: "R$1.997/mês" },
+    { name: "SÊNIOR 75",  contracts: 75,  asset: "Índice",         meta: "R$9.000,00",  dailyLimit: "R$2.700,00", stopGlobal: "R$11.250,00", price: "R$1.197/mês" },
+    { name: "SÊNIOR 75",  contracts: 75,  asset: "Dólar",          meta: "R$9.000,00",  dailyLimit: "R$2.700,00", stopGlobal: "R$11.250,00", price: "R$1.197/mês" },
+    { name: "SÊNIOR 150", contracts: 150, asset: "Índice e Dólar", meta: "R$18.000,00", dailyLimit: "R$5.400,00", stopGlobal: "R$22.500,00", price: "R$1.997/mês" },
   ],
   "pegue-monte": [
-    { name: "PEGUE E MONTE BÁSICO", contracts: 5,  meta: "R$500,00",   dailyLimit: "R$150,00", stopGlobal: "R$600,00",  price: "R$67" },
-    { name: "PEGUE E MONTE PLUS",   contracts: 10, meta: "R$1.000,00", dailyLimit: "R$300,00", stopGlobal: "R$1.200,00",price: "R$97" },
-    { name: "PEGUE E MONTE PRO",    contracts: 20, meta: "R$2.000,00", dailyLimit: "R$600,00", stopGlobal: "R$2.400,00",price: "R$147" },
+    { name: "PEGUE E MONTE BÁSICO", contracts: 5,  meta: "R$500,00",   dailyLimit: "R$150,00", stopGlobal: "R$600,00",   price: "R$67" },
+    { name: "PEGUE E MONTE PLUS",   contracts: 10, meta: "R$1.000,00", dailyLimit: "R$300,00", stopGlobal: "R$1.200,00", price: "R$97" },
+    { name: "PEGUE E MONTE PRO",    contracts: 20, meta: "R$2.000,00", dailyLimit: "R$600,00", stopGlobal: "R$2.400,00", price: "R$147" },
   ],
 }
 
@@ -153,6 +178,8 @@ const categories: { id: Category; label: string }[] = [
 ]
 
 function PlanCard({ plan, isActive }: { plan: Plan; isActive: boolean }) {
+  const isPrimePlus = !!plan.features
+
   return (
     <div
       className={`
@@ -167,58 +194,90 @@ function PlanCard({ plan, isActive }: { plan: Plan; isActive: boolean }) {
       `}
     >
       {/* Header */}
-      <div className="bg-secondary rounded-t-2xl px-5 py-4 text-center">
-        <h3 className="text-base font-black uppercase tracking-wide text-foreground leading-tight">
+      <div className="bg-primary rounded-t-2xl px-5 py-4 text-center">
+        <h3 className="text-base font-black uppercase tracking-wide text-primary-foreground leading-tight">
           {plan.name}
         </h3>
-        <p className="text-primary font-bold text-lg mt-1">
-          {plan.contracts} CONTRATOS
-        </p>
-        {plan.asset && (
-          <p className="text-muted-foreground text-sm font-medium">{plan.asset}</p>
-        )}
       </div>
 
       {/* Body */}
       <div className="flex flex-col flex-1 px-5 py-5 gap-4">
-        {/* Info rows */}
-        <div className="space-y-2">
-          <div className="flex items-center justify-between border-b border-border pb-2">
-            <span className="text-xs text-muted-foreground">Meta de Aprovação</span>
-            <span className="text-sm font-semibold text-foreground">{plan.meta}</span>
-          </div>
-          <div className="flex items-center justify-between border-b border-border pb-2">
-            <span className="text-xs text-muted-foreground">Limite Diário*</span>
-            <span className="text-sm font-semibold text-foreground">{plan.dailyLimit}</span>
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-xs text-muted-foreground">Stop Global</span>
-            <span className="text-sm font-semibold text-foreground">{plan.stopGlobal}</span>
-          </div>
-        </div>
 
-        {/* Price */}
-        <div className="text-center">
-          <span className="text-2xl font-black text-primary">{plan.price}</span>
-        </div>
+        {isPrimePlus ? (
+          <>
+            {/* Bullet features */}
+            <ul className="space-y-1.5">
+              {plan.features!.map((feat, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-foreground">
+                  <span className="text-primary mt-0.5 text-xs">•</span>
+                  <span>{feat}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* Taxa pós-aprovado */}
+            <div className="border-t border-border pt-3">
+              <p className="text-sm font-bold text-foreground leading-snug">
+                Taxa após aprovado:{" "}
+                <span className="text-foreground font-normal">
+                  ONE <span className="font-bold">{plan.taxaOne}</span>{" "}
+                  PRO <span className="font-bold">{plan.taxaPro}</span>
+                </span>
+              </p>
+            </div>
+          </>
+        ) : (
+          <>
+            {/* Contratos */}
+            <div className="text-center">
+              <p className="text-primary font-bold text-lg">{plan.contracts} CONTRATOS</p>
+              {plan.asset && (
+                <p className="text-muted-foreground text-sm font-medium">{plan.asset}</p>
+              )}
+            </div>
+            {/* Info rows */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between border-b border-border pb-2">
+                <span className="text-xs text-muted-foreground">Meta de Aprovação</span>
+                <span className="text-sm font-semibold text-foreground">{plan.meta}</span>
+              </div>
+              <div className="flex items-center justify-between border-b border-border pb-2">
+                <span className="text-xs text-muted-foreground">Limite Diário*</span>
+                <span className="text-sm font-semibold text-foreground">{plan.dailyLimit}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-muted-foreground">Stop Global</span>
+                <span className="text-sm font-semibold text-foreground">{plan.stopGlobal}</span>
+              </div>
+            </div>
+            {/* Price */}
+            {plan.price && (
+              <div className="text-center">
+                <span className="text-2xl font-black text-primary">{plan.price}</span>
+              </div>
+            )}
+          </>
+        )}
 
         {/* CTA */}
         <button
           className={`
             w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide
-            transition-all duration-300
+            transition-all duration-300 mt-auto
             ${isActive
               ? "bg-primary text-primary-foreground animate-pulse-border"
-              : "bg-primary/60 text-primary-foreground"
+              : "bg-secondary text-foreground border border-border"
             }
           `}
         >
           Quero esse plano
         </button>
 
-        <p className="text-[10px] text-muted-foreground text-center leading-relaxed">
-          *Limite diário aplicável de forma opcional. Cabe a você decidir utilizá-lo ou não.
-        </p>
+        {!isPrimePlus && (
+          <p className="text-[10px] text-muted-foreground text-center leading-relaxed">
+            *Limite diário aplicável de forma opcional. Cabe a você decidir utilizá-lo ou não.
+          </p>
+        )}
       </div>
     </div>
   )
