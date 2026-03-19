@@ -5,6 +5,7 @@ import { TrilhaSection } from "@/components/trilha-section"
 import { SocialProofSection } from "@/components/social-proof-section"
 import { UrgencySection } from "@/components/urgency-section"
 import { PricingSection } from "@/components/pricing-section-v2"
+import { ClubSection } from "@/components/club-section"
 import { BenefitsSection } from "@/components/benefits-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { FaqSection } from "@/components/faq-section"
@@ -28,6 +29,8 @@ export default function HomePage() {
       <div id="planos">
         <PricingSection />
       </div>
+      {/* 7. Clube do Valor */}
+      <ClubSection />
       <BenefitsSection />
       <div id="depoimentos">
         <TestimonialsSection />
