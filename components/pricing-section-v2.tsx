@@ -266,15 +266,21 @@ interface BitPlan {
   name: string
   bitContracts: number
   features: string[]
+  // Exame (via exame de proficiência) — Profit One
   precoExame: string
   precoExameOriginal: string
-  precoSenior: string
-  precoSeniorOriginal: string
-  discountLabel: string
+  // Sênior (via Sênior) — Profit One
+  // Valor original = coluna rosa; PIX = 55% OFF; Cartão = original * 1.30 / 12
+  valorOriginal: number        // valor numérico para calcular cartão
+  precoPix: string             // 55% OFF
+  precoCartao12x: string       // (valorOriginal * 1.30 / 12) formatado
+  precoSeniorOriginal: string  // riscado no cartão
   pixLink?: string
+  indisponivel?: boolean       // ULTRA 30 PIX indisponivel
 }
 
-// Ultra 1.0 / 3 em 1 — valores ONE da tabela Pegue e Monte (coluna rosa original, branca com desconto)
+// Ultra 1.0 / 3 em 1
+// valorOriginal = valor rosa; precoPix = 55% OFF; precoCartao12x = original * 1.30 / 12
 const bitPlans: BitPlan[] = [
   {
     name: "ULTRA 10",
@@ -286,9 +292,11 @@ const bitPlans: BitPlan[] = [
       "Stop Diário: R$600,00",
       "Repasse Mensal e Quinzenal",
     ],
-    precoExame: "R$620,90",    precoExameOriginal: "R$1.379,78",
-    precoSenior: "R$714,03",   precoSeniorOriginal: "R$1.586,73",
-    discountLabel: "55% OFF",
+    precoExame: "R$620,90",     precoExameOriginal: "R$1.379,78",
+    valorOriginal: 714.03,
+    precoPix: "R$389,67",
+    precoCartao12x: "R$77,35",  // 714.03 * 1.30 / 12 = 77,35
+    precoSeniorOriginal: "R$714,03",
     pixLink: "https://pedido.amigosdamesa.shop/pay/79807da1-bbcb-4550-aae1-8d913fd31726",
   },
   {
@@ -301,9 +309,11 @@ const bitPlans: BitPlan[] = [
       "Stop Diário: R$1.000,00",
       "3 Ativos BIT/WIN/WDO",
     ],
-    precoExame: "R$890,55",    precoExameOriginal: "R$1.979,00",
-    precoSenior: "R$1.024,13", precoSeniorOriginal: "R$2.275,84",
-    discountLabel: "55% OFF",
+    precoExame: "R$890,55",     precoExameOriginal: "R$1.979,00",
+    valorOriginal: 1024.13,
+    precoPix: "R$420,72",
+    precoCartao12x: "R$110,95", // 1024.13 * 1.30 / 12 = 110,95
+    precoSeniorOriginal: "R$1.024,13",
     pixLink: "https://pedido.amigosdamesa.shop/pay/d2f2fd63-96f1-4d80-90f3-eef05991e14e",
   },
   {
@@ -316,9 +326,11 @@ const bitPlans: BitPlan[] = [
       "Stop Diário: R$1.700,00",
       "Vagas Limitadas",
     ],
-    precoExame: "R$1.620,10",  precoExameOriginal: "R$3.600,22",
-    precoSenior: "R$1.863,11", precoSeniorOriginal: "R$4.140,24",
-    discountLabel: "55% OFF",
+    precoExame: "R$1.620,10",   precoExameOriginal: "R$3.600,22",
+    valorOriginal: 1863.11,
+    precoPix: "R$605,47",
+    precoCartao12x: "R$201,84", // 1863.11 * 1.30 / 12 = 201,84
+    precoSeniorOriginal: "R$1.863,11",
     pixLink: "https://pedido.amigosdamesa.shop/pay/de2547fb-4e56-45e9-b985-df6d5787d6ee",
   },
   {
@@ -331,9 +343,12 @@ const bitPlans: BitPlan[] = [
       "Stop Diário: R$2.100,00",
       "Exame ou Direto na Mesa",
     ],
-    precoExame: "R$2.115,80",  precoExameOriginal: "R$4.701,78",
-    precoSenior: "R$2.433,17", precoSeniorOriginal: "R$5.407,04",
-    discountLabel: "55% OFF",
+    precoExame: "R$2.115,80",   precoExameOriginal: "R$4.701,78",
+    valorOriginal: 2433.17,
+    precoPix: "INDISPONIVEL",
+    precoCartao12x: "R$263,59", // 2433.17 * 1.30 / 12 = 263,59
+    precoSeniorOriginal: "R$2.433,17",
+    indisponivel: true,
     pixLink: "https://pedido.amigosdamesa.shop/pay/3c1aec92-9457-4f48-8d2c-be7fa6be4200",
   },
 ]
@@ -381,8 +396,21 @@ function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive
           <div className="flex items-center justify-between">
             <span className="text-xs text-muted-foreground font-semibold uppercase tracking-wide">Sênior</span>
             <div className="text-right">
-              <span className="text-xs line-through text-muted-foreground block">{plan.precoSeniorOriginal}</span>
-              <span className="text-primary font-black text-base">{plan.precoSenior}</span>
+              {isPix ? (
+                plan.indisponivel ? (
+                  <span className="text-destructive font-black text-sm">INDISPONÍVEL</span>
+                ) : (
+                  <>
+                    <span className="text-xs line-through text-muted-foreground block">{plan.precoSeniorOriginal}</span>
+                    <span className="text-primary font-black text-base">{plan.precoPix}</span>
+                  </>
+                )
+              ) : (
+                <>
+                  <span className="text-xs line-through text-muted-foreground block">{plan.precoSeniorOriginal}</span>
+                  <span className="text-primary font-black text-base">12x {plan.precoCartao12x}</span>
+                </>
+              )}
             </div>
           </div>
           <p className="text-[10px] text-muted-foreground text-center font-semibold tracking-widest pt-1">PROFIT ONE</p>
@@ -1188,6 +1216,7 @@ export function PricingSection() {
                     isActive={index === activeCardIndex}
                     isPix={isPix}
                     onCta={() => {
+                      if (isPix && plan.indisponivel) return
                       if (isPix && plan.pixLink) {
                         window.open(plan.pixLink, "_blank")
                       } else {
