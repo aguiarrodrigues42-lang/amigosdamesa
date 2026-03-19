@@ -6,7 +6,6 @@ import { ArrowUp, Zap } from "lucide-react"
 
 export function FloatingCta() {
   const [isVisible, setIsVisible] = useState(false)
-  const [isPulsing, setIsPulsing] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,14 +13,6 @@ export function FloatingCta() {
     }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  useEffect(() => {
-    const pulseInterval = setInterval(() => {
-      setIsPulsing(true)
-      setTimeout(() => setIsPulsing(false), 1000)
-    }, 5000)
-    return () => clearInterval(pulseInterval)
   }, [])
 
   const scrollToPlans = () => {
@@ -32,18 +23,20 @@ export function FloatingCta() {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
+  if (!isVisible) return null
+
   return (
-    <div className={`fixed bottom-6 right-6 z-50 flex flex-col gap-3 transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}>
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
       <button
         onClick={scrollToTop}
-        className="p-3 bg-secondary border border-border rounded-full shadow-lg hover:bg-secondary/80 transition-all hover:scale-110"
+        className="p-3 bg-secondary border border-border rounded-full shadow-lg hover:bg-secondary/80 transition-colors"
         aria-label="Voltar ao topo"
       >
         <ArrowUp className="w-5 h-5 text-foreground" />
       </button>
       <Button
         onClick={scrollToPlans}
-        className={`bg-primary hover:bg-primary/90 text-primary-foreground font-bold shadow-xl shadow-primary/40 px-6 py-6 transition-all duration-300 ${isPulsing ? 'scale-110' : 'scale-100'}`}
+        className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold shadow-xl px-6 py-6"
       >
         <Zap className="w-4 h-4 mr-2" />
         VER PLANOS

@@ -1,5 +1,6 @@
 import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
+import { AboutSection } from "@/components/about-section"
 import { PricingSection } from "@/components/pricing-section"
 import { BenefitsSection } from "@/components/benefits-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
@@ -13,6 +14,7 @@ export default function HomePage() {
     <main className="min-h-screen bg-background">
       <Header />
       <HeroSection />
+      <AboutSection />
       <UrgencySection />
       <PricingSection />
       <BenefitsSection />

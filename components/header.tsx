@@ -34,20 +34,20 @@ export function Header() {
             <Image 
               src="/images/logo.png" 
               alt="Logo" 
-              width={120} 
-              height={40}
-              style={{ width: 'auto', height: 'auto' }}
-              className="h-8 md:h-10"
+              width={140} 
+              height={45}
+              style={{ width: 'auto', height: '40px' }}
+              className="object-contain md:h-12"
+              priority
             />
           </div>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             <button 
-              onClick={() => scrollToSection("como-funciona")}
+              onClick={() => scrollToSection("sobre")}
               className="text-sm text-muted-foreground hover:text-primary transition-colors"
             >
-              Como Funciona
+              Sobre a Mesa
             </button>
             <button 
               onClick={() => scrollToSection("planos")}
@@ -78,24 +78,23 @@ export function Header() {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
           <button 
             className="md:hidden p-2 text-foreground"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Menu"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-border">
             <nav className="flex flex-col gap-4">
               <button 
-                onClick={() => scrollToSection("como-funciona")}
+                onClick={() => scrollToSection("sobre")}
                 className="text-left text-muted-foreground hover:text-primary transition-colors py-2"
               >
-                Como Funciona
+                Sobre a Mesa
               </button>
               <button 
                 onClick={() => scrollToSection("planos")}
