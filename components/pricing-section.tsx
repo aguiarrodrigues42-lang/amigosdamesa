@@ -11,7 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { ScrollArea } from "@/components/ui/scroll-area"
+
 
 const regulamento = `DISPOSIÇÕES INICIAIS
 A AMIGOS DA MESA PROP é uma mesa proprietária que oferece planos de avaliação, simulador remunerado e conta real para traders que desejam operar Day Trade, nos termos deste regulamento.
@@ -334,12 +334,12 @@ function PegueMonteModal({ open, onClose }: PegueMonteModalProps) {
   const labelClass  = "text-xs font-semibold text-muted-foreground uppercase tracking-wide"
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
       <div className="absolute inset-0 bg-black/70" onClick={handleClose} />
-      <div className="relative z-10 w-full max-w-lg bg-card border border-border rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+      <div className="relative z-10 w-full max-w-lg bg-card border border-border rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col" style={{ maxHeight: "92dvh" }}>
 
         {/* Header */}
-        <div className="bg-primary px-6 py-4 flex items-center justify-between flex-shrink-0">
+        <div className="bg-primary px-6 py-4 flex items-center justify-between flex-shrink-0 rounded-t-2xl">
           <div>
             <h3 className="text-primary-foreground font-black text-lg uppercase tracking-wide">
               {step === "builder" ? "Monte seu Plano" : "Seus Dados"}
@@ -352,8 +352,8 @@ function PegueMonteModal({ open, onClose }: PegueMonteModalProps) {
         </div>
 
         {step === "builder" ? (
-          <form onSubmit={handleGoToLead} className="flex flex-col flex-1 overflow-hidden">
-            <ScrollArea className="flex-1">
+          <form onSubmit={handleGoToLead} className="flex flex-col min-h-0 flex-1">
+            <div className="overflow-y-auto flex-1">
               <div className="px-6 py-6 space-y-5">
 
                 {/* Contratos */}
@@ -459,7 +459,7 @@ function PegueMonteModal({ open, onClose }: PegueMonteModalProps) {
                 </div>
 
               </div>
-            </ScrollArea>
+            </div>
 
             {/* Resumo + CTA */}
             <div className="px-6 pb-6 pt-4 border-t border-border flex-shrink-0 space-y-4">
@@ -493,8 +493,8 @@ function PegueMonteModal({ open, onClose }: PegueMonteModalProps) {
             </div>
           </form>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col flex-1 overflow-hidden">
-            <ScrollArea className="flex-1">
+          <form onSubmit={handleSubmit} className="flex flex-col min-h-0 flex-1">
+            <div className="overflow-y-auto flex-1">
               <div className="px-6 py-6 space-y-4">
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Preencha seus dados para finalizarmos sua montagem via WhatsApp.
@@ -528,7 +528,7 @@ function PegueMonteModal({ open, onClose }: PegueMonteModalProps) {
                   </div>
                 </div>
               </div>
-            </ScrollArea>
+            </div>
             <div className="px-6 pb-6 pt-4 border-t border-border flex-shrink-0 flex flex-col gap-3">
               <button type="submit" className="w-full py-3.5 bg-primary text-primary-foreground rounded-xl font-black text-sm uppercase tracking-wide hover:bg-primary/90 transition-colors">
                 Enviar para WhatsApp
@@ -827,14 +827,8 @@ export function PricingSection() {
       setPegueMonteOpen(true)
       return
     }
-    if (plan.ctaWhatsApp) {
-      setLeadModal({ open: true, planName: plan.name })
-    } else {
-      const msg = encodeURIComponent(
-        `Olá! Tenho interesse no plano *${plan.name}* da Amigos da Mesa PRO. Pode me dar mais informações?`
-      )
-      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank")
-    }
+    // All plans open the lead capture popup
+    setLeadModal({ open: true, planName: plan.name })
   }
 
   return (

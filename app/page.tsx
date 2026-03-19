@@ -7,7 +7,6 @@ import { TestimonialsSection } from "@/components/testimonials-section"
 import { FaqSection } from "@/components/faq-section"
 import { UrgencySection } from "@/components/urgency-section"
 import { Footer } from "@/components/footer"
-import { FloatingCta } from "@/components/floating-cta"
 
 export default function HomePage() {
   return (
@@ -25,7 +24,6 @@ export default function HomePage() {
         <FaqSection />
       </div>
       <Footer />
-      <FloatingCta />
     </main>
   )
 }

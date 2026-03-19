@@ -1,4 +1,4 @@
-import Image from "next/image"
+
 
 export function Footer() {
   return (
@@ -6,13 +6,8 @@ export function Footer() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center">
-            <Image
-              src="/images/logo.png"
-              alt="Logo"
-              width={112}
-              height={32}
-              style={{ width: "auto", height: "32px" }}
-            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/logo.png" alt="Logo" height={32} style={{ height: 32, width: "auto" }} />
           </div>
 
           <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
