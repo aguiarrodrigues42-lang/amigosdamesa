@@ -1,6 +1,24 @@
 export function Footer() {
   return (
     <footer className="py-12 bg-card border-t border-border">
+
+      {/* Instagram CTA */}
+      <div className="text-center mb-10">
+        <p className="text-sm text-muted-foreground mb-4">Nos siga no Instagram e fique por dentro de tudo</p>
+        <a
+          href="https://www.instagram.com/amigosdamesa/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-8 py-3 rounded-full transition-colors text-sm"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+          </svg>
+          Seguir no Instagram
+        </a>
+      </div>
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
