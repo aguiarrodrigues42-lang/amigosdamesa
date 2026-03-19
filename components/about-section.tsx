@@ -69,21 +69,19 @@ export function AboutSection() {
             </div>
 
             <h2 className="text-3xl md:text-5xl font-black text-foreground leading-tight mb-6 text-balance">
-              Uma mesa que{" "}
-              <span className="text-primary">investe</span>{" "}
-              no trader certo
+              Do iniciante ao consistente.{" "}
+              <span className="text-primary">Aqui é onde o trader evolui!</span>
             </h2>
 
             <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-6 text-pretty">
-              A Amigos da Mesa Prop nasceu para dar oportunidade a traders que já possuem
-              habilidade mas faltam capital e estrutura. Selecionamos os mais consistentes
-              para operar com nosso capital e dividir os lucros.
+              Não importa se você está começando agora ou já tem experiência no mercado.
+              Se você quer evoluir de verdade, precisa de três coisas: direção, estrutura e oportunidade.
+              A Amigos da Mesa entrega isso.
             </p>
 
             <p className="text-muted-foreground text-base leading-relaxed mb-8 text-pretty">
-              Operamos em Day Trade nos mercados de Índice, Dólar e Bitcoin. Nossa metodologia
-              avalia a qualidade das operações — não apenas o resultado — garantindo traders
-              preparados para o mercado real.
+              Aqui você aprende, se desenvolve e, quando estiver preparado, acessa capital para operar de forma profissional.
+              Sem promessas irreais. Sem atalhos. Só um caminho claro pra quem quer crescer no mercado.
             </p>
 
             {/* Highlight stat row */}

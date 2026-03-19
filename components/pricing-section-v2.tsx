@@ -1245,6 +1245,18 @@ export function PricingSection() {
           )}
         </div>
 
+        {/* Badges de saques */}
+        <div className="flex flex-wrap justify-center gap-2 mt-6">
+          {["Saques Mensais", "Saques Quinzenais", "Saques Semanais", "Saques Diários"].map((label) => (
+            <span
+              key={label}
+              className="px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-semibold"
+            >
+              {label}
+            </span>
+          ))}
+        </div>
+
         {/* Dots */}
         <div className="flex justify-center gap-2 mt-4">
           {Array.from({ length: activeCount }).map((_, index) => (

@@ -16,10 +16,10 @@ const TICKERS = [
 ]
 
 const STATS = [
-  { label: "Traders Ativos", value: "2.400+" },
-  { label: "Repasses Realizados", value: "R$8M+" },
-  { label: "Taxa de Aprovação", value: "68%" },
-  { label: "Anos de Mercado", value: "5+" },
+  { label: "Traders Ativos", value: "20.000+" },
+  { label: "Repasses por Quinzena", value: "R$1,5M+" },
+  { label: "Taxa de Aprovação", value: "80%" },
+  { label: "Desde", value: "2018" },
 ]
 
 export function HeroSection() {
@@ -104,16 +104,14 @@ export function HeroSection() {
 
           {/* Headline */}
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] mb-6 text-balance">
-            Opere com o{" "}
-            <span className="text-primary">capital</span>{" "}
-            da mesa.{" "}
-            <span className="text-white/60">Fique com o lucro.</span>
+            Pare de operar com{" "}
+            <span className="text-primary">pouco capital</span>{" "}
+            e risco próprio
           </h1>
 
           {/* Sub */}
           <p className="text-base md:text-lg text-white/60 mb-10 max-w-xl leading-relaxed text-pretty">
-            A Amigos da Mesa Prop seleciona traders consistentes para operar com capital profissional.
-            Sem colocar dinheiro próprio em risco, com repasses de ate 95%.
+            Aqui você opera com o capital da mesa e fica com 90% ou 100% dos lucros.
           </p>
 
           {/* CTAs */}
