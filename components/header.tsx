@@ -32,7 +32,7 @@ export function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
           <div className="flex items-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/logo.png" alt="Logo" height={40} style={{ height: 40, width: "auto" }} />
+            <img src="/images/logo.png" alt="Logo" style={{ height: "40px", width: "auto", display: "block" }} />
           </div>
 
           <nav className="hidden md:flex items-center gap-8">

@@ -1,5 +1,5 @@
 "use client"
-
+// v2
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { FileText, ChevronLeft, ChevronRight, X, Info } from "lucide-react"
@@ -101,7 +101,8 @@ Os dados pessoais serão tratados conforme a legislação vigente (Lei nº 13.70
 FORO
 Fica eleito o foro da comarca de São Paulo/SP para resolução de eventuais conflitos.`
 
-type Category = "exames" | "prime-plus" | "titan" | "senior" | "pegue-monte"
+type Category = "exames" | "prime-plus" | "titan" | "senior" | "pegue-monte" | "bit"
+type BitSubCategory = "ultra" | "titan-ultra"
 
 interface Plan {
   name: string
@@ -234,6 +235,222 @@ const plansByCategory: Record<Category, Plan[]> = {
       ctaWhatsApp: false,
     },
   ],
+  "bit": [],
+}
+
+// ── BIT plans ─────────────────────────────────────────────────────────────────
+interface BitPlan {
+  name: string
+  bitContracts: number
+  features: string[]
+  // Ultra pricing
+  precoExame?: string
+  precoSenior?: string
+  // Titan Ultra pricing
+  precoPix?: string
+  precoCartao?: string
+  precoContaAprovada?: string
+  subCategory: BitSubCategory
+}
+
+const bitPlans: BitPlan[] = [
+  // Ultra 1.0 / 3 em 1
+  {
+    subCategory: "ultra",
+    name: "ULTRA 10",
+    bitContracts: 5,
+    features: [
+      "Ativos: BITCOIN, WIN, WDO",
+      "Aprovação: R$900,00",
+      "Stop Global: R$1.950,00",
+      "Stop Diário: R$600,00",
+    ],
+    precoExame:  "R$620,90",
+    precoSenior: "R$1.241,00",
+  },
+  {
+    subCategory: "ultra",
+    name: "ULTRA 15",
+    bitContracts: 10,
+    features: [
+      "Ativos: BITCOIN, WIN, WDO",
+      "Aprovação: R$2.500,00",
+      "Stop Global: R$3.510,00",
+      "Stop Diário: R$1.000,00",
+    ],
+    precoExame:  "R$890,55",
+    precoSenior: "R$1.781,10",
+  },
+  {
+    subCategory: "ultra",
+    name: "ULTRA 20",
+    bitContracts: 15,
+    features: [
+      "Ativos: BITCOIN, WIN, WDO",
+      "Aprovação: R$3.500,00",
+      "Stop Global: R$5.900,00",
+      "Stop Diário: R$1.700,00",
+    ],
+    precoExame:  "R$1.620,10",
+    precoSenior: "R$3.240,20",
+  },
+  {
+    subCategory: "ultra",
+    name: "ULTRA 30",
+    bitContracts: 25,
+    features: [
+      "Ativos: BITCOIN, WIN, WDO",
+      "Aprovação: R$5.500,00",
+      "Stop Global: R$7.150,00",
+      "Stop Diário: R$2.100,00",
+    ],
+    precoExame:  "R$2.115,80",
+    precoSenior: "R$4.231,60",
+  },
+  // Titan Ultra
+  {
+    subCategory: "titan-ultra",
+    name: "TITAN ULTRA 30",
+    bitContracts: 30,
+    features: [
+      "10 CTT BIT / 20 WDO e WIN",
+      "Sem limite de tempo para o exame",
+      "Repasse de 90% após aprovação, 100% membros do Clube do Valor",
+      "Meta de aprovação 7K",
+      "Stop diário 2.500K",
+      "Stop Global 10K",
+    ],
+    precoPix: "R$1.610,00",
+    precoCartao: "R$1.710,00",
+    precoContaAprovada: "R$2.907,90",
+  },
+  {
+    subCategory: "titan-ultra",
+    name: "TITAN ULTRA 45",
+    bitContracts: 45,
+    features: [
+      "20 CTT BIT / 25 WDO e WIN",
+      "Sem limite de tempo para o exame",
+      "Repasse de 90% após aprovação, 100% membros do Clube do Valor",
+      "Meta de aprovação 8.500K",
+      "Stop diário 3K",
+      "Stop Global 16K",
+    ],
+    precoPix: "R$1.850,00",
+    precoCartao: "R$1.950,00",
+    precoContaAprovada: "R$3.315,90",
+  },
+  {
+    subCategory: "titan-ultra",
+    name: "TITAN ULTRA 65",
+    bitContracts: 65,
+    features: [
+      "30 CTT BIT / 35 WDO e WIN",
+      "Sem limite de tempo para o exame",
+      "Repasse de 90% após aprovação, 100% membros do Clube do Valor",
+      "Meta de aprovação 15K",
+      "Stop diário 4K",
+      "Stop Global 18K",
+    ],
+    precoPix: "R$2.599,00",
+    precoCartao: "R$2.699,00",
+    precoContaAprovada: "R$4.588,90",
+  },
+  {
+    subCategory: "titan-ultra",
+    name: "TITAN ULTRA 80",
+    bitContracts: 80,
+    features: [
+      "40 CTT BIT / 40 WDO e WIN",
+      "Sem limite de tempo para o exame",
+      "Repasse de 90% após aprovação, 100% membros do Clube do Valor",
+      "Meta de aprovação 18K",
+      "Stop diário 5.500K",
+      "Stop Global 22K",
+    ],
+    precoPix: "R$3.199,00",
+    precoCartao: "R$3.299,00",
+    precoContaAprovada: "R$5.438,90",
+  },
+]
+
+// ── BitPlanCard ───────────────────────────────────────────────────────────────
+function BitPlanCard({ plan, isActive, onCta }: { plan: BitPlan; isActive: boolean; onCta: () => void }) {
+  const isTitanUltra = plan.subCategory === "titan-ultra"
+  return (
+    <div
+      className={`
+        flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center
+        rounded-2xl border-2 bg-card flex flex-col transition-all duration-300
+        ${isActive ? "border-primary shadow-[0_0_0_2px_theme(colors.orange.500)]" : "border-border opacity-80"}
+      `}
+    >
+      {/* Header */}
+      <div className="bg-primary rounded-t-2xl px-5 py-3 flex items-center justify-between">
+        <h3 className="text-primary-foreground font-black text-sm uppercase tracking-wide">{plan.name}</h3>
+        <span className="bg-primary-foreground text-primary text-xs font-black px-2 py-0.5 rounded-full">
+          {plan.bitContracts} {isTitanUltra ? "CTT" : "BIT"}
+        </span>
+      </div>
+
+      <div className="flex flex-col flex-1 px-5 py-4 gap-4">
+        {/* Features */}
+        <ul className="space-y-1.5">
+          {plan.features.map((f, i) => (
+            <li key={i} className="flex items-start gap-2 text-sm text-foreground">
+              <span className="text-primary mt-0.5 text-xs">•</span>
+              <span>{f}</span>
+            </li>
+          ))}
+        </ul>
+
+        {/* Pricing rows */}
+        <div className="space-y-2 border-t border-border pt-3">
+          {isTitanUltra ? (
+            <>
+              <div className="flex items-center gap-2">
+                <span className="bg-foreground text-background text-xs font-black px-2 py-1 rounded min-w-[52px] text-center">PIX</span>
+                <span className="text-foreground font-bold text-sm">{plan.precoPix}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="bg-secondary border border-border text-foreground text-xs font-black px-2 py-1 rounded min-w-[52px] text-center">CARTÃO</span>
+                <span className="text-foreground font-bold text-sm">{plan.precoCartao}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="bg-destructive text-destructive-foreground text-[9px] font-black px-1.5 py-1 rounded leading-tight text-center min-w-[52px]">CONTA<br/>APROVADA</span>
+                <span className="text-foreground font-bold text-sm">{plan.precoContaAprovada}</span>
+              </div>
+              <p className="text-[10px] text-muted-foreground text-center font-semibold tracking-widest pt-1">PROFIT ONE</p>
+            </>
+          ) : (
+            <>
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-muted-foreground font-semibold uppercase tracking-wide">Exame</span>
+                <span className="text-primary font-black text-base">{plan.precoExame}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-muted-foreground font-semibold uppercase tracking-wide">Sênior</span>
+                <span className="text-primary font-black text-base">{plan.precoSenior}</span>
+              </div>
+              <p className="text-[10px] text-muted-foreground text-center font-semibold tracking-widest pt-1">PROFIT ONE</p>
+            </>
+          )}
+        </div>
+
+        {/* CTA */}
+        <button
+          onClick={onCta}
+          className={`
+            w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide mt-auto
+            transition-all duration-300
+            ${isActive ? "bg-primary text-primary-foreground animate-pulse-border" : "bg-secondary text-foreground border border-border"}
+          `}
+        >
+          Quero esse plano
+        </button>
+      </div>
+    </div>
+  )
 }
 
 // ── Pegue e Monte Builder ─────────────────────────────────────────────────────
@@ -550,6 +767,12 @@ const categories: { id: Category; label: string }[] = [
   { id: "titan",       label: "Titan" },
   { id: "senior",      label: "Sênior" },
   { id: "pegue-monte", label: "Pegue e Monte" },
+  { id: "bit",         label: "BIT" },
+]
+
+const bitSubCategories: { id: BitSubCategory; label: string }[] = [
+  { id: "ultra",       label: "Ultra 1.0 / 3 em 1" },
+  { id: "titan-ultra", label: "Titan Ultra" },
 ]
 
 // ── WhatsApp Lead Modal ───────────────────────────────────────────────────────
@@ -794,12 +1017,16 @@ function PlanCard({ plan, isActive, onCta }: PlanCardProps) {
 // ── Pricing Section ───────────────────────────────────────────────────────────
 export function PricingSection() {
   const [activeCategory, setActiveCategory] = useState<Category>("exames")
+  const [bitSubCategory, setBitSubCategory] = useState<BitSubCategory>("ultra")
   const [activeCardIndex, setActiveCardIndex] = useState(0)
   const [leadModal, setLeadModal] = useState<{ open: boolean; planName: string }>({ open: false, planName: "" })
   const [pegueMonteOpen, setPegueMonteOpen] = useState(false)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
+  const isBit = activeCategory === "bit"
+  const bitPlansFiltered = bitPlans.filter(p => p.subCategory === bitSubCategory)
   const plans = plansByCategory[activeCategory]
+  const activeCount = isBit ? bitPlansFiltered.length : plans.length
   const CARD_WIDTH = 320 + 16
 
   useEffect(() => {
@@ -807,28 +1034,27 @@ export function PricingSection() {
     if (!container) return
     const handleScroll = () => {
       const idx = Math.round(container.scrollLeft / CARD_WIDTH)
-      setActiveCardIndex(Math.max(0, Math.min(idx, plans.length - 1)))
+      setActiveCardIndex(Math.max(0, Math.min(idx, activeCount - 1)))
     }
     container.addEventListener("scroll", handleScroll, { passive: true })
     return () => container.removeEventListener("scroll", handleScroll)
-  }, [activeCategory, plans.length, CARD_WIDTH])
+  }, [activeCategory, bitSubCategory, activeCount, CARD_WIDTH])
 
   useEffect(() => {
     setActiveCardIndex(0)
-    scrollContainerRef.current?.scrollTo({ left: 0, behavior: "smooth" })
-  }, [activeCategory])
+    scrollContainerRef.current?.scrollTo({ left: 0, behavior: "instant" as ScrollBehavior })
+  }, [activeCategory, bitSubCategory])
 
   const scrollTo = (index: number) => {
     scrollContainerRef.current?.scrollTo({ left: index * CARD_WIDTH, behavior: "smooth" })
   }
 
-  const handleCta = (plan: Plan) => {
+  const handleCta = (planName: string) => {
     if (activeCategory === "pegue-monte") {
       setPegueMonteOpen(true)
       return
     }
-    // All plans open the lead capture popup
-    setLeadModal({ open: true, planName: plan.name })
+    setLeadModal({ open: true, planName })
   }
 
   return (
@@ -864,6 +1090,25 @@ export function PricingSection() {
           ))}
         </div>
 
+        {/* BIT sub-tabs */}
+        {isBit && (
+          <div className="flex justify-center gap-2 mb-5">
+            {bitSubCategories.map(sub => (
+              <button
+                key={sub.id}
+                onClick={() => setBitSubCategory(sub.id)}
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all
+                  ${bitSubCategory === sub.id
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-secondary text-foreground border border-border hover:border-primary"
+                  }`}
+              >
+                {sub.label}
+              </button>
+            ))}
+          </div>
+        )}
+
         {/* Regulamento */}
         <div className="flex justify-center mb-8">
           <Dialog>
@@ -880,11 +1125,11 @@ export function PricingSection() {
                   Leia atentamente as regras e condições da mesa proprietária.
                 </DialogDescription>
               </DialogHeader>
-              <ScrollArea className="h-[60vh] pr-4">
+              <div className="h-[60vh] overflow-y-auto pr-4">
                 <div className="space-y-4 text-sm text-muted-foreground whitespace-pre-line">
                   {regulamento}
                 </div>
-              </ScrollArea>
+              </div>
             </DialogContent>
           </Dialog>
         </div>
@@ -908,18 +1153,28 @@ export function PricingSection() {
             style={{ scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch" } as React.CSSProperties}
           >
             <div className="flex-shrink-0 w-[calc(50vw-184px)] md:hidden" />
-            {plans.map((plan, index) => (
-              <PlanCard
-                key={`${plan.name}-${plan.asset ?? ""}-${index}`}
-                plan={plan}
-                isActive={index === activeCardIndex}
-                onCta={() => handleCta(plan)}
-              />
-            ))}
+            {isBit
+              ? bitPlansFiltered.map((plan, index) => (
+                  <BitPlanCard
+                    key={`${plan.name}-${index}`}
+                    plan={plan}
+                    isActive={index === activeCardIndex}
+                    onCta={() => handleCta(plan.name)}
+                  />
+                ))
+              : plans.map((plan, index) => (
+                  <PlanCard
+                    key={`${plan.name}-${plan.asset ?? ""}-${index}`}
+                    plan={plan}
+                    isActive={index === activeCardIndex}
+                    onCta={() => handleCta(plan.name)}
+                  />
+                ))
+            }
             <div className="flex-shrink-0 w-[calc(50vw-184px)] md:hidden" />
           </div>
 
-          {activeCardIndex < plans.length - 1 && (
+          {activeCardIndex < activeCount - 1 && (
             <button
               onClick={() => scrollTo(activeCardIndex + 1)}
               className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-10
@@ -933,7 +1188,7 @@ export function PricingSection() {
 
         {/* Dots */}
         <div className="flex justify-center gap-2 mt-4">
-          {plans.map((_, index) => (
+          {Array.from({ length: activeCount }).map((_, index) => (
             <button
               key={index}
               onClick={() => scrollTo(index)}

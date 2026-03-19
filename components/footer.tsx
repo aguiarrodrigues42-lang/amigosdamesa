@@ -7,7 +7,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/logo.png" alt="Logo" height={32} style={{ height: 32, width: "auto" }} />
+            <img src="/images/logo.png" alt="Logo" style={{ height: "32px", width: "auto", display: "block" }} />
           </div>
 
           <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
