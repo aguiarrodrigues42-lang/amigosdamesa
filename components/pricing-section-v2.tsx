@@ -159,28 +159,28 @@ const plansByCategory: Record<Category, Plan[]> = {
       meta: "R$1.800,00", dailyLimit: "—", stopGlobal: "R$2.500,00", priceOriginal: 300, pricePix: 180, discountPercent: 40,
       pixLink: "https://pedido.amigosdamesa.shop/pay/02c6b8ad-5b3f-4f8f-ab27-2c8d7f2ecd18",
       features: ["6 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 2.500,00", "Meta de aprovação R$ 1.800,00"],
-      taxaOnePix: 180, taxaProPix: 180, taxaOneOriginal: 300, taxaProOriginal: 300,
+      taxaOnePix: 300, taxaProPix: 350, taxaOneOriginal: 300, taxaProOriginal: 350,
     },
     {
       name: "PRIME PLUS 11", contracts: 11,
       meta: "R$4.000,00", dailyLimit: "—", stopGlobal: "R$3.500,00", priceOriginal: 300, pricePix: 180, discountPercent: 40,
       pixLink: "https://pedido.amigosdamesa.shop/pay/ce773655-e9f5-404e-a739-0e242149f9dc",
       features: ["11 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 3.500,00", "Meta de aprovação R$ 4.000,00"],
-      taxaOnePix: 180, taxaProPix: 180, taxaOneOriginal: 300, taxaProOriginal: 300,
+      taxaOnePix: 720, taxaProPix: 780, taxaOneOriginal: 720, taxaProOriginal: 780,
     },
     {
       name: "PRIME PLUS 16", contracts: 16,
       meta: "R$7.500,00", dailyLimit: "—", stopGlobal: "R$6.000,00", priceOriginal: 300, pricePix: 180, discountPercent: 40,
       pixLink: "https://pedido.amigosdamesa.shop/pay/6e43fa96-ce50-46bb-bca7-8c3e9fa86e01",
       features: ["16 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 6.000,00", "Meta de aprovação R$ 7.500,00"],
-      taxaOnePix: 180, taxaProPix: 180, taxaOneOriginal: 300, taxaProOriginal: 300,
+      taxaOnePix: 1220, taxaProPix: 1320, taxaOneOriginal: 1220, taxaProOriginal: 1320,
     },
     {
       name: "PRIME PLUS 21", contracts: 21,
       meta: "R$10.000,00", dailyLimit: "—", stopGlobal: "R$9.000,00", priceOriginal: 300, pricePix: 180, discountPercent: 40,
       pixLink: "https://pedido.amigosdamesa.shop/pay/2b18719e-4655-40fc-9f5c-f8c698820203",
       features: ["21 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 9.000,00", "Meta de aprovação R$ 10.000,00"],
-      taxaOnePix: 180, taxaProPix: 180, taxaOneOriginal: 300, taxaProOriginal: 300,
+      taxaOnePix: 1720, taxaProPix: 1850, taxaOneOriginal: 1720, taxaProOriginal: 1850,
     },
   ],
   // TITAN - 60% OFF PIX, Cartão = original * 1.30 / 12
@@ -934,14 +934,13 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
                 </li>
               ))}
             </ul>
-            <div className="border-t border-border pt-3">
-              <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-1">Taxa mensal após aprovado</p>
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-muted-foreground">{isPix ? "PIX" : "CARTÃO"}</span>
-                <div className="text-right">
-                  <span className="text-xs line-through text-muted-foreground mr-1">{formatBRL(plan.taxaOneOriginal!)}</span>
-                  <strong className="text-primary text-sm">{formatBRL(taxaDisplay!)}</strong>
-                </div>
+            <div className="border-t border-border pt-3 space-y-1">
+              <p className="text-xs font-bold text-foreground uppercase tracking-wide">Taxa após aprovado:</p>
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-xs font-semibold text-muted-foreground">ONE</span>
+                <strong className="text-primary text-sm">{formatBRL(plan.taxaOnePix!)}</strong>
+                <span className="text-xs font-semibold text-muted-foreground">PRO</span>
+                <strong className="text-primary text-sm">{formatBRL(plan.taxaProPix!)}</strong>
               </div>
             </div>
           </>
