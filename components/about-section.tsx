@@ -121,7 +121,7 @@ export function AboutSection() {
               {/* floating badge */}
               <div className="absolute bottom-4 left-4 bg-black/80 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-3">
                 <p className="text-xs text-white/50 uppercase tracking-widest">Fundada em</p>
-                <p className="text-white font-black text-lg leading-none">2019</p>
+                <p className="text-white font-black text-lg leading-none">2018</p>
               </div>
             </div>
           </div>
