@@ -197,14 +197,14 @@ const plansByCategory: Record<Category, Plan[]> = {
     },
     {
       name: "TITAN PRO 30", contracts: 65,
-      meta: "R$14.000,00", dailyLimit: "R$4.000,00", stopGlobal: "R$14.000,00", priceOriginal: 3980.99, pricePix: 1194.29, discountPercent: 60,
+      meta: "R$14.000,00", dailyLimit: "R$4.000,00", stopGlobal: "R$14.000,00", priceOriginal: 3980.99, pricePix: 1592.40, discountPercent: 60,
       pixLink: "https://pedido.amigosdamesa.shop/pay/8eb7fe18-8daf-47e0-8138-67789650ec9f",
       cartaoLink: "https://pedido.amigosdamesas.shop/pay/7b134196-a00c-42dc-a3d6-68b375991111",
       features: ["Meta de aprovação R$ 14.000,00", "Stop diário R$ 4.000,00", "Stop Global R$ 14.000,00"],
     },
     {
       name: "TITAN PRO 50", contracts: 80,
-      meta: "R$10.000,00", dailyLimit: "R$5.500,00", stopGlobal: "R$10.000,00", priceOriginal: 4980.99, pricePix: 1494.29, discountPercent: 60,
+      meta: "R$10.000,00", dailyLimit: "R$5.500,00", stopGlobal: "R$10.000,00", priceOriginal: 4980.99, pricePix: 1992.40, discountPercent: 60,
       pixLink: "https://pedido.amigosdamesa.shop/pay/64cc0f6e-4fd2-4bc8-8896-6ac1634fbe6e",
       cartaoLink: "https://pedido.amigosdamesas.shop/pay/cffadfe1-7f09-4ec5-856f-e244efa1583c",
       features: ["Meta de aprovação R$ 10.000,00", "Stop diário R$ 5.500,00", "Stop Global R$ 10.000,00"],
@@ -299,10 +299,10 @@ const bitPlans: BitPlan[] = [
       "Stop Global: R$1.950,00",
       "Stop Diário: R$600,00",
     ],
-    precoExame: "R$389,67", precoExameOriginal: "R$714,03",
+    precoExame: "R$321,31", precoExameOriginal: "R$714,03",
     valorOriginal: 714.03,
-    precoPix: "R$389,67",
-    precoCartao: "R$42,22",  // (389.67 * 1.30) / 12 = 42,22
+    precoPix: "R$321,31",
+    precoCartao: "R$34,81",  // (321.31 * 1.30) / 12 = 34,81
     precoSeniorOriginal: "R$714,03",
     pixLink: "https://pedido.amigosdamesa.shop/pay/79807da1-bbcb-4550-aae1-8d913fd31726",
     cartaoLink: "https://pedido.amigosdamesas.shop/pay/4ba3919a-0e2f-4a60-8af2-a49a3c89168f",
@@ -316,10 +316,10 @@ const bitPlans: BitPlan[] = [
       "Stop Global: R$3.510,00",
       "Stop Diário: R$1.000,00",
     ],
-    precoExame: "R$420,72", precoExameOriginal: "R$1.024,13",
+    precoExame: "R$460,86", precoExameOriginal: "R$1.024,13",
     valorOriginal: 1024.13,
-    precoPix: "R$420,72",
-    precoCartao: "R$45,58", // (420.72 * 1.30) / 12 = 45,58
+    precoPix: "R$460,86",
+    precoCartao: "R$49,93", // (460.86 * 1.30) / 12 = 49,93
     precoSeniorOriginal: "R$1.024,13",
     pixLink: "https://pedido.amigosdamesa.shop/pay/d2f2fd63-96f1-4d80-90f3-eef05991e14e",
     cartaoLink: "https://pedido.amigosdamesas.shop/pay/ebf548b3-e619-4d5e-baa2-92cc3fbfabb5",
@@ -333,10 +333,10 @@ const bitPlans: BitPlan[] = [
       "Stop Global: R$5.900,00",
       "Stop Diário: R$1.700,00",
     ],
-    precoExame: "R$605,47", precoExameOriginal: "R$1.863,11",
+    precoExame: "R$838,40", precoExameOriginal: "R$1.863,11",
     valorOriginal: 1863.11,
-    precoPix: "R$605,47",
-    precoCartao: "R$65,59", // (605.47 * 1.30) / 12 = 65,59
+    precoPix: "R$838,40",
+    precoCartao: "R$90,83", // (838.40 * 1.30) / 12 = 90,83
     precoSeniorOriginal: "R$1.863,11",
     pixLink: "https://pedido.amigosdamesa.shop/pay/de2547fb-4e56-45e9-b985-df6d5787d6ee",
     cartaoLink: "https://pedido.amigosdamesas.shop/pay/f2cea8b4-88bc-4626-ba76-e41bc7023c08",
