@@ -198,14 +198,14 @@ const plansByCategory: Record<Category, Plan[]> = {
     {
       name: "TITAN PRO 30", contracts: 65,
       meta: "R$14.000,00", dailyLimit: "R$4.000,00", stopGlobal: "R$14.000,00", priceOriginal: 3980.99, pricePix: 1592.40, discountPercent: 60,
-      pixLink: "https://pedido.amigosdamesa.shop/pay/8eb7fe18-8daf-47e0-8138-67789650ec9f",
+      pixLink: "https://pedido.amigosdamesa.shop/pay/bcd0a6ea-33c8-4168-8cd9-f8e34d84548d",
       cartaoLink: "https://pedido.amigosdamesas.shop/pay/7b134196-a00c-42dc-a3d6-68b375991111",
       features: ["Meta de aprovação R$ 14.000,00", "Stop diário R$ 4.000,00", "Stop Global R$ 14.000,00"],
     },
     {
       name: "TITAN PRO 50", contracts: 80,
       meta: "R$10.000,00", dailyLimit: "R$5.500,00", stopGlobal: "R$10.000,00", priceOriginal: 4980.99, pricePix: 1992.40, discountPercent: 60,
-      pixLink: "https://pedido.amigosdamesa.shop/pay/64cc0f6e-4fd2-4bc8-8896-6ac1634fbe6e",
+      pixLink: "https://pedido.amigosdamesa.shop/pay/888a7d73-4dba-4c8b-b92e-04a77ec4762f",
       cartaoLink: "https://pedido.amigosdamesas.shop/pay/cffadfe1-7f09-4ec5-856f-e244efa1583c",
       features: ["Meta de aprovação R$ 10.000,00", "Stop diário R$ 5.500,00", "Stop Global R$ 10.000,00"],
     },
