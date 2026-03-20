@@ -288,7 +288,7 @@ interface BitPlan {
 }
 
 // Ultra 1.0 / 3 em 1
-// valorOriginal = valor ONE (rosa); precoPix = 55% OFF; precoCartao = PIX * 1.30
+// valorOriginal = valor ONE (rosa); precoPix = 55% OFF; precoCartao12x = (PIX * 1.30) / 12
 const bitPlans: BitPlan[] = [
   {
     name: "ULTRA 10",
@@ -302,7 +302,7 @@ const bitPlans: BitPlan[] = [
     precoExame: "R$389,67", precoExameOriginal: "R$714,03",
     valorOriginal: 714.03,
     precoPix: "R$389,67",
-    precoCartao: "R$506,57",  // 389.67 * 1.30 = 506,57
+    precoCartao: "R$42,22",  // (389.67 * 1.30) / 12 = 42,22
     precoSeniorOriginal: "R$714,03",
     pixLink: "https://pedido.amigosdamesa.shop/pay/79807da1-bbcb-4550-aae1-8d913fd31726",
     cartaoLink: "https://pedido.amigosdamesas.shop/pay/06568820-7e67-4576-aecb-4531ae46b59e",
@@ -319,7 +319,7 @@ const bitPlans: BitPlan[] = [
     precoExame: "R$420,72", precoExameOriginal: "R$1.024,13",
     valorOriginal: 1024.13,
     precoPix: "R$420,72",
-    precoCartao: "R$546,94", // 420.72 * 1.30 = 546,94
+    precoCartao: "R$45,58", // (420.72 * 1.30) / 12 = 45,58
     precoSeniorOriginal: "R$1.024,13",
     pixLink: "https://pedido.amigosdamesa.shop/pay/d2f2fd63-96f1-4d80-90f3-eef05991e14e",
     cartaoLink: "https://pedido.amigosdamesas.shop/pay/48634ba8-259a-46de-8544-9bd656f180e7",
@@ -336,7 +336,7 @@ const bitPlans: BitPlan[] = [
     precoExame: "R$605,47", precoExameOriginal: "R$1.863,11",
     valorOriginal: 1863.11,
     precoPix: "R$605,47",
-    precoCartao: "R$787,11", // 605.47 * 1.30 = 787,11
+    precoCartao: "R$65,59", // (605.47 * 1.30) / 12 = 65,59
     precoSeniorOriginal: "R$1.863,11",
     pixLink: "https://pedido.amigosdamesa.shop/pay/de2547fb-4e56-45e9-b985-df6d5787d6ee",
     cartaoLink: "https://pedido.amigosdamesas.shop/pay/9566d76a-7b7e-4585-8e09-5db635ce20b8",
@@ -401,7 +401,7 @@ function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive
               {isPix ? (
                 <span className="text-primary font-black text-base">{plan.precoPix}</span>
               ) : (
-                <span className="text-primary font-black text-base">{plan.precoCartao}</span>
+                <span className="text-primary font-black text-base">12x {plan.precoCartao}</span>
               )}
             </div>
           </div>
@@ -884,11 +884,13 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
   const ctaLabel = plan.ctaLabel ?? "Quero esse plano"
   const isUnavailable = plan.pricePix === 0 && plan.ctaLabel === "Indisponível"
 
-  // Calcular preços - Cartão = PIX + 30%
-  const priceCartao = plan.pricePix * 1.30
+  // Calcular preços - Cartão = (PIX + 30%) / 12 parcelas
+  // Exceção: Prime Mensal usa valor fixo de R$300 no cartão (R$25/mês em 12x)
+  const isPrimePlusCategory = !!plan.taxaOnePix
+  const priceCartao12x = isPrimePlusCategory ? (300 / 12) : (plan.pricePix * 1.30) / 12
 
-  // Preço a exibir
-  const displayPrice = isPix ? plan.pricePix : priceCartao
+  // Preço a exibir (PIX = valor cheio, Cartão = parcela mensal)
+  const displayPrice = isPix ? plan.pricePix : priceCartao12x
   const displayOriginal = plan.priceOriginal
 
   // Taxa mensal Prime Plus
@@ -926,6 +928,15 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
                 </li>
               ))}
             </ul>
+            {/* Preço mensal */}
+            <div className="border-t border-border pt-3 text-center">
+              <p className="text-xs text-muted-foreground line-through">{formatBRL(displayOriginal)}</p>
+              {isPix ? (
+                <span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}/mês</span>
+              ) : (
+                <span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span>
+              )}
+            </div>
             <div className="border-t border-border pt-3 space-y-1">
               <p className="text-xs font-bold text-foreground uppercase tracking-wide">Taxa após aprovado:</p>
               <div className="flex items-center gap-2 flex-wrap">
