@@ -235,7 +235,15 @@ const plansByCategory: Record<Category, Plan[]> = {
     },
     {
       name: "UNO 40", contracts: 40,
-      asset: "Índice ou Dólar",
+      asset: "Índice",
+      meta: "—", dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00", priceOriginal: 4885.20, pricePix: 3419.64, discountPercent: 30,
+      pixLink: "https://pedido.amigosdamesa.shop/pay/07644730-388c-4251-b898-55acade00ae8",
+      cartaoLink: "https://pedido.amigosdamesas.shop/pay/8db8aa34-57eb-4497-9aed-18a96811118b",
+      features: [...seniorFeaturesCommon, "Stop diário R$ 1.450,00", "Stop Global R$ 6.250,00"],
+    },
+    {
+      name: "UNO 40", contracts: 40,
+      asset: "Dólar",
       meta: "—", dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00", priceOriginal: 4885.20, pricePix: 3419.64, discountPercent: 30,
       pixLink: "https://pedido.amigosdamesa.shop/pay/07644730-388c-4251-b898-55acade00ae8",
       cartaoLink: "https://pedido.amigosdamesas.shop/pay/8db8aa34-57eb-4497-9aed-18a96811118b",
@@ -269,10 +277,10 @@ interface BitPlan {
   precoExame: string
   precoExameOriginal: string
   // Sênior (via Sênior) — Profit One
-  // Valor original = coluna rosa; PIX = 55% OFF; Cartão = original * 1.30 / 12
+  // Valor original = coluna rosa; PIX = 55% OFF; Cartão = PIX * 1.30
   valorOriginal: number        // valor numérico para calcular cartão
   precoPix: string             // 55% OFF
-  precoCartao12x: string       // (valorOriginal * 1.30 / 12) formatado
+  precoCartao: string          // PIX * 1.30 formatado
   precoSeniorOriginal: string  // riscado no cartão
   pixLink?: string
   cartaoLink?: string
@@ -280,7 +288,7 @@ interface BitPlan {
 }
 
 // Ultra 1.0 / 3 em 1
-// valorOriginal = valor ONE (rosa); precoPix = 55% OFF; precoCartao12x = PIX * 1.30 / 12
+// valorOriginal = valor ONE (rosa); precoPix = 55% OFF; precoCartao = PIX * 1.30
 const bitPlans: BitPlan[] = [
   {
     name: "ULTRA 10",
@@ -294,7 +302,7 @@ const bitPlans: BitPlan[] = [
     precoExame: "R$389,67", precoExameOriginal: "R$714,03",
     valorOriginal: 714.03,
     precoPix: "R$389,67",
-    precoCartao12x: "R$42,22",  // 389.67 * 1.30 / 12 = 42,22
+    precoCartao: "R$506,57",  // 389.67 * 1.30 = 506,57
     precoSeniorOriginal: "R$714,03",
     pixLink: "https://pedido.amigosdamesa.shop/pay/79807da1-bbcb-4550-aae1-8d913fd31726",
     cartaoLink: "https://pedido.amigosdamesas.shop/pay/06568820-7e67-4576-aecb-4531ae46b59e",
@@ -311,7 +319,7 @@ const bitPlans: BitPlan[] = [
     precoExame: "R$420,72", precoExameOriginal: "R$1.024,13",
     valorOriginal: 1024.13,
     precoPix: "R$420,72",
-    precoCartao12x: "R$45,58", // 420.72 * 1.30 / 12 = 45,58
+    precoCartao: "R$546,94", // 420.72 * 1.30 = 546,94
     precoSeniorOriginal: "R$1.024,13",
     pixLink: "https://pedido.amigosdamesa.shop/pay/d2f2fd63-96f1-4d80-90f3-eef05991e14e",
     cartaoLink: "https://pedido.amigosdamesas.shop/pay/48634ba8-259a-46de-8544-9bd656f180e7",
@@ -328,7 +336,7 @@ const bitPlans: BitPlan[] = [
     precoExame: "R$605,47", precoExameOriginal: "R$1.863,11",
     valorOriginal: 1863.11,
     precoPix: "R$605,47",
-    precoCartao12x: "R$65,59", // 605.47 * 1.30 / 12 = 65,59
+    precoCartao: "R$787,11", // 605.47 * 1.30 = 787,11
     precoSeniorOriginal: "R$1.863,11",
     pixLink: "https://pedido.amigosdamesa.shop/pay/de2547fb-4e56-45e9-b985-df6d5787d6ee",
     cartaoLink: "https://pedido.amigosdamesas.shop/pay/9566d76a-7b7e-4585-8e09-5db635ce20b8",
@@ -345,7 +353,7 @@ const bitPlans: BitPlan[] = [
     precoExame: "INDISPONÍVEL", precoExameOriginal: "R$2.433,17",
     valorOriginal: 2433.17,
     precoPix: "INDISPONÍVEL",
-    precoCartao12x: "R$263,59", // 2433.17 * 1.30 / 12 = 263,59
+    precoCartao: "INDISPONÍVEL",
     precoSeniorOriginal: "R$2.433,17",
     indisponivel: true,
     pixLink: "https://pedido.amigosdamesa.shop/pay/3c1aec92-9457-4f48-8d2c-be7fa6be4200",
@@ -393,7 +401,7 @@ function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive
               {isPix ? (
                 <span className="text-primary font-black text-base">{plan.precoPix}</span>
               ) : (
-                <span className="text-primary font-black text-base">12x {plan.precoCartao12x}</span>
+                <span className="text-primary font-black text-base">{plan.precoCartao}</span>
               )}
             </div>
           </div>
@@ -876,11 +884,11 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
   const ctaLabel = plan.ctaLabel ?? "Quero esse plano"
   const isUnavailable = plan.pricePix === 0 && plan.ctaLabel === "Indisponível"
 
-  // Calcular preços
-  const priceCartao12x = (plan.priceOriginal * 1.30) / 12
+  // Calcular preços - Cartão = PIX + 30%
+  const priceCartao = plan.pricePix * 1.30
 
   // Preço a exibir
-  const displayPrice = isPix ? plan.pricePix : priceCartao12x
+  const displayPrice = isPix ? plan.pricePix : priceCartao
   const displayOriginal = plan.priceOriginal
 
   // Taxa mensal Prime Plus
