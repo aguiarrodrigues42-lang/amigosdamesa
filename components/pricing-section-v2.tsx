@@ -144,7 +144,7 @@ const plansByCategory: Record<Category, Plan[]> = {
     { name: "PLANO UNO 40",      contracts: 40, asset: "Dólar",          meta: "R$4.980,00", dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00", priceOriginal: 2581.75, pricePix: 774.52,  discountPercent: 70, pixLink: "https://pedido.amigosdamesa.shop/pay/6a82aa4a-6920-4e19-bbad-481363faf076",   cartaoLink: "https://pedido.amigosdamesas.shop/pay/157fc128-13fb-414a-ab84-aa89716b0e41" },
     { name: "PLANO MASTER",      contracts: 50, asset: "Índice e Dólar", meta: "R$9.950,00", dailyLimit: "R$3.350,00", stopGlobal: "R$10.250,00", priceOriginal: 3631.12, pricePix: 1089.33, discountPercent: 70, pixLink: "https://pedido.amigosdamesa.shop/pay/12cfc68c-bb65-49b9-a70a-74058a498bc7", cartaoLink: "https://pedido.amigosdamesas.shop/pay/4efbfe81-a397-4a49-92aa-0d117c3e2335" },
   ],
-  // PRIME MENSAL - 40% OFF PIX = R$180/mês, Cartão = mensalidade R$300/mês
+  // PRIME MENSAL - 40% OFF PIX = R$180/mês, Cartão = PIX * 1.30
   "prime-plus": [
     {
       name: "PRIME PLUS 6", contracts: 6,
@@ -156,7 +156,7 @@ const plansByCategory: Record<Category, Plan[]> = {
     },
     {
       name: "PRIME PLUS 11", contracts: 11,
-      meta: "R$4.000,00", dailyLimit: "—", stopGlobal: "R$3.500,00", priceOriginal: 300, pricePix: 180, discountPercent: 40,
+      meta: "R$4.000,00", dailyLimit: "—", stopGlobal: "R$3.500,00", priceOriginal: 720, pricePix: 180, discountPercent: 40,
       pixLink: "https://pedido.amigosdamesa.shop/pay/ce773655-e9f5-404e-a739-0e242149f9dc",
       cartaoLink: "https://pedido.amigosdamesas.shop/pay/80052cbc-b4a8-4cf3-97fb-a6da92ddcee8",
       features: ["11 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 3.500,00", "Meta de aprovação R$ 4.000,00"],
@@ -164,7 +164,7 @@ const plansByCategory: Record<Category, Plan[]> = {
     },
     {
       name: "PRIME PLUS 16", contracts: 16,
-      meta: "R$7.500,00", dailyLimit: "—", stopGlobal: "R$6.000,00", priceOriginal: 300, pricePix: 180, discountPercent: 40,
+      meta: "R$7.500,00", dailyLimit: "—", stopGlobal: "R$6.000,00", priceOriginal: 1220, pricePix: 180, discountPercent: 40,
       pixLink: "https://pedido.amigosdamesa.shop/pay/6e43fa96-ce50-46bb-bca7-8c3e9fa86e01",
       cartaoLink: "https://pedido.amigosdamesas.shop/pay/5391abe8-5765-4f32-965b-4353dbb3a9c5",
       features: ["16 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 6.000,00", "Meta de aprovação R$ 7.500,00"],
@@ -172,39 +172,39 @@ const plansByCategory: Record<Category, Plan[]> = {
     },
     {
       name: "PRIME PLUS 21", contracts: 21,
-      meta: "R$10.000,00", dailyLimit: "—", stopGlobal: "R$9.000,00", priceOriginal: 300, pricePix: 180, discountPercent: 40,
+      meta: "R$10.000,00", dailyLimit: "—", stopGlobal: "R$9.000,00", priceOriginal: 1720, pricePix: 180, discountPercent: 40,
       pixLink: "https://pedido.amigosdamesa.shop/pay/2b18719e-4655-40fc-9f5c-f8c698820203",
       cartaoLink: "https://pedido.amigosdamesas.shop/pay/be99b823-76c6-4638-916f-5d6daa9193b0",
       features: ["21 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 9.000,00", "Meta de aprovação R$ 10.000,00"],
       taxaOnePix: 1720, taxaProPix: 1850, taxaOneOriginal: 1720, taxaProOriginal: 1850,
     },
   ],
-  // TITAN - 60% OFF PIX, Cartão = original * 1.30 / 12
+  // TITAN - 60% OFF PIX, Cartão = PIX * 1.30 / 12
   "titan": [
     {
-      name: "TITAN PRO 10", contracts: 10,
-      meta: "R$5.000,00", dailyLimit: "R$2.500,00", stopGlobal: "R$5.000,00", priceOriginal: 1980.99, pricePix: 792.39, discountPercent: 60,
+      name: "TITAN PRO 30", contracts: 30,
+      meta: "R$5.000,00", dailyLimit: "R$2.500,00", stopGlobal: "R$5.000,00", priceOriginal: 1980.99, pricePix: 786.60, discountPercent: 60,
       pixLink: "https://pedido.amigosdamesa.shop/pay/fbd4e538-7f21-4783-adcb-3f6000a9c0b2",
       cartaoLink: "https://pedido.amigosdamesas.shop/pay/d38466cd-3c82-414c-8df7-6441d5504ea7",
       features: ["Meta de aprovação R$ 5.000,00", "Stop diário R$ 2.500,00", "Stop Global R$ 5.000,00"],
     },
     {
-      name: "TITAN PRO 20", contracts: 20,
+      name: "TITAN PRO 45", contracts: 45,
       meta: "R$8.000,00", dailyLimit: "R$3.500,00", stopGlobal: "R$8.000,00", priceOriginal: 2980.99, pricePix: 1192.39, discountPercent: 60,
       pixLink: "https://pedido.amigosdamesa.shop/pay/4fde6089-4713-4ccc-9422-024e66f967e2",
       cartaoLink: "https://pedido.amigosdamesas.shop/pay/cc34d484-c058-473f-b370-bae673d6ace1",
       features: ["Meta de aprovação R$ 8.000,00", "Stop diário R$ 3.500,00", "Stop Global R$ 8.000,00"],
     },
     {
-      name: "TITAN PRO 30", contracts: 30,
-      meta: "R$14.000,00", dailyLimit: "R$4.000,00", stopGlobal: "R$14.000,00", priceOriginal: 4980.99, pricePix: 1192.40, discountPercent: 60,
+      name: "TITAN PRO 65", contracts: 65,
+      meta: "R$14.000,00", dailyLimit: "R$4.000,00", stopGlobal: "R$14.000,00", priceOriginal: 3980.99, pricePix: 1194.29, discountPercent: 60,
       pixLink: "https://pedido.amigosdamesa.shop/pay/8eb7fe18-8daf-47e0-8138-67789650ec9f",
       cartaoLink: "https://pedido.amigosdamesas.shop/pay/7f05a766-e107-487f-860d-ec1029d1f3bc",
       features: ["Meta de aprovação R$ 14.000,00", "Stop diário R$ 4.000,00", "Stop Global R$ 14.000,00"],
     },
     {
-      name: "TITAN PRO 50", contracts: 50,
-      meta: "R$10.000,00", dailyLimit: "R$5.500,00", stopGlobal: "R$10.000,00", priceOriginal: 3980.99, pricePix: 1592.39, discountPercent: 60,
+      name: "TITAN PRO 80", contracts: 80,
+      meta: "R$10.000,00", dailyLimit: "R$5.500,00", stopGlobal: "R$10.000,00", priceOriginal: 4980.99, pricePix: 1494.29, discountPercent: 60,
       pixLink: "https://pedido.amigosdamesa.shop/pay/64cc0f6e-4fd2-4bc8-8896-6ac1634fbe6e",
       cartaoLink: "https://pedido.amigosdamesas.shop/pay/cdec66bc-1355-4fb6-b163-066135cd3993",
       features: ["Meta de aprovação R$ 10.000,00", "Stop diário R$ 5.500,00", "Stop Global R$ 10.000,00"],
@@ -235,7 +235,15 @@ const plansByCategory: Record<Category, Plan[]> = {
     },
     {
       name: "UNO 40", contracts: 40,
-      asset: "Índice ou Dólar",
+      asset: "Índice",
+      meta: "—", dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00", priceOriginal: 4885.20, pricePix: 3419.64, discountPercent: 30,
+      pixLink: "https://pedido.amigosdamesa.shop/pay/07644730-388c-4251-b898-55acade00ae8",
+      cartaoLink: "https://pedido.amigosdamesas.shop/pay/8db8aa34-57eb-4497-9aed-18a96811118b",
+      features: [...seniorFeaturesCommon, "Stop diário R$ 1.450,00", "Stop Global R$ 6.250,00"],
+    },
+    {
+      name: "UNO 40", contracts: 40,
+      asset: "Dólar",
       meta: "—", dailyLimit: "R$1.450,00", stopGlobal: "R$6.250,00", priceOriginal: 4885.20, pricePix: 3419.64, discountPercent: 30,
       pixLink: "https://pedido.amigosdamesa.shop/pay/07644730-388c-4251-b898-55acade00ae8",
       cartaoLink: "https://pedido.amigosdamesas.shop/pay/8db8aa34-57eb-4497-9aed-18a96811118b",
@@ -249,13 +257,13 @@ const plansByCategory: Record<Category, Plan[]> = {
       features: [...seniorFeaturesCommon, "Stop diário R$ 3.350,00", "Stop Global R$ 10.250,00"],
     },
   ],
-  // PEGUE E MONTE - 55% OFF PIX, Cartão = original * 1.30 / 12
+  // PEGUE E MONTE - 60% OFF PIX, Cartão = PIX * 1.30 / 12
   "pegue-monte": [
-    { name: "PEGUE E MONTE 8",  contracts: 8,  meta: "R$1.500,00", dailyLimit: "—", stopGlobal: "R$2.500,00", priceOriginal: 865.95,  pricePix: 389.67, discountPercent: 55, features: ["Stop Global R$2.500,00", "Meta de Aprovação R$1.500,00", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://pedido.amigosdamesa.shop/pay/90a8ca5f-04b0-4bc0-9137-27dcbdac1326", cartaoLink: "https://pedido.amigosdamesas.shop/pay/171d315b-5dbb-46e5-abcd-9ad107632eee" },
-    { name: "PEGUE E MONTE 12", contracts: 12, meta: "R$1.920,00", dailyLimit: "—", stopGlobal: "R$3.200,00", priceOriginal: 934.95,  pricePix: 420.72, discountPercent: 55, features: ["Stop Global R$3.200,00", "Meta de Aprovação R$1.920,00", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://pedido.amigosdamesa.shop/pay/8e0849aa-2759-4692-a9d5-d9dc5407bd2b", cartaoLink: "https://pedido.amigosdamesas.shop/pay/5b78ad64-1ca4-4467-ab4e-95c2215216c6" },
-    { name: "PEGUE E MONTE 20", contracts: 20, meta: "R$2.832,00", dailyLimit: "—", stopGlobal: "R$4.720,00", priceOriginal: 1345.50, pricePix: 605.47, discountPercent: 55, features: ["Stop Global R$4.720,00", "Meta de Aprovação R$2.832,00", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://pedido.amigosdamesa.shop/pay/d773fdc1-5136-4711-9116-c93ee92c5665", cartaoLink: "https://pedido.amigosdamesas.shop/pay/925ae725-5297-48f6-b4b9-72ccf22d5cb6" },
-    { name: "PEGUE E MONTE 27", contracts: 27, meta: "R$3.612,00", dailyLimit: "—", stopGlobal: "R$6.020,00", priceOriginal: 1690.50, pricePix: 0,      discountPercent: 55, features: ["Stop Global R$6.020,00", "Meta de Aprovação R$3.612,00", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Indisponível", ctaWhatsApp: false },
-    { name: "PEGUE E MONTE 32", contracts: 32, meta: "R$4.890,00", dailyLimit: "—", stopGlobal: "R$8.150,00", priceOriginal: 2120.60, pricePix: 0,      discountPercent: 55, features: ["Stop Global R$8.150,00", "Meta de Aprovação R$4.890,00", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Indisponível", ctaWhatsApp: false },
+    { name: "PEGUE E MONTE 8",  contracts: 8,  meta: "R$1.500,00", dailyLimit: "—", stopGlobal: "R$2.500,00", priceOriginal: 865.95,  pricePix: 346.38, discountPercent: 60, features: ["Stop Global R$2.500,00", "Meta de Aprovação R$1.500,00", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://pedido.amigosdamesa.shop/pay/90a8ca5f-04b0-4bc0-9137-27dcbdac1326", cartaoLink: "https://pedido.amigosdamesas.shop/pay/171d315b-5dbb-46e5-abcd-9ad107632eee" },
+    { name: "PEGUE E MONTE 12", contracts: 12, meta: "R$1.920,00", dailyLimit: "—", stopGlobal: "R$3.200,00", priceOriginal: 934.95,  pricePix: 373.98, discountPercent: 60, features: ["Stop Global R$3.200,00", "Meta de Aprovação R$1.920,00", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://pedido.amigosdamesa.shop/pay/8e0849aa-2759-4692-a9d5-d9dc5407bd2b", cartaoLink: "https://pedido.amigosdamesas.shop/pay/5b78ad64-1ca4-4467-ab4e-95c2215216c6" },
+    { name: "PEGUE E MONTE 20", contracts: 20, meta: "R$2.832,00", dailyLimit: "—", stopGlobal: "R$4.720,00", priceOriginal: 1345.50, pricePix: 538.20, discountPercent: 60, features: ["Stop Global R$4.720,00", "Meta de Aprovação R$2.832,00", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://pedido.amigosdamesa.shop/pay/d773fdc1-5136-4711-9116-c93ee92c5665", cartaoLink: "https://pedido.amigosdamesas.shop/pay/925ae725-5297-48f6-b4b9-72ccf22d5cb6" },
+    { name: "PEGUE E MONTE 27", contracts: 27, meta: "R$3.612,00", dailyLimit: "—", stopGlobal: "R$6.020,00", priceOriginal: 1690.50, pricePix: 0,      discountPercent: 60, features: ["Stop Global R$6.020,00", "Meta de Aprovação R$3.612,00", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Indisponível", ctaWhatsApp: false },
+    { name: "PEGUE E MONTE 32", contracts: 32, meta: "R$4.890,00", dailyLimit: "—", stopGlobal: "R$8.150,00", priceOriginal: 2120.60, pricePix: 0,      discountPercent: 60, features: ["Stop Global R$8.150,00", "Meta de Aprovação R$4.890,00", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Indisponível", ctaWhatsApp: false },
   ],
   "bit": [],
 }
@@ -269,10 +277,10 @@ interface BitPlan {
   precoExame: string
   precoExameOriginal: string
   // Sênior (via Sênior) — Profit One
-  // Valor original = coluna rosa; PIX = 55% OFF; Cartão = original * 1.30 / 12
+  // Valor original = coluna rosa; PIX = 55% OFF; Cartão = PIX * 1.30
   valorOriginal: number        // valor numérico para calcular cartão
   precoPix: string             // 55% OFF
-  precoCartao12x: string       // (valorOriginal * 1.30 / 12) formatado
+  precoCartao: string          // PIX * 1.30 formatado
   precoSeniorOriginal: string  // riscado no cartão
   pixLink?: string
   cartaoLink?: string
@@ -280,7 +288,7 @@ interface BitPlan {
 }
 
 // Ultra 1.0 / 3 em 1
-// valorOriginal = valor rosa; precoPix = 55% OFF; precoCartao12x = original * 1.30 / 12
+// valorOriginal = valor ONE (rosa); precoPix = 55% OFF; precoCartao12x = (PIX * 1.30) / 12
 const bitPlans: BitPlan[] = [
   {
     name: "ULTRA 10",
@@ -291,10 +299,10 @@ const bitPlans: BitPlan[] = [
       "Stop Global: R$1.950,00",
       "Stop Diário: R$600,00",
     ],
-    precoExame: "R$714,03", precoExameOriginal: "R$1.379,78",
+    precoExame: "R$389,67", precoExameOriginal: "R$714,03",
     valorOriginal: 714.03,
-    precoPix: "R$714,03",
-    precoCartao12x: "R$77,35",  // 714.03 * 1.30 / 12 = 77,35
+    precoPix: "R$389,67",
+    precoCartao: "R$42,22",  // (389.67 * 1.30) / 12 = 42,22
     precoSeniorOriginal: "R$714,03",
     pixLink: "https://pedido.amigosdamesa.shop/pay/79807da1-bbcb-4550-aae1-8d913fd31726",
     cartaoLink: "https://pedido.amigosdamesas.shop/pay/06568820-7e67-4576-aecb-4531ae46b59e",
@@ -308,10 +316,10 @@ const bitPlans: BitPlan[] = [
       "Stop Global: R$3.510,00",
       "Stop Diário: R$1.000,00",
     ],
-    precoExame: "R$1.024,13", precoExameOriginal: "R$1.979,00",
+    precoExame: "R$420,72", precoExameOriginal: "R$1.024,13",
     valorOriginal: 1024.13,
-    precoPix: "R$1.024,13",
-    precoCartao12x: "R$110,95", // 1024.13 * 1.30 / 12 = 110,95
+    precoPix: "R$420,72",
+    precoCartao: "R$45,58", // (420.72 * 1.30) / 12 = 45,58
     precoSeniorOriginal: "R$1.024,13",
     pixLink: "https://pedido.amigosdamesa.shop/pay/d2f2fd63-96f1-4d80-90f3-eef05991e14e",
     cartaoLink: "https://pedido.amigosdamesas.shop/pay/48634ba8-259a-46de-8544-9bd656f180e7",
@@ -325,10 +333,10 @@ const bitPlans: BitPlan[] = [
       "Stop Global: R$5.900,00",
       "Stop Diário: R$1.700,00",
     ],
-    precoExame: "R$1.863,11", precoExameOriginal: "R$3.600,22",
+    precoExame: "R$605,47", precoExameOriginal: "R$1.863,11",
     valorOriginal: 1863.11,
-    precoPix: "R$1.863,11",
-    precoCartao12x: "R$201,84", // 1863.11 * 1.30 / 12 = 201,84
+    precoPix: "R$605,47",
+    precoCartao: "R$65,59", // (605.47 * 1.30) / 12 = 65,59
     precoSeniorOriginal: "R$1.863,11",
     pixLink: "https://pedido.amigosdamesa.shop/pay/de2547fb-4e56-45e9-b985-df6d5787d6ee",
     cartaoLink: "https://pedido.amigosdamesas.shop/pay/9566d76a-7b7e-4585-8e09-5db635ce20b8",
@@ -342,10 +350,10 @@ const bitPlans: BitPlan[] = [
       "Stop Global: R$7.150,00",
       "Stop Diário: R$2.100,00",
     ],
-    precoExame: "R$2.433,17", precoExameOriginal: "R$4.701,78",
+    precoExame: "INDISPONÍVEL", precoExameOriginal: "R$2.433,17",
     valorOriginal: 2433.17,
-    precoPix: "R$2.433,17",
-    precoCartao12x: "R$263,59", // 2433.17 * 1.30 / 12 = 263,59
+    precoPix: "INDISPONÍVEL",
+    precoCartao: "INDISPONÍVEL",
     precoSeniorOriginal: "R$2.433,17",
     indisponivel: true,
     pixLink: "https://pedido.amigosdamesa.shop/pay/3c1aec92-9457-4f48-8d2c-be7fa6be4200",
@@ -393,7 +401,7 @@ function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive
               {isPix ? (
                 <span className="text-primary font-black text-base">{plan.precoPix}</span>
               ) : (
-                <span className="text-primary font-black text-base">12x {plan.precoCartao12x}</span>
+                <span className="text-primary font-black text-base">12x {plan.precoCartao}</span>
               )}
             </div>
           </div>
@@ -876,10 +884,12 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
   const ctaLabel = plan.ctaLabel ?? "Quero esse plano"
   const isUnavailable = plan.pricePix === 0 && plan.ctaLabel === "Indisponível"
 
-  // Calcular preços
-  const priceCartao12x = (plan.priceOriginal * 1.30) / 12
+  // Calcular preços - Cartão = (PIX + 30%) / 12 parcelas
+  // Exceção: Prime Mensal usa valor fixo de R$300 no cartão (R$25/mês em 12x)
+  const isPrimePlusCategory = !!plan.taxaOnePix
+  const priceCartao12x = isPrimePlusCategory ? (300 / 12) : (plan.pricePix * 1.30) / 12
 
-  // Preço a exibir
+  // Preço a exibir (PIX = valor cheio, Cartão = parcela mensal)
   const displayPrice = isPix ? plan.pricePix : priceCartao12x
   const displayOriginal = plan.priceOriginal
 
@@ -918,6 +928,15 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
                 </li>
               ))}
             </ul>
+            {/* Preço mensal */}
+            <div className="border-t border-border pt-3 text-center">
+              <p className="text-xs text-muted-foreground line-through">{formatBRL(displayOriginal)}</p>
+              {isPix ? (
+                <span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}/mês</span>
+              ) : (
+                <span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span>
+              )}
+            </div>
             <div className="border-t border-border pt-3 space-y-1">
               <p className="text-xs font-bold text-foreground uppercase tracking-wide">Taxa após aprovado:</p>
               <div className="flex items-center gap-2 flex-wrap">
