@@ -155,7 +155,7 @@ export function ClubSection() {
               </div>
 
               <button
-                onClick={() => window.open("https://wa.me/5500000000000", "_blank")}
+                onClick={() => window.open("https://pedido.amigosdamesa.shop/pay/c2b6f1c5-92a6-4869-a0fd-50cf13c5ff75", "_blank")}
                 className="relative overflow-hidden group w-full md:w-auto px-10 py-4 rounded-2xl bg-primary text-primary-foreground font-black text-sm uppercase tracking-widest transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_30px_oklch(0.7_0.18_45/0.4)]"
               >
                 <span className="relative z-10">Quero entrar no Clube</span>

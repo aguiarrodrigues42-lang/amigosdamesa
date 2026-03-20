@@ -1092,25 +1092,20 @@ export function PricingSection() {
       setLeadModal({ open: true, planName: plan })
       return
     }
-    // Pegue e Monte com Cartão -> link direto
-    if (activeCategory === "pegue-monte" && !isPix && plan.cartaoLink) {
-      window.open(plan.cartaoLink, "_blank")
+    // PIX com link direto (incluindo Pegue e Monte)
+    if (isPix && plan.pixLink) {
+      window.open(plan.pixLink, "_blank")
       return
     }
-    // Pegue e Monte com PIX ou sem cartaoLink -> WhatsApp
-    if (activeCategory === "pegue-monte" || plan.ctaWhatsApp) {
-      const msg = encodeURIComponent(`Olá! Tenho interesse no plano ${plan.name}`)
-      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank")
-      return
-    }
-    // Cartão com link direto
+    // Cartão com link direto (incluindo Pegue e Monte)
     if (!isPix && plan.cartaoLink) {
       window.open(plan.cartaoLink, "_blank")
       return
     }
-    // PIX com link direto
-    if (isPix && plan.pixLink) {
-      window.open(plan.pixLink, "_blank")
+    // WhatsApp para planos sem link de pagamento
+    if (plan.ctaWhatsApp) {
+      const msg = encodeURIComponent(`Olá! Tenho interesse no plano ${plan.name}`)
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank")
       return
     }
     // Fallback -> modal de lead
