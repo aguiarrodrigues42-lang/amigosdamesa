@@ -2,104 +2,8 @@
 // pricing-section-v2 — no ScrollArea
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { FileText, ChevronLeft, ChevronRight, X, Info } from "lucide-react"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-
-
-const regulamento = `DISPOSIÇÕES INICIAIS
-A AMIGOS DA MESA PROP é uma mesa proprietária que oferece planos de avaliação, simulador remunerado e conta real para traders que desejam operar Day Trade, nos termos deste regulamento.
-A aquisição de qualquer plano implica na aceitação integral, irrestrita e irrevogável deste regulamento, bem como de materiais complementares e regras específicas de campanhas vigentes.
-Este regulamento é aplicável a todos os traders, independentemente do plano contratado.
-
-ELEGIBILIDADE E PARTICIPAÇÃO
-Podem participar:
-• Pessoas físicas maiores de 18 anos
-• Pessoas jurídicas regularmente constituídas
-É vedada a participação de indivíduos:
-• Envolvidos em crimes financeiros
-• Investigados por lavagem de dinheiro
-• Com histórico de fraude ou conduta incompatível com o mercado financeiro
-A AMIGOS DA MESA PROP poderá, a qualquer momento, solicitar validação de identidade e documentação.
-
-NATUREZA DA RELAÇÃO
-A relação entre a AMIGOS DA MESA PROP e o trader:
-• Não configura vínculo empregatício
-• Não configura sociedade
-• Não configura relação de investimento
-Trata-se exclusivamente de uma prestação de serviços, com regras próprias de avaliação, operação e repasse.
-
-CONTRATAÇÃO E INÍCIO
-A aquisição dos planos ocorre exclusivamente pelos canais oficiais da empresa.
-Após a confirmação do pagamento:
-• O trader deverá realizar o agendamento do início do plano
-• O prazo máximo para início é de até 90 dias corridos
-• Após esse prazo, o plano poderá ser encerrado sem direito a reembolso
-A liberação da plataforma ocorrerá na data agendada.
-
-ACESSO E RESPONSABILIDADE
-O acesso à plataforma é:
-• Pessoal
-• Individual
-• Intransferível
-O trader é integralmente responsável por:
-• Seu login e senha
-• Todas as operações realizadas
-• A segurança de seus acessos
-Qualquer operação registrada será considerada como realizada pelo próprio trader.
-
-PLATAFORMA E RESPONSABILIDADE TÉCNICA
-A operação é realizada por meio da plataforma Profit (Nelogica) ou equivalente.
-A AMIGOS DA MESA PROP não se responsabiliza por:
-• Falhas de conexão
-• Quedas de energia
-• Problemas de internet
-• Instabilidades do sistema
-• Equipamentos do trader
-
-ESTRUTURA DOS PLANOS
-Os planos poderão envolver:
-• Fase de Teste (Exame)
-• Simulador Remunerado (SR)
-• Conta Real (CR)
-Cada etapa possui regras específicas, que serão detalhadas nas abas correspondentes.
-A progressão entre etapas dependerá de critérios técnicos, operacionais e de risco definidos pela mesa.
-
-PODER DE GESTÃO DA MESA
-A AMIGOS DA MESA PROP poderá, a qualquer momento:
-• Promover o trader para Conta Real
-• Manter o trader no Simulador Remunerado
-• Retornar o trader ao simulador
-• Ajustar plano, margem ou contratos
-• Suspender ou encerrar contas
-Essas decisões são tomadas com base em critérios internos de risco, consistência e gestão operacional.
-
-REPASSES E RESULTADOS
-Os resultados financeiros:
-• Não são garantidos
-• Dependem exclusivamente do desempenho do trader
-• Seguem regras específicas de repasse, detalhadas em aba própria
-A existência de lucro em uma fase não garante continuidade em outra.
-
-ALTERAÇÕES DO REGULAMENTO
-A AMIGOS DA MESA PROP poderá:
-• Alterar este regulamento
-• Atualizar regras
-• Criar novas condições
-A qualquer momento, mediante divulgação em seus canais oficiais.
-O uso contínuo da plataforma após alterações implica aceitação automática das novas condições.
-
-LGPD E DADOS PESSOAIS
-Os dados pessoais serão tratados conforme a legislação vigente (Lei nº 13.709/2018 – LGPD).
-
-FORO
-Fica eleito o foro da comarca de São Paulo/SP para resolução de eventuais conflitos.`
+import { ChevronLeft, ChevronRight, X, Info } from "lucide-react"
+import { RegulamentosModal } from "@/components/regulamentos-modal"
 
 type Category = "exames" | "prime-plus" | "titan" | "senior" | "pegue-monte" | "bit"
 
@@ -1168,27 +1072,7 @@ export function PricingSection() {
 
         {/* Regulamento */}
         <div className="flex justify-center mb-6">
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant="outline" size="sm" className="gap-2 text-xs">
-                <FileText className="w-3.5 h-3.5" />
-                Ver Regulamento Geral
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-2xl max-h-[80vh]">
-              <DialogHeader>
-                <DialogTitle>Regulamento Geral</DialogTitle>
-                <DialogDescription>
-                  Leia atentamente as regras e condições da mesa proprietária.
-                </DialogDescription>
-              </DialogHeader>
-              <div className="h-[60vh] overflow-y-auto pr-4">
-                <div className="space-y-4 text-sm text-muted-foreground whitespace-pre-line">
-                  {regulamento}
-                </div>
-              </div>
-            </DialogContent>
-          </Dialog>
+          <RegulamentosModal />
         </div>
 
         {/* Payment Toggle PIX / Cartão */}
