@@ -13,100 +13,39 @@ import {
 } from "@/components/ui/dialog"
 import { Checkbox } from "@/components/ui/checkbox"
 
-const termosCompletos = `REGULAMENTO GERAL DA AMIGOS DA MESA PROP
+const regulamentos = [
+  {
+    titulo: "REGULAMENTO GERAL",
+    conteudo: `A AMIGOS DA MESA PROP é uma mesa proprietária que oferece planos de avaliação, simulador remunerado e conta real para traders que desejam operar Day Trade, nos termos deste regulamento.
 
-DISPOSIÇÕES INICIAIS
-A AMIGOS DA MESA PROP é uma mesa proprietária que oferece planos de avaliação, simulador remunerado e conta real para traders que desejam operar Day Trade, nos termos deste regulamento.
 A aquisição de qualquer plano implica na aceitação integral, irrestrita e irrevogável deste regulamento, bem como de materiais complementares e regras específicas de campanhas vigentes.
-Este regulamento é aplicável a todos os traders, independentemente do plano contratado.
 
 ELEGIBILIDADE E PARTICIPAÇÃO
-Podem participar:
 • Pessoas físicas maiores de 18 anos
 • Pessoas jurídicas regularmente constituídas
-É vedada a participação de indivíduos:
-• Envolvidos em crimes financeiros
-• Investigados por lavagem de dinheiro
-• Com histórico de fraude ou conduta incompatível com o mercado financeiro
-A AMIGOS DA MESA PROP poderá, a qualquer momento, solicitar validação de identidade e documentação.
+• É vedada a participação de indivíduos envolvidos em crimes financeiros, investigados por lavagem de dinheiro ou com histórico de fraude
 
 NATUREZA DA RELAÇÃO
-A relação entre a AMIGOS DA MESA PROP e o trader:
-• Não configura vínculo empregatício
-• Não configura sociedade
-• Não configura relação de investimento
-Trata-se exclusivamente de uma prestação de serviços, com regras próprias de avaliação, operação e repasse.
+A relação entre a AMIGOS DA MESA PROP e o trader não configura vínculo empregatício, sociedade ou relação de investimento. Trata-se exclusivamente de uma prestação de serviços.
 
 CONTRATAÇÃO E INÍCIO
-A aquisição dos planos ocorre exclusivamente pelos canais oficiais da empresa.
-Após a confirmação do pagamento:
-• O trader deverá realizar o agendamento do início do plano
-• O prazo máximo para início é de até 90 dias corridos
-• Após esse prazo, o plano poderá ser encerrado sem direito a reembolso
-A liberação da plataforma ocorrerá na data agendada.
+Após a confirmação do pagamento, o trader deverá realizar o agendamento do início do plano. O prazo máximo para início é de até 90 dias corridos. Após esse prazo, o plano poderá ser encerrado sem direito a reembolso.
 
 ACESSO E RESPONSABILIDADE
-O acesso à plataforma é:
-• Pessoal
-• Individual
-• Intransferível
-O trader é integralmente responsável por:
-• Seu login e senha
-• Todas as operações realizadas
-• A segurança de seus acessos
-Qualquer operação registrada será considerada como realizada pelo próprio trader.
-
-PLATAFORMA E RESPONSABILIDADE TÉCNICA
-A operação é realizada por meio da plataforma Profit (Nelogica) ou equivalente.
-A AMIGOS DA MESA PROP não se responsabiliza por:
-• Falhas de conexão
-• Quedas de energia
-• Problemas de internet
-• Instabilidades do sistema
-• Equipamentos do trader
-
-ESTRUTURA DOS PLANOS
-Os planos poderão envolver:
-• Fase de Teste (Exame)
-• Simulador Remunerado (SR)
-• Conta Real (CR)
-Cada etapa possui regras específicas, que serão detalhadas nas abas correspondentes.
-A progressão entre etapas dependerá de critérios técnicos, operacionais e de risco definidos pela mesa.
+O acesso à plataforma é pessoal, individual e intransferível. O trader é integralmente responsável por seu login, senha, todas as operações realizadas e a segurança de seus acessos.
 
 PODER DE GESTÃO DA MESA
-A AMIGOS DA MESA PROP poderá, a qualquer momento:
-• Promover o trader para Conta Real
-• Manter o trader no Simulador Remunerado
-• Retornar o trader ao simulador
-• Ajustar plano, margem ou contratos
-• Suspender ou encerrar contas
-Essas decisões são tomadas com base em critérios internos de risco, consistência e gestão operacional.
-
-REPASSES E RESULTADOS
-Os resultados financeiros:
-• Não são garantidos
-• Dependem exclusivamente do desempenho do trader
-• Seguem regras específicas de repasse, detalhadas em aba própria
-A existência de lucro em uma fase não garante continuidade em outra.
-
-ALTERAÇÕES DO REGULAMENTO
-A AMIGOS DA MESA PROP poderá:
-• Alterar este regulamento
-• Atualizar regras
-• Criar novas condições
-A qualquer momento, mediante divulgação em seus canais oficiais.
-O uso contínuo da plataforma após alterações implica aceitação automática das novas condições.
+A AMIGOS DA MESA PROP poderá, a qualquer momento: promover o trader para Conta Real, manter no Simulador Remunerado, retornar ao simulador, ajustar plano, margem ou contratos, suspender ou encerrar contas.
 
 LGPD E DADOS PESSOAIS
 Os dados pessoais serão tratados conforme a legislação vigente (Lei nº 13.709/2018 – LGPD).
 
 FORO
-Fica eleito o foro da comarca de São Paulo/SP para resolução de eventuais conflitos.
-
----
-
-GUIA RÁPIDO - COMO FUNCIONA A JORNADA
-
+Fica eleito o foro da comarca de São Paulo/SP para resolução de eventuais conflitos.`
+  },
+  {
+    titulo: "GUIA RÁPIDO",
+    conteudo: `COMO FUNCIONA A JORNADA
 Na AMIGOS DA MESA PROP, o trader poderá passar por até 3 etapas:
 • Fase de Teste (Exame): avaliação inicial em ambiente simulado
 • Simulador Remunerado (SR): etapa posterior à aprovação com possibilidade de repasse
@@ -123,11 +62,12 @@ O trader deverá seguir critérios como meta de ganho, limite máximo de perda, 
 COMO FUNCIONA O SR
 O SR é a etapa em que o trader continuará sendo acompanhado em ambiente simulado, com possibilidade de repasses conforme as regras do plano.
 
----
-
-REGRAS OPERACIONAIS
-
-ATIVOS E MODALIDADE
+IMPORTANTE
+Este Guia Rápido possui caráter exclusivamente explicativo. Em caso de divergência com o Regulamento Geral vigente, prevalecerá sempre o Regulamento Geral.`
+  },
+  {
+    titulo: "REGRAS OPERACIONAIS",
+    conteudo: `ATIVOS E MODALIDADE
 São permitidas exclusivamente operações na modalidade Day Trade.
 Ativos permitidos (conforme plano):
 • Mini Índice (WIN)
@@ -146,7 +86,7 @@ O trader deve respeitar integralmente:
 • Regras de consistência
 
 REGRA DE CONSISTÊNCIA
-Durante Teste e SR, o trader não poderá ultrapassar 40% da margem global em um único dia.
+Durante Teste e SR, o trader não poderá ultrapassar 40% da margem global em um único dia. Objetivo: evitar overtrade, alavancagem excessiva e garantir consistência operacional.
 
 SCALPING E MICRO OPERAÇÕES
 Não são aceitas operações caracterizadas como micro scalp, captura mínima de pontos ou operações de latência.
@@ -161,15 +101,25 @@ OPERAÇÕES PROIBIDAS
 • Copy trade ou replicação não autorizada
 • Gerenciamento de múltiplas contas por terceiros
 
----
-
-REPASSES
-
-CONDIÇÃO PARA RECEBIMENTO
+PENALIDADES
+O descumprimento poderá resultar em advertência, desconsideração de operações, bloqueio temporário, retorno ao simulador ou cancelamento definitivo da conta — sem direito a repasse ou compensação.`
+  },
+  {
+    titulo: "REPASSES",
+    conteudo: `CONDIÇÃO PARA RECEBIMENTO
 O trader somente estará apto a solicitar repasse quando:
 • Estiver com saldo positivo líquido
 • Cumprir o mínimo de 7 pregões operados
 • Estiver em conformidade com todas as regras operacionais
+• Tiver realizado a solicitação formal dentro do prazo
+
+Sempre que houver entrada em nova fase, retorno ao Simulador Remunerado ou migração para Conta Real, o ciclo de dias operados será reiniciado.
+
+SOLICITAÇÃO DE SAQUE
+A solicitação de repasse deverá ser realizada via e-mail oficial ou área do trader dentro do período correspondente ao ciclo ativo.
+
+CICLOS E JANELAS DE PAGAMENTO
+Os repasses seguem ciclos definidos pela mesa. Pagamentos são realizados no dia 30/31. O pagamento deve ser solicitado no máximo 5 dias antes do fechamento e a mesa tem 7 dias para enviar o fechamento e finalizar o repasse.
 
 PERCENTUAL DE REPASSE
 • 80% para traders padrão
@@ -184,28 +134,66 @@ Sobre o valor do repasse incidirão, quando aplicável:
 • Taxas operacionais (corretagem e emolumentos)
 • Custos da plataforma (quando aplicável)
 
----
+PRAZO DE PAGAMENTO
+O pagamento será realizado dentro da janela correspondente ao ciclo, em até 7 dias úteis após o fechamento.`
+  },
+  {
+    titulo: "CANCELAMENTOS",
+    conteudo: `CANCELAMENTO DO PLANO
+O trader poderá solicitar o cancelamento do plano antes do início da avaliação, desde que não tenha sido liberado acesso à plataforma. A solicitação deverá ser realizada pelos canais oficiais da AMIGOS DA MESA PROP.
 
-CANCELAMENTOS
+CONDIÇÕES DE REEMBOLSO
+O reembolso poderá ser analisado quando:
+• O plano não tiver sido iniciado
+• Não houver liberação de login, senha ou plataforma
+• A solicitação ocorrer dentro do prazo legal aplicável
 
-O trader poderá solicitar o cancelamento do plano antes do início da avaliação, desde que não tenha sido liberado acesso à plataforma.
+A AMIGOS DA MESA PROP poderá realizar reembolso parcial, descontando custos operacionais e administrativos.
 
-NÃO HAVERÁ DEVOLUÇÃO DE VALORES QUANDO:
+HIPÓTESES DE NÃO REEMBOLSO
+Não haverá devolução de valores quando:
 • A plataforma já tiver sido liberada
 • O trader tiver acessado o sistema
 • O plano tiver sido iniciado
 • O trader for reprovado no exame
 • Houver descumprimento de regras ou eliminação por conduta
 
----
+CANCELAMENTO POR PARTE DA MESA
+A AMIGOS DA MESA PROP poderá cancelar ou encerrar contas por violação de regras operacionais, comportamento incompatível, indícios de fraude ou uso indevido da plataforma — sem aviso prévio, sem direito a repasse ou reembolso.
 
-CAMPANHAS PROMOCIONAIS
+CONDUTAS PROIBIDAS
+• Uso de robôs, automações ou scripts não autorizados
+• Hedge entre contas ou operações simultâneas para manipulação
+• Compartilhamento de conta ou gerenciamento por terceiros
+• Exploração de falhas de sistema ou tentativas de burlar regras
 
-As campanhas promocionais possuem caráter temporário e comercial. Os planos adquiridos em campanha não acumulam benefícios de campanhas anteriores, não possuem upgrades automáticos e não incluem vantagens adicionais não especificadas.
+PENALIDADES
+O descumprimento pode resultar em advertência, bloqueio temporário, retorno ao simulador ou cancelamento definitivo — sem direito a repasse, reembolso ou compensação.`
+  },
+  {
+    titulo: "CAMPANHAS PROMOCIONAIS",
+    conteudo: `NATUREZA DAS CAMPANHAS
+As campanhas promocionais possuem caráter temporário e comercial. Seu objetivo é oferecer condições diferenciadas de entrada, sem alterar a estrutura operacional padrão da mesa.
 
+DESCONTOS APLICADOS
+Durante a vigência da campanha, os planos poderão ser adquiridos com desconto. O desconto aplica-se exclusivamente no momento da compra e não se estende a renovações ou reativações.
+
+LIMITAÇÃO DE BENEFÍCIOS
+Os planos adquiridos em campanha não acumulam benefícios de campanhas anteriores, não possuem upgrades automáticos e não incluem vantagens adicionais não especificadas (como margem extra, reset gratuito ou condições especiais de saque).
+
+NÃO CUMULATIVIDADE
 As campanhas não são cumulativas entre si e não podem ser combinadas com outras promoções.
 
+IMPOSSIBILIDADE DE ALTERAÇÃO APÓS COMPRA
+Após a aquisição do plano, não será possível alterar a campanha aplicada, ajustar o valor pago ou migrar para novas condições promocionais.
+
+VIGÊNCIA DA CAMPANHA
+Cada campanha possui prazo determinado. A AMIGOS DA MESA PROP poderá encerrar a campanha, alterar condições comerciais ou substituir ofertas a qualquer momento, sem necessidade de aviso prévio.
+
+PRIORIDADE DAS REGRAS
 Em caso de divergência entre comunicação de campanha e o Regulamento Geral, prevalecerá sempre o Regulamento Geral da AMIGOS DA MESA PROP.`
+  }
+]
 
 export function RegulamentosModal() {
   const [isOpen, setIsOpen] = useState(false)
@@ -255,11 +243,21 @@ export function RegulamentosModal() {
           </DialogDescription>
         </DialogHeader>
         
-        {/* Área de scroll com os termos */}
-        <div className="flex-1 overflow-y-auto pr-2 max-h-[55vh] border border-border rounded-lg p-4 bg-card/50">
-          <div className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
-            {termosCompletos}
-          </div>
+        {/* Área de scroll com os termos separados em blocos */}
+        <div className="flex-1 overflow-y-auto pr-2 max-h-[55vh] space-y-4">
+          {regulamentos.map((reg, index) => (
+            <div 
+              key={index} 
+              className="border border-border rounded-lg p-4 bg-card/50"
+            >
+              <h3 className="text-base font-semibold text-foreground mb-3">
+                {reg.titulo}
+              </h3>
+              <div className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
+                {reg.conteudo}
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Checkbox única no final */}
