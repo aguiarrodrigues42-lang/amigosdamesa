@@ -32,9 +32,10 @@ export function Footer() {
             <a href="#" className="hover:text-primary transition-colors">Contato</a>
           </div>
 
-          <p className="text-sm text-muted-foreground">
-            © 2024 Amigos da Mesa PRO. Todos os direitos reservados.
-          </p>
+          <div className="text-sm text-muted-foreground text-center md:text-right">
+            <p>© 2024 Amigos da Mesa PRO. Todos os direitos reservados.</p>
+            <p className="text-xs mt-1">CNPJ: 53.590.674/0001-50</p>
+          </div>
         </div>
 
         <div className="mt-8 pt-8 border-t border-border text-center text-xs text-muted-foreground max-w-3xl mx-auto">
