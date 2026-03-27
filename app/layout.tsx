@@ -8,7 +8,7 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Amigos da Mesa PRO - Mesa Proprietária de Trading',
+  title: 'Amigos da Mesa - Mesa Proprietária de Trading',
   description: 'Entre para uma mesa proprietária e pare de operar no escuro. Ambiente estruturado, estratégias validadas e uma comunidade de traders focados em consistência.',
   generator: 'v0.app',
   icons: {
