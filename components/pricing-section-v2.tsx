@@ -101,6 +101,132 @@ Os dados pessoais serão tratados conforme a legislação vigente (Lei nº 13.70
 FORO
 Fica eleito o foro da comarca de São Paulo/SP para resolução de eventuais conflitos.`
 
+// Objeto com todos os regulamentos
+const regulamentos = {
+  "regulamento-geral": {
+    titulo: "Regulamento Geral",
+    conteudo: `REGULAMENTO GERAL – AMIGOS DA MESA PROP
+"Uma mesa para todos" Atualizado em 01 de novembro de 2025
+
+DISPOSIÇÕES INICIAIS E ADESÃO
+A AMIGOS DA MESA PROP é uma mesa proprietária que oferece planos de avaliação, simulador remunerado e conta real, destinados a traders que desejam operar Day Trade com capital da mesa, nos termos deste Regulamento.
+
+PLANOS, MODALIDADES E PLATAFORMA
+Os exames, simuladores remunerados e contas reais são realizados por meio da plataforma Profit, da Nelogica, em suas versões ONE, PLUS ou PRO.
+
+RESPONSABILIDADE SOBRE ACESSO, LOGIN E SENHA
+O Trader é integralmente responsável por manter em sigilo seu login e senha, proteger o acesso à plataforma e todas as operações realizadas em sua conta.
+
+REGRAS OPERACIONAIS GERAIS
+São permitidas exclusivamente operações Day Trade nos ativos: Mini Índice (WIN), Mini Dólar (WDO) e Bitcoin (BIT).
+
+STOP DIÁRIO NA FASE DE TESTE (EXAME)
+Durante a fase de teste, os planos não possuem bloqueio automático de stop diário na plataforma. O controle de risco diário é de responsabilidade exclusiva do Trader.
+
+TRANSIÇÕES, SAQUES E REPASSES
+Para habilitar qualquer repasse é obrigatório mínimo de 7 (sete) pregões operados no período.
+
+Fica eleito o Foro Central da Capital de São Paulo/SP para dirimir quaisquer controvérsias.`
+  },
+  "guia-rapido": {
+    titulo: "Guia Rápido",
+    conteudo: `GUIA RÁPIDO – COMO FUNCIONA A AMIGOS DA MESA PROP
+
+COMO FUNCIONA A JORNADA DO TRADER
+Na AMIGOS DA MESA PROP, o Trader pode passar por até três etapas:
+• Fase de Teste (Exame de Seleção)
+• Simulador Remunerado (SR)
+• Conta Real (CR)
+
+FASE DE TESTE – EXAME DE SELEÇÃO
+A fase de teste avalia se o Trader consegue operar respeitando regras, limites e gerenciamento de risco.
+• Operação em conta simulador
+• Meta de ganho definida por plano
+• Limite máximo de perda definido por plano
+• Sem prazo máximo de tempo
+
+SIMULADOR REMUNERADO (SR)
+O Trader já está aprovado e passa a operar com regras espelhadas da conta real.
+Em um mesmo pregão, o Trader não pode ultrapassar 50% do saldo total de loss (stop global) do plano.
+
+CONTA REAL (CR)
+Na Conta Real, o Trader passa a operar capital financeiro da AMIGOS DA MESA PROP.
+• Não há limitação de ganho por pregão
+• Permanecem válidos: stop diário, stop global e regras de conduta
+
+REPASSES – REGRA DOS 7 DIAS
+É obrigatório operar mínimo de 7 pregões válidos para habilitar qualquer saque ou repasse.
+
+Este material tem caráter exclusivamente informativo.`
+  },
+  "material-explicativo-1": {
+    titulo: "Material Explicativo I",
+    conteudo: `MATERIAL EXPLICATIVO COMPLEMENTAR I
+PLANOS MASTER50 / UNOS40 / TITAN / PRIME / PEGUE E MONTE / BIT
+
+PROMOÇÃO PARA CONTA REAL (TAKE)
+O Trader será promovido para Conta Real quando atingir o take definido no plano.
+
+REPASSES DURANTE O SIMULADOR REMUNERADO
+• O Trader receberá 30% do resultado positivo
+• O saldo restante será acumulado internamente
+
+REGRAS DE PERDA E RETORNO AO SIMULADOR REMUNERADO
+Caso o Trader, em Conta Real, atinja 30% de perda do saldo global, será direcionado ao Simulador Remunerado.
+Se atingir 50% de perda da margem em Conta Real, perderá também qualquer saldo acumulado no Simulador Remunerado.
+
+ATIVAÇÃO DE SAQUE EM CONTA REAL
+É obrigatório estar positivo em, no mínimo, 20% do saldo global.
+
+Este material possui caráter exclusivamente educativo.`
+  },
+  "material-explicativo-2": {
+    titulo: "Material Explicativo II",
+    conteudo: `MATERIAL EXPLICATIVO COMPLEMENTAR II
+DEMAIS PLANOS (INICIANTE, INTERMEDIÁRIO, AVANÇADO, PRIME, PEGUE E MONTE)
+
+ESTRUTURA DOS PLANOS
+Os planos seguem um modelo progressivo com transição entre Exame, Simulador Remunerado e Conta Real.
+
+TRANSIÇÃO PARA CONTA REAL
+Se o Trader atingir saldo igual ou superior à margem global, será promovido para Conta Real.
+O valor equivalente à margem global será pago ao Trader.
+
+GESTÃO DE PERDA EM CONTA REAL
+Caso o Trader perca 50% do saldo global, será direcionado ao Simulador Remunerado em plano inferior.
+
+CONDIÇÃO PARA ATIVAÇÃO DE SAQUE
+É obrigatório estar positivo em, no mínimo, 20% do saldo global.
+
+Este material possui caráter exclusivamente educativo.`
+  },
+  "campanhas-50-off": {
+    titulo: "Campanhas 50% OFF",
+    conteudo: `REGULAMENTO ESPECÍFICO – CAMPANHAS ACIMA DE 50% OFF
+MODALIDADE DE SAQUE MENSAL
+
+ABRANGÊNCIA
+Este regulamento se aplica aos planos com desconto igual ou superior a 50%.
+
+FASE DE TESTE
+Mínimo de 5 (cinco) dias operados para elegibilidade à progressão de fase.
+
+SIMULADOR REMUNERADO (SR)
+Os saques ocorrerão em ciclos mensais, com fechamento nos dias 30 ou 31 de cada mês.
+Prazo para solicitação: 5 dias antes até 3 dias após o fechamento.
+
+ALTERAÇÃO DE MODALIDADE DE SAQUE
+Taxa de 40% sobre o valor original do plano.
+Solicitação com antecedência mínima de 7 dias corridos.
+
+PERCENTUAL DE REPASSE
+Padrão: 90% sobre o lucro líquido.
+Membros do Clube: 100% nos primeiros 3 meses, depois 95%.
+
+Este regulamento é complementar ao Regulamento Geral.`
+  }
+}
+
 type Category = "exames" | "prime-plus" | "titan" | "senior" | "pegue-monte" | "bit"
 
 interface Plan {
@@ -151,7 +277,7 @@ const plansByCategory: Record<Category, Plan[]> = {
       meta: "R$1.800,00", dailyLimit: "—", stopGlobal: "R$2.500,00", priceOriginal: 300, pricePix: 180, discountPercent: 40,
       pixLink: "https://checkout.neonpay.com.br/checkout/cmn3vjdgd0by120qz3crnmc7y?offer=WBIGNRH",
       cartaoLink: "https://checkout.neonpay.com.br/checkout/cmn3vjdgd0by120qz3crnmc7y?offer=WBIGNRH",
-      features: ["6 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 2.500,00", "Meta de aprovação R$ 1.800,00"],
+      features: ["6 contratos", "Sem dias mínimos para aprovação", "Stop diário R$500,00", "Stop Global R$ 2.500,00", "Meta de aprovação R$ 1.800,00"],
       taxaOnePix: 300, taxaProPix: 350, taxaOneOriginal: 300, taxaProOriginal: 350,
     },
     {
@@ -159,7 +285,7 @@ const plansByCategory: Record<Category, Plan[]> = {
       meta: "R$4.000,00", dailyLimit: "—", stopGlobal: "R$3.500,00", priceOriginal: 720, pricePix: 180, discountPercent: 40,
       pixLink: "https://checkout.neonpay.com.br/checkout/cmn3vjdgd0by120qz3crnmc7y?offer=AUNRQ3L",
       cartaoLink: "https://checkout.neonpay.com.br/checkout/cmn3vjdgd0by120qz3crnmc7y?offer=AUNRQ3L",
-      features: ["11 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 3.500,00", "Meta de aprovação R$ 4.000,00"],
+      features: ["11 contratos", "Sem dias mínimos para aprovação", "Stop diário R$800,00", "Stop Global R$ 3.500,00", "Meta de aprovação R$ 4.000,00"],
       taxaOnePix: 720, taxaProPix: 780, taxaOneOriginal: 720, taxaProOriginal: 780,
     },
     {
@@ -167,7 +293,7 @@ const plansByCategory: Record<Category, Plan[]> = {
       meta: "R$7.500,00", dailyLimit: "—", stopGlobal: "R$6.000,00", priceOriginal: 1220, pricePix: 180, discountPercent: 40,
       pixLink: "https://checkout.neonpay.com.br/checkout/cmn3vjdgd0by120qz3crnmc7y?offer=R0ISVWY",
       cartaoLink: "https://checkout.neonpay.com.br/checkout/cmn3vjdgd0by120qz3crnmc7y?offer=R0ISVWY",
-      features: ["16 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 6.000,00", "Meta de aprovação R$ 7.500,00"],
+      features: ["16 contratos", "Sem dias mínimos para aprovação", "Stop diário R$1.200,00", "Stop Global R$ 6.000,00", "Meta de aprovação R$ 7.500,00"],
       taxaOnePix: 1220, taxaProPix: 1320, taxaOneOriginal: 1220, taxaProOriginal: 1320,
     },
     {
@@ -175,7 +301,7 @@ const plansByCategory: Record<Category, Plan[]> = {
       meta: "R$10.000,00", dailyLimit: "—", stopGlobal: "R$9.000,00", priceOriginal: 1720, pricePix: 180, discountPercent: 40,
       pixLink: "https://checkout.neonpay.com.br/checkout/cmn3vjdgd0by120qz3crnmc7y?offer=KKQVLC8",
       cartaoLink: "https://checkout.neonpay.com.br/checkout/cmn3vjdgd0by120qz3crnmc7y?offer=KKQVLC8",
-      features: ["21 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 9.000,00", "Meta de aprovação R$ 10.000,00"],
+      features: ["21 contratos", "Sem dias mínimos para aprovação", "Stop diário R$1.600,00", "Stop Global R$ 9.000,00", "Meta de aprovação R$ 10.000,00"],
       taxaOnePix: 1720, taxaProPix: 1850, taxaOneOriginal: 1720, taxaProOriginal: 1850,
     },
   ],
@@ -259,11 +385,11 @@ const plansByCategory: Record<Category, Plan[]> = {
   ],
   // PEGUE E MONTE - 60% OFF PIX, Cartão = PIX * 1.30 / 12
   "pegue-monte": [
-    { name: "PEGUE E MONTE 8", contracts: 8, meta: "R$1.500,00", dailyLimit: "—", stopGlobal: "R$2.500,00", priceOriginal: 865.95, pricePix: 346.38, discountPercent: 60, features: ["Stop Global R$2.500,00", "Meta de Aprovação R$1.500,00", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://checkout.neonpay.com.br/checkout/cmn3xmvvs00bz1ro3qyca7rhl?offer=NFTPAZV", cartaoLink: "https://checkout.neonpay.com.br/checkout/cmn3xmvvs00bz1ro3qyca7rhl?offer=NFTPAZV" },
-    { name: "PEGUE E MONTE 12", contracts: 12, meta: "R$1.920,00", dailyLimit: "—", stopGlobal: "R$3.200,00", priceOriginal: 934.95, pricePix: 373.98, discountPercent: 60, features: ["Stop Global R$3.200,00", "Meta de Aprovação R$1.920,00", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://checkout.neonpay.com.br/checkout/cmn3xmvvs00bz1ro3qyca7rhl?offer=IYQ93ZR", cartaoLink: "https://checkout.neonpay.com.br/checkout/cmn3xmvvs00bz1ro3qyca7rhl?offer=IYQ93ZR" },
-    { name: "PEGUE E MONTE 20", contracts: 20, meta: "R$2.832,00", dailyLimit: "—", stopGlobal: "R$4.720,00", priceOriginal: 1345.50, pricePix: 538.20, discountPercent: 60, features: ["Stop Global R$4.720,00", "Meta de Aprovação R$2.832,00", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://checkout.neonpay.com.br/checkout/cmn3xmvvs00bz1ro3qyca7rhl?offer=KO06XTM", cartaoLink: "https://checkout.neonpay.com.br/checkout/cmn3xmvvs00bz1ro3qyca7rhl?offer=KO06XTM" },
-    { name: "PEGUE E MONTE 27", contracts: 27, meta: "R$3.612,00", dailyLimit: "—", stopGlobal: "R$6.020,00", priceOriginal: 1690.50, pricePix: 0, discountPercent: 60, features: ["Stop Global R$6.020,00", "Meta de Aprovação R$3.612,00", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Indisponível", ctaWhatsApp: false },
-    { name: "PEGUE E MONTE 32", contracts: 32, meta: "R$4.890,00", dailyLimit: "—", stopGlobal: "R$8.150,00", priceOriginal: 2120.60, pricePix: 0, discountPercent: 60, features: ["Stop Global R$8.150,00", "Meta de Aprovação R$4.890,00", "Sem dias mínimos para bater meta", "Repasse Mensal ou Quinzenal"], ctaLabel: "Indisponível", ctaWhatsApp: false },
+    { name: "PEGUE E MONTE 8", contracts: 8, meta: "R$1.500,00", dailyLimit: "—", stopGlobal: "R$2.500,00", priceOriginal: 865.95, pricePix: 346.38, discountPercent: 60, features: ["Stop Global R$2.500,00", "Meta de Aprovação R$1.500,00", "Sem dias mínimos para bater meta"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://checkout.neonpay.com.br/checkout/cmn3xmvvs00bz1ro3qyca7rhl?offer=NFTPAZV", cartaoLink: "https://checkout.neonpay.com.br/checkout/cmn3xmvvs00bz1ro3qyca7rhl?offer=NFTPAZV" },
+    { name: "PEGUE E MONTE 12", contracts: 12, meta: "R$1.920,00", dailyLimit: "—", stopGlobal: "R$3.200,00", priceOriginal: 934.95, pricePix: 373.98, discountPercent: 60, features: ["Stop Global R$3.200,00", "Meta de Aprovação R$1.920,00", "Sem dias mínimos para bater meta"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://checkout.neonpay.com.br/checkout/cmn3xmvvs00bz1ro3qyca7rhl?offer=IYQ93ZR", cartaoLink: "https://checkout.neonpay.com.br/checkout/cmn3xmvvs00bz1ro3qyca7rhl?offer=IYQ93ZR" },
+    { name: "PEGUE E MONTE 20", contracts: 20, meta: "R$2.832,00", dailyLimit: "—", stopGlobal: "R$4.720,00", priceOriginal: 1345.50, pricePix: 538.20, discountPercent: 60, features: ["Stop Global R$4.720,00", "Meta de Aprovação R$2.832,00", "Sem dias mínimos para bater meta"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://checkout.neonpay.com.br/checkout/cmn3xmvvs00bz1ro3qyca7rhl?offer=KO06XTM", cartaoLink: "https://checkout.neonpay.com.br/checkout/cmn3xmvvs00bz1ro3qyca7rhl?offer=KO06XTM" },
+    { name: "PEGUE E MONTE 27", contracts: 27, meta: "R$3.612,00", dailyLimit: "—", stopGlobal: "R$6.020,00", priceOriginal: 1690.50, pricePix: 0, discountPercent: 60, features: ["Stop Global R$6.020,00", "Meta de Aprovação R$3.612,00", "Sem dias mínimos para bater meta"], ctaLabel: "Indisponível", ctaWhatsApp: false },
+    { name: "PEGUE E MONTE 32", contracts: 32, meta: "R$4.890,00", dailyLimit: "—", stopGlobal: "R$8.150,00", priceOriginal: 2120.60, pricePix: 0, discountPercent: 60, features: ["Stop Global R$8.150,00", "Meta de Aprovação R$4.890,00", "Sem dias mínimos para bater meta"], ctaLabel: "Indisponível", ctaWhatsApp: false },
   ],
   "bit": [],
 }
@@ -1070,6 +1196,104 @@ function PaymentToggle({ isPix, onChange }: { isPix: boolean; onChange: (v: bool
   )
 }
 
+// ── Regulamentos Popup ────────────────────────────────────────────────────────
+function RegulamentosPopup() {
+  const [open, setOpen] = useState(false)
+  const [selectedRegulamento, setSelectedRegulamento] = useState<string | null>(null)
+  const [acceptedTerms, setAcceptedTerms] = useState<Record<string, boolean>>({})
+
+  const allAccepted = Object.keys(regulamentos).every(key => acceptedTerms[key])
+
+  const toggleAccept = (key: string) => {
+    setAcceptedTerms(prev => ({ ...prev, [key]: !prev[key] }))
+  }
+
+  const handleClose = () => {
+    if (allAccepted) {
+      setOpen(false)
+      setSelectedRegulamento(null)
+    }
+  }
+
+  return (
+    <div className="flex justify-center mb-6">
+      <Dialog open={open} onOpenChange={(v) => { if (!v && !allAccepted) return; setOpen(v) }}>
+        <DialogTrigger asChild>
+          <Button variant="outline" size="sm" className="gap-2 text-xs">
+            <FileText className="w-3.5 h-3.5" />
+            Ver Regulamento Geral
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="max-w-3xl max-h-[85vh]" onPointerDownOutside={(e) => { if (!allAccepted) e.preventDefault() }}>
+          <DialogHeader>
+            <DialogTitle>Regulamentos e Termos</DialogTitle>
+            <DialogDescription>
+              Leia e aceite todos os regulamentos para continuar.
+            </DialogDescription>
+          </DialogHeader>
+          
+          {selectedRegulamento ? (
+            <div className="flex flex-col h-[60vh]">
+              <div className="flex items-center gap-2 mb-4">
+                <Button variant="ghost" size="sm" onClick={() => setSelectedRegulamento(null)}>
+                  <ChevronLeft className="w-4 h-4 mr-1" /> Voltar
+                </Button>
+                <span className="font-semibold">{regulamentos[selectedRegulamento as keyof typeof regulamentos].titulo}</span>
+              </div>
+              <div className="flex-1 overflow-y-auto pr-4 border rounded-lg p-4 bg-muted/30">
+                <div className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
+                  {regulamentos[selectedRegulamento as keyof typeof regulamentos].conteudo}
+                </div>
+              </div>
+              <div className="mt-4 flex items-center gap-3">
+                <button
+                  onClick={() => toggleAccept(selectedRegulamento)}
+                  className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${acceptedTerms[selectedRegulamento] ? "bg-primary border-primary" : "border-muted-foreground"}`}
+                >
+                  {acceptedTerms[selectedRegulamento] && <span className="text-primary-foreground text-xs font-bold">✓</span>}
+                </button>
+                <span className="text-sm text-foreground">Li e aceito este regulamento</span>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {Object.entries(regulamentos).map(([key, { titulo }]) => (
+                <div
+                  key={key}
+                  className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted/50 transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => toggleAccept(key)}
+                      className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${acceptedTerms[key] ? "bg-primary border-primary" : "border-muted-foreground"}`}
+                    >
+                      {acceptedTerms[key] && <span className="text-primary-foreground text-xs font-bold">✓</span>}
+                    </button>
+                    <span className="font-medium">{titulo}</span>
+                  </div>
+                  <Button variant="ghost" size="sm" onClick={() => setSelectedRegulamento(key)}>
+                    Ler <ChevronRight className="w-4 h-4 ml-1" />
+                  </Button>
+                </div>
+              ))}
+              
+              <div className="pt-4 border-t">
+                <Button
+                  onClick={handleClose}
+                  disabled={!allAccepted}
+                  className="w-full"
+                >
+                  {allAccepted ? "Concordo com todos os termos" : "Aceite todos os regulamentos para continuar"}
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  )
+}
+
 // ── Pricing Section ───────────────────────────────────────────────────────────
 export function PricingSection() {
   const [activeCategory, setActiveCategory] = useState<Category>("exames")
@@ -1167,29 +1391,7 @@ export function PricingSection() {
 
 
         {/* Regulamento */}
-        <div className="flex justify-center mb-6">
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant="outline" size="sm" className="gap-2 text-xs">
-                <FileText className="w-3.5 h-3.5" />
-                Ver Regulamento Geral
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-2xl max-h-[80vh]">
-              <DialogHeader>
-                <DialogTitle>Regulamento Geral</DialogTitle>
-                <DialogDescription>
-                  Leia atentamente as regras e condições da mesa proprietária.
-                </DialogDescription>
-              </DialogHeader>
-              <div className="h-[60vh] overflow-y-auto pr-4">
-                <div className="space-y-4 text-sm text-muted-foreground whitespace-pre-line">
-                  {regulamento}
-                </div>
-              </div>
-            </DialogContent>
-          </Dialog>
-        </div>
+        <RegulamentosPopup />
 
         {/* Payment Toggle PIX / Cartão */}
         <div className="flex justify-center mb-8" suppressHydrationWarning>

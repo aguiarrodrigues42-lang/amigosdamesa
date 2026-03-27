@@ -9,7 +9,6 @@ const clubBenefits = [
   { icon: TrendingUp,    text: "1 Indicador regra de coloração (fluxo)" },
   { icon: TrendingUp,    text: "1 Indicador histograma (fluxo)" },
   { icon: TrendingUp,    text: "1 Indicador regiões de importância (ajuste)" },
-  { icon: TrendingUp,    text: "1 Indicador regiões de importância (PTAX)" },
   { icon: Users,         text: "Grupo VIP com Traders e narradores da sala" },
   { icon: BookOpen,      text: "Momento tira dúvidas" },
   { icon: BookOpen,      text: "Aulas gravadas explicando os indicadores" },
@@ -17,10 +16,7 @@ const clubBenefits = [
 ]
 
 const traderBenefits = [
-  { icon: Banknote,      text: "100% de saque sobre saldo líquido (SR ou CR)" },
   { icon: RefreshCw,     text: "Saque semanal (CR) e saque diário (CR)" },
-  { icon: Zap,           text: "Voucher Dia de Fúria perdido — utilize até 5x por conta" },
-  { icon: RefreshCw,     text: "Voucher de zeragem de conta (conferir valor com suporte)" },
 ]
 
 export function ClubSection() {
@@ -131,7 +127,7 @@ export function ClubSection() {
                 <div className="mt-4 rounded-xl border border-primary/20 bg-primary/5 p-4">
                   <p className="text-[10px] font-black uppercase tracking-widest text-primary mb-1">Repasse especial</p>
                   <p className="text-xs text-foreground/70 leading-relaxed">
-                    Membros do Clube recebem <strong className="text-foreground">95%</strong> de repasse nos planos — contra 80% do padrão.
+                    Membros do Clube recebem <strong className="text-foreground">até 100%</strong> de repasse nos planos.
                   </p>
                 </div>
               </div>

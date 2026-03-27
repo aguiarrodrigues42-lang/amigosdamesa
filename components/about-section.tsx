@@ -21,8 +21,8 @@ const PILLARS = [
   },
   {
     icon: Award,
-    title: "Repasses de até 95%",
-    description: "Membros do Clube do Valor recebem 95% do lucro líquido apurado no ciclo.",
+    title: "Repasses de até 100%",
+    description: "Membros do Clube do Valor recebem até 100% do lucro líquido apurado no ciclo.",
   },
 ]
 
