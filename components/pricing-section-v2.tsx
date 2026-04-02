@@ -899,9 +899,6 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
                 <span className="text-xs text-muted-foreground">Stop Global</span>
                 <span className="text-sm font-semibold text-foreground">{plan.stopGlobal}</span>
               </div>
-              {/* Sem limite diário e Sem mínimos */}
-              <p className="text-xs text-foreground font-medium">Sem limite diário para o exame</p>
-              <p className="text-xs text-foreground font-medium">Sem mínimos de dias operados</p>
               {/* Margem/Stop Global alternativo */}
               {plan.margemGlobal && (
                 <div className="flex items-center justify-between pt-1">
