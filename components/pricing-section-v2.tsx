@@ -141,16 +141,16 @@ const plansByCategory: Record<Category, Plan[]> = {
       features: [...seniorFeaturesCommon, "Sem limite diário para o exame", "Sem mínimos de dias operados", "Stop Global R$ 4.250,00"],
     },
     {
-      name: "UNO 40", contracts: 40,
-      asset: "Índice",
+      name: "UNO 40 ÍNDICE", contracts: 40,
+      asset: "",
       meta: "—", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 7599.20, pricePix: 3419.64, discountPercent: 55,
       pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151519",
       cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151519",
       features: [...seniorFeaturesCommon, "Sem limite diário para o exame", "Sem mínimos de dias operados", "Stop Global R$ 6.250,00"],
     },
     {
-      name: "UNO 40", contracts: 40,
-      asset: "Dólar",
+      name: "UNO 40 DÓLAR", contracts: 40,
+      asset: "",
       meta: "—", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 7599.20, pricePix: 3419.64, discountPercent: 55,
       pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151518",
       cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151518",
@@ -321,6 +321,7 @@ function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive
 
         {/* Bonus banner */}
         <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
+          <p className="text-[10px] font-black uppercase tracking-widest text-primary">Bônus</p>
           <p className="text-xs text-foreground/80 leading-snug">Sem limite diário para o exame</p>
           <p className="text-xs text-foreground/80 leading-snug">Sem mínimos de dias operados</p>
         </div>
@@ -935,6 +936,7 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
 
         {/* Bonus banner */}
         <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
+          <p className="text-[10px] font-black uppercase tracking-widest text-primary">Bônus</p>
           <p className="text-xs text-foreground/80 leading-snug">Sem limite diário para o exame</p>
           <p className="text-xs text-foreground/80 leading-snug">Sem mínimos de dias operados</p>
         </div>
