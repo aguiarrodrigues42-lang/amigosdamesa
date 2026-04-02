@@ -320,9 +320,9 @@ function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive
         </div>
 
         {/* Bonus banner */}
-        <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center">
-          <p className="text-[10px] font-black uppercase tracking-wide text-primary">Bonus</p>
-          <p className="text-xs text-foreground/80 leading-snug">{BONUS_LABEL}</p>
+        <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
+          <p className="text-xs text-foreground/80 leading-snug">Sem limite diário para o exame</p>
+          <p className="text-xs text-foreground/80 leading-snug">Sem mínimos de dias operados</p>
         </div>
 
         {/* CTA */}
@@ -930,21 +930,16 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
                     <span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span>
                   </div>
                 )}
-                {/* Exibir parcela fixa quando existir */}
-                {plan.parcelaFixa && (
-                  <p className="text-xs text-muted-foreground mt-1">
-                    R$ {plan.parcelaFixa.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                  </p>
-                )}
+
               </div>
             )}
           </>
         )}
 
         {/* Bonus banner */}
-        <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center">
-          <p className="text-[10px] font-black uppercase tracking-wide text-primary">Bonus</p>
-          <p className="text-xs text-foreground/80 leading-snug">{BONUS_LABEL}</p>
+        <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
+          <p className="text-xs text-foreground/80 leading-snug">Sem limite diário para o exame</p>
+          <p className="text-xs text-foreground/80 leading-snug">Sem mínimos de dias operados</p>
         </div>
 
         {/* CTA */}
