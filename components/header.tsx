@@ -63,7 +63,7 @@ export function Header() {
             {/* Desktop CTA */}
             <div className="hidden md:block">
               <Button
-                onClick={() => scrollToSection("planos")}
+                onClick={() => window.open("https://areamembrosamigos.vercel.app/auth/login?redirect=%2F", "_blank")}
                 className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
               >
                 ENTRAR AGORA
@@ -122,7 +122,7 @@ export function Header() {
             <Button
               variant="outline"
               className="mt-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-              onClick={() => window.open("https://amigosdamesa.com/login", "_blank")}
+              onClick={() => window.open("https://areamembrosamigos.vercel.app/auth/login?redirect=%2F", "_blank")}
             >
               Acessar
             </Button>
@@ -132,7 +132,7 @@ export function Header() {
         {/* Footer CTA */}
         <div className="px-5 py-4 border-t border-border flex-shrink-0">
           <Button
-            onClick={() => { scrollToSection("planos"); closeDrawer() }}
+            onClick={() => window.open("https://areamembrosamigos.vercel.app/auth/login?redirect=%2F", "_blank")}
             className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold"
           >
             ENTRAR AGORA
