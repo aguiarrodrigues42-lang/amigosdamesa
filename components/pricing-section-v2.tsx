@@ -121,17 +121,17 @@ const plansByCategory: Record<Category, Plan[]> = {
   "senior": [
     {
       name: "INICIANTE 7", contracts: 7,
-      meta: "—", dailyLimit: "", stopGlobal: "R$1.100,00", priceOriginal: 1783.51, pricePix: 802.58, discountPercent: 55,
+      meta: "—", dailyLimit: "", stopGlobal: "R$2.000,00", priceOriginal: 1783.51, pricePix: 802.58, discountPercent: 55,
       pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151515",
       cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151515",
-      features: [...seniorFeaturesCommon, "Stop Global R$ 1.100,00"],
+      features: [...seniorFeaturesCommon, "Stop Global R$ 2.000,00"],
     },
     {
       name: "INTERMEDIÁRIO 15", contracts: 15,
-      meta: "—", dailyLimit: "", stopGlobal: "R$1.700,00", priceOriginal: 2366.71, pricePix: 1065.02, discountPercent: 55,
+      meta: "—", dailyLimit: "", stopGlobal: "R$2.300,00", priceOriginal: 2366.71, pricePix: 1065.02, discountPercent: 55,
       pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151516",
       cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151516",
-      features: [...seniorFeaturesCommon, "Stop Global R$ 1.700,00"],
+      features: [...seniorFeaturesCommon, "Stop Global R$ 2.300,00"],
     },
     {
       name: "AVANÇADO 25", contracts: 25,
