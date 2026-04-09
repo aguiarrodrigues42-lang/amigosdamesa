@@ -45,7 +45,7 @@ const plansByCategory: Record<Category, Plan[]> = {
   // EXAMES - 80% OFF PIX, Cartão = original * 1.30 / 12
   "exames": [
     { name: "PLANO INICIANTE", contracts: 7, asset: "", meta: "R$800,00", dailyLimit: "", stopGlobal: "R$2.000,00", priceOriginal: 979.00, pricePix: 195.80, discountPercent: 80, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151501", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151501" },
-    { name: "PLANO INTERMEDIÁRIO", contracts: 15, asset: "", meta: "R$1.400,00", dailyLimit: "", stopGlobal: "R$2.300,00", priceOriginal: 1310.05, pricePix: 261.01, discountPercent: 80, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502" },
+    { name: "PLANO INTERMEDIÁRIO", contracts: 15, asset: "", meta: "R$1.400,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 1310.05, pricePix: 261.01, discountPercent: 80, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502" },
     { name: "PLANO AVANÇADO", contracts: 25, asset: "", meta: "R$3.950,00", dailyLimit: "", stopGlobal: "R$4.250,00", priceOriginal: 3160.70, pricePix: 632.14, discountPercent: 80, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151503", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151503" },
     { name: "PLANO UNO 40", contracts: 40, asset: "Índice", meta: "R$4.980,00", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 3872.60, pricePix: 774.52, discountPercent: 80, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151504", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151504" },
     { name: "PLANO UNO 40", contracts: 40, asset: "Dólar", meta: "R$4.980,00", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 3872.60, pricePix: 774.52, discountPercent: 80, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151505", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151505" },
@@ -128,10 +128,10 @@ const plansByCategory: Record<Category, Plan[]> = {
     },
     {
       name: "INTERMEDIÁRIO 15", contracts: 15,
-      meta: "—", dailyLimit: "", stopGlobal: "R$2.300,00", priceOriginal: 2366.71, pricePix: 1065.02, discountPercent: 55,
+      meta: "—", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 2366.71, pricePix: 1065.02, discountPercent: 55,
       pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151516",
       cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151516",
-      features: [...seniorFeaturesCommon, "Stop Global R$ 2.300,00"],
+      features: [...seniorFeaturesCommon, "Stop Global R$ 2.500,00"],
     },
     {
       name: "AVANÇADO 25", contracts: 25,
