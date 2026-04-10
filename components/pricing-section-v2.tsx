@@ -14,17 +14,15 @@ interface Plan {
   meta: string
   dailyLimit: string
   stopGlobal: string
-  margemGlobal?: string      // Margem Global para exibir
-  stopGlobalAlt?: string     // Stop Global alternativo
-  // Pricing - numeric for calculations
-  priceOriginal: number      // valor original sem desconto
-  pricePix: number           // valor PIX com desconto
-  parcelaFixa?: number       // valor da parcela fixa (quando especificado)
-  discountPercent: number    // % de desconto (70, 40, 60, 30, 55)
-  pixLink?: string           // link direto para pagamento PIX
-  cartaoLink?: string        // link direto para pagamento Cartão
+  margemGlobal?: string
+  stopGlobalAlt?: string
+  priceOriginal: number
+  pricePix: number
+  parcelaFixa?: number
+  discountPercent: number
+  pixLink?: string
+  cartaoLink?: string
   features?: string[]
-  // Prime Plus monthly taxes
   taxaOnePix?: number
   taxaProPix?: number
   taxaOneOriginal?: number
@@ -35,14 +33,11 @@ interface Plan {
 
 const WHATSAPP_NUMBER = "5511988071345"
 
-
-
 const seniorFeaturesCommon = [
   "Direto no Simulador Remunerado",
 ]
 
 const plansByCategory: Record<Category, Plan[]> = {
-  // EXAMES - 80% OFF PIX, Cartão = original * 1.30 / 12
   "exames": [
     { name: "PLANO INICIANTE", contracts: 7, asset: "", meta: "R$800,00", dailyLimit: "", stopGlobal: "R$2.000,00", priceOriginal: 979.00, pricePix: 195.80, discountPercent: 80, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151501", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151501" },
     { name: "PLANO INTERMEDIÁRIO", contracts: 15, asset: "", meta: "R$1.400,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 1310.05, pricePix: 261.01, discountPercent: 80, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502" },
@@ -51,7 +46,6 @@ const plansByCategory: Record<Category, Plan[]> = {
     { name: "PLANO UNO 40", contracts: 40, asset: "Dólar", meta: "R$4.980,00", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 3872.60, pricePix: 774.52, discountPercent: 80, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151505", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151505" },
     { name: "PLANO MASTER", contracts: 50, asset: "Índice e Dólar", meta: "R$9.950,00", dailyLimit: "", stopGlobal: "R$10.250,00", priceOriginal: 5446.65, pricePix: 1089.33, discountPercent: 80, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151506", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151506" },
   ],
-  // PRIME MENSAL - 40% OFF PIX = R$180/mês, Cartão = PIX * 1.30
   "prime-plus": [
     {
       name: "PRIME PLUS 6", contracts: 6,
@@ -86,7 +80,6 @@ const plansByCategory: Record<Category, Plan[]> = {
       taxaOnePix: 1720, taxaProPix: 1850, taxaOneOriginal: 1720, taxaProOriginal: 1850,
     },
   ],
-  // TITAN - 70% OFF PIX, Cartão = PIX * 1.30 / 12
   "titan": [
     {
       name: "TITAN PRO 10", contracts: 30,
@@ -117,7 +110,6 @@ const plansByCategory: Record<Category, Plan[]> = {
       features: ["Meta de aprovação R$ 10.000,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação", "Stop Global R$ 10.000,00"],
     },
   ],
-  // SÊNIOR (Direto na Mesa) - 55% OFF PIX, Cartão = original * 1.30 / 12
   "senior": [
     {
       name: "INICIANTE 7", contracts: 7,
@@ -164,7 +156,6 @@ const plansByCategory: Record<Category, Plan[]> = {
       features: [...seniorFeaturesCommon, "Stop Global R$ 10.250,00"],
     },
   ],
-  // PEGUE E MONTE - 80% OFF PIX, Cartão = PIX * 1.30 / 12
   "pegue-monte": [
     { name: "PEGUE E MONTE 8", contracts: 8, meta: "R$1.500,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 1731.90, pricePix: 346.38, discountPercent: 80, features: ["Stop Global R$2.500,00", "Meta de Aprovação R$1.500,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151521", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151521" },
     { name: "PEGUE E MONTE 12", contracts: 12, meta: "R$1.920,00", dailyLimit: "", stopGlobal: "R$3.500,00", priceOriginal: 1984.90, pricePix: 396.98, discountPercent: 80, features: ["Stop Global R$3.500,00", "Meta de Aprovação R$1.920,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://checkout.neonpay.com.br/checkout/cmn3xmvvs00bz1ro3qyca7rhl?offer=IYQ93ZR", cartaoLink: "https://checkout.neonpay.com.br/checkout/cmn3xmvvs00bz1ro3qyca7rhl?offer=IYQ93ZR" },
@@ -175,27 +166,23 @@ const plansByCategory: Record<Category, Plan[]> = {
   "bit": [],
 }
 
-// ── BIT plans ──────────────────────────────────��──────────────────────────────
+// ── BIT plans ──────────────────────────────────────────────────────────────
 interface BitPlan {
   name: string
   bitContracts: number
   features: string[]
-  // Exame (via exame de proficiência) — Profit One
   precoExame: string
   precoExameOriginal: string
-  // Sênior (via Sênior) — Profit One
-  // Valor original = coluna rosa; PIX = 55% OFF; Cartão = PIX * 1.30
-  valorOriginal: number        // valor numérico para calcular cartão
-  precoPix: string             // 55% OFF
-  precoCartao: string          // PIX * 1.30 formatado
-  precoSeniorOriginal: string  // riscado no cartão
+  valorOriginal: number
+  precoPix: string
+  precoCartao: string
+  precoSeniorOriginal: string
   pixLink?: string
   cartaoLink?: string
-  indisponivel?: boolean       // ULTRA 30 PIX indisponivel
+  indisponivel?: boolean
 }
 
-// Ultra 1.0 / 3 em 1
-// valorOriginal = valor ONE (rosa); precoPix = 55% OFF; precoCartao12x = (PIX * 1.30) / 12
+// BIT - precoCartao recalculado: (precoPix * 1.9372) / 12
 const bitPlans: BitPlan[] = [
   {
     name: "ULTRA 10",
@@ -210,7 +197,7 @@ const bitPlans: BitPlan[] = [
     precoExame: "R$321,31", precoExameOriginal: "R$714,03",
     valorOriginal: 714.03,
     precoPix: "R$321,31",
-    precoCartao: "R$34,81",  // (321.31 * 1.30) / 12 = 34,81
+    precoCartao: "R$51,88",  // (321.31 * 1.9372) / 12 = 51,88
     precoSeniorOriginal: "R$714,03",
     pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151528",
     cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151528",
@@ -228,7 +215,7 @@ const bitPlans: BitPlan[] = [
     precoExame: "R$460,86", precoExameOriginal: "R$1.024,13",
     valorOriginal: 1024.13,
     precoPix: "R$460,86",
-    precoCartao: "R$49,93", // (460.86 * 1.30) / 12 = 49,93
+    precoCartao: "R$74,40", // (460.86 * 1.9372) / 12 = 74,40
     precoSeniorOriginal: "R$1.024,13",
     pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151529",
     cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151529",
@@ -246,7 +233,7 @@ const bitPlans: BitPlan[] = [
     precoExame: "R$838,40", precoExameOriginal: "R$1.863,11",
     valorOriginal: 1863.11,
     precoPix: "R$838,40",
-    precoCartao: "R$90,83", // (838.40 * 1.30) / 12 = 90,83
+    precoCartao: "R$135,31", // (838.40 * 1.9372) / 12 = 135,31
     precoSeniorOriginal: "R$1.863,11",
     pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151530",
     cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151530",
@@ -659,8 +646,6 @@ const categories: { id: Category; label: string }[] = [
   { id: "bit", label: "BIT" },
 ]
 
-
-
 // ── WhatsApp Lead Modal ───────────────────────────────────────────────────────
 interface LeadModalProps {
   planName: string
@@ -692,12 +677,8 @@ function LeadModal({ planName, open, onClose }: LeadModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      {/* Backdrop */}
       <div className="absolute inset-0 bg-black/70" onClick={onClose} />
-
-      {/* Modal */}
       <div className="relative z-10 w-full max-w-md bg-card border border-border rounded-2xl shadow-2xl overflow-hidden">
-        {/* Header */}
         <div className="bg-primary px-6 py-4 flex items-center justify-between">
           <div>
             <h3 className="text-primary-foreground font-black text-lg uppercase tracking-wide">
@@ -712,61 +693,29 @@ function LeadModal({ planName, open, onClose }: LeadModalProps) {
             <X className="w-5 h-5" />
           </button>
         </div>
-
-        {/* Body */}
         <form onSubmit={handleSubmit} className="px-6 py-6 space-y-4">
           <p className="text-sm text-muted-foreground leading-relaxed">
             Preencha seus dados abaixo e nossa equipe entrará em contato via WhatsApp para finalizar sua adesão ao <strong className="text-foreground">{planName}</strong>.
           </p>
-
           <div className="space-y-1">
             <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Nome completo</label>
-            <input
-              required
-              value={nome}
-              onChange={e => setNome(e.target.value)}
-              placeholder="Seu nome"
-              className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-            />
+            <input required value={nome} onChange={e => setNome(e.target.value)} placeholder="Seu nome" className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
           </div>
-
           <div className="space-y-1">
             <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">E-mail</label>
-            <input
-              required
-              type="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              placeholder="seu@email.com"
-              className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-            />
+            <input required type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="seu@email.com" className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
           </div>
-
           <div className="space-y-1">
             <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">WhatsApp</label>
-            <input
-              required
-              value={whatsapp}
-              onChange={e => setWhatsapp(e.target.value)}
-              placeholder="(11) 99999-9999"
-              className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-            />
+            <input required value={whatsapp} onChange={e => setWhatsapp(e.target.value)} placeholder="(11) 99999-9999" className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
           </div>
-
           <div className="space-y-1">
             <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Plano escolhido</label>
-            <div className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground">
-              {planName}
-            </div>
+            <div className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground">{planName}</div>
           </div>
-
-          <button
-            type="submit"
-            className="w-full py-3.5 bg-primary text-primary-foreground rounded-xl font-black text-sm uppercase tracking-wide hover:bg-primary/90 transition-colors"
-          >
+          <button type="submit" className="w-full py-3.5 bg-primary text-primary-foreground rounded-xl font-black text-sm uppercase tracking-wide hover:bg-primary/90 transition-colors">
             Enviar para WhatsApp
           </button>
-
           <p className="text-[10px] text-muted-foreground text-center">
             Você será redirecionado ao WhatsApp com seus dados preenchidos. Nossa equipe responde em até 2h.
           </p>
@@ -776,16 +725,16 @@ function LeadModal({ planName, open, onClose }: LeadModalProps) {
   )
 }
 
-// ── Helpers de formatação ──────────────────────────────────────────���──────────
+// ── Helpers de formatação ──────────────────────────────────────────────────────
 function formatBRL(value: number): string {
   return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
 }
 
-// ── Plan Card ───────────────────────────────────────────────���─────────────────
+// ── Plan Card ─────────────────────────────────────────────────────────────────
 interface PlanCardProps {
   plan: Plan
   isActive: boolean
-  isPix: boolean // true = PIX, false = Cartão 12x
+  isPix: boolean
   onCta: () => void
 }
 
@@ -796,16 +745,20 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
   const ctaLabel = plan.ctaLabel ?? "Quero esse plano"
   const isUnavailable = plan.pricePix === 0 && plan.ctaLabel === "Indisponível"
 
-  // Calcular preços - Cartão = (PIX + 30%) / 12 parcelas
-  // Exceção: Prime Mensal usa valor fixo de R$300 no cartão (R$25/mês em 12x)
+  // ══════════════════════════════════════════════════════════════════════════
+  // CÁLCULO CARTÃO 12x — baseado na calculadora Neon Checkout
+  // Taxa 12x = 93,72% → multiplicador = 1.9372
+  // Fórmula: (valorPix * 1.9372) / 12
+  // Prime Plus: (180 * 1.9372) / 12 = R$29,06/mês
+  // ══════════════════════════════════════════════════════════════════════════
   const isPrimePlusCategory = !!plan.taxaOnePix
-  const priceCartao12x = isPrimePlusCategory ? (300 / 12) : (plan.pricePix * 1.30) / 12
+  const priceCartao12x = isPrimePlusCategory
+    ? (plan.pricePix * 1.9372) / 12
+    : (plan.pricePix * 1.9372) / 12
 
-  // Preço a exibir (PIX = valor cheio, Cartão = parcela mensal)
   const displayPrice = isPix ? plan.pricePix : priceCartao12x
   const displayOriginal = plan.priceOriginal
 
-  // Taxa mensal Prime Plus
   const taxaDisplay = isPix ? plan.taxaOnePix : plan.taxaOneOriginal
 
   return (
@@ -840,7 +793,6 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
                 </li>
               ))}
             </ul>
-            {/* Preço mensal */}
             <div className="border-t border-border pt-3 text-center">
               <p className="text-xs text-muted-foreground line-through">{formatBRL(displayOriginal)}</p>
               {isPix ? (
@@ -878,7 +830,6 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
               ) : (
                 <div>
                   <span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span>
-
                 </div>
               )}
             </div>
@@ -915,7 +866,6 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
                     <span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span>
                   </div>
                 )}
-
               </div>
             )}
           </>
@@ -946,7 +896,6 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
           {ctaLabel}
         </button>
 
-        {/* Rodapé do card */}
         {!hasFeatures && !isUnavailable && (
           <p className="text-[10px] text-muted-foreground text-center leading-relaxed">
             Conta demo aplicável de forma opcional. Caso o nível decida utilizá-la ou não.
@@ -957,7 +906,7 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
   )
 }
 
-// ── Toggle PIX/Cartão ─────────────────────────────��───────────────────────────
+// ── Toggle PIX/Cartão ─────────────────────────────────────────────────────────
 function PaymentToggle({ isPix, onChange }: { isPix: boolean; onChange: (v: boolean) => void }) {
   return (
     <div className="flex items-center justify-center gap-4 bg-secondary/80 backdrop-blur-sm rounded-full px-6 py-2.5 border border-border">
@@ -983,9 +932,8 @@ function PaymentToggle({ isPix, onChange }: { isPix: boolean; onChange: (v: bool
 // ── Pricing Section ───────────────────────────────────────────────────────────
 export function PricingSection() {
   const [activeCategory, setActiveCategory] = useState<Category>("exames")
-
   const [activeCardIndex, setActiveCardIndex] = useState(0)
-  const [isPix, setIsPix] = useState(true) // default to PIX
+  const [isPix, setIsPix] = useState(true)
   const [leadModal, setLeadModal] = useState<{ open: boolean; planName: string }>({ open: false, planName: "" })
   const [pegueMonteOpen, setPegueMonteOpen] = useState(false)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -1016,28 +964,23 @@ export function PricingSection() {
   }
 
   const handleCta = (plan: Plan | string) => {
-    // Se for string (BitPlan), abre modal de lead
     if (typeof plan === "string") {
       setLeadModal({ open: true, planName: plan })
       return
     }
-    // PIX com link direto (incluindo Pegue e Monte)
     if (isPix && plan.pixLink) {
       window.open(plan.pixLink, "_blank")
       return
     }
-    // Cartão com link direto (incluindo Pegue e Monte)
     if (!isPix && plan.cartaoLink) {
       window.open(plan.cartaoLink, "_blank")
       return
     }
-    // WhatsApp para planos sem link de pagamento
     if (plan.ctaWhatsApp) {
       const msg = encodeURIComponent(`Olá! Tenho interesse no plano ${plan.name}`)
       window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank")
       return
     }
-    // Fallback -> modal de lead
     setLeadModal({ open: true, planName: plan.name })
   }
 
@@ -1045,7 +988,6 @@ export function PricingSection() {
     <section id="planos" className="py-16 bg-background scroll-mt-20">
       <div className="mx-auto px-4 max-w-5xl">
 
-        {/* Title */}
         <div className="text-center mb-8">
           <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">
             Proposta de Mesa Proprietária
@@ -1055,7 +997,6 @@ export function PricingSection() {
           </h2>
         </div>
 
-        {/* Category pills */}
         <div className="flex flex-wrap justify-center gap-2 mb-6">
           {categories.map((cat) => (
             <button
@@ -1074,19 +1015,14 @@ export function PricingSection() {
           ))}
         </div>
 
-
-
-        {/* Regulamento */}
         <div className="flex justify-center mb-6">
           <RegulamentosModal />
         </div>
 
-        {/* Payment Toggle PIX / Cartão */}
         <div className="flex justify-center mb-8" suppressHydrationWarning>
           <PaymentToggle isPix={isPix} onChange={setIsPix} />
         </div>
 
-        {/* Carousel */}
         <div className="relative">
           {activeCardIndex > 0 && (
             <button
@@ -1149,7 +1085,6 @@ export function PricingSection() {
           )}
         </div>
 
-        {/* Badges de saques */}
         <div className="flex flex-wrap justify-center gap-2 mt-6">
           {["Saques Mensais", "Saques Quinzenais", "Saques Semanais", "Saques Diários"].map((label) => (
             <span
@@ -1161,7 +1096,6 @@ export function PricingSection() {
           ))}
         </div>
 
-        {/* Dots */}
         <div className="flex justify-center gap-2 mt-4">
           {Array.from({ length: activeCount }).map((_, index) => (
             <button
@@ -1174,14 +1108,12 @@ export function PricingSection() {
         </div>
       </div>
 
-      {/* Lead modal for Titan/WhatsApp plans */}
       <LeadModal
         open={leadModal.open}
         planName={leadModal.planName}
         onClose={() => setLeadModal({ open: false, planName: "" })}
       />
 
-      {/* Pegue e Monte builder modal */}
       <PegueMonteModal
         open={pegueMonteOpen}
         onClose={() => setPegueMonteOpen(false)}
