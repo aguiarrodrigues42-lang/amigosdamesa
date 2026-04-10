@@ -8,7 +8,7 @@ const BENEFITS = [
   "Opera com capital da mesa sem arriscar dinheiro próprio",
   "Repasse de até 95% do lucro líquido por ciclo",
   "Scalping livre na Conta Real sem restrição de estilo",
-  "Plataforma profissional Profit One ou Pro incluída",
+  "Plataforma profissional Profit One incluída",
   "7 dias de Sala Educacional ao Vivo como bônus",
   "Suporte dedicado e comunidade ativa de traders",
 ]
