@@ -262,7 +262,7 @@ const bitPlans: BitPlan[] = [
 const BONUS_LABEL = "7 dias de Sala Educacional ao Vivo"
 
 // ── BitPlanCard ───────────────────────────────────────────────────────────────
-function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive: boolean; isPix: boolean; onCta: () => void }) {
+function BitPlanCard({ plan, isActive, isPix, onCta, showBonus = false }: { plan: BitPlan; isActive: boolean; isPix: boolean; onCta: () => void; showBonus?: boolean }) {
   return (
     <div
       className={`
@@ -306,12 +306,14 @@ function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive
           <p className="text-[10px] text-muted-foreground text-center font-semibold tracking-widest pt-1">PROFIT ONE</p>
         </div>
 
-        {/* Bonus banner */}
-        <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
-          <p className="text-[10px] font-black uppercase tracking-widest text-primary">Bônus</p>
-          <p className="text-xs text-foreground/80 leading-snug">Sem limite diário para o exame</p>
-          <p className="text-xs text-foreground/80 leading-snug">Sem mínimos de dias operados para aprovação</p>
-        </div>
+        {/* Bonus banner — apenas Sênior */}
+        {showBonus && (
+          <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
+            <p className="text-[10px] font-black uppercase tracking-widest text-primary">Bônus</p>
+            <p className="text-xs text-foreground/80 leading-snug">Sem limite diário para o exame</p>
+            <p className="text-xs text-foreground/80 leading-snug">Sem mínimos de dias operados para aprovação</p>
+          </div>
+        )}
 
         {/* CTA */}
         <button
@@ -736,9 +738,10 @@ interface PlanCardProps {
   isActive: boolean
   isPix: boolean
   onCta: () => void
-}
-
-function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
+  showBonus?: boolean
+  }
+  
+function PlanCard({ plan, isActive, isPix, onCta, showBonus = false }: PlanCardProps) {
   const hasFeatures = !!plan.features
   const isPrimePlus = hasFeatures && !!plan.taxaOnePix
   const isTitanOrSenior = hasFeatures && !plan.taxaOnePix
@@ -871,12 +874,14 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
           </>
         )}
 
-        {/* Bonus banner */}
-        <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
-          <p className="text-[10px] font-black uppercase tracking-widest text-primary">Bônus</p>
-          <p className="text-xs text-foreground/80 leading-snug">Sem limite diário para o exame</p>
-          <p className="text-xs text-foreground/80 leading-snug">Sem mínimos de dias operados para aprovação</p>
-        </div>
+        {/* Bonus banner — apenas Sênior */}
+        {showBonus && (
+          <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
+            <p className="text-[10px] font-black uppercase tracking-widest text-primary">Bônus</p>
+            <p className="text-xs text-foreground/80 leading-snug">Sem limite diário para o exame</p>
+            <p className="text-xs text-foreground/80 leading-snug">Sem mínimos de dias operados para aprovação</p>
+          </div>
+        )}
 
         {/* CTA */}
         <button
@@ -1048,6 +1053,7 @@ export function PricingSection() {
                   plan={plan}
                   isActive={index === activeCardIndex}
                   isPix={isPix}
+                  showBonus={false}
                   onCta={() => {
                     if (isPix && plan.indisponivel) return
                     if (isPix && plan.pixLink) {
@@ -1066,6 +1072,7 @@ export function PricingSection() {
                   plan={plan}
                   isActive={index === activeCardIndex}
                   isPix={isPix}
+                  showBonus={activeCategory === "senior"}
                   onCta={() => handleCta(plan)}
                 />
               ))
