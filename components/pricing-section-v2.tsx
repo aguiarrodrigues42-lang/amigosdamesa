@@ -262,7 +262,7 @@ const bitPlans: BitPlan[] = [
 const BONUS_LABEL = "7 dias de Sala Educacional ao Vivo"
 
 // ── BitPlanCard ───────────────────────────────────────────────────────────────
-function BitPlanCard({ plan, isActive, isPix, onCta, showBonus = false }: { plan: BitPlan; isActive: boolean; isPix: boolean; onCta: () => void; showBonus?: boolean }) {
+function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive: boolean; isPix: boolean; onCta: () => void }) {
   return (
     <div
       className={`
@@ -306,14 +306,12 @@ function BitPlanCard({ plan, isActive, isPix, onCta, showBonus = false }: { plan
           <p className="text-[10px] text-muted-foreground text-center font-semibold tracking-widest pt-1">PROFIT ONE</p>
         </div>
 
-        {/* Bonus banner — apenas Sênior */}
-        {showBonus && (
-          <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
-            <p className="text-[10px] font-black uppercase tracking-widest text-primary">Bônus</p>
-            <p className="text-xs text-foreground/80 leading-snug">Sem limite diário para o exame</p>
-            <p className="text-xs text-foreground/80 leading-snug">Sem mínimos de dias operados para aprovação</p>
-          </div>
-        )}
+        {/* BÔNUS */}
+        <div className="rounded-xl bg-[#1a1208] border border-primary/20 px-4 py-3 text-center space-y-1">
+          <p className="text-primary text-xs font-black uppercase tracking-widest">Bônus</p>
+          <p className="text-foreground/90 text-xs leading-snug">Sem limite diário para o exame</p>
+          <p className="text-foreground/90 text-xs leading-snug">Sem mínimos de dias operados para aprovação</p>
+        </div>
 
         {/* CTA */}
         <button
@@ -738,10 +736,10 @@ interface PlanCardProps {
   isActive: boolean
   isPix: boolean
   onCta: () => void
-  showBonus?: boolean
-  }
-  
-function PlanCard({ plan, isActive, isPix, onCta, showBonus = false }: PlanCardProps) {
+  isSenior?: boolean
+}
+
+function PlanCard({ plan, isActive, isPix, onCta, isSenior = false }: PlanCardProps) {
   const hasFeatures = !!plan.features
   const isPrimePlus = hasFeatures && !!plan.taxaOnePix
   const isTitanOrSenior = hasFeatures && !plan.taxaOnePix
@@ -874,12 +872,12 @@ function PlanCard({ plan, isActive, isPix, onCta, showBonus = false }: PlanCardP
           </>
         )}
 
-        {/* Bonus banner — apenas Sênior */}
-        {showBonus && (
-          <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
-            <p className="text-[10px] font-black uppercase tracking-widest text-primary">Bônus</p>
-            <p className="text-xs text-foreground/80 leading-snug">Sem limite diário para o exame</p>
-            <p className="text-xs text-foreground/80 leading-snug">Sem mínimos de dias operados para aprovação</p>
+        {/* BÔNUS */}
+        {!isSenior && !isUnavailable && (
+          <div className="rounded-xl bg-[#1a1208] border border-primary/20 px-4 py-3 text-center space-y-1">
+            <p className="text-primary text-xs font-black uppercase tracking-widest">Bônus</p>
+            <p className="text-foreground/90 text-xs leading-snug">Sem limite diário para o exame</p>
+            <p className="text-foreground/90 text-xs leading-snug">Sem mínimos de dias operados para aprovação</p>
           </div>
         )}
 
@@ -1053,7 +1051,6 @@ export function PricingSection() {
                   plan={plan}
                   isActive={index === activeCardIndex}
                   isPix={isPix}
-                  showBonus={false}
                   onCta={() => {
                     if (isPix && plan.indisponivel) return
                     if (isPix && plan.pixLink) {
@@ -1072,7 +1069,7 @@ export function PricingSection() {
                   plan={plan}
                   isActive={index === activeCardIndex}
                   isPix={isPix}
-                  showBonus={activeCategory === "senior"}
+                  isSenior={activeCategory === "senior"}
                   onCta={() => handleCta(plan)}
                 />
               ))
