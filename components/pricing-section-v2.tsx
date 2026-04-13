@@ -306,6 +306,13 @@ function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive
           <p className="text-[10px] text-muted-foreground text-center font-semibold tracking-widest pt-1">PROFIT ONE</p>
         </div>
 
+        {/* BÔNUS */}
+        <div className="rounded-xl bg-[#1a1208] border border-primary/20 px-4 py-3 text-center space-y-1">
+          <p className="text-primary text-xs font-black uppercase tracking-widest">Bônus</p>
+          <p className="text-foreground/90 text-xs leading-snug">Sem limite diário para o exame</p>
+          <p className="text-foreground/90 text-xs leading-snug">Sem mínimos de dias operados para aprovação</p>
+        </div>
+
         {/* CTA */}
         <button
           onClick={onCta}
@@ -729,9 +736,10 @@ interface PlanCardProps {
   isActive: boolean
   isPix: boolean
   onCta: () => void
+  isSenior?: boolean
 }
 
-function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
+function PlanCard({ plan, isActive, isPix, onCta, isSenior = false }: PlanCardProps) {
   const hasFeatures = !!plan.features
   const isPrimePlus = hasFeatures && !!plan.taxaOnePix
   const isTitanOrSenior = hasFeatures && !plan.taxaOnePix
@@ -862,6 +870,15 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
               </div>
             )}
           </>
+        )}
+
+        {/* BÔNUS */}
+        {!isSenior && !isUnavailable && (
+          <div className="rounded-xl bg-[#1a1208] border border-primary/20 px-4 py-3 text-center space-y-1">
+            <p className="text-primary text-xs font-black uppercase tracking-widest">Bônus</p>
+            <p className="text-foreground/90 text-xs leading-snug">Sem limite diário para o exame</p>
+            <p className="text-foreground/90 text-xs leading-snug">Sem mínimos de dias operados para aprovação</p>
+          </div>
         )}
 
         {/* CTA */}
@@ -1052,6 +1069,7 @@ export function PricingSection() {
                   plan={plan}
                   isActive={index === activeCardIndex}
                   isPix={isPix}
+                  isSenior={activeCategory === "senior"}
                   onCta={() => handleCta(plan)}
                 />
               ))
