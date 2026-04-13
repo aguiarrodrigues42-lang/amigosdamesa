@@ -306,13 +306,6 @@ function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive
           <p className="text-[10px] text-muted-foreground text-center font-semibold tracking-widest pt-1">PROFIT ONE</p>
         </div>
 
-        {/* Bonus banner */}
-        <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
-          <p className="text-[10px] font-black uppercase tracking-widest text-primary">Bônus</p>
-          <p className="text-xs text-foreground/80 leading-snug">Sem limite diário para o exame</p>
-          <p className="text-xs text-foreground/80 leading-snug">Sem mínimos de dias operados para aprovação</p>
-        </div>
-
         {/* CTA */}
         <button
           onClick={onCta}
@@ -870,13 +863,6 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
             )}
           </>
         )}
-
-        {/* Bonus banner */}
-        <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
-          <p className="text-[10px] font-black uppercase tracking-widest text-primary">Bônus</p>
-          <p className="text-xs text-foreground/80 leading-snug">Sem limite diário para o exame</p>
-          <p className="text-xs text-foreground/80 leading-snug">Sem mínimos de dias operados para aprovação</p>
-        </div>
 
         {/* CTA */}
         <button
