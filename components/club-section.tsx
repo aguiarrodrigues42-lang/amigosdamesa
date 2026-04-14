@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Check, Crown, TrendingUp, Users, BookOpen, Newspaper, Zap, CalendarCheck, RefreshCw, Banknote } from "lucide-react"
+import { Check, Crown, TrendingUp, Users, BookOpen, Newspaper, CalendarCheck, RefreshCw, Banknote } from "lucide-react"
 
 const clubBenefits = [
   { icon: CalendarCheck, text: "Sala AO VIVO zoom (Seg a Sex 9:00 às 11:00)" },
@@ -19,8 +19,6 @@ const clubBenefits = [
 const traderBenefits = [
   { icon: Banknote,      text: "100% de saque sobre saldo líquido (SR ou CR)" },
   { icon: RefreshCw,     text: "Saque semanal (CR) e saque diário (CR)" },
-  { icon: Zap,           text: "Voucher Dia de Fúria perdido — utilize até 5x por conta" },
-  { icon: RefreshCw,     text: "Voucher de zeragem de conta (conferir valor com suporte)" },
 ]
 
 export function ClubSection() {
@@ -127,13 +125,7 @@ export function ClubSection() {
                   ))}
                 </ul>
 
-                {/* Premium badge */}
-                <div className="mt-4 rounded-xl border border-primary/20 bg-primary/5 p-4">
-                  <p className="text-[10px] font-black uppercase tracking-widest text-primary mb-1">Repasse especial</p>
-                  <p className="text-xs text-foreground/70 leading-relaxed">
-                    Membros do Clube recebem <strong className="text-foreground">95%</strong> de repasse nos planos — contra 80% do padrão.
-                  </p>
-                </div>
+
               </div>
             </div>
 
