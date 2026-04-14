@@ -130,9 +130,9 @@ PLANOS MASTER50 / UNOS40 / TITAN / PRIME / PEGUE E MONTE / BIT
 
 Este material tem caráter exclusivamente informativo, com o objetivo de explicar, de forma clara e objetiva, o funcionamento prático das regras já previstas no Regulamento Geral da AMIGOS DA MESA PROP, sem qualquer alteração contratual.
 
-ESTRUTURA OPERACIONAL DOS PLANOS
+ESTRUTURA OPERACIONAL DOS PLANOS PLANOS MASTER50 / UNOS40 / TITAN / PRIME16 / PRIME21 / PEGUE E MONTE 27 / PEGUE E MONTE 32 / BIT 20 / BIT30
 
-Os planos Master50, Unos40, Titan, Pegue e Monte 27, Pegue e Monte 32, Prime16 e Prime21, Bit20 e Bit30 em suas versões Exame, Sênior e Conta Real, seguem um modelo de gestão avançado, voltado à proteção do capital da mesa e à progressão sustentável do Trader.
+Os planos Master50, Unos40, Titan, Pegue e monte 27, Pegue e Monte 32, Prime16 e Prime21, Bit20 e Bit30 em suas versões Exame, Sênior e Conta Real, seguem um modelo de gestão avançado, voltado à proteção do capital da mesa e à progressão sustentável do Trader.
 
 Após aprovação no Exame, o Trader inicia sua jornada em Conta Simulador Remunerado (SR), podendo transitar para Conta Real (CR) conforme critérios de performance e risco já definidos no regulamento.
 
@@ -171,8 +171,7 @@ Caso o Trader, em Conta Real:
 Se, após retornar à Conta Real:
 • O Trader atingir novamente 30% de perda do saldo global, será eliminado
 • Caso atinja 30% de perda da margem em Conta Real, perderá também qualquer saldo acumulado previamente no Simulador Remunerado
-
-As regras acima são específicas dos planos Master50, Unos40 e Titan, prevalecendo sobre disposições gerais quando aplicáveis.
+• As regras acima são específicas dos planos Master50, Unos40 e Titan, prevalecendo sobre disposições gerais quando aplicáveis.
 
 ATIVAÇÃO DE SAQUE EM CONTA REAL
 
@@ -187,16 +186,18 @@ O modelo aplicado nesses planos prioriza:
 • Redução de risco sistêmico
 • Continuidade operacional do Trader consistente
 
-A AMIGOS DA MESA PROP diferencia-se por adotar um modelo de meritocracia que pode contemplar o Trader com repasses quinzenais ainda na fase de Simulador Remunerado, conforme critérios, prazos e condições estabelecidos no Regulamento Geral.
+A AMIGOS DA MESA PROP diferencia-se por adotar um modelo de meritocracia que pode contemplar o Trader com repasses quinzenais ainda na fase de Simulador Remunerado, conforme critérios, prazos e condições estabelecidos no Regulamento Geral. Essa estrutura permite ao Trader vivenciar uma rotina financeira real, reforçando a disciplina, a consistência e o comprometimento operacional, ao mesmo tempo em que contribui para maior estabilidade emocional e adaptação progressiva ao ambiente profissional de gestão de risco.
 
-As regras acima aplicam-se integralmente aos planos Master50, Unos40, Titan, Pegue e Monte 27, Pegue e Monte 32, Prime16 e Prime21, Bit20 e Bit30, prevalecendo sobre disposições gerais quando aplicáveis.`
+Tal metodologia busca preparar o Trader para a Conta Real com maior maturidade, previsibilidade e alinhamento comportamental. O presente material possui caráter exclusivamente educativo e não substitui, em nenhuma hipótese, o Regulamento Geral vigente, que permanece como documento oficial e soberano.
+
+As regras acima aplicam-se integralmente aos planos Master50, Unos40, Titan, Pegue e monte 27, Pegue e Monte 32, Prime16 e Prime21, Bit20 e Bit30, prevalecendo sobre disposições gerais quando aplicáveis.`
   },
   {
     id: "material-ii",
     titulo: "MATERIAL EXPLICATIVO COMPLEMENTAR II",
-    subtitulo: "Demais Planos (Iniciante, Intermediário, Avançado, Prime Plus, Pegue e Monte)",
+    subtitulo: "Demais Planos (Iniciante, Intermediário, Avançado, Prime, Pegue e Monte)",
     conteudo: `MATERIAL EXPLICATIVO COMPLEMENTAR II
-DEMAIS PLANOS (INICIANTE, INTERMEDIÁRIO, AVANÇADO, PRIME PLUS, PEGUE E MONTE)
+DEMAIS PLANOS (INICIANTE, INTERMEDIÁRIO, AVANÇADO, PRIME, PEGUE E MONTE)
 
 Este material explica, de forma prática e objetiva, o funcionamento dos planos que não pertencem à família Master50 / Unos40 / Titan / Prime (se aplicável) / Pegue e Monte (se aplicável), respeitando integralmente o Regulamento Geral vigente.
 
@@ -244,9 +245,11 @@ Esses planos foram estruturados para:
 • Permitir evolução progressiva do Trader
 • Manter equilíbrio financeiro entre performance e gestão
 
-A AMIGOS DA MESA PROP adota um modelo operacional que, conforme critérios e condições definidos no Regulamento Geral, pode permitir a realização de repasses quinzenais ao Trader ainda na fase de Simulador Remunerado.
+A AMIGOS DA MESA PROP adota um modelo operacional que, conforme critérios e condições definidos no Regulamento Geral, pode permitir a realização de repasses quinzenais ao Trader ainda na fase de Simulador Remunerado. Tal estrutura foi desenvolvida com o objetivo de proporcionar previsibilidade financeira, rotina operacional e adaptação progressiva às responsabilidades inerentes à gestão de capital.
 
-O repasse quinzenal em Simulador Remunerado não constitui garantia de continuidade, valor mínimo ou periodicidade automática, estando sempre condicionado ao cumprimento integral das regras de elegibilidade, limites de risco, prazos operados e demais critérios estabelecidos pela mesa.
+O repasse quinzenal em Simulador Remunerado não constitui garantia de continuidade, valor mínimo ou periodicidade automática, estando sempre condicionado ao cumprimento integral das regras de elegibilidade, limites de risco, prazos operados e demais critérios estabelecidos pela mesa. A liberação de repasses nesta fase integra o processo de avaliação comportamental, técnica e disciplinar do Trader.
+
+Este modelo visa alinhar o Trader à dinâmica financeira da Conta Real, promovendo maior maturidade operacional, controle emocional e consistência, ao mesmo tempo em que preserva a sustentabilidade financeira da mesa.
 
 As regras descritas neste material aplicam-se exclusivamente aos planos aqui mencionados, não se confundindo com as regras específicas dos planos Master50, Unos40 e Titan.`
   },
@@ -266,7 +269,7 @@ A aquisição de quaisquer planos, exames ou modalidades ocorre exclusivamente p
 
 Podem participar pessoas físicas maiores de 18 (dezoito) anos ou pessoas jurídicas regularmente constituídas, sendo expressamente vedada a participação de indivíduos envolvidos em crimes financeiros, lavagem de dinheiro, ilícitos contra o sistema financeiro ou investigações correlatas.
 
-A relação entre a AMIGOS DA MESA PROP e o Trader não caracteriza vínculo empregatício, societário ou associativo, tratando-se exclusivamente de prestação de serviços, conforme as regras aqui estabelecidas.
+A relação entre a AMIGOS DA MESA PROP e o Trader não caracteriza vínculo empregatício, societário ou associativo, tratando-se exclusivamente de prestação de serviços, conforme as regras aqui estabelecidas e, quando aplicável, contrato específico.
 
 PLANOS, MODALIDADES E PLATAFORMA
 
@@ -285,6 +288,11 @@ O Trader é integralmente responsável por:
 • Proteger o acesso à plataforma contra uso indevido por terceiros
 • Todas as operações realizadas em sua conta, independentemente de quem as execute
 
+A AMIGOS DA MESA PROP não se responsabiliza por:
+• Operações realizadas com uso correto de login e senha
+• Perdas decorrentes de compartilhamento, negligência ou uso indevido das credenciais
+• Acessos não autorizados causados por falha do próprio Trader
+
 Qualquer operação registrada na plataforma será considerada, para todos os fins, como realizada pelo próprio Trader, não sendo aceita contestação baseada em alegação de uso indevido de credenciais.
 
 CONDIÇÕES GERAIS DE PARTICIPAÇÃO
@@ -297,7 +305,58 @@ O exame será realizado em conta simulador. Não é permitida troca de plano ou 
 
 A pausa das contas é permitida por até 30 (trinta) dias, mediante comunicação prévia por e-mail.
 
+Não há dias mínimos nem máximos operados para aprovação quando aplicável, desde que a plataforma esteja devidamente paga mensalmente. A responsabilidade de entrar em contato com a mesa para efetuar o pagamento é do Trader e o não pagamento pode acarretar em cancelamento, taxas adicionais e outros.
+
+A liberação de vouchers não será permitida nos 7 (sete) dias úteis que antecedem o fechamento quinzenal ou mensal.
+
 Cada Trader poderá manter até 10 (dez) contas ativas entre avaliações, simuladores remunerados e contas reais.
+
+PRAZOS DE ATENDIMENTO E RESPOSTA
+
+A AMIGOS DA MESA PROP compromete-se a responder comunicações encaminhadas por e-mail, de qualquer natureza, no prazo de até 72 (setenta e duas) horas úteis, contadas a partir do recebimento da mensagem em seus canais oficiais.
+
+O prazo acima refere-se exclusivamente à resposta inicial, não implicando solução imediata da demanda, conclusão do atendimento ou deferimento de solicitações, especialmente em casos que dependam de análise técnica, operacional, jurídica ou de terceiros.
+
+Mensagens enviadas fora do horário comercial, em finais de semana, feriados ou períodos de instabilidade operacional poderão ter o prazo contado a partir do primeiro dia útil subsequente.
+
+Comunicações encaminhadas por canais não oficiais, mensagens duplicadas ou com informações incompletas poderão impactar o prazo de resposta.
+
+INATIVIDADE DA CONTA
+
+A ausência de operações na plataforma, sem comunicação prévia e formal à AMIGOS DA MESA PROP acerca dos motivos da inatividade, poderá ensejar o cancelamento automático da conta, a exclusivo critério da Mesa, conforme suas regras internas.
+
+PRAZO PARA REGULARIZAÇÃO
+
+Após o cancelamento, o Trader poderá solicitar a regularização e eventual reativação da conta no prazo máximo de 30 (trinta) dias corridos, contados da data do cancelamento.
+
+Decorrido esse prazo sem manifestação, a conta será considerada definitivamente encerrada, não sendo passível de reativação, sendo necessária, para novo acesso, a contratação de um novo plano.
+
+APROVAÇÃO E PAGAMENTO DA PLATAFORMA
+
+Uma vez aprovado, o Trader deverá efetuar o pagamento da licença da plataforma no prazo máximo de 30 (trinta) dias corridos, contados da data da aprovação.
+
+O não cumprimento deste prazo implicará cancelamento automático da conta, independentemente de aviso prévio.
+
+RESPONSABILIDADE DE PAGAMENTO – FASE DE AVALIAÇÃO (EXAME)
+
+Durante a fase de avaliação (Exame), a responsabilidade pelo pagamento da licença da plataforma é exclusiva do Trader.
+
+A AMIGOS DA MESA PROP não realizará notificações, cobranças, alertas ou lembretes referentes a vencimentos ou inadimplência, cabendo integralmente ao Trader o controle de seus prazos e obrigações financeiras.
+
+O inadimplemento poderá acarretar bloqueio e/ou cancelamento da conta, conforme regras internas.
+
+REATIVAÇÃO DE CONTA POR INADIMPLÊNCIA
+
+Nos casos de cancelamento da conta em decorrência de inadimplência no pagamento da licença da plataforma, a reativação ficará condicionada ao pagamento de taxa de reativação no valor de R$ 100,00 (cem reais), independentemente da versão de plataforma anteriormente contratada.
+
+A reativação somente será processada após a regularização integral dos valores pendentes, incluindo, quando aplicável, a taxa de reativação prevista nesta cláusula.
+
+VALORES DE LICENÇA DE PLATAFORMA
+
+Os valores vigentes para utilização da plataforma repassado pela Nelogica são:
+• Profit ONE: R$ 115,00
+• Profit PLUS: R$ 165,00
+• Profit PRO: R$ 245,00
 
 REGRAS OPERACIONAIS GERAIS
 
@@ -320,17 +379,43 @@ O descumprimento de qualquer regra operacional implicará eliminação imediata,
 
 OPERAÇÕES NÃO ACEITAS – PARÂMETROS OPERACIONAIS MÍNIMOS
 
-Não serão aceitas operações caracterizadas como micro-scalp, scalp de latência ou captura mínima de pontos.
+Com o objetivo de preservar a integridade operacional, a sustentabilidade financeira da mesa e o perfil profissional do Trader, não serão aceitas operações caracterizadas como micro-scalp, scalp de latência ou captura mínima de pontos, independentemente da fase em que o Trader se encontre (Exame, Simulador Remunerado ou Conta Real).
 
-Consideram-se operações não aceitas:
-• Operações no Mini Dólar (WDO) com objetivo de ganho igual ou inferior a 1,5 ponto(s)
-• Operações no Mini Índice (WIN) com objetivo de ganho igual ou inferior a 20 pontos
+Consideram-se operações não aceitas, a título exemplificativo e não limitativo:
+• Operações no Mini Dólar (WDO) com objetivo de ganho igual ou inferior a 1,5 (um vírgula cinco) ponto(s)
+• Operações no Mini Índice (WIN) com objetivo de ganho igual ou inferior a 20 (vinte) pontos
+
+Essas práticas são enquadradas como conduta operacional incompatível com o modelo de gestão de risco da AMIGOS DA MESA, por estarem associadas a overtrade, exploração de latência, alavancagem excessiva ou comportamento estatisticamente inconsistente.
+
+Na primeira ocorrência, a AMIGOS DA MESA adotará medida educativa, consistindo em:
+• Advertência formal ao Trader
+• Desconsideração integral da(s) operação(ões) para fins de apuração de resultado
+• Exclusão da(s) operação(ões) do cálculo de lucro, prejuízo, repasse ou qualquer valor devido
+• Não inclusão da(s) operação(ões) no saldo total da conta, não gerando débito, cobrança ou obrigação financeira ao Trader
+
+A reincidência, habitualidade ou caracterização de padrão operacional incompatível poderá ensejar, a exclusivo critério da AMIGOS DA MESA:
+• Novas advertências
+• Bloqueio temporário da conta
+• Retorno à fase de Simulador Remunerado
+• Eliminação definitiva da conta, sem direito a repasse, reativação ou indenização de qualquer natureza
+
+A AMIGOS DA MESA esclarece que a inexistência de limite formal de ganho não autoriza liberdade irrestrita de operação, sendo dever do Trader manter conduta compatível com padrões profissionais de risco, consistência e gestão exigidos pela mesa.
 
 GERENCIAMENTO DE RISCO E RESPONSABILIDADE DO TRADER
 
-O Trader declara estar plenamente ciente de seus limites operacionais, incluindo stop diário e stop global, sendo sua responsabilidade absoluta respeitá-los.
+O Trader declara estar plenamente ciente de seus limites operacionais, incluindo stop diário e stop global, sendo sua responsabilidade absoluta respeitá-los, independentemente da existência ou não de bloqueios automáticos na plataforma.
 
-O descumprimento dos limites acarretará eliminação automática da conta. Caso haja extrapolação financeira em conta real, o Trader poderá ser responsabilizado pelo valor excedente.
+O descumprimento dos limites acarretará eliminação automática da conta. Caso haja extrapolação financeira em conta real, o Trader poderá ser responsabilizado pelo valor excedente, conforme apuração da gestão.
+
+A AMIGOS DA MESA PROP não adota drawdown como critério de avaliação. O resultado é sempre apurado conforme as regras específicas de cada fase (teste, simulador remunerado ou conta real).
+
+STOP DIÁRIO NA FASE DE TESTE (EXAME)
+
+Durante a fase de teste (Exame de Seleção), os planos não possuem bloqueio automático de stop diário na plataforma.
+
+O controle de risco diário é de responsabilidade exclusiva do Trader, que deverá, caso deseje, configurar manualmente seus limites por meio das ferramentas disponíveis na plataforma Nelogica.
+
+A ausência de configuração não exime o Trader do cumprimento das regras de risco do plano, sendo integralmente responsável por quaisquer perdas decorrentes de sua operação.
 
 CRITÉRIOS DE APROVAÇÃO
 
@@ -338,7 +423,7 @@ Cada exame possui meta de ganho e limite de perda previamente definidos.
 
 O critério de aprovação ou reprovação na fase de teste será baseado exclusivamente no saldo líquido, conforme relatório de performance.
 
-Ao atingir a meta, o Trader deverá solicitar formalmente a análise de aprovação por e-mail.
+Ao atingir a meta, o Trader deverá solicitar formalmente a análise de aprovação por e-mail. Após a solicitação, recomenda-se que não sejam realizadas novas operações, pois o saldo considerado será aquele existente no momento da avaliação.
 
 SIMULADOR REMUNERADO E CONTA REAL
 
@@ -348,18 +433,36 @@ Não há limitação geral de ganhos no SR, ressalvadas as regras de gerenciamen
 
 Não será permitido realizar mais 50% do saldo global de sua conta em um dia ou em uma operação e caso ocorra o dia será eliminado da performance.
 
-TRANSIÇÕES, SAQUES E REPASSES
+A AMIGOS DA MESA PROP poderá, a qualquer tempo, promover, rebaixar ou transitar o Trader entre SR e CR, conforme critérios de desempenho, risco e gestão.
+
+Nos simuladores remunerados e contas reais, os critérios de eliminação variam conforme a modalidade do plano contratado, contado desde a data de início do Trader na respectiva conta, observadas as regras específicas previstas para cada plano, independentemente de saldo líquido positivo ou valores já repassados.
+
+Para material educativo com exemplos práticos, consulte o guia explicativo disponível nos canais oficiais.
+
+TRANSIÇÕES E REPASSES
 
 Para habilitar qualquer repasse é obrigatório:
 • Mínimo de 7 (sete) pregões operados no período
 
-Sempre que houver entrada em conta real, retorno ao simulador remunerado ou nova transição, será exigido novamente o cumprimento do mínimo de 7 pregões.
+Sempre que houver:
+• Entrada em conta real
+• Retorno ao simulador remunerado
+• Nova transição
+
+Será exigido novamente o cumprimento do mínimo de 7 pregões.
 
 O Trader poderá optar por:
 • Repasse quinzenal (dias 15 e 30/31)
 • Repasse mensal (dia 30/31)
 
 Os repasses serão efetuados em até 7 (sete) dias úteis após o fechamento.
+
+PROCEDIMENTO PARA SOLICITAÇÃO:
+1. Acesse o site: https://www.amigosdamesa.site/
+2. Clique em "ENTRAR AGORA" e acesse sua conta
+3. No menu lateral, selecione a opção "SAQUES"
+4. Preencha o valor desejado e, se necessário, anexe a documentação solicitada
+5. Clique em "SOLICITAR SAQUE" e aguarde o retorno pela própria área logada
 
 TAXAS, TRIBUTOS E CUSTOS
 
@@ -370,25 +473,52 @@ No momento do repasse serão descontados, quando aplicável:
 • Imposto de Renda (20%)
 • INSS / Taxa Administrativa (11%), quando aplicável
 
+Os valores de repasse não são cumulativos, podendo ser negociados exclusivamente com a gestora de contas e os valores negativos são cumulativos.
+
 POLÍTICA DE REEMBOLSO E CANCELAMENTO
+
+A presente Política de Reembolso aplica-se a todos os planos, exames, simuladores remunerados e serviços comercializados pela AMIGOS DA MESA PROP, observadas as condições abaixo.
 
 O Trader poderá solicitar o cancelamento do plano antes do início da avaliação, desde que respeitadas integralmente as regras deste Regulamento.
 
-Caso o Trader tenha adquirido um plano e ainda não tenha iniciado a avaliação, poderá solicitar o cancelamento mediante comunicação formal por e-mail ou WhatsApp oficial, com antecedência mínima de 48 horas úteis em relação à data agendada para início.
+Condições para solicitação de reembolso
 
-Nessas condições, a AMIGOS DA MESA PROP poderá realizar reembolso parcial de até 50% do valor efetivamente pago.
+Caso o Trader tenha adquirido um plano e ainda não tenha iniciado a avaliação, poderá solicitar o cancelamento mediante comunicação formal por e-mail ou WhatsApp oficial da AMIGOS DA MESA PROP, com antecedência mínima de 48 (quarenta e oito) horas úteis em relação à data agendada para início.
 
-Não haverá direito a reembolso quando:
-• A plataforma de negociação já tiver sido liberada
-• O Trader já tiver acessado a plataforma
-• Em caso de reprovação no exame
-• Por descumprimento das regras do plano
+Nessas condições, a AMIGOS DA MESA PROP poderá, a seu critério, realizar reembolso parcial de até 50% (cinquenta por cento) do valor efetivamente pago, descontados eventuais custos administrativos, operacionais e financeiros.
 
-LGPD E DISPOSIÇÕES FINAIS
+Hipóteses em que não haverá reembolso
+
+Não haverá direito a reembolso, estorno, ressarcimento ou devolução de valores pagos, total ou parcial, nas seguintes hipóteses:
+• Quando a plataforma de negociação já tiver sido liberada, ativada ou disponibilizada ao Trader pela Nelogica, independentemente de utilização, uma vez que tal liberação gera custos operacionais irreversíveis para a mesa
+• Quando o Trader já tiver acessado a plataforma, recebido login e senha ou iniciado qualquer atividade operacional
+• Em caso de reprovação no exame por atingimento de limite de perda, stop global, descumprimento de regras operacionais ou prazo do plano
+• Por descumprimento das regras do plano contratado ou deste Regulamento
+• Pela realização de operações não permitidas, condutas incompatíveis ou violação das diretrizes operacionais da mesa
+• Por solicitação realizada fora dos prazos e condições aqui estabelecidos
+• Em razão de desistência voluntária após o início da avaliação
+
+CLUBE DO VALOR E BENEFÍCIOS
+
+O CLUBE DO VALOR é um programa opcional de apoio operacional, com benefícios exclusivos, conforme regras vigentes.
+
+Os benefícios somente são válidos para traders ativos e adimplentes.
+
+REPLICADOR DE ORDENS
+
+O uso do Replicador de Ordens é permitido somente mediante autorização expressa da mesa.
+
+O uso sem autorização implicará eliminação imediata, sem direito a repasse, devolução ou reativação.
+
+A AMIGOS DA MESA PROP não se responsabiliza por falhas técnicas, prejuízos ou danos decorrentes do uso da ferramenta.
+
+CONTRATO, LGPD E DISPOSIÇÕES FINAIS
 
 O contrato de parceria deverá ser assinado quando o Trader completar 1 (um) mês em conta real.
 
 Os dados pessoais serão tratados conforme a Lei nº 13.709/2018 (LGPD).
+
+O Trader autoriza o uso de sua imagem para fins institucionais e publicitários, sem ônus e por prazo indeterminado.
 
 A AMIGOS DA MESA PROP poderá alterar este Regulamento a qualquer tempo, mediante divulgação em seus canais oficiais.
 
@@ -400,47 +530,63 @@ Uma mesa para todos.`
   {
     id: "regulamento-campanha",
     titulo: "REGULAMENTO ESPECÍFICO DE CAMPANHA",
-    subtitulo: "Regras para campanhas promocionais",
-    conteudo: `REGULAMENTO ESPECÍFICO DE CAMPANHA
-AMIGOS DA MESA PROP
+    subtitulo: "Campanhas igual ou superior a 50% OFF - Modalidade de saque mensal",
+    conteudo: `REGULAMENTO ESPECÍFICO – CAMPANHAS IGUAL OU SUPERIOR A 50% OFF
+MODALIDADE DE SAQUE MENSAL
 
-Este regulamento complementa o Regulamento Geral e aplica-se exclusivamente às campanhas promocionais vigentes.
+O presente regulamento estabelece as condições específicas aplicáveis aos planos adquiridos em campanhas promocionais com desconto igual ou superior a 50% (cinquenta por cento), prevalecendo sobre quaisquer condições padrão em caso de divergência.
 
-NATUREZA DAS CAMPANHAS
+ABRANGÊNCIA
 
-As campanhas promocionais possuem caráter temporário e comercial. Seu objetivo é oferecer condições diferenciadas de entrada, sem alterar a estrutura operacional padrão da mesa.
+Este regulamento se aplica exclusivamente aos planos adquiridos sob campanhas promocionais com desconto igual ou superior a 50% (cinquenta por cento).
 
-DESCONTOS APLICADOS
+Ao aderir ao plano, o participante declara ciência e concordância integral com estas condições.
 
-Durante a vigência da campanha, os planos poderão ser adquiridos com desconto. O desconto aplica-se exclusivamente no momento da compra e não se estende a renovações ou reativações.
+FASE DE TESTE
 
-LIMITAÇÃO DE BENEFÍCIOS
+O participante deverá cumprir o mínimo de 5 (cinco) dias operados para elegibilidade à progressão de fase, independentemente do atingimento de meta.
 
-Os planos adquiridos em campanha:
-• Não acumulam benefícios de campanhas anteriores
-• Não possuem upgrades automáticos
-• Não incluem vantagens adicionais não especificadas (como margem extra, reset gratuito ou condições especiais de saque)
+Considera-se "dia operado" aquele em que houver ao menos uma operação válida registrada na plataforma não podendo ser 0x0.
 
-NÃO CUMULATIVIDADE
+SIMULADOR REMUNERADO (SR)
 
-As campanhas não são cumulativas entre si e não podem ser combinadas com outras promoções.
+As solicitações de saque deverão ser realizadas exclusivamente via e-mail oficial ou área logada do participante.
 
-IMPOSSIBILIDADE DE ALTERAÇÃO APÓS COMPRA
+Os saques nesta modalidade ocorrerão exclusivamente em ciclos mensais, com fechamento nos dias 15, 30 ou 31 de cada mês. As datas que determina o seu ciclo de saque será sempre seu dia de inicio em conta real ou simulador remunerado.
 
-Após a aquisição do plano, não será possível:
-• Alterar a campanha aplicada
-• Ajustar o valor pago
-• Migrar para novas condições promocionais
+O prazo para solicitação de saque inicia-se 5 (cinco) dias corridos antes da data de fechamento e encerra-se em até 3 (três) dias corridos após o fechamento.
 
-VIGÊNCIA DA CAMPANHA
+Solicitações realizadas fora deste prazo serão automaticamente desconsideradas, sem exceção.
 
-Cada campanha possui prazo determinado. A AMIGOS DA MESA PROP poderá encerrar a campanha, alterar condições comerciais ou substituir ofertas a qualquer momento, sem necessidade de aviso prévio.
+ALTERAÇÃO DE MODALIDADE DE SAQUE
 
-PRIORIDADE DAS REGRAS
+A alteração da modalidade de saque poderá ser solicitada mediante:
+a) envio de solicitação para o e-mail oficial da empresa
+b) pagamento de taxa correspondente a 40% (quarenta por cento) sobre o valor original do plano adquirido
 
-Em caso de divergência entre comunicação de campanha e o Regulamento Geral, prevalecerá sempre o Regulamento Geral da AMIGOS DA MESA PROP.
+A solicitação deverá ser realizada com antecedência mínima de 7 (sete) dias corridos da data de fechamento do ciclo vigente.
 
-Este regulamento específico de campanha integra o conjunto de normas da AMIGOS DA MESA PROP e deve ser lido em conjunto com o Regulamento Geral vigente.`
+Solicitações fora do prazo não serão processadas.
+
+PERCENTUAL DE REPASSE
+
+O percentual de repasse padrão será de 90% (noventa por cento) sobre o lucro líquido apurado.
+
+Para participantes vinculados ao Clube, aplicam-se as seguintes condições:
+a) 100% (cem por cento) de repasse durante os primeiros 3 (três) meses
+b) após este período, o repasse será de 90% (noventa por cento)
+
+O percentual de repasse incide exclusivamente sobre o lucro líquido, após dedução de tributos, taxas operacionais e demais encargos obrigatórios.
+
+DISPOSIÇÕES GERAIS
+
+Este regulamento não substitui o Regulamento Geral da mesa, sendo complementar às regras já estabelecidas.
+
+Permanecem integralmente válidas todas as regras operacionais, de risco, consistência, limites, conduta e elegibilidade descritas nos materiais oficiais da empresa.
+
+Em caso de conflito entre este regulamento e o regulamento padrão, prevalecerão as condições aqui descritas para os planos contemplados nesta campanha.
+
+A empresa se reserva o direito de recusar solicitações que não atendam integralmente aos critérios estabelecidos neste regulamento.`
   }
 ]
 
