@@ -3,16 +3,21 @@
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
+const LINK_SELECTOR = 'a[href*="neoncheckout"], a[href*="checkout"], a[href*="neon"]';
+
 function injectUtm(link: Element, vendedora: string) {
   const href = link.getAttribute("href");
-  if (href && href.includes("neoncheckout.com") && !href.includes("utm_source")) {
+  console.log("[v0] VendedoraTracker: link href =", href);
+  if (href && !href.includes("utm_source")) {
     const separator = href.includes("?") ? "&" : "?";
     link.setAttribute("href", `${href}${separator}utm_source=${vendedora}`);
   }
 }
 
 function processAllLinks(vendedora: string) {
-  document.querySelectorAll('a[href*="neoncheckout.com"]').forEach((link) => {
+  const links = document.querySelectorAll(LINK_SELECTOR);
+  console.log("[v0] VendedoraTracker: links encontrados =", links.length);
+  links.forEach((link) => {
     injectUtm(link, vendedora);
   });
 }
@@ -22,12 +27,15 @@ export function VendedoraTracker() {
 
   useEffect(() => {
     const ref = searchParams.get("ref");
+    console.log("[v0] VendedoraTracker: ref =", ref);
+    
     if (ref) {
       document.cookie = `vendedora=${encodeURIComponent(ref)};path=/;max-age=${60 * 60 * 24 * 30};SameSite=Lax`;
     }
 
     const match = document.cookie.match(/vendedora=([^;]+)/);
     const vendedora = match ? decodeURIComponent(match[1]) : null;
+    console.log("[v0] VendedoraTracker: vendedora cookie =", vendedora);
 
     if (!vendedora) return;
 
@@ -47,7 +55,7 @@ export function VendedoraTracker() {
           }
 
           // Verifica links dentro do nó adicionado
-          el.querySelectorAll?.('a[href*="neoncheckout.com"]').forEach((link) => {
+          el.querySelectorAll?.(LINK_SELECTOR).forEach((link) => {
             injectUtm(link, vendedora);
           });
         });
