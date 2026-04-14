@@ -3,68 +3,90 @@
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
-const LINK_SELECTOR = 'a[href*="neoncheckout"], a[href*="checkout"], a[href*="neon"]';
-
-function injectUtm(link: Element, vendedora: string) {
-  const href = link.getAttribute("href");
-  console.log("[v0] VendedoraTracker: link href =", href);
-  if (href && !href.includes("utm_source")) {
-    const separator = href.includes("?") ? "&" : "?";
-    link.setAttribute("href", `${href}${separator}utm_source=${vendedora}`);
-  }
+function getVendedoraFromCookie(): string | null {
+  const match = document.cookie.match(/vendedora=([^;]+)/);
+  return match ? decodeURIComponent(match[1]) : null;
 }
 
-function processAllLinks(vendedora: string) {
-  const links = document.querySelectorAll(LINK_SELECTOR);
-  console.log("[v0] VendedoraTracker: links encontrados =", links.length);
-  links.forEach((link) => {
-    injectUtm(link, vendedora);
-  });
+function addUtm(url: string | URL | undefined | null): string {
+  if (!url) return "";
+  
+  const urlStr = url.toString();
+  
+  // Só modifica URLs que contenham "neoncheckout" ou "checkout"
+  if (!urlStr.includes("neoncheckout") && !urlStr.includes("checkout")) {
+    return urlStr;
+  }
+  
+  // Não duplica utm_source se já existir
+  if (urlStr.includes("utm_source")) {
+    return urlStr;
+  }
+  
+  // Lê o cookie no momento do clique
+  const vendedora = getVendedoraFromCookie();
+  if (!vendedora) {
+    return urlStr;
+  }
+  
+  const separator = urlStr.includes("?") ? "&" : "?";
+  return `${urlStr}${separator}utm_source=${vendedora}`;
 }
 
 export function VendedoraTracker() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
+    // Captura ?ref= e salva no cookie
     const ref = searchParams.get("ref");
-    console.log("[v0] VendedoraTracker: ref =", ref);
-    
     if (ref) {
       document.cookie = `vendedora=${encodeURIComponent(ref)};path=/;max-age=${60 * 60 * 24 * 30};SameSite=Lax`;
     }
 
-    const match = document.cookie.match(/vendedora=([^;]+)/);
-    const vendedora = match ? decodeURIComponent(match[1]) : null;
-    console.log("[v0] VendedoraTracker: vendedora cookie =", vendedora);
+    // Intercepta window.location.assign
+    const originalAssign = window.location.assign.bind(window.location);
+    window.location.assign = (url: string | URL) => {
+      originalAssign(addUtm(url));
+    };
 
-    if (!vendedora) return;
+    // Intercepta window.location.replace
+    const originalReplace = window.location.replace.bind(window.location);
+    window.location.replace = (url: string | URL) => {
+      originalReplace(addUtm(url));
+    };
 
-    // Processa links já existentes no DOM
-    processAllLinks(vendedora);
+    // Intercepta window.open
+    const originalOpen = window.open.bind(window);
+    window.open = (url?: string | URL | undefined, target?: string, features?: string) => {
+      return originalOpen(addUtm(url), target, features);
+    };
 
-    // Observa links adicionados dinamicamente
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        mutation.addedNodes.forEach((node) => {
-          if (node.nodeType !== Node.ELEMENT_NODE) return;
-          const el = node as Element;
-
-          // Verifica se o próprio nó é um link
-          if (el.tagName === "A") {
-            injectUtm(el, vendedora);
+    // Intercepta cliques em links <a> que possam ter href dinâmico
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const link = target.closest("a");
+      if (link && link.href) {
+        const originalHref = link.href;
+        if ((originalHref.includes("neoncheckout") || originalHref.includes("checkout")) && !originalHref.includes("utm_source")) {
+          const vendedora = getVendedoraFromCookie();
+          if (vendedora) {
+            e.preventDefault();
+            const newHref = addUtm(originalHref);
+            window.location.href = newHref;
           }
+        }
+      }
+    };
 
-          // Verifica links dentro do nó adicionado
-          el.querySelectorAll?.(LINK_SELECTOR).forEach((link) => {
-            injectUtm(link, vendedora);
-          });
-        });
-      });
-    });
+    document.addEventListener("click", handleClick, true);
 
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    return () => observer.disconnect();
+    // Cleanup
+    return () => {
+      window.location.assign = originalAssign;
+      window.location.replace = originalReplace;
+      window.open = originalOpen;
+      document.removeEventListener("click", handleClick, true);
+    };
   }, [searchParams]);
 
   return null;
