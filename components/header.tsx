@@ -33,7 +33,7 @@ export function Header() {
         className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled 
             ? "top-0 bg-background/95 backdrop-blur-md border-b border-border shadow-sm" 
-            : "top-[60px] sm:top-[80px] md:top-[100px] lg:top-[120px] bg-transparent"
+            : "top-[calc(100vw*0.14)] bg-transparent"
         }`}
       >
         <div className="container mx-auto px-4">

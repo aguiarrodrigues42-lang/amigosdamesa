@@ -16,7 +16,7 @@ export function PromoTopBanner() {
         <img
           src="/images/promo-header-banner.png"
           alt="Descontos de ate 70% - Exames e Pegue e Monte"
-          className="w-full h-auto object-cover max-h-[60px] sm:max-h-[80px] md:max-h-[100px] lg:max-h-[120px] group-hover:brightness-110 transition-all duration-200"
+          className="w-full h-auto object-contain group-hover:brightness-110 transition-all duration-200"
         />
       </button>
     </div>
