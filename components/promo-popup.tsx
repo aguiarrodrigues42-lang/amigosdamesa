@@ -28,47 +28,47 @@ export function PromoPopup() {
         onClick={handleClose}
       />
 
-      {/* Popup card - tamanho limitado */}
-      <div className="relative z-10 w-full max-w-[340px] animate-in fade-in zoom-in-95 duration-300">
+      {/* Popup card - largura adequada para imagem vertical */}
+      <div className="relative z-10 w-full max-w-sm max-h-[90vh] overflow-y-auto animate-in fade-in zoom-in-95 duration-300">
         {/* Botao X */}
         <button
           onClick={handleClose}
-          className="absolute -top-2 -right-2 z-20 w-8 h-8 rounded-full bg-background border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary transition-colors shadow-lg"
+          className="absolute top-1 right-1 z-20 w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 flex items-center justify-center text-white transition-colors"
           aria-label="Fechar"
         >
-          <X className="w-4 h-4" />
+          <X className="w-5 h-5" />
         </button>
 
-        <div className="rounded-xl overflow-hidden shadow-2xl border border-primary/20">
+        <div className="rounded-2xl overflow-hidden shadow-2xl border border-primary/30 bg-background">
           {/* Faixa superior */}
-          <div className="flex items-center justify-center gap-2 bg-primary py-1.5 px-3">
-            <Flame className="w-3.5 h-3.5 text-primary-foreground animate-pulse" />
-            <span className="text-primary-foreground text-[10px] font-bold uppercase tracking-wide">
+          <div className="flex items-center justify-center gap-2 bg-primary py-2 px-4">
+            <Flame className="w-4 h-4 text-primary-foreground" />
+            <span className="text-primary-foreground text-xs font-bold uppercase tracking-wide">
               Oferta por tempo limitado
             </span>
-            <Flame className="w-3.5 h-3.5 text-primary-foreground animate-pulse" />
+            <Flame className="w-4 h-4 text-primary-foreground" />
           </div>
 
-          {/* Imagem com altura maxima controlada */}
+          {/* Imagem completa sem corte */}
           <button onClick={handleClick} className="w-full cursor-pointer group block">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/images/promo-popup.png"
               alt="Ate 70% OFF - Amigos da Mesa"
-              className="w-full h-auto max-h-[50vh] object-cover object-top group-hover:brightness-105 transition-all duration-200"
+              className="w-full h-auto group-hover:brightness-105 transition-all duration-200"
             />
           </button>
 
           {/* Rodape com CTA */}
-          <div className="bg-background p-3 space-y-2.5">
+          <div className="p-4 space-y-3">
             {/* Badges */}
-            <div className="flex items-center justify-center gap-4">
-              <span className="flex items-center gap-1 text-[9px] font-semibold uppercase tracking-wide text-red-500">
-                <AlertTriangle className="w-3 h-3" />
+            <div className="flex items-center justify-center gap-5">
+              <span className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-red-500">
+                <AlertTriangle className="w-4 h-4" />
                 Poucas vagas
               </span>
-              <span className="flex items-center gap-1 text-[9px] font-semibold uppercase tracking-wide text-primary">
-                <Clock className="w-3 h-3" />
+              <span className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-primary">
+                <Clock className="w-4 h-4" />
                 Encerra em breve
               </span>
             </div>
@@ -76,7 +76,7 @@ export function PromoPopup() {
             {/* Botao CTA */}
             <button
               onClick={handleClick}
-              className="w-full py-2.5 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-xs uppercase tracking-wide transition-colors shadow-md"
+              className="w-full py-3 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-sm uppercase tracking-wide transition-colors shadow-lg"
             >
               Quero aproveitar agora
             </button>
