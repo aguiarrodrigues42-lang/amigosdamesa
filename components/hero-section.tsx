@@ -44,7 +44,7 @@ export function HeroSection() {
     <section className="relative min-h-screen flex flex-col overflow-hidden bg-[#0c0c0c]">
 
       {/* ── Live ticker bar ─────────────────────────────── */}
-      <div className="absolute top-[calc(100vw*0.14+64px)] md:top-[calc(100vw*0.14+80px)] left-0 right-0 z-20 overflow-hidden h-9 bg-black/60 border-b border-white/5 backdrop-blur-sm">
+      <div className="absolute top-[124px] sm:top-[144px] md:top-[180px] lg:top-[200px] left-0 right-0 z-20 overflow-hidden h-9 bg-black/60 border-b border-white/5 backdrop-blur-sm">
         <div
           ref={trackRef}
           className="flex items-center gap-8 whitespace-nowrap"
@@ -93,7 +93,7 @@ export function HeroSection() {
         style={{ background: "radial-gradient(circle at 0% 100%, oklch(0.7 0.18 45 / 0.18) 0%, transparent 65%)" }} />
 
       {/* ── Content ─────────────────────────────────────── */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-4 pt-[calc(100vw*0.14+120px)] pb-20 md:pt-[calc(100vw*0.14+140px)]">
+      <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-4 pt-44 pb-20 sm:pt-48 md:pt-56 lg:pt-60">
         <div className="max-w-2xl">
 
           {/* Eyebrow */}
