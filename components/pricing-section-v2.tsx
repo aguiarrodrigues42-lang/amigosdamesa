@@ -776,9 +776,11 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
         <h3 className="text-sm font-black uppercase tracking-wide text-primary-foreground leading-tight">
           {plan.name}
         </h3>
-        <span className="bg-primary-foreground text-primary text-[10px] font-black px-2 py-0.5 rounded-full flex-shrink-0">
-          {plan.discountPercent}% OFF
-        </span>
+        {plan.discountPercent > 0 && (
+          <span className="bg-primary-foreground text-primary text-[10px] font-black px-2 py-0.5 rounded-full flex-shrink-0">
+            {plan.discountPercent}% OFF
+          </span>
+        )}
       </div>
 
       {/* Body */}
