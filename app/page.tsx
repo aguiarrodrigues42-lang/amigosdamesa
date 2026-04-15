@@ -1,5 +1,6 @@
 import { Header } from "@/components/header"
 import { PromoBanner } from "@/components/promo-banner"
+import { PromoImageBanner } from "@/components/promo-image-banner"
 import { HeroSection } from "@/components/hero-section"
 import { AboutSection } from "@/components/about-section"
 import { TrilhaSection } from "@/components/trilha-section"
@@ -18,6 +19,10 @@ export default function HomePage() {
     <main className="min-h-screen bg-background">
       <PromoBanner />
       <Header />
+      {/* Banner de promoção relâmpago — logo abaixo do header (pt considera faixa 32px + header 80px) */}
+      <div className="pt-[112px]">
+        <PromoImageBanner />
+      </div>
       {/* 1. Hero — imagem 1 como capa */}
       <HeroSection />
       {/* 2. Sobre a mesa — imagem 3 */}
