@@ -1,4 +1,5 @@
 import { Header } from "@/components/header"
+import { PromoTopBanner } from "@/components/promo-top-banner"
 import { PromoPopup } from "@/components/promo-popup"
 import { HeroSection } from "@/components/hero-section"
 import { AboutSection } from "@/components/about-section"
@@ -16,6 +17,10 @@ import { WhatsAppButton } from "@/components/whatsapp-button"
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-background">
+      {/* Banner promocional fixo no topo */}
+      <div className="fixed top-0 left-0 right-0 z-[55]">
+        <PromoTopBanner />
+      </div>
       <PromoPopup />
       <Header />
       {/* 1. Hero — imagem 1 como capa */}
