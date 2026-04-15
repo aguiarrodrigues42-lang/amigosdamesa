@@ -1,4 +1,5 @@
 import { Header } from "@/components/header"
+import { PromoPopup } from "@/components/promo-popup"
 import { HeroSection } from "@/components/hero-section"
 import { AboutSection } from "@/components/about-section"
 import { TrilhaSection } from "@/components/trilha-section"
@@ -15,6 +16,7 @@ import { WhatsAppButton } from "@/components/whatsapp-button"
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-background">
+      <PromoPopup />
       <Header />
       {/* 1. Hero — imagem 1 como capa */}
       <HeroSection />
