@@ -39,12 +39,12 @@ const seniorFeaturesCommon = [
 
 const plansByCategory: Record<Category, Plan[]> = {
   "exames": [
-    { name: "PLANO INICIANTE", contracts: 7, asset: "", meta: "R$800,00", dailyLimit: "", stopGlobal: "R$2.000,00", priceOriginal: 572.70, pricePix: 229.08, discountPercent: 0, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151501", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151501" },
-    { name: "PLANO INTERMEDIÁRIO", contracts: 15, asset: "", meta: "R$1.400,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 742.53, pricePix: 297.01, discountPercent: 0, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502" },
-    { name: "PLANO AVANÇADO", contracts: 25, asset: "", meta: "R$3.950,00", dailyLimit: "", stopGlobal: "R$4.250,00", priceOriginal: 1697.85, pricePix: 679.14, discountPercent: 0, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151503", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151503" },
-    { name: "PLANO UNO 40", contracts: 40, asset: "Índice", meta: "R$4.980,00", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 2047.65, pricePix: 819.06, discountPercent: 0, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151504", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151504" },
-    { name: "PLANO UNO 40", contracts: 40, asset: "Dólar", meta: "R$4.980,00", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 2047.65, pricePix: 819.06, discountPercent: 0, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151505", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151505" },
-    { name: "PLANO MASTER", contracts: 50, asset: "Índice e Dólar", meta: "R$9.950,00", dailyLimit: "", stopGlobal: "R$10.250,00", priceOriginal: 2848.33, pricePix: 1139.33, discountPercent: 0, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151506", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151506" },
+    { name: "PLANO INICIANTE", contracts: 7, asset: "", meta: "R$800,00", dailyLimit: "", stopGlobal: "R$2.000,00", priceOriginal: 572.70, pricePix: 229.08, discountPercent: 60, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151501", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151501" },
+    { name: "PLANO INTERMEDIÁRIO", contracts: 15, asset: "", meta: "R$1.400,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 742.53, pricePix: 297.01, discountPercent: 60, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502" },
+    { name: "PLANO AVANÇADO", contracts: 25, asset: "", meta: "R$3.950,00", dailyLimit: "", stopGlobal: "R$4.250,00", priceOriginal: 1697.85, pricePix: 679.14, discountPercent: 60, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151503", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151503" },
+    { name: "PLANO UNO 40", contracts: 40, asset: "Índice", meta: "R$4.980,00", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 2047.65, pricePix: 819.06, discountPercent: 60, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151504", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151504" },
+    { name: "PLANO UNO 40", contracts: 40, asset: "Dólar", meta: "R$4.980,00", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 2047.65, pricePix: 819.06, discountPercent: 60, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151505", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151505" },
+    { name: "PLANO MASTER", contracts: 50, asset: "Índice e Dólar", meta: "R$9.950,00", dailyLimit: "", stopGlobal: "R$10.250,00", priceOriginal: 2848.33, pricePix: 1139.33, discountPercent: 60, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151506", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151506" },
   ],
   "prime-plus": [
     {
@@ -157,11 +157,11 @@ const plansByCategory: Record<Category, Plan[]> = {
     },
   ],
   "pegue-monte": [
-    { name: "PEGUE E MONTE 8", contracts: 8, meta: "R$1.500,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 972.55, pricePix: 389.02, discountPercent: 0, features: ["Stop Global R$2.500,00", "Meta de Aprovação R$1.500,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151521", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151521" },
-    { name: "PEGUE E MONTE 12", contracts: 12, meta: "R$1.920,00", dailyLimit: "", stopGlobal: "R$3.500,00", priceOriginal: 1097.50, pricePix: 439.00, discountPercent: 0, features: ["Stop Global R$3.500,00", "Meta de Aprovação R$1.920,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151522", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151522" },
-    { name: "PEGUE E MONTE 20", contracts: 20, meta: "R$2.832,00", dailyLimit: "", stopGlobal: "R$4.720,00", priceOriginal: 1447.50, pricePix: 579.00, discountPercent: 0, features: ["Stop Global R$4.720,00", "Meta de Aprovação R$2.832,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151523", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151523" },
-    { name: "PEGUE E MONTE 27", contracts: 27, meta: "R$3.612,00", dailyLimit: "", stopGlobal: "R$6.020,00", priceOriginal: 1690.50, pricePix: 0, discountPercent: 0, features: ["Stop Global R$6.020,00", "Meta de Aprovação R$3.612,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Indisponível", ctaWhatsApp: false },
-    { name: "PEGUE E MONTE 32", contracts: 32, meta: "R$4.890,00", dailyLimit: "", stopGlobal: "R$8.150,00", priceOriginal: 2120.60, pricePix: 0, discountPercent: 0, features: ["Stop Global R$8.150,00", "Meta de Aprovação R$4.890,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Indisponível", ctaWhatsApp: false },
+    { name: "PEGUE E MONTE 8", contracts: 8, meta: "R$1.500,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 972.55, pricePix: 389.02, discountPercent: 60, features: ["Stop Global R$2.500,00", "Meta de Aprovação R$1.500,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151521", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151521" },
+    { name: "PEGUE E MONTE 12", contracts: 12, meta: "R$1.920,00", dailyLimit: "", stopGlobal: "R$3.500,00", priceOriginal: 1097.50, pricePix: 439.00, discountPercent: 60, features: ["Stop Global R$3.500,00", "Meta de Aprovação R$1.920,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://checkout.neonpay.com.br/checkout/cmn3xmvvs00bz1ro3qyca7rhl?offer=IYQ93ZR", cartaoLink: "https://checkout.neonpay.com.br/checkout/cmn3xmvvs00bz1ro3qyca7rhl?offer=IYQ93ZR" },
+    { name: "PEGUE E MONTE 20", contracts: 20, meta: "R$2.832,00", dailyLimit: "", stopGlobal: "R$4.720,00", priceOriginal: 1447.50, pricePix: 579.00, discountPercent: 60, features: ["Stop Global R$4.720,00", "Meta de Aprovação R$2.832,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151523", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151523" },
+    { name: "PEGUE E MONTE 27", contracts: 27, meta: "R$3.612,00", dailyLimit: "", stopGlobal: "R$6.020,00", priceOriginal: 1690.50, pricePix: 0, discountPercent: 60, features: ["Stop Global R$6.020,00", "Meta de Aprovação R$3.612,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Indisponível", ctaWhatsApp: false },
+    { name: "PEGUE E MONTE 32", contracts: 32, meta: "R$4.890,00", dailyLimit: "", stopGlobal: "R$8.150,00", priceOriginal: 2120.60, pricePix: 0, discountPercent: 60, features: ["Stop Global R$8.150,00", "Meta de Aprovação R$4.890,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Indisponível", ctaWhatsApp: false },
   ],
   "bit": [],
 }
@@ -274,9 +274,7 @@ function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive
       {/* Header */}
       <div className="bg-primary rounded-t-2xl px-5 py-3 flex items-center justify-between">
         <h3 className="text-primary-foreground font-black text-sm uppercase tracking-wide">{plan.name}</h3>
-        <span className="bg-primary-foreground text-primary text-[10px] font-black px-2 py-0.5 rounded-full">
-          55% OFF
-        </span>
+
       </div>
 
       <div className="flex flex-col flex-1 px-5 py-4 gap-4">
@@ -295,7 +293,7 @@ function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive
           <div className="flex items-center justify-between">
             <span className="text-xs text-muted-foreground font-semibold uppercase tracking-wide">Exame</span>
             <div className="text-right">
-              <span className="text-xs line-through text-muted-foreground block">{plan.precoExameOriginal}</span>
+
               {isPix ? (
                 <span className="text-primary font-black text-base">{plan.precoPix}</span>
               ) : (
@@ -757,7 +755,6 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
     : (plan.pricePix * 1.9372) / 12
 
   const displayPrice = isPix ? plan.pricePix : priceCartao12x
-  const displayOriginal = plan.priceOriginal
 
   const taxaDisplay = isPix ? plan.taxaOnePix : plan.taxaOneOriginal
 
@@ -776,11 +773,7 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
         <h3 className="text-sm font-black uppercase tracking-wide text-primary-foreground leading-tight">
           {plan.name}
         </h3>
-        {plan.discountPercent > 0 && (
-          <span className="bg-primary-foreground text-primary text-[10px] font-black px-2 py-0.5 rounded-full flex-shrink-0">
-            {plan.discountPercent}% OFF
-          </span>
-        )}
+
       </div>
 
       {/* Body */}
@@ -796,7 +789,7 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
               ))}
             </ul>
             <div className="border-t border-border pt-3 text-center">
-              <p className="text-xs text-muted-foreground line-through">{formatBRL(displayOriginal)}</p>
+
               {isPix ? (
                 <span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}/mês</span>
               ) : (
@@ -826,7 +819,7 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
               ))}
             </ul>
             <div className="border-t border-border pt-3 text-center">
-              <p className="text-xs text-muted-foreground line-through">{formatBRL(displayOriginal)}</p>
+
               {isPix ? (
                 <span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}</span>
               ) : (
@@ -860,7 +853,7 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
               </div>
             ) : (
               <div className="text-center">
-                <p className="text-xs text-muted-foreground line-through">{formatBRL(displayOriginal)}</p>
+
                 {isPix ? (
                   <span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}</span>
                 ) : (
