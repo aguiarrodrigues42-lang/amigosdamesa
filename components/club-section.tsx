@@ -5,20 +5,15 @@ import { Check, Crown, TrendingUp, Users, BookOpen, Newspaper, CalendarCheck, Re
 
 const clubBenefits = [
   { icon: CalendarCheck, text: "Sala AO VIVO zoom (Seg a Sex 9:00 às 11:00)" },
-  { icon: TrendingUp,    text: "1 Indicador regiões de importância (reversão)" },
-  { icon: TrendingUp,    text: "1 Indicador regra de coloração (fluxo)" },
-  { icon: TrendingUp,    text: "1 Indicador histograma (fluxo)" },
-  { icon: TrendingUp,    text: "1 Indicador regiões de importância (ajuste)" },
-  { icon: TrendingUp,    text: "1 Indicador regiões de importância (PTAX)" },
-  { icon: Users,         text: "Grupo VIP com Traders e narradores da sala" },
-  { icon: BookOpen,      text: "Momento tira dúvidas" },
-  { icon: BookOpen,      text: "Aulas gravadas explicando os indicadores" },
-  { icon: Newspaper,     text: "Trader informado (notícias diárias)" },
+  { icon: TrendingUp, text: "1 Indicador histograma (fluxo)" },
+  { icon: Users, text: "Grupo VIP com Traders e narradores da sala" },
+  { icon: BookOpen, text: "Momento tira dúvidas" },
+  { icon: Newspaper, text: "Trader informado (notícias diárias)" },
 ]
 
 const traderBenefits = [
-  { icon: Banknote,      text: "100% de saque sobre saldo líquido (SR ou CR)" },
-  { icon: RefreshCw,     text: "Saque semanal (CR) e saque diário (CR)" },
+  { icon: Banknote, text: "100% de saque sobre saldo líquido (SR ou CR)" },
+  { icon: RefreshCw, text: "Saque semanal (CR) e saque diário (CR)" },
 ]
 
 export function ClubSection() {
