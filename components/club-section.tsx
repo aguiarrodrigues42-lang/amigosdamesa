@@ -5,7 +5,6 @@ import { Check, Crown, TrendingUp, Users, BookOpen, Newspaper, CalendarCheck, Re
 
 const clubBenefits = [
   { icon: CalendarCheck, text: "Sala AO VIVO zoom (Seg a Sex 9:00 às 11:00)" },
-  { icon: TrendingUp, text: "1 Indicador histograma (fluxo)" },
   { icon: Users, text: "Grupo VIP com Traders e narradores da sala" },
   { icon: BookOpen, text: "Momento tira dúvidas" },
   { icon: Newspaper, text: "Trader informado (notícias diárias)" },
