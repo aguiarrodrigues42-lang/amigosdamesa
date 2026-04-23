@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { X, Flame, Clock, AlertTriangle } from "lucide-react"
+import { X, CheckCircle2 } from "lucide-react"
 
 export function PromoPopup() {
   const [isOpen, setIsOpen] = useState(false)
@@ -13,7 +13,7 @@ export function PromoPopup() {
 
   const handleClose = () => setIsOpen(false)
 
-  const handleClick = () => {
+  const handleCTA = () => {
     setIsOpen(false)
     document.getElementById("planos")?.scrollIntoView({ behavior: "smooth" })
   }
@@ -24,62 +24,73 @@ export function PromoPopup() {
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       {/* Overlay */}
       <div
-        className="absolute inset-0 bg-black/75 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/80 backdrop-blur-sm"
         onClick={handleClose}
       />
 
-      {/* Popup card - largura adequada para imagem vertical */}
-      <div className="relative z-10 w-full max-w-sm max-h-[90vh] overflow-y-auto animate-in fade-in zoom-in-95 duration-300">
-        {/* Botao X */}
+      {/* Popup */}
+      <div className="relative z-10 w-full max-w-[320px] animate-in fade-in zoom-in-95 duration-300">
+        {/* Botao fechar */}
         <button
           onClick={handleClose}
-          className="absolute top-1 right-1 z-20 w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 flex items-center justify-center text-white transition-colors"
+          className="absolute -top-3 -right-3 z-20 w-7 h-7 rounded-full bg-zinc-700 hover:bg-zinc-600 flex items-center justify-center text-white transition-colors shadow-lg"
           aria-label="Fechar"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
 
-        <div className="rounded-2xl overflow-hidden shadow-2xl border border-primary/30 bg-background">
-          {/* Faixa superior */}
-          <div className="flex items-center justify-center gap-2 bg-primary py-2 px-4">
-            <Flame className="w-4 h-4 text-primary-foreground" />
-            <span className="text-primary-foreground text-xs font-bold uppercase tracking-wide">
-              Oferta por tempo limitado
-            </span>
-            <Flame className="w-4 h-4 text-primary-foreground" />
+        {/* Card principal */}
+        <div
+          className="rounded-2xl overflow-hidden shadow-2xl border border-orange-500/40"
+          style={{
+            background: "linear-gradient(160deg, #0d0d0d 0%, #1a0f00 50%, #0d0d0d 100%)",
+          }}
+        >
+          {/* Topo: ESPERE! */}
+          <div className="pt-5 pb-2 px-5 text-center">
+            <h2 className="text-3xl font-black text-white uppercase tracking-tight leading-none">
+              ESPERE!
+            </h2>
+            <p className="text-orange-400 text-sm font-semibold mt-1 leading-snug">
+              Aumente drasticamente suas chances de aprovação
+            </p>
           </div>
 
-          {/* Imagem completa sem corte */}
-          <button onClick={handleClick} className="w-full cursor-pointer group block">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/promo-popup.png"
-              alt="Ate 70% OFF - Amigos da Mesa"
-              className="w-full h-auto group-hover:brightness-105 transition-all duration-200"
-            />
-          </button>
+          {/* Card de oferta */}
+          <div className="mx-4 mb-4 rounded-xl border border-orange-500/50 bg-black/60 p-4">
+            <p className="text-white text-sm font-black uppercase leading-tight text-center">
+              UPGRADE INICIANTE 7 &rarr; INTERMEDIÁRIO 15
+            </p>
+            <p className="text-orange-400 text-2xl font-black text-center mt-1">
+              por apenas +R$60
+            </p>
 
-          {/* Rodape com CTA */}
-          <div className="p-4 space-y-3">
-            {/* Badges */}
-            <div className="flex items-center justify-center gap-5">
-              <span className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-red-500">
-                <AlertTriangle className="w-4 h-4" />
-                Poucas vagas
-              </span>
-              <span className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-primary">
-                <Clock className="w-4 h-4" />
-                Encerra em breve
-              </span>
-            </div>
+            {/* Benefícios */}
+            <ul className="mt-3 space-y-2">
+              {[
+                "Mais margem para operar",
+                "Mais segurança no seu capital",
+                "Mais chance de aprovação no exame",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-orange-500 flex-shrink-0 mt-0.5" />
+                  <span className="text-white text-xs font-medium leading-snug">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            {/* Botao CTA */}
+          {/* CTA */}
+          <div className="px-4 pb-4 space-y-2">
             <button
-              onClick={handleClick}
-              className="w-full py-3 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-sm uppercase tracking-wide transition-colors shadow-lg"
+              onClick={handleCTA}
+              className="w-full py-3 rounded-xl bg-orange-500 hover:bg-orange-400 text-white font-black text-sm uppercase tracking-wide transition-colors shadow-lg"
             >
-              Quero aproveitar agora
+              FAZER UPGRADE AGORA
             </button>
+            <p className="text-center text-zinc-400 text-[11px] italic">
+              Oferta exclusiva por tempo limitado
+            </p>
           </div>
         </div>
       </div>
