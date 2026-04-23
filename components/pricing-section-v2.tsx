@@ -764,22 +764,27 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
       `}
     >
       {/* Header */}
-      <div className="bg-primary rounded-t-2xl px-5 py-3 flex items-center justify-between gap-2">
-        <div className="flex items-center gap-2 min-w-0">
+      <div className="relative bg-primary rounded-t-2xl overflow-hidden">
+        {plan.mostVendido && (
+          <div
+            className="absolute -top-1 -right-8 w-32 flex items-center justify-center bg-red-600 border-y-2 border-white rotate-[30deg] origin-center z-10"
+            style={{ top: "6px", right: "-28px" }}
+          >
+            <span className="text-white text-[8px] font-black uppercase tracking-wide py-0.5">
+              Mais Vendido
+            </span>
+          </div>
+        )}
+        <div className="px-5 py-3 flex items-center justify-between gap-2">
           <h3 className="text-sm font-black uppercase tracking-wide text-primary-foreground leading-tight">
             {plan.name}
           </h3>
-          {plan.mostVendido && (
-            <span className="flex-shrink-0 bg-red-600 text-white text-[9px] font-black uppercase tracking-wide px-2 py-0.5 rounded-sm">
-              Mais Vendido
+          {plan.discountPercent > 0 && (
+            <span className="flex-shrink-0 bg-primary-foreground text-primary text-[10px] font-black px-2 py-0.5 rounded-full">
+              {plan.discountPercent}% OFF
             </span>
           )}
         </div>
-        {plan.discountPercent > 0 && (
-          <span className="flex-shrink-0 bg-primary-foreground text-primary text-[10px] font-black px-2 py-0.5 rounded-full">
-            {plan.discountPercent}% OFF
-          </span>
-        )}
       </div>
 
       {/* Body */}
@@ -907,7 +912,7 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
   )
 }
 
-// ── Toggle PIX/Cartão ─────────────────────────────────────────────────────────
+// ── Toggle PIX/Cartão ────────────────────────────────────────���────────────────
 function PaymentToggle({ isPix, onChange }: { isPix: boolean; onChange: (v: boolean) => void }) {
   return (
     <div className="flex items-center justify-center gap-4 bg-secondary/80 backdrop-blur-sm rounded-full px-6 py-2.5 border border-border">
