@@ -1,7 +1,7 @@
 "use client"
-
 import { useState, useEffect } from "react"
-import { X, Flame, Clock, AlertTriangle } from "lucide-react"
+import { X } from "lucide-react"
+import Image from "next/image"
 
 export function PromoPopup() {
   const [isOpen, setIsOpen] = useState(false)
@@ -24,64 +24,38 @@ export function PromoPopup() {
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       {/* Overlay */}
       <div
-        className="absolute inset-0 bg-black/75 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"
         onClick={handleClose}
       />
 
-      {/* Popup card - largura adequada para imagem vertical */}
-      <div className="relative z-10 w-full max-w-sm max-h-[90vh] overflow-y-auto animate-in fade-in zoom-in-95 duration-300">
-        {/* Botao X */}
+      {/* Popup - max-height limita pra caber na tela */}
+      <div className="relative z-10 animate-in fade-in zoom-in-95 duration-300" style={{ maxHeight: "70vh", width: "auto" }}>
+        {/* Botao fechar */}
         <button
           onClick={handleClose}
-          className="absolute top-1 right-1 z-20 w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 flex items-center justify-center text-white transition-colors"
-          aria-label="Fechar"
+          className="absolute -top-2 -right-2 z-20 w-6 h-6 rounded-full bg-zinc-800/90 hover:bg-zinc-600 flex items-center justify-center text-white/80 hover:text-white transition-colors shadow-lg border border-zinc-600/50"
+          aria-label="Fechar popup"
         >
-          <X className="w-5 h-5" />
+          <X className="w-3 h-3" />
         </button>
 
-        <div className="rounded-2xl overflow-hidden shadow-2xl border border-primary/30 bg-background">
-          {/* Faixa superior */}
-          <div className="flex items-center justify-center gap-2 bg-primary py-2 px-4">
-            <Flame className="w-4 h-4 text-primary-foreground" />
-            <span className="text-primary-foreground text-xs font-bold uppercase tracking-wide">
-              Oferta por tempo limitado
-            </span>
-            <Flame className="w-4 h-4 text-primary-foreground" />
-          </div>
-
-          {/* Imagem completa sem corte */}
-          <button onClick={handleClick} className="w-full cursor-pointer group block">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/promo-popup.png"
-              alt="Ate 70% OFF - Amigos da Mesa"
-              className="w-full h-auto group-hover:brightness-105 transition-all duration-200"
-            />
-          </button>
-
-          {/* Rodape com CTA */}
-          <div className="p-4 space-y-3">
-            {/* Badges */}
-            <div className="flex items-center justify-center gap-5">
-              <span className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-red-500">
-                <AlertTriangle className="w-4 h-4" />
-                Poucas vagas
-              </span>
-              <span className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-primary">
-                <Clock className="w-4 h-4" />
-                Encerra em breve
-              </span>
-            </div>
-
-            {/* Botao CTA */}
-            <button
-              onClick={handleClick}
-              className="w-full py-3 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-sm uppercase tracking-wide transition-colors shadow-lg"
-            >
-              Quero aproveitar agora
-            </button>
-          </div>
-        </div>
+        {/* Imagem clicavel - altura limitada */}
+        <button
+          onClick={handleClick}
+          className="block rounded-lg overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)] border border-orange-500/20 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500 hover:border-orange-500/50 transition-all duration-200"
+          style={{ maxHeight: "70vh" }}
+          aria-label="Ver planos - Fazer upgrade agora"
+        >
+          <Image
+            src="/images/popup-upgrade.jpg"
+            alt="Upgrade Iniciante para Intermediario 15 por apenas +R$60"
+            width={200}
+            height={356}
+            className="h-full w-auto object-contain"
+            style={{ maxHeight: "70vh" }}
+            priority
+          />
+        </button>
       </div>
     </div>
   )
