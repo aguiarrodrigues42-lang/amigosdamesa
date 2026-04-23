@@ -766,7 +766,7 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
       {/* Header */}
       <div className="bg-primary rounded-t-2xl">
         {plan.mostVendido && (
-          <div className="flex items-center justify-center bg-red-600 border-y-2 border-white rounded-t-2xl py-1">
+          <div className="flex items-center justify-center bg-green-600 border-y-2 border-white rounded-t-2xl py-1">
             <span className="text-white text-xs font-black uppercase tracking-widest">
               Mais Vendido
             </span>
