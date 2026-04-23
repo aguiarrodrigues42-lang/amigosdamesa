@@ -39,8 +39,8 @@ const seniorFeaturesCommon = [
 
 const plansByCategory: Record<Category, Plan[]> = {
   "exames": [
-    { name: "PLANO INICIANTE", contracts: 7, asset: "", meta: "R$800,00", dailyLimit: "", stopGlobal: "R$2.000,00", priceOriginal: 572.70, pricePix: 229.08, discountPercent: 60, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151501", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151501" },
-    { name: "PLANO INTERMEDIÁRIO", contracts: 15, asset: "", meta: "R$1.400,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 742.53, pricePix: 297.01, discountPercent: 60, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502" },
+    { name: "PLANO INICIANTE", contracts: 7, asset: "", meta: "R$800,00", dailyLimit: "", stopGlobal: "R$2.000,00", priceOriginal: 572.70, pricePix: 219.08, discountPercent: 60, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151501", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151501" },
+    { name: "PLANO INTERMEDIÁRIO", contracts: 15, asset: "", meta: "R$1.400,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 742.53, pricePix: 287.01, discountPercent: 60, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502" },
     { name: "PLANO AVANÇADO", contracts: 25, asset: "", meta: "R$3.950,00", dailyLimit: "", stopGlobal: "R$4.250,00", priceOriginal: 1697.85, pricePix: 679.14, discountPercent: 60, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151503", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151503" },
     { name: "PLANO UNO 40", contracts: 40, asset: "Índice", meta: "R$4.980,00", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 2047.65, pricePix: 819.06, discountPercent: 60, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151504", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151504" },
     { name: "PLANO UNO 40", contracts: 40, asset: "Dólar", meta: "R$4.980,00", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 2047.65, pricePix: 819.06, discountPercent: 60, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151505", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151505" },
@@ -157,9 +157,9 @@ const plansByCategory: Record<Category, Plan[]> = {
     },
   ],
   "pegue-monte": [
-    { name: "PEGUE E MONTE 8", contracts: 8, meta: "R$1.500,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 972.55, pricePix: 389.02, discountPercent: 60, features: ["Stop Global R$2.500,00", "Meta de Aprovação R$1.500,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151521", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151521" },
-    { name: "PEGUE E MONTE 12", contracts: 12, meta: "R$1.920,00", dailyLimit: "", stopGlobal: "R$3.500,00", priceOriginal: 1097.50, pricePix: 439.00, discountPercent: 60, features: ["Stop Global R$3.500,00", "Meta de Aprovação R$1.920,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://checkout.neonpay.com.br/checkout/cmn3xmvvs00bz1ro3qyca7rhl?offer=IYQ93ZR", cartaoLink: "https://checkout.neonpay.com.br/checkout/cmn3xmvvs00bz1ro3qyca7rhl?offer=IYQ93ZR" },
-    { name: "PEGUE E MONTE 20", contracts: 20, meta: "R$2.832,00", dailyLimit: "", stopGlobal: "R$4.720,00", priceOriginal: 1447.50, pricePix: 579.00, discountPercent: 60, features: ["Stop Global R$4.720,00", "Meta de Aprovação R$2.832,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Monte seu plano", ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151523", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151523" },
+    { name: "PEGUE E MONTE 8", contracts: 8, meta: "R$1.500,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 972.55, pricePix: 379.02, discountPercent: 60, features: ["Stop Global R$2.500,00", "Meta de Aprovação R$1.500,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151521", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151521" },
+    { name: "PEGUE E MONTE 12", contracts: 12, meta: "R$1.920,00", dailyLimit: "", stopGlobal: "R$3.500,00", priceOriginal: 1097.50, pricePix: 429.00, discountPercent: 60, features: ["Stop Global R$3.500,00", "Meta de Aprovação R$1.920,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaWhatsApp: false, pixLink: "https://checkout.neonpay.com.br/checkout/cmn3xmvvs00bz1ro3qyca7rhl?offer=IYQ93ZR", cartaoLink: "https://checkout.neonpay.com.br/checkout/cmn3xmvvs00bz1ro3qyca7rhl?offer=IYQ93ZR" },
+    { name: "PEGUE E MONTE 20", contracts: 20, meta: "R$2.832,00", dailyLimit: "", stopGlobal: "R$4.720,00", priceOriginal: 1447.50, pricePix: 579.00, discountPercent: 60, features: ["Stop Global R$4.720,00", "Meta de Aprovação R$2.832,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151523", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151523" },
     { name: "PEGUE E MONTE 27", contracts: 27, meta: "R$3.612,00", dailyLimit: "", stopGlobal: "R$6.020,00", priceOriginal: 1690.50, pricePix: 0, discountPercent: 60, features: ["Stop Global R$6.020,00", "Meta de Aprovação R$3.612,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Indisponível", ctaWhatsApp: false },
     { name: "PEGUE E MONTE 32", contracts: 32, meta: "R$4.890,00", dailyLimit: "", stopGlobal: "R$8.150,00", priceOriginal: 2120.60, pricePix: 0, discountPercent: 60, features: ["Stop Global R$8.150,00", "Meta de Aprovação R$4.890,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Indisponível", ctaWhatsApp: false },
   ],
@@ -197,7 +197,7 @@ const bitPlans: BitPlan[] = [
     precoExame: "R$321,31", precoExameOriginal: "R$714,03",
     valorOriginal: 714.03,
     precoPix: "R$321,31",
-    precoCartao: "R$51,88",  // (321.31 * 1.9372) / 12 = 51,88
+    precoCartao: "R$51,88",
     precoSeniorOriginal: "R$714,03",
     pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151528",
     cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151528",
@@ -215,7 +215,7 @@ const bitPlans: BitPlan[] = [
     precoExame: "R$460,86", precoExameOriginal: "R$1.024,13",
     valorOriginal: 1024.13,
     precoPix: "R$460,86",
-    precoCartao: "R$74,40", // (460.86 * 1.9372) / 12 = 74,40
+    precoCartao: "R$74,40",
     precoSeniorOriginal: "R$1.024,13",
     pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151529",
     cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151529",
@@ -233,7 +233,7 @@ const bitPlans: BitPlan[] = [
     precoExame: "R$838,40", precoExameOriginal: "R$1.863,11",
     valorOriginal: 1863.11,
     precoPix: "R$838,40",
-    precoCartao: "R$135,31", // (838.40 * 1.9372) / 12 = 135,31
+    precoCartao: "R$135,31",
     precoSeniorOriginal: "R$1.863,11",
     pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151530",
     cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151530",
@@ -320,7 +320,7 @@ function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive
             ${isActive ? "bg-primary text-primary-foreground" : "bg-secondary text-foreground border border-border"}
           `}
         >
-          Quero esse plano
+          COMPRAR AGORA
         </button>
       </div>
     </div>
@@ -740,15 +740,9 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
   const hasFeatures = !!plan.features
   const isPrimePlus = hasFeatures && !!plan.taxaOnePix
   const isTitanOrSenior = hasFeatures && !plan.taxaOnePix
-  const ctaLabel = plan.ctaLabel ?? "Quero esse plano"
+  const ctaLabel = plan.ctaLabel ?? "COMPRAR AGORA"
   const isUnavailable = plan.pricePix === 0 && plan.ctaLabel === "Indisponível"
 
-  // ══════════════════════════════════════════════════════════════════════════
-  // CÁLCULO CARTÃO 12x — baseado na calculadora Neon Checkout
-  // Taxa 12x = 93,72% → multiplicador = 1.9372
-  // Fórmula: (valorPix * 1.9372) / 12
-  // Prime Plus: (180 * 1.9372) / 12 = R$29,06/mês
-  // ══════════════════════════════════════════════════════════════════════════
   const isPrimePlusCategory = !!plan.taxaOnePix
   const priceCartao12x = isPrimePlusCategory
     ? (plan.pricePix * 1.9372) / 12
