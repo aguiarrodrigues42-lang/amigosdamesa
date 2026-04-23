@@ -724,7 +724,7 @@ function LeadModal({ planName, open, onClose }: LeadModalProps) {
   )
 }
 
-// ── Helpers de formatação ──────────────────────────────────────────────────────
+// ── Helpers de formatação ────��─────────────────────────────────────────────────
 function formatBRL(value: number): string {
   return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
 }
@@ -764,13 +764,10 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
       `}
     >
       {/* Header */}
-      <div className="relative bg-primary rounded-t-2xl overflow-hidden">
+      <div className="bg-primary rounded-t-2xl">
         {plan.mostVendido && (
-          <div
-            className="absolute -top-1 -right-8 w-32 flex items-center justify-center bg-red-600 border-y-2 border-white rotate-[30deg] origin-center z-10"
-            style={{ top: "6px", right: "-28px" }}
-          >
-            <span className="text-white text-[8px] font-black uppercase tracking-wide py-0.5">
+          <div className="flex items-center justify-center bg-red-600 border-y-2 border-white rounded-t-2xl py-1">
+            <span className="text-white text-xs font-black uppercase tracking-widest">
               Mais Vendido
             </span>
           </div>
