@@ -1,5 +1,4 @@
 "use client"
-
 import { useState, useEffect } from "react"
 import { X } from "lucide-react"
 import Image from "next/image"
@@ -22,35 +21,35 @@ export function PromoPopup() {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
       {/* Overlay */}
       <div
-        className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
         onClick={handleClose}
       />
 
       {/* Popup */}
-      <div className="relative z-10 w-full max-w-[300px] animate-in fade-in zoom-in-95 duration-300">
+      <div className="relative z-10 w-full max-w-[260px] animate-in fade-in zoom-in-95 duration-300">
         {/* Botao fechar */}
         <button
           onClick={handleClose}
-          className="absolute -top-3 -right-3 z-20 w-7 h-7 rounded-full bg-zinc-700 hover:bg-zinc-600 flex items-center justify-center text-white transition-colors shadow-lg"
+          className="absolute -top-2.5 -right-2.5 z-20 w-6 h-6 rounded-full bg-zinc-700 hover:bg-zinc-600 flex items-center justify-center text-white transition-colors shadow-lg"
           aria-label="Fechar popup"
         >
-          <X className="w-4 h-4" />
+          <X className="w-3.5 h-3.5" />
         </button>
 
-        {/* Imagem clicável */}
+        {/* Imagem clicavel */}
         <button
           onClick={handleClick}
-          className="block w-full rounded-2xl overflow-hidden shadow-2xl border border-orange-500/40 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500"
+          className="block w-full rounded-xl overflow-hidden shadow-2xl border border-orange-500/30 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500 hover:scale-[1.02] transition-transform duration-200"
           aria-label="Ver planos - Fazer upgrade agora"
         >
           <Image
             src="/images/popup-upgrade.jpg"
-            alt="Upgrade Iniciante para Intermediário 15 por apenas +R$60"
-            width={600}
-            height={900}
+            alt="Upgrade Iniciante para Intermediario 15 por apenas +R$60"
+            width={260}
+            height={462}
             className="w-full h-auto"
             priority
           />
