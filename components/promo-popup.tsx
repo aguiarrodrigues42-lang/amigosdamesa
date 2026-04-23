@@ -21,36 +21,38 @@ export function PromoPopup() {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       {/* Overlay */}
       <div
-        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"
         onClick={handleClose}
       />
 
-      {/* Popup */}
-      <div className="relative z-10 w-full max-w-[260px] animate-in fade-in zoom-in-95 duration-300">
+      {/* Popup - max-height limita pra caber na tela */}
+      <div className="relative z-10 animate-in fade-in zoom-in-95 duration-300" style={{ maxHeight: "70vh", width: "auto" }}>
         {/* Botao fechar */}
         <button
           onClick={handleClose}
-          className="absolute -top-2.5 -right-2.5 z-20 w-6 h-6 rounded-full bg-zinc-700 hover:bg-zinc-600 flex items-center justify-center text-white transition-colors shadow-lg"
+          className="absolute -top-2 -right-2 z-20 w-6 h-6 rounded-full bg-zinc-800/90 hover:bg-zinc-600 flex items-center justify-center text-white/80 hover:text-white transition-colors shadow-lg border border-zinc-600/50"
           aria-label="Fechar popup"
         >
-          <X className="w-3.5 h-3.5" />
+          <X className="w-3 h-3" />
         </button>
 
-        {/* Imagem clicavel */}
+        {/* Imagem clicavel - altura limitada */}
         <button
           onClick={handleClick}
-          className="block w-full rounded-xl overflow-hidden shadow-2xl border border-orange-500/30 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500 hover:scale-[1.02] transition-transform duration-200"
+          className="block rounded-lg overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)] border border-orange-500/20 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500 hover:border-orange-500/50 transition-all duration-200"
+          style={{ maxHeight: "70vh" }}
           aria-label="Ver planos - Fazer upgrade agora"
         >
           <Image
             src="/images/popup-upgrade.jpg"
             alt="Upgrade Iniciante para Intermediario 15 por apenas +R$60"
-            width={260}
-            height={462}
-            className="w-full h-auto"
+            width={200}
+            height={356}
+            className="h-full w-auto object-contain"
+            style={{ maxHeight: "70vh" }}
             priority
           />
         </button>
