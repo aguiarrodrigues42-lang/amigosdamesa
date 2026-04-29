@@ -514,6 +514,8 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
   const priceCartao12x = (plan.pricePix * 1.9372) / 12
   const displayPrice = isPix ? plan.pricePix : priceCartao12x
 
+  const hideMinDays = plan.name === "PLANO INICIANTE" || plan.name === "PLANO INTERMEDIÁRIO" || plan.name === "PEGUE E MONTE 8" || plan.name === "PEGUE E MONTE 12"
+
   return (
     <div className={`flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center rounded-2xl border-2 bg-card flex flex-col transition-all duration-300 ${isActive ? "border-primary shadow-[0_0_0_2px_theme(colors.orange.500)]" : "border-border opacity-80"} ${isUnavailable ? "opacity-50 pointer-events-none" : ""}`}>
       <div className="bg-primary rounded-t-2xl">
@@ -549,6 +551,7 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
           <>
             <ul className="space-y-1.5">{plan.features!.map((feat, i) => (<li key={i} className="flex items-start gap-2 text-sm text-foreground"><span className="text-primary mt-0.5 text-xs flex-shrink-0">•</span><span className="leading-snug">{feat}</span></li>))}</ul>
             <div className="border-t border-border pt-3 text-center">
+              <div className="mb-1"><span className="text-sm line-through text-muted-foreground">{formatBRL(plan.priceOriginal)}</span></div>
               {isPix ? (<span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}</span>) : (<div><span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span></div>)}
             </div>
           </>
@@ -576,7 +579,7 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
         <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
           <p className="text-[10px] font-black uppercase tracking-widest text-primary">Bonus</p>
           <p className="text-xs text-foreground/80 leading-snug">Sem limite diario para o exame</p>
-          <p className="text-xs text-foreground/80 leading-snug">Sem minimos de dias operados para aprovacao</p>
+          {!hideMinDays && (<p className="text-xs text-foreground/80 leading-snug">Sem minimos de dias operados para aprovacao</p>)}
         </div>
         <button onClick={onCta} disabled={isUnavailable} className={`w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide transition-all duration-300 mt-auto ${isUnavailable ? "bg-muted text-muted-foreground cursor-not-allowed" : isActive ? "bg-primary text-primary-foreground" : "bg-secondary text-foreground border border-border"}`}>{ctaLabel}</button>
         {!hasFeatures && !isUnavailable && (<p className="text-[10px] text-muted-foreground text-center leading-relaxed">Conta demo aplicavel de forma opcional. Caso o nivel decida utiliza-la ou nao.</p>)}
