@@ -23,7 +23,7 @@ const STEPS = [
     subtitle: "Simulador Remunerado (SR)",
     description:
       "Aprovado no exame, você entra no Simulador Remunerado. Aqui suas operações ja geram resultados elegíveis para repasse. Siga as regras, seja consistente e avance.",
-    detail: "Repasse de até 30% no SR",
+    detail: "Resultados elegíveis para repasse",
     color: "from-emerald-500/15 to-emerald-500/5",
     border: "border-emerald-500/30",
   },
@@ -33,8 +33,8 @@ const STEPS = [
     title: "Opera com capital da mesa",
     subtitle: "Conta Real (CR)",
     description:
-      "Atingindo os critérios do plano, você é direcionado à Conta Real. Agora opera com capital da mesa, sem limite de ganho por ciclo, com repasses de ate 95% do lucro.",
-    detail: "Repasse de até 95% do lucro",
+      "Atingindo os critérios do plano, você é direcionado à Conta Real. Agora opera com capital da mesa, sem limite de ganho por ciclo, com repasses do seu lucro.",
+    detail: "Repasse de até 90% do lucro",
     color: "from-primary/20 to-primary/5",
     border: "border-primary/40",
   },

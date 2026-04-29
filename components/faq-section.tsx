@@ -1,5 +1,4 @@
 "use client"
-
 import {
   Accordion,
   AccordionContent,
@@ -10,37 +9,33 @@ import {
 export function FaqSection() {
   const faqs = [
     {
-      question: "Preciso ter experiência para participar?",
-      answer: "Não necessariamente. Nossos planos são adaptados para diferentes níveis. O plano Starter é ideal para quem está começando, enquanto o Pro e Elite são mais indicados para traders com alguma experiência. O importante é ter compromisso e vontade de aprender."
+      question: "Quais mercados estão disponíveis para operar na Amigos da Mesa?",
+      answer: "Você pode operar mini dólar (WDO), mini índice (WIN) e Bitcoin, de acordo com o plano escolhido e respeitando o limite de contratos permitido em cada conta."
     },
     {
-      question: "Funciona para iniciantes?",
-      answer: "Sim! O plano Starter foi desenhado pensando em quem está começando. Você terá acesso à sala de operações, análises diárias e uma comunidade para tirar dúvidas. Porém, é importante ter conhecimento básico de mercado financeiro."
+      question: "A Amigos da Mesa trabalha com drawdown?",
+      answer: "Não. A Amigos da Mesa não utiliza drawdown. O trader precisa apenas seguir o limite de perda diária e o limite máximo de perda estabelecido na conta."
     },
     {
-      question: "Vocês dão sinais de entrada?",
-      answer: "NÃO. A Amigos da Mesa PRO não é um grupo de sinais. Nós ensinamos você a pensar e operar de forma independente. Você vai aprender a identificar oportunidades e tomar suas próprias decisões com base em uma metodologia sólida."
+      question: "Posso usar minha própria estratégia na Amigos da Mesa?",
+      answer: "Sim. Você pode operar utilizando o seu próprio método, como já está acostumado no dia a dia, desde que siga as regras estabelecidas na fase de avaliação."
     },
     {
-      question: "Tem acompanhamento?",
-      answer: "Sim! Dependendo do plano, você tem diferentes níveis de acompanhamento. No plano Starter, você tem a comunidade. No Pro, revisões semanais. No Elite, mentoria individual mensal e suporte personalizado."
+      question: "Quais plataformas posso utilizar para operar na Amigos da Mesa?",
+      answer: "A operação é feita pela Profit One, que é disponibilizada gratuitamente por 30 dias. Também há a opção de usar Profit Plus ou Profit Pro. Após esse período inicial, a renovação da plataforma deve ser solicitada ao suporte e passa a ser cobrada."
     },
     {
-      question: "Posso cancelar quando quiser?",
-      answer: "Sim! Não há fidelidade. Você pode cancelar sua assinatura a qualquer momento, sem multas ou complicações. Oferecemos também garantia de 7 dias em todos os planos."
+      question: "Existe prazo para marcar o exame?",
+      answer: "O exame é agendado após a contratação, diretamente em sua área logada. Você pode escolher quando iniciar, desde que cumpra o número mínimo de pregões exigidos e siga todas as regras estabelecidas."
     },
     {
-      question: "Quanto tempo leva para ver resultados?",
-      answer: "Depende do seu comprometimento e nível atual. Alguns traders veem melhoras em poucas semanas, outros levam alguns meses. O importante é seguir o processo e ter disciplina. Consistência é uma jornada, não um destino."
+      question: "Quais fatores levam à desclassificação do trader?",
+      answer: "O não cumprimento das diretrizes previstas no regulamento, bem como o atingimento do limite máximo de perda acumulada estabelecido no plano contratado, resultam na desclassificação do trader."
     },
     {
-      question: "Qual horário das operações?",
-      answer: "Acompanhamos principalmente o horário do mercado brasileiro. Análise pré-mercado às 9h, operações ao vivo das 10h às 17h, e revisão do dia às 17h30. Tudo é gravado para quem não puder acompanhar ao vivo."
+      question: "Quantas tentativas de avaliação estão incluídas?",
+      answer: "Cada contratação concede direito a uma única avaliação. Em caso de reprovação, será necessário adquirir um novo plano para uma nova tentativa. É permitido manter até 10 planos ativos simultaneamente por CPF, cada um vinculado à sua respectiva licença."
     },
-    {
-      question: "Vocês operam qual mercado?",
-      answer: "Focamos principalmente em mini-índice (WIN) e mini-dólar (WDO), mas também cobrimos ações e outros ativos dependendo das oportunidades do dia."
-    }
   ]
 
   return (
@@ -54,12 +49,11 @@ export function FaqSection() {
             Tire suas dúvidas antes de entrar.
           </p>
         </div>
-
         <div className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, i) => (
-              <AccordionItem 
-                key={i} 
+              <AccordionItem
+                key={i}
                 value={`item-${i}`}
                 className="bg-card border border-border rounded-xl px-6 data-[state=open]:border-primary/50"
               >
