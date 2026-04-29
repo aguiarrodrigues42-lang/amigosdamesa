@@ -28,7 +28,7 @@ export function PromoPopup() {
         onClick={handleClose}
       />
 
-      {/* Popup - max-height limita pra caber na tela */}
+      {/* Popup */}
       <div className="relative z-10 animate-in fade-in zoom-in-95 duration-300" style={{ maxHeight: "70vh", width: "auto" }}>
         {/* Botao fechar */}
         <button
@@ -39,16 +39,16 @@ export function PromoPopup() {
           <X className="w-3 h-3" />
         </button>
 
-        {/* Imagem clicavel - altura limitada */}
+        {/* Imagem clicavel */}
         <button
           onClick={handleClick}
           className="block rounded-lg overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)] border border-orange-500/20 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500 hover:border-orange-500/50 transition-all duration-200"
           style={{ maxHeight: "70vh" }}
-          aria-label="Ver planos - Fazer upgrade agora"
+          aria-label="Ver planos - 80% OFF nos planos selecionados"
         >
           <Image
-            src="/images/popup-upgrade.jpg"
-            alt="Upgrade Iniciante para Intermediario 15 por apenas +R$60"
+            src="/images/popup-80off.png"
+            alt="80% OFF - Planos selecionados com desconto historico"
             width={200}
             height={356}
             className="h-full w-auto object-contain"
