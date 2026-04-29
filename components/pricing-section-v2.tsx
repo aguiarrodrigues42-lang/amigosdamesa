@@ -551,6 +551,7 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
           <>
             <ul className="space-y-1.5">{plan.features!.map((feat, i) => (<li key={i} className="flex items-start gap-2 text-sm text-foreground"><span className="text-primary mt-0.5 text-xs flex-shrink-0">•</span><span className="leading-snug">{feat}</span></li>))}</ul>
             <div className="border-t border-border pt-3 text-center">
+              <div className="mb-1"><span className="text-sm line-through text-muted-foreground">{formatBRL(plan.priceOriginal)}</span></div>
               {isPix ? (<span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}</span>) : (<div><span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span></div>)}
             </div>
           </>
