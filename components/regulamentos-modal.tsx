@@ -529,9 +529,9 @@ Uma mesa para todos.`
   },
   {
     id: "regulamento-campanha",
-    titulo: "REGULAMENTO ESPECÍFICO DE CAMPANHA",
+    titulo: "REGULAMENTO DE DESCONTO IGUAL OU SUPERIOR A 50%",
     subtitulo: "Campanhas igual ou superior a 50% OFF - Modalidade de saque mensal",
-    conteudo: `REGULAMENTO ESPECÍFICO – CAMPANHAS IGUAL OU SUPERIOR A 50% OFF
+    conteudo: `REGULAMENTO DE DESCONTO IGUAL OU SUPERIOR A 50%
 MODALIDADE DE SAQUE MENSAL
 
 O presente regulamento estabelece as condições específicas aplicáveis aos planos adquiridos em campanhas promocionais com desconto igual ou superior a 50% (cinquenta por cento), prevalecendo sobre quaisquer condições padrão em caso de divergência.
