@@ -30,6 +30,7 @@ interface Plan {
   ctaLabel?: string
   ctaWhatsApp?: boolean
   mostVendido?: boolean
+  bonus1?: string
 }
 
 const WHATSAPP_NUMBER = "5511988071345"
@@ -40,8 +41,8 @@ const seniorFeaturesCommon = [
 
 const plansByCategory: Record<Category, Plan[]> = {
   "exames": [
-    { name: "PLANO INICIANTE", contracts: 7, asset: "", meta: "R$800,00", dailyLimit: "", stopGlobal: "R$2.000,00", priceOriginal: 672.70, pricePix: 269.08, discountPercent: 60, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151501", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151501" },
-    { name: "PLANO INTERMEDIÁRIO", contracts: 15, asset: "", meta: "R$1.400,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 797.53, pricePix: 319.01, discountPercent: 60, mostVendido: true, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502" },
+    { name: "PLANO INICIANTE", contracts: 7, asset: "", meta: "R$800,00", dailyLimit: "", stopGlobal: "R$2.000,00", priceOriginal: 672.70, pricePix: 269.08, discountPercent: 60, bonus1: "Atinja 50% da meta e solicite sua aprovação", pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151501", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151501" },
+    { name: "PLANO INTERMEDIÁRIO", contracts: 15, asset: "", meta: "R$1.400,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 797.53, pricePix: 319.01, discountPercent: 60, mostVendido: true, bonus1: "Atinja 50% da meta e solicite sua aprovação", pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502" },
     { name: "PLANO AVANÇADO", contracts: 25, asset: "", meta: "R$3.950,00", dailyLimit: "", stopGlobal: "R$4.250,00", priceOriginal: 2263.80, pricePix: 679.14, discountPercent: 70, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151503", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151503" },
     { name: "PLANO UNO 40", contracts: 40, asset: "Índice", meta: "R$4.980,00", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 2730.20, pricePix: 819.06, discountPercent: 70, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151504", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151504" },
     { name: "PLANO UNO 40", contracts: 40, asset: "Dólar", meta: "R$4.980,00", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 2730.20, pricePix: 819.06, discountPercent: 70, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151505", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151505" },
@@ -158,8 +159,8 @@ const plansByCategory: Record<Category, Plan[]> = {
     },
   ],
   "pegue-monte": [
-    { name: "PEGUE E MONTE 8", contracts: 8, meta: "R$1.500,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 997.55, pricePix: 399.02, discountPercent: 60, features: ["Stop Global R$2.500,00", "Meta de Aprovação R$1.500,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151521", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151521" },
-    { name: "PEGUE E MONTE 12", contracts: 12, meta: "R$1.920,00", dailyLimit: "", stopGlobal: "R$3.500,00", priceOriginal: 1122.50, pricePix: 449.00, discountPercent: 60, mostVendido: true, features: ["Stop Global R$3.500,00", "Meta de Aprovação R$1.920,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151522", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151522" },
+    { name: "PEGUE E MONTE 8", contracts: 8, meta: "R$1.500,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 997.55, pricePix: 399.02, discountPercent: 60, features: ["Stop Global R$2.500,00", "Meta de Aprovação R$1.500,00", "Atinja 50% da meta e solicite sua aprovação", "Sem mínimos de dias operados para aprovação"], ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151521", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151521" },
+    { name: "PEGUE E MONTE 12", contracts: 12, meta: "R$1.920,00", dailyLimit: "", stopGlobal: "R$3.500,00", priceOriginal: 1122.50, pricePix: 449.00, discountPercent: 60, mostVendido: true, features: ["Stop Global R$3.500,00", "Meta de Aprovação R$1.920,00", "Atinja 50% da meta e solicite sua aprovação", "Sem mínimos de dias operados para aprovação"], ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151522", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151522" },
     { name: "PEGUE E MONTE 20", contracts: 20, meta: "R$2.832,00", dailyLimit: "", stopGlobal: "R$4.720,00", priceOriginal: 1930.00, pricePix: 579.00, discountPercent: 70, features: ["Stop Global R$4.720,00", "Meta de Aprovação R$2.832,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151523", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151523" },
     { name: "PEGUE E MONTE 27", contracts: 27, meta: "R$3.612,00", dailyLimit: "", stopGlobal: "R$6.020,00", priceOriginal: 1690.50, pricePix: 0, discountPercent: 70, features: ["Stop Global R$6.020,00", "Meta de Aprovação R$3.612,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Indisponível", ctaWhatsApp: false },
     { name: "PEGUE E MONTE 32", contracts: 32, meta: "R$4.890,00", dailyLimit: "", stopGlobal: "R$8.150,00", priceOriginal: 2120.60, pricePix: 0, discountPercent: 70, features: ["Stop Global R$8.150,00", "Meta de Aprovação R$4.890,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Indisponível", ctaWhatsApp: false },
@@ -576,11 +577,11 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
             )}
           </>
         )}
-        <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
-          <p className="text-[10px] font-black uppercase tracking-widest text-primary">Bonus</p>
-          <p className="text-xs text-foreground/80 leading-snug">Sem limite diario para o exame</p>
-          {!hideMinDays && (<p className="text-xs text-foreground/80 leading-snug">Sem minimos de dias operados para aprovacao</p>)}
-        </div>
+  <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
+  <p className="text-[10px] font-black uppercase tracking-widest text-primary">Bonus</p>
+  <p className="text-xs text-foreground/80 leading-snug">{plan.bonus1 ?? "Sem limite diario para o exame"}</p>
+  {!hideMinDays && (<p className="text-xs text-foreground/80 leading-snug">Sem minimos de dias operados para aprovacao</p>)}
+  </div>
         <button onClick={onCta} disabled={isUnavailable} className={`w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide transition-all duration-300 mt-auto ${isUnavailable ? "bg-muted text-muted-foreground cursor-not-allowed" : isActive ? "bg-primary text-primary-foreground" : "bg-secondary text-foreground border border-border"}`}>{ctaLabel}</button>
         {!hasFeatures && !isUnavailable && (<p className="text-[10px] text-muted-foreground text-center leading-relaxed">Conta demo aplicavel de forma opcional. Caso o nivel decida utiliza-la ou nao.</p>)}
       </div>
