@@ -11,12 +11,10 @@ import { TestimonialsSection } from "@/components/testimonials-section"
 import { FaqSection } from "@/components/faq-section"
 import { Footer } from "@/components/footer"
 import { WhatsAppButton } from "@/components/whatsapp-button"
-import { PromoPopup } from "@/components/promo-popup"
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-background">
-      <PromoPopup />
       <Header />
       <HeroSection />
       <AboutSection />
