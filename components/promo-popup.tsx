@@ -35,10 +35,10 @@ style={{ maxHeight: "70vh" }}
 aria-label="Ver planos com desconto"
 >
 <Image
-src="/images/POPUPMESA.png"
+src="/images/1.png"
 alt="Promocao Amigos da Mesa"
-width={200}
-height={356}
+width={400}
+height={712}
 className="h-full w-auto object-contain"
 style={{ maxHeight: "70vh" }}
 priority
