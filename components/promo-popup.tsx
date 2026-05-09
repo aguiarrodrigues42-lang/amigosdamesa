@@ -35,7 +35,7 @@ style={{ maxHeight: "70vh" }}
 aria-label="Ver planos com desconto"
 >
 <Image
-src="/images/1.png"
+src="/images/1.jpg"
 alt="Promocao Amigos da Mesa"
 width={400}
 height={712}
