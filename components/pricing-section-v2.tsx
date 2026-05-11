@@ -30,7 +30,6 @@ interface Plan {
   ctaLabel?: string
   ctaWhatsApp?: boolean
   mostVendido?: boolean
-  bonus1?: string
 }
 
 const WHATSAPP_NUMBER = "5511988071345"
@@ -41,126 +40,36 @@ const seniorFeaturesCommon = [
 
 const plansByCategory: Record<Category, Plan[]> = {
   "exames": [
-    { name: "PLANO INICIANTE", contracts: 7, asset: "", meta: "R$800,00", dailyLimit: "", stopGlobal: "R$2.000,00", priceOriginal: 672.70, pricePix: 269.08, discountPercent: 60, bonus1: "Atinja 50% da meta e solicite sua aprovação", pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151501", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151501" },
-    { name: "PLANO INTERMEDIÁRIO", contracts: 15, asset: "", meta: "R$1.400,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 797.53, pricePix: 319.01, discountPercent: 60, mostVendido: true, bonus1: "Atinja 50% da meta e solicite sua aprovação", pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502" },
+    { name: "PLANO INICIANTE", contracts: 7, asset: "", meta: "R$800,00", dailyLimit: "", stopGlobal: "R$2.000,00", priceOriginal: 672.70, pricePix: 269.08, discountPercent: 60, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151501", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151501" },
+    { name: "PLANO INTERMEDIÁRIO", contracts: 15, asset: "", meta: "R$1.400,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 797.53, pricePix: 319.01, discountPercent: 60, mostVendido: true, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151502" },
     { name: "PLANO AVANÇADO", contracts: 25, asset: "", meta: "R$3.950,00", dailyLimit: "", stopGlobal: "R$4.250,00", priceOriginal: 2263.80, pricePix: 679.14, discountPercent: 70, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151503", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151503" },
     { name: "PLANO UNO 40", contracts: 40, asset: "Índice", meta: "R$4.980,00", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 2730.20, pricePix: 819.06, discountPercent: 70, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151504", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151504" },
     { name: "PLANO UNO 40", contracts: 40, asset: "Dólar", meta: "R$4.980,00", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 2730.20, pricePix: 819.06, discountPercent: 70, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151505", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151505" },
     { name: "PLANO MASTER", contracts: 50, asset: "Índice e Dólar", meta: "R$9.950,00", dailyLimit: "", stopGlobal: "R$10.250,00", priceOriginal: 3797.77, pricePix: 1139.33, discountPercent: 70, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151506", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151506" },
   ],
   "prime-plus": [
-    {
-      name: "PRIME PLUS 6", contracts: 6,
-      meta: "R$1.800,00", dailyLimit: "—", stopGlobal: "R$2.500,00", priceOriginal: 300, pricePix: 180, discountPercent: 40,
-      pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151507",
-      cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151507",
-      features: ["6 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 2.500,00", "Meta de aprovação R$ 1.800,00"],
-      taxaOnePix: 300, taxaProPix: 350, taxaOneOriginal: 300, taxaProOriginal: 350,
-    },
-    {
-      name: "PRIME PLUS 11", contracts: 11,
-      meta: "R$4.000,00", dailyLimit: "—", stopGlobal: "R$3.500,00", priceOriginal: 720, pricePix: 180, discountPercent: 40,
-      pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151508",
-      cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151508",
-      features: ["11 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 3.500,00", "Meta de aprovação R$ 4.000,00"],
-      taxaOnePix: 720, taxaProPix: 780, taxaOneOriginal: 720, taxaProOriginal: 780,
-    },
-    {
-      name: "PRIME PLUS 16", contracts: 16,
-      meta: "R$7.500,00", dailyLimit: "—", stopGlobal: "R$6.000,00", priceOriginal: 1220, pricePix: 180, discountPercent: 40,
-      pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151509",
-      cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151509",
-      features: ["16 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 6.000,00", "Meta de aprovação R$ 7.500,00"],
-      taxaOnePix: 1220, taxaProPix: 1320, taxaOneOriginal: 1220, taxaProOriginal: 1320,
-    },
-    {
-      name: "PRIME PLUS 21", contracts: 21,
-      meta: "R$10.000,00", dailyLimit: "—", stopGlobal: "R$9.000,00", priceOriginal: 1720, pricePix: 180, discountPercent: 40,
-      pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151510",
-      cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151510",
-      features: ["21 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 9.000,00", "Meta de aprovação R$ 10.000,00"],
-      taxaOnePix: 1720, taxaProPix: 1850, taxaOneOriginal: 1720, taxaProOriginal: 1850,
-    },
+    { name: "PRIME PLUS 6", contracts: 6, meta: "R$1.800,00", dailyLimit: "—", stopGlobal: "R$2.500,00", priceOriginal: 300, pricePix: 180, discountPercent: 40, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151507", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151507", features: ["6 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 2.500,00", "Meta de aprovação R$ 1.800,00"], taxaOnePix: 300, taxaProPix: 350, taxaOneOriginal: 300, taxaProOriginal: 350 },
+    { name: "PRIME PLUS 11", contracts: 11, meta: "R$4.000,00", dailyLimit: "—", stopGlobal: "R$3.500,00", priceOriginal: 720, pricePix: 180, discountPercent: 40, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151508", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151508", features: ["11 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 3.500,00", "Meta de aprovação R$ 4.000,00"], taxaOnePix: 720, taxaProPix: 780, taxaOneOriginal: 720, taxaProOriginal: 780 },
+    { name: "PRIME PLUS 16", contracts: 16, meta: "R$7.500,00", dailyLimit: "—", stopGlobal: "R$6.000,00", priceOriginal: 1220, pricePix: 180, discountPercent: 40, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151509", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151509", features: ["16 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 6.000,00", "Meta de aprovação R$ 7.500,00"], taxaOnePix: 1220, taxaProPix: 1320, taxaOneOriginal: 1220, taxaProOriginal: 1320 },
+    { name: "PRIME PLUS 21", contracts: 21, meta: "R$10.000,00", dailyLimit: "—", stopGlobal: "R$9.000,00", priceOriginal: 1720, pricePix: 180, discountPercent: 40, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151510", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151510", features: ["21 contratos", "Sem dias mínimos para aprovação", "Sem stop diário", "Stop Global R$ 9.000,00", "Meta de aprovação R$ 10.000,00"], taxaOnePix: 1720, taxaProPix: 1850, taxaOneOriginal: 1720, taxaProOriginal: 1850 },
   ],
   "titan": [
-    {
-      name: "TITAN PRO 10", contracts: 30,
-      meta: "R$5.000,00", dailyLimit: "", stopGlobal: "R$5.000,00", priceOriginal: 2622.00, pricePix: 786.60, discountPercent: 70,
-      pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151511",
-      cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151511",
-      features: ["Meta de aprovação R$ 5.000,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação", "Stop Global R$ 5.000,00"],
-    },
-    {
-      name: "TITAN PRO 20", contracts: 45,
-      meta: "R$8.000,00", dailyLimit: "", stopGlobal: "R$8.000,00", priceOriginal: 3974.63, pricePix: 1192.39, discountPercent: 70,
-      pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151512",
-      cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151512",
-      features: ["Meta de aprovação R$ 8.000,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação", "Stop Global R$ 8.000,00"],
-    },
-    {
-      name: "TITAN PRO 30", contracts: 65,
-      meta: "R$14.000,00", dailyLimit: "", stopGlobal: "R$14.000,00", priceOriginal: 5308.00, pricePix: 1592.40, discountPercent: 70,
-      pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151513",
-      cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151513",
-      features: ["Meta de aprovação R$ 14.000,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação", "Stop Global R$ 14.000,00"],
-    },
-    {
-      name: "TITAN PRO 50", contracts: 80,
-      meta: "R$10.000,00", dailyLimit: "", stopGlobal: "R$10.000,00", priceOriginal: 6641.33, pricePix: 1992.40, discountPercent: 70,
-      pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151514",
-      cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151514",
-      features: ["Meta de aprovação R$ 10.000,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação", "Stop Global R$ 10.000,00"],
-    },
+    { name: "TITAN PRO 10", contracts: 30, meta: "R$5.000,00", dailyLimit: "", stopGlobal: "R$5.000,00", priceOriginal: 2622.00, pricePix: 786.60, discountPercent: 70, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151511", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151511", features: ["Meta de aprovação R$ 5.000,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação", "Stop Global R$ 5.000,00"] },
+    { name: "TITAN PRO 20", contracts: 45, meta: "R$8.000,00", dailyLimit: "", stopGlobal: "R$8.000,00", priceOriginal: 3974.63, pricePix: 1192.39, discountPercent: 70, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151512", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151512", features: ["Meta de aprovação R$ 8.000,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação", "Stop Global R$ 8.000,00"] },
+    { name: "TITAN PRO 30", contracts: 65, meta: "R$14.000,00", dailyLimit: "", stopGlobal: "R$14.000,00", priceOriginal: 5308.00, pricePix: 1592.40, discountPercent: 70, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151513", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151513", features: ["Meta de aprovação R$ 14.000,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação", "Stop Global R$ 14.000,00"] },
+    { name: "TITAN PRO 50", contracts: 80, meta: "R$10.000,00", dailyLimit: "", stopGlobal: "R$10.000,00", priceOriginal: 6641.33, pricePix: 1992.40, discountPercent: 70, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151514", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151514", features: ["Meta de aprovação R$ 10.000,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação", "Stop Global R$ 10.000,00"] },
   ],
   "senior": [
-    {
-      name: "INICIANTE 7", contracts: 7,
-      meta: "—", dailyLimit: "", stopGlobal: "R$2.000,00", priceOriginal: 1783.51, pricePix: 802.58, discountPercent: 55,
-      pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151515",
-      cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151515",
-      features: [...seniorFeaturesCommon, "Stop Global R$ 2.000,00"],
-    },
-    {
-      name: "INTERMEDIÁRIO 15", contracts: 15,
-      meta: "—", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 2366.71, pricePix: 1065.02, discountPercent: 55,
-      pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151516",
-      cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151516",
-      features: [...seniorFeaturesCommon, "Stop Global R$ 2.500,00"],
-    },
-    {
-      name: "AVANÇADO 25", contracts: 25,
-      meta: "—", dailyLimit: "", stopGlobal: "R$4.250,00", priceOriginal: 6122.64, pricePix: 2755.19, discountPercent: 55,
-      pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151517",
-      cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151517",
-      features: [...seniorFeaturesCommon, "Stop Global R$ 4.250,00"],
-    },
-    {
-      name: "UNO 40 ÍNDICE", contracts: 40,
-      asset: "",
-      meta: "—", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 7599.20, pricePix: 3419.64, discountPercent: 55,
-      pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151519",
-      cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151519",
-      features: [...seniorFeaturesCommon, "Stop Global R$ 6.250,00"],
-    },
-    {
-      name: "UNO 40 DÓLAR", contracts: 40,
-      asset: "",
-      meta: "—", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 7599.20, pricePix: 3419.64, discountPercent: 55,
-      pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151518",
-      cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151518",
-      features: [...seniorFeaturesCommon, "Stop Global R$ 6.250,00"],
-    },
-    {
-      name: "MASTER 50", contracts: 50,
-      meta: "—", dailyLimit: "", stopGlobal: "R$10.250,00", priceOriginal: 9297.73, pricePix: 4183.98, discountPercent: 55,
-      pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151520",
-      cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151520",
-      features: [...seniorFeaturesCommon, "Stop Global R$ 10.250,00"],
-    },
+    { name: "INICIANTE 7", contracts: 7, meta: "—", dailyLimit: "", stopGlobal: "R$2.000,00", priceOriginal: 1783.51, pricePix: 802.58, discountPercent: 55, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151515", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151515", features: [...seniorFeaturesCommon, "Stop Global R$ 2.000,00"] },
+    { name: "INTERMEDIÁRIO 15", contracts: 15, meta: "—", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 2366.71, pricePix: 1065.02, discountPercent: 55, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151516", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151516", features: [...seniorFeaturesCommon, "Stop Global R$ 2.500,00"] },
+    { name: "AVANÇADO 25", contracts: 25, meta: "—", dailyLimit: "", stopGlobal: "R$4.250,00", priceOriginal: 6122.64, pricePix: 2755.19, discountPercent: 55, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151517", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151517", features: [...seniorFeaturesCommon, "Stop Global R$ 4.250,00"] },
+    { name: "UNO 40 ÍNDICE", contracts: 40, asset: "", meta: "—", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 7599.20, pricePix: 3419.64, discountPercent: 55, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151519", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151519", features: [...seniorFeaturesCommon, "Stop Global R$ 6.250,00"] },
+    { name: "UNO 40 DÓLAR", contracts: 40, asset: "", meta: "—", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 7599.20, pricePix: 3419.64, discountPercent: 55, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151518", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151518", features: [...seniorFeaturesCommon, "Stop Global R$ 6.250,00"] },
+    { name: "MASTER 50", contracts: 50, meta: "—", dailyLimit: "", stopGlobal: "R$10.250,00", priceOriginal: 9297.73, pricePix: 4183.98, discountPercent: 55, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151520", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151520", features: [...seniorFeaturesCommon, "Stop Global R$ 10.250,00"] },
   ],
   "pegue-monte": [
-    { name: "PEGUE E MONTE 8", contracts: 8, meta: "R$1.500,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 997.55, pricePix: 399.02, discountPercent: 60, bonus1: "Atinja 50% da meta e solicite sua aprovação", features: ["Stop Global R$2.500,00", "Meta de Aprovação R$1.500,00", "Atinja 50% da meta e solicite sua aprovação", "Sem mínimos de dias operados para aprovação"], ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151521", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151521" },
-    { name: "PEGUE E MONTE 12", contracts: 12, meta: "R$1.920,00", dailyLimit: "", stopGlobal: "R$3.500,00", priceOriginal: 1122.50, pricePix: 449.00, discountPercent: 60, mostVendido: true, bonus1: "Atinja 50% da meta e solicite sua aprovação", features: ["Stop Global R$3.500,00", "Meta de Aprovação R$1.920,00", "Atinja 50% da meta e solicite sua aprovação", "Sem mínimos de dias operados para aprovação"], ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151522", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151522" },
+    { name: "PEGUE E MONTE 8", contracts: 8, meta: "R$1.500,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 997.55, pricePix: 399.02, discountPercent: 60, features: ["Stop Global R$2.500,00", "Meta de Aprovação R$1.500,00", "Atinja 50% da meta e solicite sua aprovação", "Sem mínimos de dias operados para aprovação"], ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151521", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151521" },
+    { name: "PEGUE E MONTE 12", contracts: 12, meta: "R$1.920,00", dailyLimit: "", stopGlobal: "R$3.500,00", priceOriginal: 1122.50, pricePix: 449.00, discountPercent: 60, mostVendido: true, features: ["Stop Global R$3.500,00", "Meta de Aprovação R$1.920,00", "Atinja 50% da meta e solicite sua aprovação", "Sem mínimos de dias operados para aprovação"], ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151522", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151522" },
     { name: "PEGUE E MONTE 20", contracts: 20, meta: "R$2.832,00", dailyLimit: "", stopGlobal: "R$4.720,00", priceOriginal: 1930.00, pricePix: 579.00, discountPercent: 70, features: ["Stop Global R$4.720,00", "Meta de Aprovação R$2.832,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151523", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151523" },
     { name: "PEGUE E MONTE 27", contracts: 27, meta: "R$3.612,00", dailyLimit: "", stopGlobal: "R$6.020,00", priceOriginal: 1690.50, pricePix: 0, discountPercent: 70, features: ["Stop Global R$6.020,00", "Meta de Aprovação R$3.612,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Indisponível", ctaWhatsApp: false },
     { name: "PEGUE E MONTE 32", contracts: 32, meta: "R$4.890,00", dailyLimit: "", stopGlobal: "R$8.150,00", priceOriginal: 2120.60, pricePix: 0, discountPercent: 70, features: ["Stop Global R$8.150,00", "Meta de Aprovação R$4.890,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Indisponível", ctaWhatsApp: false },
@@ -168,130 +77,32 @@ const plansByCategory: Record<Category, Plan[]> = {
   "bit": [],
 }
 
-// ── BIT plans ──────────────────────────────────────────────────────────────
-interface BitPlan {
-  name: string
-  bitContracts: number
-  features: string[]
-  precoExame: string
-  precoExameOriginal: string
-  valorOriginal: number
-  precoPix: string
-  precoCartao: string
-  precoSeniorOriginal: string
-  pixLink?: string
-  cartaoLink?: string
-  indisponivel?: boolean
-}
+interface BitPlan { name: string; bitContracts: number; features: string[]; precoExame: string; precoExameOriginal: string; valorOriginal: number; precoPix: string; precoCartao: string; precoSeniorOriginal: string; pixLink?: string; cartaoLink?: string; indisponivel?: boolean }
 
 const bitPlans: BitPlan[] = [
-  {
-    name: "ULTRA 10",
-    bitContracts: 5,
-    features: [
-      "Ativos: BITCOIN, WIN, WDO",
-      "Aprovação: R$900,00",
-      "Stop Global: R$1.950,00",
-      "Sem limite diário para o exame",
-      "Sem mínimos de dias operados para aprovação",
-    ],
-    precoExame: "R$321,31", precoExameOriginal: "R$714,03",
-    valorOriginal: 714.03,
-    precoPix: "R$321,31",
-    precoCartao: "R$51,88",
-    precoSeniorOriginal: "R$714,03",
-    pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151528",
-    cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151528",
-  },
-  {
-    name: "ULTRA 15",
-    bitContracts: 10,
-    features: [
-      "Ativos: BITCOIN, WIN, WDO",
-      "Aprovação: R$2.500,00",
-      "Stop Global: R$3.510,00",
-      "Sem limite diário para o exame",
-      "Sem mínimos de dias operados para aprovação",
-    ],
-    precoExame: "R$460,86", precoExameOriginal: "R$1.024,13",
-    valorOriginal: 1024.13,
-    precoPix: "R$460,86",
-    precoCartao: "R$74,40",
-    precoSeniorOriginal: "R$1.024,13",
-    pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151529",
-    cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151529",
-  },
-  {
-    name: "ULTRA 20",
-    bitContracts: 15,
-    features: [
-      "Ativos: BITCOIN, WIN, WDO",
-      "Aprovação: R$3.500,00",
-      "Stop Global: R$5.900,00",
-      "Sem limite diário para o exame",
-      "Sem mínimos de dias operados para aprovação",
-    ],
-    precoExame: "R$838,40", precoExameOriginal: "R$1.863,11",
-    valorOriginal: 1863.11,
-    precoPix: "R$838,40",
-    precoCartao: "R$135,31",
-    precoSeniorOriginal: "R$1.863,11",
-    pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151530",
-    cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151530",
-  },
-  {
-    name: "ULTRA 30",
-    bitContracts: 25,
-    features: [
-      "Ativos: BITCOIN, WIN, WDO",
-      "Aprovação: R$5.500,00",
-      "Stop Global: R$7.150,00",
-      "Sem limite diário para o exame",
-      "Sem mínimos de dias operados para aprovação",
-    ],
-    precoExame: "R$2.433,17", precoExameOriginal: "Indisponivel",
-    valorOriginal: 2433.17,
-    precoPix: "INDISPONÍVEL",
-    precoCartao: "INDISPONÍVEL",
-    precoSeniorOriginal: "R$2.433,17",
-    indisponivel: true,
-    pixLink: "https://pedido.amigosdamesa.shop/pay/3c1aec92-9457-4f48-8d2c-be7fa6be4200",
-    cartaoLink: "https://pedido.amigosdamesas.shop/pay/c73bc77e-2059-458b-b99c-62989894fffc",
-  },
+  { name: "ULTRA 10", bitContracts: 5, features: ["Ativos: BITCOIN, WIN, WDO","Aprovação: R$900,00","Stop Global: R$1.950,00","Sem limite diário para o exame","Sem mínimos de dias operados para aprovação"], precoExame: "R$321,31", precoExameOriginal: "R$714,03", valorOriginal: 714.03, precoPix: "R$321,31", precoCartao: "R$51,88", precoSeniorOriginal: "R$714,03", pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151528", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151528" },
+  { name: "ULTRA 15", bitContracts: 10, features: ["Ativos: BITCOIN, WIN, WDO","Aprovação: R$2.500,00","Stop Global: R$3.510,00","Sem limite diário para o exame","Sem mínimos de dias operados para aprovação"], precoExame: "R$460,86", precoExameOriginal: "R$1.024,13", valorOriginal: 1024.13, precoPix: "R$460,86", precoCartao: "R$74,40", precoSeniorOriginal: "R$1.024,13", pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151529", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151529" },
+  { name: "ULTRA 20", bitContracts: 15, features: ["Ativos: BITCOIN, WIN, WDO","Aprovação: R$3.500,00","Stop Global: R$5.900,00","Sem limite diário para o exame","Sem mínimos de dias operados para aprovação"], precoExame: "R$838,40", precoExameOriginal: "R$1.863,11", valorOriginal: 1863.11, precoPix: "R$838,40", precoCartao: "R$135,31", precoSeniorOriginal: "R$1.863,11", pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151530", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151530" },
+  { name: "ULTRA 30", bitContracts: 25, features: ["Ativos: BITCOIN, WIN, WDO","Aprovação: R$5.500,00","Stop Global: R$7.150,00","Sem limite diário para o exame","Sem mínimos de dias operados para aprovação"], precoExame: "R$2.433,17", precoExameOriginal: "Indisponivel", valorOriginal: 2433.17, precoPix: "INDISPONÍVEL", precoCartao: "INDISPONÍVEL", precoSeniorOriginal: "R$2.433,17", indisponivel: true, pixLink: "https://pedido.amigosdamesa.shop/pay/3c1aec92-9457-4f48-8d2c-be7fa6be4200", cartaoLink: "https://pedido.amigosdamesas.shop/pay/c73bc77e-2059-458b-b99c-62989894fffc" },
 ]
 
 const BONUS_LABEL = "7 dias de Sala Educacional ao Vivo"
 
 function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive: boolean; isPix: boolean; onCta: () => void }) {
   return (
-    <div
-      className={`
-        flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center
-        rounded-2xl border-2 bg-card flex flex-col transition-all duration-300
-        ${isActive ? "border-primary shadow-[0_0_0_2px_theme(colors.orange.500)]" : "border-border opacity-80"}
-      `}
-    >
+    <div className={`flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center rounded-2xl border-2 bg-card flex flex-col transition-all duration-300 ${isActive ? "border-primary shadow-[0_0_0_2px_theme(colors.orange.500)]" : "border-border opacity-80"}`}>
       <div className="bg-primary rounded-t-2xl px-5 py-3 flex items-center justify-between">
         <h3 className="text-primary-foreground font-black text-sm uppercase tracking-wide">{plan.name}</h3>
       </div>
       <div className="flex flex-col flex-1 px-5 py-4 gap-4">
         <ul className="space-y-1.5">
-          {plan.features.map((f, i) => (
-            <li key={i} className="flex items-start gap-2 text-sm text-foreground">
-              <span className="text-primary mt-0.5 text-xs">•</span>
-              <span>{f}</span>
-            </li>
-          ))}
+          {plan.features.map((f, i) => (<li key={i} className="flex items-start gap-2 text-sm text-foreground"><span className="text-primary mt-0.5 text-xs">•</span><span>{f}</span></li>))}
         </ul>
         <div className="space-y-2 border-t border-border pt-3">
           <div className="flex items-center justify-between">
             <span className="text-xs text-muted-foreground font-semibold uppercase tracking-wide">Exame</span>
             <div className="text-right">
-              {isPix ? (
-                <span className="text-primary font-black text-base">{plan.precoPix}</span>
-              ) : (
-                <span className="text-primary font-black text-base">12x {plan.precoCartao}</span>
-              )}
+              {isPix ? (<span className="text-primary font-black text-base">{plan.precoPix}</span>) : (<span className="text-primary font-black text-base">12x {plan.precoCartao}</span>)}
             </div>
           </div>
           <p className="text-[10px] text-muted-foreground text-center font-semibold tracking-widest pt-1">PROFIT ONE</p>
@@ -299,60 +110,21 @@ function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive
         <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
           <p className="text-[10px] font-black uppercase tracking-widest text-primary">Bonus</p>
           <p className="text-xs text-foreground/80 leading-snug">Sem limite diario para o exame</p>
-          <p className="text-xs text-foreground/80 leading-snug">Sem minimos de dias operados para aprovacao</p>
         </div>
-        <button
-          onClick={onCta}
-          className={`
-            w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide mt-auto
-            transition-all duration-300
-            ${isActive ? "bg-primary text-primary-foreground" : "bg-secondary text-foreground border border-border"}
-          `}
-        >
-          COMPRAR AGORA
-        </button>
+        <button onClick={onCta} className={`w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide mt-auto transition-all duration-300 ${isActive ? "bg-primary text-primary-foreground" : "bg-secondary text-foreground border border-border"}`}>COMPRAR AGORA</button>
       </div>
     </div>
   )
 }
 
 interface PegueMonteOption { label: string; price: number; description?: string }
-
-const pmContratos: PegueMonteOption[] = [
-  { label: "8 contratos", price: 753 },
-  { label: "12 contratos", price: 813 },
-  { label: "16 contratos", price: 973 },
-  { label: "20 contratos", price: 1133 },
-  { label: "25 contratos", price: 1363 },
-  { label: "30 contratos", price: 1553 },
-]
-
-const pmPlataforma: PegueMonteOption[] = [
-  { label: "One", price: 0, description: "R$0,00" },
-  { label: "PLUS+", price: 160, description: "R$160,00" },
-]
-
-const pmAtivos: PegueMonteOption[] = [
-  { label: "WIN", price: 0 },
-  { label: "WDO", price: 0 },
-  { label: "Ambos", price: 0 },
-]
-
-const pmModalidade: PegueMonteOption[] = [
-  { label: "Day Trade", price: 0 },
-  { label: "Swing", price: 0 },
-]
-
-const pmStopDiario: PegueMonteOption[] = [
-  { label: "R$500,00", price: 0 },
-  { label: "R$750,00", price: 0 },
-  { label: "R$900,00", price: 0 },
-  { label: "R$1.300,00", price: 0 },
-  { label: "R$1.800,00", price: 0 },
-]
+const pmContratos: PegueMonteOption[] = [{label:"8 contratos",price:753},{label:"12 contratos",price:813},{label:"16 contratos",price:973},{label:"20 contratos",price:1133},{label:"25 contratos",price:1363},{label:"30 contratos",price:1553}]
+const pmPlataforma: PegueMonteOption[] = [{label:"One",price:0,description:"R$0,00"},{label:"PLUS+",price:160,description:"R$160,00"}]
+const pmAtivos: PegueMonteOption[] = [{label:"WIN",price:0},{label:"WDO",price:0},{label:"Ambos",price:0}]
+const pmModalidade: PegueMonteOption[] = [{label:"Day Trade",price:0},{label:"Swing",price:0}]
+const pmStopDiario: PegueMonteOption[] = [{label:"R$500,00",price:0},{label:"R$750,00",price:0},{label:"R$900,00",price:0},{label:"R$1.300,00",price:0},{label:"R$1.800,00",price:0}]
 
 interface PegueMonteModalProps { open: boolean; onClose: () => void }
-
 function PegueMonteModal({ open, onClose }: PegueMonteModalProps) {
   const [nome, setNome] = useState("")
   const [email, setEmail] = useState("")
@@ -370,15 +142,7 @@ function PegueMonteModal({ open, onClose }: PegueMonteModalProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     const desconto = clube ? " (10% de desconto Clube do Valor)" : ""
-    const msg = encodeURIComponent(
-      `Ola! Quero montar meu plano *PEGUE E MONTE* na Amigos da Mesa PRO.\n\n` +
-      `Nome: ${nome}\nE-mail: ${email}\nWhatsApp: ${whatsapp}\n\n` +
-      `Contratos: ${contratos?.label}\nPlataforma: ${plataforma?.label}${desconto}\n` +
-      `Clube do Valor: ${clube ? "Sim" : "Nao"}\nAtivos: ${ativos?.label}\n` +
-      `Modalidade: ${modalidade?.label}\nStop Diario: ${stopDiario?.label}\n\n` +
-      `Valor total estimado: R$${total.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}\n\n` +
-      `Aguardo o contato para finalizar minha adesao!`
-    )
+    const msg = encodeURIComponent(`Ola! Quero montar meu plano *PEGUE E MONTE* na Amigos da Mesa PRO.\n\nNome: ${nome}\nE-mail: ${email}\nWhatsApp: ${whatsapp}\n\nContratos: ${contratos?.label}\nPlataforma: ${plataforma?.label}${desconto}\nClube do Valor: ${clube ? "Sim" : "Nao"}\nAtivos: ${ativos?.label}\nModalidade: ${modalidade?.label}\nStop Diario: ${stopDiario?.label}\n\nValor total estimado: R$${total.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}\n\nAguardo o contato para finalizar minha adesao!`)
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank")
     onClose(); setStep("builder")
   }
@@ -392,24 +156,19 @@ function PegueMonteModal({ open, onClose }: PegueMonteModalProps) {
       <div className="absolute inset-0 bg-black/70" onClick={handleClose} />
       <div className="relative z-10 w-full max-w-lg bg-card border border-border rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col" style={{ maxHeight: "92dvh" }}>
         <div className="bg-primary px-6 py-4 flex items-center justify-between flex-shrink-0 rounded-t-2xl">
-          <div>
-            <h3 className="text-primary-foreground font-black text-lg uppercase tracking-wide">{step === "builder" ? "Monte seu Plano" : "Seus Dados"}</h3>
-            <p className="text-primary-foreground/80 text-xs mt-0.5">Pegue e Monte — personalize sua conta</p>
-          </div>
+          <div><h3 className="text-primary-foreground font-black text-lg uppercase tracking-wide">{step === "builder" ? "Monte seu Plano" : "Seus Dados"}</h3><p className="text-primary-foreground/80 text-xs mt-0.5">Pegue e Monte — personalize sua conta</p></div>
           <button onClick={handleClose} className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"><X className="w-5 h-5" /></button>
         </div>
         {step === "builder" ? (
           <form onSubmit={handleGoToLead} className="flex flex-col min-h-0 flex-1">
-            <div className="overflow-y-auto flex-1">
-              <div className="px-6 py-6 space-y-5">
-                <div className="space-y-1.5"><label className={labelClass}>Quantidade de Contratos <span className="text-destructive">*</span></label><select required value={contratos?.label ?? ""} onChange={e => setContratos(pmContratos.find(o => o.label === e.target.value) ?? null)} className={selectClass}><option value="">Selecionar valor</option>{pmContratos.map(o => (<option key={o.label} value={o.label}>{o.label} — R${o.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</option>))}</select></div>
-                <div className="space-y-1.5"><label className={labelClass}>Plataforma <span className="text-destructive">*</span></label><select required value={plataforma?.label ?? ""} onChange={e => setPlataforma(pmPlataforma.find(o => o.label === e.target.value) ?? null)} className={selectClass}><option value="">Selecionar valor</option>{pmPlataforma.map(o => (<option key={o.label} value={o.label}>{o.label} — {o.description}</option>))}</select></div>
-                <div className="space-y-1.5"><label className={labelClass}>Clube do Valor</label><div className="flex items-center gap-3"><button type="button" role="switch" aria-checked={clube} onClick={() => setClube(v => !v)} className={`relative w-12 h-6 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary ${clube ? "bg-primary" : "bg-muted"}`}><span className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform duration-300 ${clube ? "translate-x-6" : "translate-x-0"}`} /></button><span className="text-sm text-muted-foreground flex items-center gap-1">Sim<Info className="w-3.5 h-3.5 text-muted-foreground" /></span></div></div>
-                <div className="space-y-1.5"><label className={labelClass}>Ativos <span className="text-destructive">*</span></label><select required value={ativos?.label ?? ""} onChange={e => setAtivos(pmAtivos.find(o => o.label === e.target.value) ?? null)} className={selectClass}><option value="">Selecionar valor</option>{pmAtivos.map(o => (<option key={o.label} value={o.label}>{o.label}</option>))}</select></div>
-                <div className="space-y-1.5"><label className={labelClass}>Modalidade <span className="text-destructive">*</span></label><select required value={modalidade?.label ?? ""} onChange={e => setModalidade(pmModalidade.find(o => o.label === e.target.value) ?? null)} className={selectClass}><option value="">Selecionar valor</option>{pmModalidade.map(o => (<option key={o.label} value={o.label}>{o.label}</option>))}</select></div>
-                <div className="space-y-1.5"><label className={labelClass}>Stop Diario <span className="text-destructive">*</span></label><select required value={stopDiario?.label ?? ""} onChange={e => setStopDiario(pmStopDiario.find(o => o.label === e.target.value) ?? null)} className={selectClass}><option value="">Selecionar valor</option>{pmStopDiario.map(o => (<option key={o.label} value={o.label}>{o.label}</option>))}</select></div>
-              </div>
-            </div>
+            <div className="overflow-y-auto flex-1"><div className="px-6 py-6 space-y-5">
+              <div className="space-y-1.5"><label className={labelClass}>Quantidade de Contratos <span className="text-destructive">*</span></label><select required value={contratos?.label ?? ""} onChange={e => setContratos(pmContratos.find(o => o.label === e.target.value) ?? null)} className={selectClass}><option value="">Selecionar valor</option>{pmContratos.map(o => (<option key={o.label} value={o.label}>{o.label} — R${o.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</option>))}</select></div>
+              <div className="space-y-1.5"><label className={labelClass}>Plataforma <span className="text-destructive">*</span></label><select required value={plataforma?.label ?? ""} onChange={e => setPlataforma(pmPlataforma.find(o => o.label === e.target.value) ?? null)} className={selectClass}><option value="">Selecionar valor</option>{pmPlataforma.map(o => (<option key={o.label} value={o.label}>{o.label} — {o.description}</option>))}</select></div>
+              <div className="space-y-1.5"><label className={labelClass}>Clube do Valor</label><div className="flex items-center gap-3"><button type="button" role="switch" aria-checked={clube} onClick={() => setClube(v => !v)} className={`relative w-12 h-6 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary ${clube ? "bg-primary" : "bg-muted"}`}><span className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform duration-300 ${clube ? "translate-x-6" : "translate-x-0"}`} /></button><span className="text-sm text-muted-foreground flex items-center gap-1">Sim<Info className="w-3.5 h-3.5 text-muted-foreground" /></span></div></div>
+              <div className="space-y-1.5"><label className={labelClass}>Ativos <span className="text-destructive">*</span></label><select required value={ativos?.label ?? ""} onChange={e => setAtivos(pmAtivos.find(o => o.label === e.target.value) ?? null)} className={selectClass}><option value="">Selecionar valor</option>{pmAtivos.map(o => (<option key={o.label} value={o.label}>{o.label}</option>))}</select></div>
+              <div className="space-y-1.5"><label className={labelClass}>Modalidade <span className="text-destructive">*</span></label><select required value={modalidade?.label ?? ""} onChange={e => setModalidade(pmModalidade.find(o => o.label === e.target.value) ?? null)} className={selectClass}><option value="">Selecionar valor</option>{pmModalidade.map(o => (<option key={o.label} value={o.label}>{o.label}</option>))}</select></div>
+              <div className="space-y-1.5"><label className={labelClass}>Stop Diario <span className="text-destructive">*</span></label><select required value={stopDiario?.label ?? ""} onChange={e => setStopDiario(pmStopDiario.find(o => o.label === e.target.value) ?? null)} className={selectClass}><option value="">Selecionar valor</option>{pmStopDiario.map(o => (<option key={o.label} value={o.label}>{o.label}</option>))}</select></div>
+            </div></div>
             <div className="px-6 pb-6 pt-4 border-t border-border flex-shrink-0 space-y-4">
               <div className="bg-secondary rounded-xl px-4 py-3 space-y-1.5">
                 <div className="flex justify-between text-xs text-muted-foreground"><span>Contratos</span><span>{contratos?.label ?? "—"}</span></div>
@@ -423,24 +182,22 @@ function PegueMonteModal({ open, onClose }: PegueMonteModalProps) {
           </form>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col min-h-0 flex-1">
-            <div className="overflow-y-auto flex-1">
-              <div className="px-6 py-6 space-y-4">
-                <p className="text-sm text-muted-foreground leading-relaxed">Preencha seus dados para finalizarmos sua montagem via WhatsApp.</p>
-                <div className="space-y-1.5"><label className={labelClass}>Nome completo</label><input required value={nome} onChange={e => setNome(e.target.value)} placeholder="Seu nome" className={inputClass} /></div>
-                <div className="space-y-1.5"><label className={labelClass}>E-mail</label><input required type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="seu@email.com" className={inputClass} /></div>
-                <div className="space-y-1.5"><label className={labelClass}>WhatsApp</label><input required value={whatsapp} onChange={e => setWhatsapp(e.target.value)} placeholder="(11) 99999-9999" className={inputClass} /></div>
-                <div className="bg-secondary rounded-xl px-4 py-3 space-y-1.5">
-                  <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-2">Resumo do seu plano</p>
-                  <div className="flex justify-between text-xs text-muted-foreground"><span>Contratos</span><span>{contratos?.label}</span></div>
-                  <div className="flex justify-between text-xs text-muted-foreground"><span>Plataforma</span><span>{plataforma?.label}</span></div>
-                  <div className="flex justify-between text-xs text-muted-foreground"><span>Clube do Valor</span><span>{clube ? "Sim" : "Nao"}</span></div>
-                  <div className="flex justify-between text-xs text-muted-foreground"><span>Ativos</span><span>{ativos?.label}</span></div>
-                  <div className="flex justify-between text-xs text-muted-foreground"><span>Modalidade</span><span>{modalidade?.label}</span></div>
-                  <div className="flex justify-between text-xs text-muted-foreground"><span>Stop Diario</span><span>{stopDiario?.label}</span></div>
-                  <div className="flex justify-between text-sm font-black text-foreground border-t border-border pt-2 mt-1"><span>Total</span><span className="text-primary">R${total.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span></div>
-                </div>
+            <div className="overflow-y-auto flex-1"><div className="px-6 py-6 space-y-4">
+              <p className="text-sm text-muted-foreground leading-relaxed">Preencha seus dados para finalizarmos sua montagem via WhatsApp.</p>
+              <div className="space-y-1.5"><label className={labelClass}>Nome completo</label><input required value={nome} onChange={e => setNome(e.target.value)} placeholder="Seu nome" className={inputClass} /></div>
+              <div className="space-y-1.5"><label className={labelClass}>E-mail</label><input required type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="seu@email.com" className={inputClass} /></div>
+              <div className="space-y-1.5"><label className={labelClass}>WhatsApp</label><input required value={whatsapp} onChange={e => setWhatsapp(e.target.value)} placeholder="(11) 99999-9999" className={inputClass} /></div>
+              <div className="bg-secondary rounded-xl px-4 py-3 space-y-1.5">
+                <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-2">Resumo do seu plano</p>
+                <div className="flex justify-between text-xs text-muted-foreground"><span>Contratos</span><span>{contratos?.label}</span></div>
+                <div className="flex justify-between text-xs text-muted-foreground"><span>Plataforma</span><span>{plataforma?.label}</span></div>
+                <div className="flex justify-between text-xs text-muted-foreground"><span>Clube do Valor</span><span>{clube ? "Sim" : "Nao"}</span></div>
+                <div className="flex justify-between text-xs text-muted-foreground"><span>Ativos</span><span>{ativos?.label}</span></div>
+                <div className="flex justify-between text-xs text-muted-foreground"><span>Modalidade</span><span>{modalidade?.label}</span></div>
+                <div className="flex justify-between text-xs text-muted-foreground"><span>Stop Diario</span><span>{stopDiario?.label}</span></div>
+                <div className="flex justify-between text-sm font-black text-foreground border-t border-border pt-2 mt-1"><span>Total</span><span className="text-primary">R${total.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span></div>
               </div>
-            </div>
+            </div></div>
             <div className="px-6 pb-6 pt-4 border-t border-border flex-shrink-0 flex flex-col gap-3">
               <button type="submit" className="w-full py-3.5 bg-primary text-primary-foreground rounded-xl font-black text-sm uppercase tracking-wide hover:bg-primary/90 transition-colors">Enviar para WhatsApp</button>
               <button type="button" onClick={() => setStep("builder")} className="text-xs text-muted-foreground text-center hover:text-foreground transition-colors">Voltar e editar plano</button>
@@ -453,16 +210,10 @@ function PegueMonteModal({ open, onClose }: PegueMonteModalProps) {
 }
 
 const categories: { id: Category; label: string }[] = [
-  { id: "exames", label: "Exames" },
-  { id: "prime-plus", label: "Prime Plus" },
-  { id: "titan", label: "Titan" },
-  { id: "senior", label: "Senior" },
-  { id: "pegue-monte", label: "Pegue e Monte" },
-  { id: "bit", label: "BIT" },
+  {id:"exames",label:"Exames"},{id:"prime-plus",label:"Prime Plus"},{id:"titan",label:"Titan"},{id:"senior",label:"Senior"},{id:"pegue-monte",label:"Pegue e Monte"},{id:"bit",label:"BIT"},
 ]
 
 interface LeadModalProps { planName: string; open: boolean; onClose: () => void }
-
 function LeadModal({ planName, open, onClose }: LeadModalProps) {
   const [nome, setNome] = useState("")
   const [email, setEmail] = useState("")
@@ -470,11 +221,7 @@ function LeadModal({ planName, open, onClose }: LeadModalProps) {
   if (!open) return null
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const msg = encodeURIComponent(
-      `Ola! Tenho interesse no *${planName}* da Amigos da Mesa PRO.\n\n` +
-      `Nome: ${nome}\nE-mail: ${email}\nWhatsApp: ${whatsapp}\nPlano escolhido: ${planName}\n\n` +
-      `Gostaria de receber mais informacoes e iniciar minha adesao. Aguardo o contato da equipe!`
-    )
+    const msg = encodeURIComponent(`Ola! Tenho interesse no *${planName}* da Amigos da Mesa PRO.\n\nNome: ${nome}\nE-mail: ${email}\nWhatsApp: ${whatsapp}\nPlano escolhido: ${planName}\n\nGostaria de receber mais informacoes e iniciar minha adesao. Aguardo o contato da equipe!`)
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank")
     onClose()
   }
@@ -482,10 +229,7 @@ function LeadModal({ planName, open, onClose }: LeadModalProps) {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/70" onClick={onClose} />
       <div className="relative z-10 w-full max-w-md bg-card border border-border rounded-2xl shadow-2xl overflow-hidden">
-        <div className="bg-primary px-6 py-4 flex items-center justify-between">
-          <div><h3 className="text-primary-foreground font-black text-lg uppercase tracking-wide">Fale com nosso time</h3><p className="text-primary-foreground/80 text-xs mt-0.5">{planName}</p></div>
-          <button onClick={onClose} className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"><X className="w-5 h-5" /></button>
-        </div>
+        <div className="bg-primary px-6 py-4 flex items-center justify-between"><div><h3 className="text-primary-foreground font-black text-lg uppercase tracking-wide">Fale com nosso time</h3><p className="text-primary-foreground/80 text-xs mt-0.5">{planName}</p></div><button onClick={onClose} className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"><X className="w-5 h-5" /></button></div>
         <form onSubmit={handleSubmit} className="px-6 py-6 space-y-4">
           <p className="text-sm text-muted-foreground leading-relaxed">Preencha seus dados abaixo e nossa equipe entrara em contato via WhatsApp para finalizar sua adesao ao <strong className="text-foreground">{planName}</strong>.</p>
           <div className="space-y-1"><label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Nome completo</label><input required value={nome} onChange={e => setNome(e.target.value)} placeholder="Seu nome" className="w-full bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary" /></div>
@@ -500,12 +244,9 @@ function LeadModal({ planName, open, onClose }: LeadModalProps) {
   )
 }
 
-function formatBRL(value: number): string {
-  return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
-}
+function formatBRL(value: number): string { return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }) }
 
 interface PlanCardProps { plan: Plan; isActive: boolean; isPix: boolean; onCta: () => void }
-
 function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
   const hasFeatures = !!plan.features
   const isPrimePlus = hasFeatures && !!plan.taxaOnePix
@@ -514,83 +255,34 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
   const isUnavailable = plan.pricePix === 0 && plan.ctaLabel === "Indisponivel"
   const priceCartao12x = (plan.pricePix * 1.9372) / 12
   const displayPrice = isPix ? plan.pricePix : priceCartao12x
-
-  const isSpecialBonus = plan.name === "PLANO INICIANTE" || plan.name === "PLANO INTERMEDIÁRIO" || plan.name === "PEGUE E MONTE 8" || plan.name === "PEGUE E MONTE 12"
-
   return (
     <div className={`flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center rounded-2xl border-2 bg-card flex flex-col transition-all duration-300 ${isActive ? "border-primary shadow-[0_0_0_2px_theme(colors.orange.500)]" : "border-border opacity-80"} ${isUnavailable ? "opacity-50 pointer-events-none" : ""}`}>
       <div className="bg-primary rounded-t-2xl">
-        {plan.mostVendido && (
-          <div className="flex items-center justify-center bg-green-600 border-y-2 border-white rounded-t-2xl py-1">
-            <span className="text-white text-xs font-black uppercase tracking-widest">Mais Vendido</span>
-          </div>
-        )}
+        {plan.mostVendido && (<div className="flex items-center justify-center bg-green-600 border-y-2 border-white rounded-t-2xl py-1"><span className="text-white text-xs font-black uppercase tracking-widest">Mais Vendido</span></div>)}
         <div className="px-5 py-3 flex items-center justify-between gap-2">
           <h3 className="text-sm font-black uppercase tracking-wide text-primary-foreground leading-tight">{plan.name}</h3>
-          {plan.discountPercent > 0 && (
-            <span className="flex-shrink-0 bg-primary-foreground text-primary text-[10px] font-black px-2 py-0.5 rounded-full">{plan.discountPercent}% OFF</span>
-          )}
+          {plan.discountPercent > 0 && (<span className="flex-shrink-0 bg-primary-foreground text-primary text-[10px] font-black px-2 py-0.5 rounded-full">{plan.discountPercent}% OFF</span>)}
         </div>
       </div>
       <div className="flex flex-col flex-1 px-5 py-4 gap-3">
-        {isPrimePlus && (
-          <>
-            <ul className="space-y-1.5">{plan.features!.map((feat, i) => (<li key={i} className="flex items-start gap-2 text-sm text-foreground"><span className="text-primary mt-0.5 text-xs flex-shrink-0">•</span><span>{feat}</span></li>))}</ul>
-            <div className="border-t border-border pt-3 text-center">
-              {isPix ? (<span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}/mes</span>) : (<span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span>)}
-            </div>
-            <div className="border-t border-border pt-3 space-y-1">
-              <p className="text-xs font-bold text-foreground uppercase tracking-wide">Taxa apos aprovado:</p>
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-xs font-semibold text-muted-foreground">ONE</span><strong className="text-primary text-sm">{formatBRL(plan.taxaOnePix!)}</strong>
-                <span className="text-xs font-semibold text-muted-foreground">PRO</span><strong className="text-primary text-sm">{formatBRL(plan.taxaProPix!)}</strong>
-              </div>
-            </div>
-          </>
-        )}
-        {isTitanOrSenior && (
-          <>
-            <ul className="space-y-1.5">{plan.features!.map((feat, i) => (<li key={i} className="flex items-start gap-2 text-sm text-foreground"><span className="text-primary mt-0.5 text-xs flex-shrink-0">•</span><span className="leading-snug">{feat}</span></li>))}</ul>
-            <div className="border-t border-border pt-3 text-center">
-              <div className="mb-1"><span className="text-sm line-through text-muted-foreground">{formatBRL(plan.priceOriginal)}</span></div>
-              {isPix ? (<span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}</span>) : (<div><span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span></div>)}
-            </div>
-          </>
-        )}
-        {!hasFeatures && (
-          <>
-            <div className="text-center">
-              <p className="text-primary font-bold text-lg">{plan.contracts} CONTRATOS</p>
-              {plan.asset && <p className="text-muted-foreground text-sm font-medium">{plan.asset}</p>}
-            </div>
-            <div className="space-y-2">
-              <div className="flex items-center justify-between border-b border-border pb-2"><span className="text-xs text-muted-foreground">Meta de Aprovacao</span><span className="text-sm font-semibold text-foreground">{plan.meta}</span></div>
-              <div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">Stop Global</span><span className="text-sm font-semibold text-foreground">{plan.stopGlobal}</span></div>
-            </div>
-            {isUnavailable ? (
-              <div className="text-center py-2"><span className="text-sm font-bold text-destructive">INDISPONIVEL</span></div>
-            ) : (
-              <div className="text-center">
-                <div className="mb-1"><span className="text-sm line-through text-muted-foreground">{formatBRL(plan.priceOriginal)}</span></div>
-                {isPix ? (<span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}</span>) : (<div><span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span></div>)}
-              </div>
-            )}
-          </>
-        )}
-  <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
-  <p className="text-[10px] font-black uppercase tracking-widest text-primary">Bonus</p>
-  {isSpecialBonus ? (
-    <>
-      <p className="text-xs text-foreground/80 leading-snug">Sem limite diario para o exame</p>
-      <p className="text-xs text-foreground/80 leading-snug">Atinja 50% da meta e solicite sua aprovacao</p>
-    </>
-  ) : (
-    <>
-      <p className="text-xs text-foreground/80 leading-snug">Sem limite diario para o exame</p>
-      <p className="text-xs text-foreground/80 leading-snug">Sem minimos de dias operados para aprovacao</p>
-    </>
-  )}
-  </div>
+        {isPrimePlus && (<>
+          <ul className="space-y-1.5">{plan.features!.map((feat, i) => (<li key={i} className="flex items-start gap-2 text-sm text-foreground"><span className="text-primary mt-0.5 text-xs flex-shrink-0">•</span><span>{feat}</span></li>))}</ul>
+          <div className="border-t border-border pt-3 text-center">{isPix ? (<span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}/mes</span>) : (<span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span>)}</div>
+          <div className="border-t border-border pt-3 space-y-1"><p className="text-xs font-bold text-foreground uppercase tracking-wide">Taxa apos aprovado:</p><div className="flex items-center gap-2 flex-wrap"><span className="text-xs font-semibold text-muted-foreground">ONE</span><strong className="text-primary text-sm">{formatBRL(plan.taxaOnePix!)}</strong><span className="text-xs font-semibold text-muted-foreground">PRO</span><strong className="text-primary text-sm">{formatBRL(plan.taxaProPix!)}</strong></div></div>
+        </>)}
+        {isTitanOrSenior && (<>
+          <ul className="space-y-1.5">{plan.features!.map((feat, i) => (<li key={i} className="flex items-start gap-2 text-sm text-foreground"><span className="text-primary mt-0.5 text-xs flex-shrink-0">•</span><span className="leading-snug">{feat}</span></li>))}</ul>
+          <div className="border-t border-border pt-3 text-center"><div className="mb-1"><span className="text-sm line-through text-muted-foreground">{formatBRL(plan.priceOriginal)}</span></div>{isPix ? (<span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}</span>) : (<div><span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span></div>)}</div>
+        </>)}
+        {!hasFeatures && (<>
+          <div className="text-center"><p className="text-primary font-bold text-lg">{plan.contracts} CONTRATOS</p>{plan.asset && <p className="text-muted-foreground text-sm font-medium">{plan.asset}</p>}</div>
+          <div className="space-y-2"><div className="flex items-center justify-between border-b border-border pb-2"><span className="text-xs text-muted-foreground">Meta de Aprovacao</span><span className="text-sm font-semibold text-foreground">{plan.meta}</span></div><div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">Stop Global</span><span className="text-sm font-semibold text-foreground">{plan.stopGlobal}</span></div></div>
+          {isUnavailable ? (<div className="text-center py-2"><span className="text-sm font-bold text-destructive">INDISPONIVEL</span></div>) : (<div className="text-center"><div className="mb-1"><span className="text-sm line-through text-muted-foreground">{formatBRL(plan.priceOriginal)}</span></div>{isPix ? (<span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}</span>) : (<div><span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span></div>)}</div>)}
+        </>)}
+        <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
+          <p className="text-[10px] font-black uppercase tracking-widest text-primary">Bonus</p>
+          <p className="text-xs text-foreground/80 leading-snug">Sem limite diario para o exame</p>
+        </div>
         <button onClick={onCta} disabled={isUnavailable} className={`w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide transition-all duration-300 mt-auto ${isUnavailable ? "bg-muted text-muted-foreground cursor-not-allowed" : isActive ? "bg-primary text-primary-foreground" : "bg-secondary text-foreground border border-border"}`}>{ctaLabel}</button>
         {!hasFeatures && !isUnavailable && (<p className="text-[10px] text-muted-foreground text-center leading-relaxed">Conta demo aplicavel de forma opcional. Caso o nivel decida utiliza-la ou nao.</p>)}
       </div>
