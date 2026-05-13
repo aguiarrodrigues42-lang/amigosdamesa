@@ -534,59 +534,51 @@ Uma mesa para todos.`
     conteudo: `REGULAMENTO DE DESCONTO IGUAL OU SUPERIOR A 50%
 MODALIDADE DE SAQUE MENSAL
 
+REGULAMENTO ESPECÍFICO – CAMPANHAS IGUAL OU SUPERIOR A 50% OFF
+MODALIDADE DE SAQUE MENSAL
 O presente regulamento estabelece as condições específicas aplicáveis aos planos adquiridos em campanhas promocionais com desconto igual ou superior a 50% (cinquenta por cento), prevalecendo sobre quaisquer condições padrão em caso de divergência.
-
 ABRANGÊNCIA
-
 Este regulamento se aplica exclusivamente aos planos adquiridos sob campanhas promocionais com desconto igual ou superior a 50% (cinquenta por cento).
-
 Ao aderir ao plano, o participante declara ciência e concordância integral com estas condições.
-
 FASE DE TESTE
-
 O participante deverá cumprir o mínimo de 5 (cinco) dias operados para elegibilidade à progressão de fase, independentemente do atingimento de meta.
-
-Considera-se "dia operado" aquele em que houver ao menos uma operação válida registrada na plataforma não podendo ser 0x0.
-
+Considera-se “dia operado” aquele em que houver ao menos uma operação válida registrada na plataforma não podendo ser 0x0.
 SIMULADOR REMUNERADO (SR)
-
-As solicitações de saque deverão ser realizadas exclusivamente via e-mail oficial ou área logada do participante.
-
-Os saques nesta modalidade ocorrerão exclusivamente em ciclos mensais, com fechamento nos dias 15, 30 ou 31 de cada mês. As datas que determina o seu ciclo de saque será sempre seu dia de inicio em conta real ou simulador remunerado.
-
-O prazo para solicitação de saque inicia-se 5 (cinco) dias corridos antes da data de fechamento e encerra-se em até 3 (três) dias corridos após o fechamento.
-
-Solicitações realizadas fora deste prazo serão automaticamente desconsideradas, sem exceção.
+As solicitações de repasse deverão ser realizadas exclusivamente por meio da área logada do participante, mediante registro formal dentro do prazo estabelecido.
+Os repasses nesta modalidade ocorrerão em ciclos mensais, definidos conforme a data de início da conta, seja em ambiente de Simulador Remunerado ou Conta Real, conforme abaixo:
+Início da conta → Janela de solicitação de saque
+Iniciou entre os dias 01 e 09
+→ Solicitação até o dia 15 
+Iniciou entre os dias 10 e 19
+→ Solicitação até o dia 25 
+Iniciou entre os dias 20 e 31
+→ Solicitação até o dia 05 do mês subsequente 
+A data de início da conta será o único critério para definição do ciclo de repasse do participante.
+O prazo para solicitação de saque inicia-se após o cumprimento dos requisitos operacionais mínimos exigidos e se encerra, impreterivelmente, na data correspondente à sua janela de solicitação.
+Desde que cumpridos os critérios operacionais (incluindo, mas não se limitando, ao número mínimo de dias operados), o participante poderá solicitar o saque a qualquer momento dentro do respectivo ciclo, até a data limite estabelecida.
+Exemplo:
+Participante que iniciou suas atividades em 12/01/2025 poderá solicitar seu repasse até o dia 25/02/2025.
+Solicitações realizadas fora do prazo estipulado serão automaticamente desconsideradas, sem possibilidade de exceção ou reanálise.
+Caso o participante não realize a solicitação dentro da janela correspondente, o repasse será automaticamente transferido para o mesmo ciclo no mês subsequente, respeitando integralmente a lógica de periodicidade estabelecida.
 
 ALTERAÇÃO DE MODALIDADE DE SAQUE
-
 A alteração da modalidade de saque poderá ser solicitada mediante:
-a) envio de solicitação para o e-mail oficial da empresa
-b) pagamento de taxa correspondente a 40% (quarenta por cento) sobre o valor original do plano adquirido
-
+a) envio de solicitação para o e-mail oficial da empresa contato@amigosdamesaprop.com ;
+b) pagamento de taxa correspondente a 40% (quarenta por cento) sobre o valor original do plano adquirido;
 A solicitação deverá ser realizada com antecedência mínima de 7 (sete) dias corridos da data de fechamento do ciclo vigente.
-
 Solicitações fora do prazo não serão processadas.
-
 PERCENTUAL DE REPASSE
-
 O percentual de repasse padrão será de 90% (noventa por cento) sobre o lucro líquido apurado.
-
 Para participantes vinculados ao Clube, aplicam-se as seguintes condições:
-a) 100% (cem por cento) de repasse durante os primeiros 3 (três) meses
-b) após este período, o repasse será de 90% (noventa por cento)
-
+a) 100% (cem por cento) de repasse durante os primeiros 3 (três) meses;
+b) após este período, o repasse será de 90% (noventa por cento).
 O percentual de repasse incide exclusivamente sobre o lucro líquido, após dedução de tributos, taxas operacionais e demais encargos obrigatórios.
-
 DISPOSIÇÕES GERAIS
-
 Este regulamento não substitui o Regulamento Geral da mesa, sendo complementar às regras já estabelecidas.
-
 Permanecem integralmente válidas todas as regras operacionais, de risco, consistência, limites, conduta e elegibilidade descritas nos materiais oficiais da empresa.
-
 Em caso de conflito entre este regulamento e o regulamento padrão, prevalecerão as condições aqui descritas para os planos contemplados nesta campanha.
-
-A empresa se reserva o direito de recusar solicitações que não atendam integralmente aos critérios estabelecidos neste regulamento.`
+A empresa se reserva o direito de recusar solicitações que não atendam integralmente aos critérios estabelecidos neste regulamento.
+`
   }
 ]
 
