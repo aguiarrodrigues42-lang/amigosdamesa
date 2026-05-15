@@ -171,7 +171,7 @@ Caso o Trader, em Conta Real:
 Se, após retornar à Conta Real:
 • O Trader atingir novamente 30% de perda do saldo global, será eliminado
 • Caso atinja 30% de perda da margem em Conta Real, perderá também qualquer saldo acumulado previamente no Simulador Remunerado
-• As regras acima são específicas dos planos Master50, Unos40 e Titan, prevalecendo sobre disposições gerais quando aplicáveis.
+• As regras acima s��o específicas dos planos Master50, Unos40 e Titan, prevalecendo sobre disposições gerais quando aplicáveis.
 
 ATIVAÇÃO DE SAQUE EM CONTA REAL
 
@@ -416,6 +416,53 @@ Durante a fase de teste (Exame de Seleção), os planos não possuem bloqueio au
 O controle de risco diário é de responsabilidade exclusiva do Trader, que deverá, caso deseje, configurar manualmente seus limites por meio das ferramentas disponíveis na plataforma Nelogica.
 
 A ausência de configuração não exime o Trader do cumprimento das regras de risco do plano, sendo integralmente responsável por quaisquer perdas decorrentes de sua operação.
+
+STOP DIÁRIO – SIMULADOR REMUNERADO (SR) E CONTA REAL (CR)
+
+Nos ambientes de Simulador Remunerado (SR) e Conta Real (CR), todos os planos possuem limite máximo de perda diária operacional ("stop diário"), de observância obrigatória pelo Trader.
+
+O atingimento do stop diário poderá acarretar:
+• Bloqueio operacional da conta
+• Encerramento compulsório das operações do pregão
+• Desconsideração de operações realizadas após o limite
+• Eliminação da conta, conforme critérios de gerenciamento de risco aplicáveis ao plano
+
+A eventual ausência de bloqueio automático na plataforma não invalida os limites operacionais estabelecidos neste Regulamento.
+
+Os limites vigentes são:
+
+EXAMES E SÊNIOR
+• 7 contratos → R$ 300,00
+• 15 contratos → R$ 420,00
+• 25 contratos → R$ 900,00
+• 40 contratos → R$ 1.450,00
+• 50 contratos → R$ 3.350,00
+
+PRIME
+• 6 contratos → R$ 500,00
+• 11 contratos → R$ 800,00
+• 16 contratos → R$ 1.200,00
+• 21 contratos → R$ 1.600,00
+
+TITAN
+• 30 contratos → R$ 2.500,00
+• 45 contratos → R$ 3.000,00
+• 65 contratos → R$ 4.000,00
+• 80 contratos → R$ 5.000,00
+
+BIT
+• 10 contratos → R$ 600,00
+• 15 contratos → R$ 1.000,00
+• 20 contratos → R$ 1.700,00
+• 30 contratos → R$ 2.100,00
+
+PEGUE E MONTE
+Na modalidade Pegue e Monte, o Trader poderá selecionar o limite de stop diário dentre as opções disponibilizadas pela Mesa:
+• R$ 500,00
+• R$ 750,00
+• R$ 900,00
+• R$ 1.300,00
+• R$ 1.800,00
 
 CRITÉRIOS DE APROVAÇÃO
 
