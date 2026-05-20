@@ -1,50 +1,129 @@
 "use client"
-import { useState, useEffect } from "react"
+
+import { useState, useEffect, useCallback } from "react"
 import { X } from "lucide-react"
 import Image from "next/image"
+
 export function PromoPopup() {
-const [isOpen, setIsOpen] = useState(false)
-useEffect(() => {
-const timer = setTimeout(() => setIsOpen(true), 800)
-return () => clearTimeout(timer)
+  const [isOpen, setIsOpen] = useState(false)
+  const [isAnimatingOut, setIsAnimatingOut] = useState(false)
+
+  const handleClose = useCallback(() => {
+    setIsAnimatingOut(true)
+    setTimeout(() => {
+      setIsOpen(false)
+      setIsAnimatingOut(false)
+    }, 200)
   }, [])
-const handleClose = () => setIsOpen(false)
-const handleClick = () => {
-setIsOpen(false)
-document.getElementById("planos")?.scrollIntoView({ behavior: "smooth" })
+
+  const handleClick = () => {
+    handleClose()
+    setTimeout(() => {
+      document.getElementById("planos")?.scrollIntoView({ behavior: "smooth" })
+    }, 250)
   }
-if (!isOpen) return null
-return (
-<div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-<div
-className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"
-onClick={handleClose}
-/>
-<div className="relative z-10 animate-in fade-in zoom-in-95 duration-300" style={{ maxHeight: "70vh", width: "auto" }}>
-<button
-onClick={handleClose}
-className="absolute -top-2 -right-2 z-20 w-6 h-6 rounded-full bg-zinc-800/90 hover:bg-zinc-600 flex items-center justify-center text-white/80 hover:text-white transition-colors shadow-lg border border-zinc-600/50"
-aria-label="Fechar popup"
->
-<X className="w-3 h-3" />
-</button>
-<button
-onClick={handleClick}
-className="block rounded-lg overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)] border border-orange-500/20 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500 hover:border-orange-500/50 transition-all duration-200"
-style={{ maxHeight: "70vh" }}
-aria-label="Ver planos com desconto"
->
-<Image
-src="/images/1.jpg"
-alt="Promocao Amigos da Mesa"
-width={400}
-height={712}
-className="h-full w-auto object-contain"
-style={{ maxHeight: "70vh" }}
-priority
-/>
-</button>
-</div>
-</div>
+
+  useEffect(() => {
+    // Check if already shown this session
+    if (sessionStorage.getItem("promoPopupShown")) return
+
+    const showPopup = () => {
+      if (!sessionStorage.getItem("promoPopupShown")) {
+        sessionStorage.setItem("promoPopupShown", "true")
+        setIsOpen(true)
+      }
+    }
+
+    // Desktop: exit intent (mouse leaves viewport from top)
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (e.clientY <= 0) {
+        showPopup()
+      }
+    }
+
+    // Mobile: show after 30 seconds
+    const isMobile = window.innerWidth < 768
+    let mobileTimer: NodeJS.Timeout | null = null
+
+    if (isMobile) {
+      mobileTimer = setTimeout(showPopup, 30000)
+    } else {
+      document.addEventListener("mouseleave", handleMouseLeave)
+    }
+
+    return () => {
+      document.removeEventListener("mouseleave", handleMouseLeave)
+      if (mobileTimer) clearTimeout(mobileTimer)
+    }
+  }, [])
+
+  // Close on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        handleClose()
+      }
+    }
+    document.addEventListener("keydown", handleKeyDown)
+    return () => document.removeEventListener("keydown", handleKeyDown)
+  }, [isOpen, handleClose])
+
+  if (!isOpen) return null
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Popup promocional"
+      className={`fixed inset-0 z-[100] flex items-center justify-center p-4 transition-opacity duration-200 ${
+        isAnimatingOut ? "opacity-0" : "opacity-100"
+      }`}
+    >
+      {/* Overlay */}
+      <div
+        className="absolute inset-0 bg-black/70"
+        onClick={handleClose}
+        aria-hidden="true"
+      />
+
+      {/* Modal */}
+      <div
+        className={`relative z-10 transition-all duration-300 ${
+          isAnimatingOut
+            ? "opacity-0 scale-95"
+            : "opacity-100 scale-100 animate-in fade-in zoom-in-95"
+        }`}
+        style={{ maxWidth: "500px", width: "90vw" }}
+      >
+        {/* Close button */}
+        <button
+          onClick={handleClose}
+          className="absolute -top-3 -right-3 z-20 w-8 h-8 rounded-full bg-black/70 hover:bg-black/90 flex items-center justify-center text-white transition-colors shadow-lg"
+          aria-label="Fechar popup"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
+        {/* Image with clickable CTA area */}
+        <div className="relative rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
+          <Image
+            src="/promo-popup.png"
+            alt="Promocao 80% OFF - Amigos da Mesa"
+            width={500}
+            height={900}
+            className="w-full h-auto object-contain"
+            style={{ maxHeight: "90vh" }}
+            priority
+          />
+          
+          {/* Clickable area over the CTA button (bottom 15% of image) */}
+          <button
+            onClick={handleClick}
+            className="absolute bottom-0 left-0 right-0 h-[18%] cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-inset"
+            aria-label="Quero aproveitar agora - Ver planos"
+          />
+        </div>
+      </div>
+    </div>
   )
 }
