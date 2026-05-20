@@ -27,34 +27,9 @@ export function PromoPopup() {
     // Check if already shown this session
     if (sessionStorage.getItem("promoPopupShown")) return
 
-    const showPopup = () => {
-      if (!sessionStorage.getItem("promoPopupShown")) {
-        sessionStorage.setItem("promoPopupShown", "true")
-        setIsOpen(true)
-      }
-    }
-
-    // Desktop: exit intent (mouse leaves viewport from top)
-    const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0) {
-        showPopup()
-      }
-    }
-
-    // Mobile: show after 30 seconds
-    const isMobile = window.innerWidth < 768
-    let mobileTimer: NodeJS.Timeout | null = null
-
-    if (isMobile) {
-      mobileTimer = setTimeout(showPopup, 30000)
-    } else {
-      document.addEventListener("mouseleave", handleMouseLeave)
-    }
-
-    return () => {
-      document.removeEventListener("mouseleave", handleMouseLeave)
-      if (mobileTimer) clearTimeout(mobileTimer)
-    }
+    // Show popup immediately
+    sessionStorage.setItem("promoPopupShown", "true")
+    setIsOpen(true)
   }, [])
 
   // Close on Escape key
