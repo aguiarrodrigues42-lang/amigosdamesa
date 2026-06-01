@@ -134,8 +134,8 @@ export function ClubSection() {
                 <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">Investimento mensal</p>
                 <div className="flex items-baseline gap-3">
                   <span className="text-sm line-through text-muted-foreground">R$350,00</span>
-                  <span className="text-4xl font-black text-primary">R$120,00</span>
-                  <span className="text-xs bg-primary text-primary-foreground font-black px-2 py-0.5 rounded-full">65% OFF</span>
+                  <span className="text-4xl font-black text-primary">R$197,00</span>
+                  <span className="text-xs bg-primary text-primary-foreground font-black px-2 py-0.5 rounded-full">44% OFF</span>
                 </div>
                 <p className="text-[11px] text-muted-foreground mt-1">Cobrança mensal recorrente. Cancele quando quiser.</p>
               </div>
