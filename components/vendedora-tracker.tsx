@@ -2,6 +2,14 @@
 import { useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 
+function cleanUtmSource(url: string): string {
+  return url
+    .replace(/([?&])utm_source=[^&]*/g, "$1")
+    .replace(/\?&/, "?")
+    .replace(/&&/g, "&")
+    .replace(/[?&]$/, "")
+}
+
 function VendedoraTrackerInner() {
   const searchParams = useSearchParams()
 
@@ -21,9 +29,10 @@ function VendedoraTrackerInner() {
     var originalOpen = window.open
     window.open = function(url, target, features) {
       var vendedora = getVendedora()
-      if (vendedora && typeof url === "string" && url.includes("neoncheckout") && !url.includes("utm_source")) {
-        var sep = url.includes("?") ? "&" : "?"
-        url = url + sep + "utm_source=" + vendedora
+      if (vendedora && typeof url === "string" && url.includes("neoncheckout")) {
+        var clean = cleanUtmSource(url)
+        var sep = clean.includes("?") ? "&" : "?"
+        url = clean + sep + "utm_source=" + vendedora
       }
       return originalOpen.call(window, url, target, features)
     }
@@ -32,10 +41,11 @@ function VendedoraTrackerInner() {
       var vendedora = getVendedora()
       if (!vendedora) return
       var anchor = (e.target as HTMLElement).closest("a")
-      if (anchor && anchor.href && anchor.href.includes("neoncheckout") && !anchor.href.includes("utm_source")) {
+      if (anchor && anchor.href && anchor.href.includes("neoncheckout")) {
         e.preventDefault()
-        var sep = anchor.href.includes("?") ? "&" : "?"
-        window.location.href = anchor.href + sep + "utm_source=" + vendedora
+        var clean = cleanUtmSource(anchor.href)
+        var sep = clean.includes("?") ? "&" : "?"
+        window.location.href = clean + sep + "utm_source=" + vendedora
       }
     }
 
@@ -47,9 +57,10 @@ function VendedoraTrackerInner() {
       var links = document.querySelectorAll('a[href*="neoncheckout"]')
       links.forEach(function(link) {
         var href = link.getAttribute("href")
-        if (href && !href.includes("utm_source")) {
-          var sep = href.includes("?") ? "&" : "?"
-          link.setAttribute("href", href + sep + "utm_source=" + vendedora)
+        if (href) {
+          var clean = cleanUtmSource(href)
+          var sep = clean.includes("?") ? "&" : "?"
+          link.setAttribute("href", clean + sep + "utm_source=" + vendedora)
         }
       })
     }, 1000)
