@@ -57,7 +57,7 @@ export function ComparisonSection() {
               <tr className="border-b border-border">
                 <td className="p-4 text-foreground font-semibold">Preço</td>
                 <td className="p-4 text-center text-foreground font-semibold">R$ 197/mês</td>
-                <td className="p-4 text-center text-primary font-bold bg-primary/5">R$ 397/mês</td>
+                <td className="p-4 text-center text-primary font-bold bg-primary/5">R$ 197/mês</td>
                 <td className="p-4 text-center text-foreground font-semibold">R$ 797/mês</td>
               </tr>
             </tbody>
