@@ -82,7 +82,7 @@ export function PromoPopup() {
         {/* Image with clickable CTA area */}
         <div className="relative rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
           <Image
-            src="/promo-popup.png"
+            src="/popup1.png"
             alt="Promocao 80% OFF - Amigos da Mesa"
             width={500}
             height={900}
