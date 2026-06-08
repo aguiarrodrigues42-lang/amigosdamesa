@@ -83,7 +83,12 @@ function StepCard({ step, index }: { step: typeof STEPS[0]; index: number }) {
     >
       {/* Connector line (desktop) */}
       {index < STEPS.length - 1 && (
-        <div className="hidden md:block absolute left-[27px] top-[72px] w-px h-[calc(100%+40px)] border-l-2 border-dashed border-border/40" />
+        <div className="hidden md:block absolute left-[27px] top-[72px] w-px h-[calc(100%+40px)] border-l-2 border-dashed border-border/40"
+          style={{
+            backgroundImage: "linear-gradient(180deg, #009C3B, #FFDF00)",
+            borderLeft: "2px dashed transparent",
+          }}
+        />
       )}
 
       {/* Step number bubble */}
@@ -91,11 +96,17 @@ function StepCard({ step, index }: { step: typeof STEPS[0]; index: number }) {
         <div className={`w-14 h-14 rounded-2xl border-2 ${step.border} bg-gradient-to-br ${step.color} flex items-center justify-center`}>
           <Icon className="w-6 h-6 text-foreground" />
         </div>
-        <span className="text-xs font-black text-muted-foreground/50 tracking-widest">{step.number}</span>
+        <span className="text-xs font-black text-[#FFDF00] tracking-widest">{step.number}</span>
       </div>
 
       {/* Content */}
-      <div className={`flex-1 bg-card border ${step.border} rounded-2xl p-6 md:p-8`}>
+      <div className={`flex-1 bg-card border-l-[3px] ${step.border} rounded-2xl p-6 md:p-8`}
+        style={{
+          borderLeftImage: "linear-gradient(180deg, #009C3B, #FFDF00)",
+          borderLeftWidth: "3px",
+          borderLeftStyle: "solid",
+        }}
+      >
         <p className="text-xs font-bold uppercase tracking-widest text-primary mb-1">{step.subtitle}</p>
         <h3 className="text-xl font-black text-foreground mb-3">{step.title}</h3>
         <p className="text-muted-foreground leading-relaxed text-sm md:text-base mb-4">{step.description}</p>
@@ -118,13 +129,13 @@ export function TrilhaSection() {
 
         {/* Header */}
         <div className="max-w-2xl mx-auto text-center mb-16">
-          <div className="inline-flex items-center gap-2 mb-4 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-            <span className="text-primary text-xs font-bold uppercase tracking-widest">Jornada do Trader</span>
+          <div className="inline-flex items-center gap-2 mb-4 px-3 py-1.5 rounded-full border border-[#009C3B]/30 bg-[#009C3B]/10">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#009C3B]" />
+            <span className="text-[#009C3B] text-xs font-bold uppercase tracking-widest">Jornada do Trader</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4 text-balance">
             Do exame ao{" "}
-            <span className="text-primary">repasse real</span>
+            <span className="text-[#FFDF00]">repasse real</span>
           </h2>
           <p className="text-muted-foreground text-lg text-pretty leading-relaxed">
             Entenda cada etapa da sua jornada na Amigos da Mesa. Um processo transparente,

@@ -47,7 +47,7 @@ export function AboutSection() {
   const { ref: textRef, visible: textVisible } = useVisible(0.1)
 
   return (
-    <section id="sobre" className="py-24 bg-secondary/20 scroll-mt-20 overflow-hidden">
+    <section id="sobre" className="py-24 bg-gradient-to-b from-[#002776]/10 to-background/40 scroll-mt-20 overflow-hidden">
       <div className="container mx-auto px-4">
 
         {/* Top: split layout — text left, image right */}
@@ -63,9 +63,9 @@ export function AboutSection() {
               transition: "opacity 0.7s ease, transform 0.7s ease",
             }}
           >
-            <div className="inline-flex items-center gap-2 mb-5 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-              <span className="text-primary text-xs font-bold uppercase tracking-widest">Quem somos</span>
+            <div className="inline-flex items-center gap-2 mb-5 px-3 py-1.5 rounded-full border border-[#009C3B]/30 bg-[#009C3B]/10">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#009C3B]" />
+              <span className="text-[#009C3B] text-xs font-bold uppercase tracking-widest">Quem somos</span>
             </div>
 
             <h2 className="text-3xl md:text-5xl font-black text-foreground leading-tight mb-6 text-balance">
@@ -92,7 +92,7 @@ export function AboutSection() {
                 { n: "95%", l: "máx. de repasse" },
               ].map((s, i) => (
                 <div key={i} className="flex flex-col">
-                  <span className="text-2xl font-black text-primary">{s.n}</span>
+                  <span className="text-2xl font-black text-[#FFDF00]">{s.n}</span>
                   <span className="text-xs text-muted-foreground uppercase tracking-wide">{s.l}</span>
                 </div>
               ))}
@@ -134,10 +134,15 @@ export function AboutSection() {
             return (
               <div
                 key={i}
-                className="bg-card border border-border rounded-2xl p-6 hover:border-primary/50 transition-all hover:-translate-y-1 duration-300"
+                className="bg-card border-t-[3px] border-b border-l border-r border-border rounded-2xl p-6 hover:border-[#009C3B]/50 transition-all hover:-translate-y-1 duration-300"
+                style={{
+                  borderTopImage: "linear-gradient(90deg, #009C3B, #FFDF00)",
+                  borderTopWidth: "3px",
+                  borderTopStyle: "solid",
+                }}
               >
-                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                  <Icon className="w-5 h-5 text-primary" />
+                <div className="w-11 h-11 rounded-xl bg-[#009C3B]/10 flex items-center justify-center mb-4">
+                  <Icon className="w-5 h-5 text-[#009C3B]" />
                 </div>
                 <h3 className="font-bold text-foreground mb-2 text-sm">{p.title}</h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">{p.description}</p>

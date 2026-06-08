@@ -63,13 +63,13 @@ export function SocialProofSection() {
 
               {/* Floating card — win/loss indicators */}
               <div className="absolute top-4 right-4 flex flex-col gap-2">
-                <div className="bg-emerald-500/20 backdrop-blur-sm border border-emerald-500/40 rounded-xl px-3 py-2 text-center">
-                  <p className="text-emerald-400 font-black text-base leading-none">+82%</p>
-                  <p className="text-emerald-400/70 text-[9px] uppercase tracking-widest">Win rate</p>
+                <div className="bg-[#002776]/80 backdrop-blur-sm border border-[#FFDF00]/40 rounded-xl px-3 py-2 text-center">
+                  <p className="text-[#FFDF00] font-black text-base leading-none">+82%</p>
+                  <p className="text-[#FFDF00]/70 text-[9px] uppercase tracking-widest">Win rate</p>
                 </div>
-                <div className="bg-primary/20 backdrop-blur-sm border border-primary/40 rounded-xl px-3 py-2 text-center">
-                  <p className="text-primary font-black text-base leading-none">95%</p>
-                  <p className="text-primary/70 text-[9px] uppercase tracking-widest">Repasse</p>
+                <div className="bg-[#002776]/80 backdrop-blur-sm border border-[#FFDF00]/40 rounded-xl px-3 py-2 text-center">
+                  <p className="text-[#FFDF00] font-black text-base leading-none">95%</p>
+                  <p className="text-[#FFDF00]/70 text-[9px] uppercase tracking-widest">Repasse</p>
                 </div>
               </div>
             </div>
@@ -85,9 +85,9 @@ export function SocialProofSection() {
               transition: "opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s",
             }}
           >
-            <div className="inline-flex items-center gap-2 mb-5 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-              <span className="text-primary text-xs font-bold uppercase tracking-widest">Por que a Amigos da Mesa</span>
+            <div className="inline-flex items-center gap-2 mb-5 px-3 py-1.5 rounded-full border border-[#009C3B]/30 bg-[#009C3B]/10">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#009C3B]" />
+              <span className="text-[#009C3B] text-xs font-bold uppercase tracking-widest">Por que a Amigos da Mesa</span>
             </div>
 
             <h2 className="text-3xl md:text-5xl font-black text-foreground leading-tight mb-6 text-balance">
@@ -103,7 +103,7 @@ export function SocialProofSection() {
             <ul className="flex flex-col gap-3 mb-10">
               {BENEFITS.map((b, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="w-4 h-4 text-[#009C3B] flex-shrink-0 mt-0.5" />
                   <span className="text-sm text-foreground/80 leading-snug">{b}</span>
                 </li>
               ))}

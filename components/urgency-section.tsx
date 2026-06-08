@@ -37,16 +37,16 @@ export function UrgencySection() {
   return (
     <section className="relative py-14 md:py-20 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-red-950/90 via-orange-950/70 to-red-950/90" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_oklch(0.5_0.2_30/0.15)_0%,_transparent_70%)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#002776]/90 via-[#001a4d]/70 to-[#002776]/90" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#009C3B/0.05_0%,_transparent_70%)]" />
 
       <div className="container relative mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
 
           {/* Badge */}
-          <div className={`inline-flex items-center gap-2 px-5 py-2 rounded-full border mb-8 ${isUrgent ? "bg-red-500/25 border-red-500/60 animate-pulse" : "bg-red-500/15 border-red-500/40"}`}>
-            <Flame className="w-4 h-4 text-red-400" />
-            <span className="font-black text-red-400 uppercase tracking-widest text-xs">
+          <div className={`inline-flex items-center gap-2 px-5 py-2 rounded-full border mb-8 ${isUrgent ? "bg-[#002776]/25 border-[#FFDF00]/60 animate-pulse" : "bg-[#002776]/15 border-[#FFDF00]/40"}`}>
+            <Flame className="w-4 h-4 text-[#FFDF00]" />
+            <span className="font-black text-[#FFDF00] uppercase tracking-widest text-xs">
               Oferta por tempo limitado
             </span>
           </div>
@@ -62,20 +62,20 @@ export function UrgencySection() {
           {/* Timer */}
           <div className="flex justify-center items-center gap-3 md:gap-5 mb-4">
             {/* Minutes */}
-            <div className={`w-24 h-24 md:w-32 md:h-32 rounded-2xl flex flex-col items-center justify-center border-2 backdrop-blur-sm transition-all duration-300 ${isUrgent ? "bg-red-600/30 border-red-500 shadow-[0_0_30px_rgba(239,68,68,0.3)]" : "bg-card/60 border-primary/40"
+            <div className={`w-24 h-24 md:w-32 md:h-32 rounded-2xl flex flex-col items-center justify-center border-2 backdrop-blur-sm transition-all duration-300 ${isUrgent ? "bg-[#002776]/30 border-[#FFDF00] shadow-[0_0_30px_rgba(255,223,0,0.3)]" : "bg-card/60 border-[#009C3B]/40"
               }`}>
-              <span className={`text-4xl md:text-6xl font-black tabular-nums leading-none ${isUrgent ? "text-red-400" : "text-primary"}`}>
+              <span className={`text-4xl md:text-6xl font-black tabular-nums leading-none ${isUrgent ? "text-[#FFDF00]" : "text-[#009C3B]"}`}>
                 {String(timeLeft.minutes).padStart(2, "0")}
               </span>
               <span className="text-[10px] md:text-xs text-muted-foreground font-semibold uppercase tracking-wider mt-1">min</span>
             </div>
 
-            <span className={`text-4xl md:text-5xl font-black ${isUrgent ? "text-red-400" : "text-primary"}`}>:</span>
+            <span className={`text-4xl md:text-5xl font-black ${isUrgent ? "text-[#FFDF00]" : "text-[#009C3B]"}`}>:</span>
 
             {/* Seconds */}
-            <div className={`w-24 h-24 md:w-32 md:h-32 rounded-2xl flex flex-col items-center justify-center border-2 backdrop-blur-sm transition-all duration-300 ${isUrgent ? "bg-red-600/30 border-red-500 shadow-[0_0_30px_rgba(239,68,68,0.3)]" : "bg-card/60 border-primary/40"
+            <div className={`w-24 h-24 md:w-32 md:h-32 rounded-2xl flex flex-col items-center justify-center border-2 backdrop-blur-sm transition-all duration-300 ${isUrgent ? "bg-[#002776]/30 border-[#FFDF00] shadow-[0_0_30px_rgba(255,223,0,0.3)]" : "bg-card/60 border-[#009C3B]/40"
               }`}>
-              <span className={`text-4xl md:text-6xl font-black tabular-nums leading-none ${isUrgent ? "text-red-400" : "text-primary"}`}>
+              <span className={`text-4xl md:text-6xl font-black tabular-nums leading-none ${isUrgent ? "text-[#FFDF00]" : "text-[#009C3B]"}`}>
                 {String(timeLeft.seconds).padStart(2, "0")}
               </span>
               <span className="text-[10px] md:text-xs text-muted-foreground font-semibold uppercase tracking-wider mt-1">seg</span>
@@ -84,8 +84,8 @@ export function UrgencySection() {
 
           {/* Urgent message */}
           <div className="flex items-center justify-center gap-2 mb-8">
-            <Clock className="w-4 h-4 text-red-400/80" />
-            <p className={`text-sm ${isUrgent ? "text-red-400 font-bold animate-pulse" : "text-muted-foreground"}`}>
+            <Clock className="w-4 h-4 text-[#FFDF00]/80" />
+            <p className={`text-sm ${isUrgent ? "text-[#FFDF00] font-bold animate-pulse" : "text-muted-foreground"}`}>
               {isUrgent ? "CORRA! Ultimos minutos com desconto" : "Desconto valido apenas hoje. Apos o prazo, valores voltam ao normal."}
             </p>
           </div>
@@ -98,8 +98,8 @@ export function UrgencySection() {
               px-10 py-5 rounded-2xl font-black text-base md:text-lg uppercase tracking-wide
               transition-all duration-300 inline-flex items-center gap-2
               ${isUrgent
-                ? "bg-red-600 hover:bg-red-500 text-white shadow-[0_0_40px_rgba(239,68,68,0.4)]"
-                : "bg-primary hover:brightness-110 text-primary-foreground shadow-[0_0_30px_oklch(0.7_0.18_45/0.3)]"
+                ? "bg-[#FFDF00] hover:bg-[#FFDF00]/90 text-[#002776] shadow-[0_0_40px_rgba(255,223,0,0.4)]"
+                : "bg-[#009C3B] hover:brightness-110 text-white shadow-[0_0_30px_rgba(0,156,59,0.3)]"
               }
             `}
           >

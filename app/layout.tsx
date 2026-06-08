@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/next'
 import Script from 'next/script'
 import { Suspense } from 'react'
 import './globals.css'
+import { AnnouncementBar } from '@/components/announcement-bar'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
@@ -61,7 +62,8 @@ export default function RootLayout({
           />
         </noscript>
       </head>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased pt-11">
+        <AnnouncementBar />
         <Suspense fallback={null}>
         </Suspense>
         {children}

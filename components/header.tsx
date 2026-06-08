@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Menu, X, User } from "lucide-react"
+import { Menu, X, User, Trophy } from "lucide-react"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -32,16 +32,22 @@ export function Header() {
       <header
         className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled 
-            ? "top-0 bg-background/95 backdrop-blur-md border-b border-border shadow-sm" 
+            ? "top-11 bg-background/95 backdrop-blur-md border-b" 
             : "top-[60px] sm:top-[80px] md:top-[100px] lg:top-[120px] bg-transparent"
         }`}
+        style={{
+          borderBottomImage: isScrolled ? undefined : "linear-gradient(90deg, #009C3B, #FFDF00, #009C3B)",
+          borderBottomWidth: "2px",
+          borderBottomStyle: "solid",
+        }}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <div className="flex items-center">
+            <div className="flex items-center gap-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/images/logo.png" alt="Logo" width="160" height="40" style={{ height: "40px", width: "auto", display: "block" }} />
+              <Trophy className="w-6 h-6 text-[#FFDF00]" />
             </div>
 
             {/* Desktop nav */}

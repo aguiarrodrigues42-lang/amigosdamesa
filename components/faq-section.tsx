@@ -43,7 +43,7 @@ export function FaqSection() {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-6 text-balance">
-            Perguntas <span className="text-primary">Frequentes</span>
+            Perguntas <span className="text-[#FFDF00]">Frequentes</span>
           </h2>
           <p className="text-lg text-muted-foreground text-pretty">
             Tire suas dúvidas antes de entrar.
@@ -55,9 +55,9 @@ export function FaqSection() {
               <AccordionItem
                 key={i}
                 value={`item-${i}`}
-                className="bg-card border border-border rounded-xl px-6 data-[state=open]:border-primary/50"
+                className="bg-card border border-border rounded-xl px-6 data-[state=open]:border-[#009C3B]/50"
               >
-                <AccordionTrigger className="text-left text-foreground hover:text-primary hover:no-underline py-6">
+                <AccordionTrigger className="text-left text-foreground hover:text-[#009C3B] hover:no-underline py-6">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground pb-6">

@@ -44,7 +44,7 @@ export function HeroSection() {
     <section className="relative min-h-screen flex flex-col overflow-hidden bg-[#0c0c0c]">
 
       {/* ── Live ticker bar ─────────────────────────────── */}
-      <div className="absolute top-[124px] sm:top-[144px] md:top-[180px] lg:top-[200px] left-0 right-0 z-20 overflow-hidden h-9 bg-black/60 border-b border-white/5 backdrop-blur-sm">
+      <div className="absolute top-[124px] sm:top-[144px] md:top-[180px] lg:top-[200px] left-0 right-0 z-20 overflow-hidden h-9 bg-[#002776] border-b border-[#FFDF00]/20 backdrop-blur-sm">
         <div
           ref={trackRef}
           className="flex items-center gap-8 whitespace-nowrap"
@@ -53,7 +53,7 @@ export function HeroSection() {
           {[...TICKERS, ...TICKERS].map((t, i) => (
             <span key={i} className="inline-flex items-center gap-2 text-xs font-mono">
               <span className="text-white/50">{t.symbol}</span>
-              <span className="text-white font-semibold">{t.value}</span>
+              <span className="text-[#FFDF00] font-semibold">{t.value}</span>
               <span className={t.up ? "text-emerald-400" : "text-red-400"}>
                 {t.up ? <TrendingUp className="inline w-3 h-3" /> : <TrendingDown className="inline w-3 h-3" />}
                 {" "}{t.change}
@@ -81,25 +81,25 @@ export function HeroSection() {
 
       {/* ── Animated grid lines (decorative) ───────────── */}
       <div
-        className="absolute inset-0 z-[1] pointer-events-none opacity-[0.04]"
+        className="absolute inset-0 z-[1] pointer-events-none opacity-60"
         style={{
-          backgroundImage: "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
+          backgroundImage: "linear-gradient(to right, #002776 1px, transparent 1px), linear-gradient(to bottom, #002776 1px, transparent 1px)",
           backgroundSize: "80px 80px",
         }}
       />
 
       {/* ── Red accent glow bottom-left ──────────────────── */}
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] z-[1] pointer-events-none"
-        style={{ background: "radial-gradient(circle at 0% 100%, oklch(0.7 0.18 45 / 0.18) 0%, transparent 65%)" }} />
+        style={{ background: "radial-gradient(circle at 0% 100%, #002776 0%, transparent 65%)" }} />
 
       {/* ── Content ─────────────────────────────────────── */}
       <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-4 pt-44 pb-20 sm:pt-48 md:pt-56 lg:pt-60">
         <div className="max-w-2xl">
 
           {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full border border-primary/40 bg-primary/10">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            <span className="text-primary text-xs font-bold uppercase tracking-widest">Mesa Proprietária Aberta</span>
+          <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full border border-[#009C3B]/40 bg-[#009C3B]/10">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#009C3B] animate-pulse" />
+            <span className="text-[#009C3B] text-xs font-bold uppercase tracking-widest">Mesa Proprietária Aberta</span>
           </div>
 
           {/* Headline */}
@@ -137,8 +137,8 @@ export function HeroSection() {
           {/* Stats bar */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {STATS.map((s, i) => (
-              <div key={i} className="border-l-2 border-primary/60 pl-3">
-                <p className="text-xl font-black text-white">{s.value}</p>
+              <div key={i} className="border-l-2 border-[#009C3B]/60 pl-3">
+                <p className="text-xl font-black text-[#FFDF00]">{s.value}</p>
                 <p className="text-xs text-white/40 leading-tight">{s.label}</p>
               </div>
             ))}
