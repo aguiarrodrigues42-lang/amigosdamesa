@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Check, Crown, TrendingUp, Users, BookOpen, Newspaper, CalendarCheck, RefreshCw, Banknote } from "lucide-react"
+import { CinematicBackground } from "@/components/cinematic"
 
 const clubBenefits = [
   { icon: CalendarCheck, text: "Sala AO VIVO zoom (Seg a Sex 9:00 às 11:00)" },
