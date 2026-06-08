@@ -3,6 +3,9 @@
 import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ChevronDown, TrendingUp, TrendingDown } from "lucide-react"
+import { SoccerBall, Trophy, GoldStar } from "@/components/copa/copa-elements"
+import { CopaParticles } from "@/components/copa/copa-decor"
+import { BuntingString } from "@/components/copa/copa-elements"
 
 const TICKERS = [
   { symbol: "WIN$", value: "131.420", change: "+0,82%", up: true },
@@ -92,14 +95,35 @@ export function HeroSection() {
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] z-[1] pointer-events-none"
         style={{ background: "radial-gradient(circle at 0% 100%, oklch(0.7 0.18 45 / 0.18) 0%, transparent 65%)" }} />
 
+      {/* ── Copa: luzes do estádio (partículas) ──────────── */}
+      <CopaParticles className="z-[2]" />
+
+      {/* ── Copa: cordão de bandeirinhas no topo do hero ─── */}
+      <div className="absolute top-[148px] sm:top-[168px] md:top-[204px] lg:top-[224px] left-0 right-0 z-[5] pointer-events-none">
+        <BuntingString className="h-16 md:h-20 opacity-90" count={18} />
+      </div>
+
+      {/* ── Copa: bola de futebol 3D flutuante ───────────── */}
+      <div className="hidden md:block absolute top-1/3 right-[8%] z-[6] animate-copa-float pointer-events-none">
+        <SoccerBall size={92} />
+      </div>
+      {/* ── Copa: troféu flutuante ───────────────────────── */}
+      <div className="hidden lg:block absolute bottom-[22%] right-[26%] z-[6] animate-copa-float pointer-events-none" style={{ animationDelay: "1.4s" }}>
+        <Trophy size={64} />
+      </div>
+
       {/* ── Content ─────────────────────────────────────── */}
       <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-4 pt-44 pb-20 sm:pt-48 md:pt-56 lg:pt-60">
         <div className="max-w-2xl">
 
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full border border-primary/40 bg-primary/10">
+            <GoldStar size={12} />
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             <span className="text-primary text-xs font-bold uppercase tracking-widest">Mesa Proprietária Aberta</span>
+            <span className="hidden sm:inline-flex items-center gap-1 ml-1 pl-2 border-l border-primary/30">
+              <span className="text-[10px] font-black uppercase tracking-widest text-[#f5c800]">Edição Copa</span>
+            </span>
           </div>
 
           {/* Headline */}

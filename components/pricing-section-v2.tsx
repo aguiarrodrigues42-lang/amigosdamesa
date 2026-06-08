@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, X, Info } from "lucide-react"
 import { RegulamentosModal } from "@/components/regulamentos-modal"
+import { Trophy, GoldStar } from "@/components/copa/copa-elements"
 
 type Category = "exames" | "prime-plus" | "titan" | "senior" | "pegue-monte" | "bit"
 
@@ -259,9 +260,21 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
   const displayPrice = isPix ? plan.pricePix : priceCartao12x
   const bonusText = plan.bonusOverride || null
   return (
-    <div className={`flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center rounded-2xl border-2 bg-card flex flex-col transition-all duration-300 ${isActive ? "border-primary shadow-[0_0_0_2px_theme(colors.orange.500)]" : "border-border opacity-80"} ${isUnavailable ? "opacity-50 pointer-events-none" : ""}`}>
+    <div className={`flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center rounded-2xl border-2 bg-card flex flex-col transition-all duration-300 ${isActive ? "border-primary shadow-[0_0_0_2px_theme(colors.orange.500)]" : "border-border opacity-80"} ${isUnavailable ? "opacity-50 pointer-events-none" : ""} ${plan.mostVendido ? "relative ring-1 ring-[#f5c800]/40 shadow-[0_0_30px_-6px_rgba(245,200,0,0.35)]" : ""}`}>
+      {plan.mostVendido && (
+        <>
+          {/* Selo Copa — troféu de convocação */}
+          <div className="absolute -top-4 -right-3 z-10 animate-copa-float">
+            <div className="relative flex items-center justify-center w-12 h-12 rounded-full bg-[#002776] border-2 border-[#f5c800] shadow-lg">
+              <Trophy size={26} />
+            </div>
+          </div>
+          {/* estrelas decorativas */}
+          <div className="absolute -top-2 left-3 z-10"><GoldStar size={12} /></div>
+        </>
+      )}
       <div className="bg-primary rounded-t-2xl">
-        {plan.mostVendido && (<div className="flex items-center justify-center bg-green-600 border-y-2 border-white rounded-t-2xl py-1"><span className="text-white text-xs font-black uppercase tracking-widest">Mais Vendido</span></div>)}
+        {plan.mostVendido && (<div className="flex items-center justify-center gap-1.5 bg-green-600 border-y-2 border-white rounded-t-2xl py-1"><GoldStar size={11} twinkle={false} /><span className="text-white text-xs font-black uppercase tracking-widest">Mais Vendido</span><GoldStar size={11} twinkle={false} /></div>)}
         <div className="px-5 py-3 flex items-center justify-between gap-2">
           <h3 className="text-sm font-black uppercase tracking-wide text-primary-foreground leading-tight">{plan.name}</h3>
           {plan.discountPercent > 0 && (<span className="flex-shrink-0 bg-primary-foreground text-primary text-[10px] font-black px-2 py-0.5 rounded-full">{plan.discountPercent}% OFF</span>)}
@@ -351,7 +364,11 @@ export function PricingSection() {
       <div className="mx-auto px-4 max-w-5xl">
         <div className="text-center mb-8">
           <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">Proposta de Mesa Proprietaria</p>
-          <h2 className="text-2xl md:text-3xl font-black text-foreground">Escolha seu Plano</h2>
+          <h2 className="inline-flex items-center justify-center gap-2 text-2xl md:text-3xl font-black text-foreground">
+            <GoldStar size={16} />
+            Escolha seu Plano
+            <GoldStar size={16} />
+          </h2>
         </div>
         <div className="flex flex-wrap justify-center gap-2 mb-6">
           {categories.map((cat) => (<button key={cat.id} onClick={() => setActiveCategory(cat.id)} className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${activeCategory === cat.id ? "bg-secondary text-foreground ring-2 ring-primary" : "bg-primary text-primary-foreground hover:bg-primary/80"}`}>{cat.label}</button>))}

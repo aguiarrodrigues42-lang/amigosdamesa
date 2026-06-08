@@ -1,6 +1,22 @@
+import { BuntingString, SelecaoShield, GoldStar } from "@/components/copa/copa-elements"
+
 export function Footer() {
   return (
-    <footer className="py-12 bg-card border-t border-border">
+    <footer className="relative py-12 bg-card border-t border-border">
+
+      {/* Copa: cordão de bandeirinhas no topo do rodapé */}
+      <div className="absolute -top-8 left-0 right-0 pointer-events-none">
+        <BuntingString className="h-20 opacity-90" count={20} />
+      </div>
+
+      {/* Copa: selo comemorativo */}
+      <div className="flex flex-col items-center gap-2 mb-8 pt-4">
+        <div className="relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#f5c800]/40 bg-[#002776]/20 overflow-hidden animate-copa-sheen">
+          <SelecaoShield size={22} />
+          <span className="text-xs font-black uppercase tracking-widest text-[#f5c800]">Edição Especial Copa</span>
+          <GoldStar size={12} />
+        </div>
+      </div>
 
       {/* Instagram CTA */}
       <div className="text-center mb-10">

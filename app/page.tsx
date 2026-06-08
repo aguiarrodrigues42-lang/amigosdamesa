@@ -12,6 +12,7 @@ import { FaqSection } from "@/components/faq-section"
 import { Footer } from "@/components/footer"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import { PromoPopup } from "@/components/promo-popup"
+import { CopaDivider } from "@/components/copa/copa-decor"
 
 export default function HomePage() {
   return (
@@ -20,13 +21,16 @@ export default function HomePage() {
       <Header />
       <HeroSection />
       <AboutSection />
+      <CopaDivider />
       <TrilhaSection />
       <SocialProofSection />
+      <CopaDivider />
       <UrgencySection />
       <div id="planos">
         <PricingSection />
       </div>
       <ClubSection />
+      <CopaDivider />
       <BenefitsSection />
       <div id="depoimentos">
         <TestimonialsSection />

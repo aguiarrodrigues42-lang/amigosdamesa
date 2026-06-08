@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Shield, TrendingUp, Users, Award } from "lucide-react"
+import { SelecaoShield } from "@/components/copa/copa-elements"
 
 const PILLARS = [
   {
@@ -118,6 +119,10 @@ export function AboutSection() {
               />
               {/* subtle vignette */}
               <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-3xl" />
+              {/* Copa: escudo da seleção flutuante */}
+              <div className="absolute top-4 right-4 animate-copa-float">
+                <SelecaoShield size={52} />
+              </div>
               {/* floating badge */}
               <div className="absolute bottom-4 left-4 bg-black/80 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-3">
                 <p className="text-xs text-white/50 uppercase tracking-widest">Fundada em</p>
