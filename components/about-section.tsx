@@ -88,6 +88,7 @@ export function AboutSection() {
             <div className="flex flex-wrap gap-6">
               {[
                 { n: "5+", l: "anos de mercado" },
+                // REVISAR: verificar número correto de traders ativos com o cliente (Hero mostra 20.000+, Quem Somos mostra 2.400+)
                 { n: "2.400+", l: "traders ativos" },
                 { n: "95%", l: "máx. de repasse" },
               ].map((s, i) => (

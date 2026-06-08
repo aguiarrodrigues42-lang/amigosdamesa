@@ -41,7 +41,7 @@ export function Footer() {
           </div>
 
           <p className="text-sm text-muted-foreground">
-            © 2024 Amigos da Mesa PRO. Todos os direitos reservados.
+            © 2026 Amigos da Mesa PRO. Todos os direitos reservados.
           </p>
         </div>
 

@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, X, Info } from "lucide-react"
 import { RegulamentosModal } from "@/components/regulamentos-modal"
+import { CopaBadge, CopaSvg, getCopaConfig, useCopaEntrance, type CopaConfig } from "@/components/copa-decorations"
 
 type Category = "exames" | "prime-plus" | "titan" | "senior" | "pegue-monte" | "bit"
 
@@ -91,12 +92,18 @@ const bitPlans: BitPlan[] = [
 const BONUS_LABEL = "7 dias de Sala Educacional ao Vivo"
 
 function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive: boolean; isPix: boolean; onCta: () => void }) {
+  const copa = getCopaConfig("bit", plan.name)
+  const entranceRef = useCopaEntrance<HTMLDivElement>(!!copa)
   return (
-    <div className={`flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center rounded-2xl border-2 bg-card flex flex-col transition-all duration-300 ${isActive ? "border-primary shadow-[0_0_0_2px_theme(colors.orange.500)]" : "border-border opacity-80"}`}>
+    <div
+      ref={entranceRef}
+      className={`relative overflow-visible flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center rounded-2xl border-2 bg-card flex flex-col transition-all duration-300 ${isActive ? "border-primary shadow-[0_0_0_2px_theme(colors.orange.500)]" : "border-border opacity-80"} ${copa ? `copa-animate-entrance delay-${copa.delay ?? 0}` : ""} ${copa?.featured ? "copa-featured-card" : ""}`}
+    >
+      {copa && <CopaBadge>{copa.badge}</CopaBadge>}
       <div className="bg-primary rounded-t-2xl px-5 py-3 flex items-center justify-between">
         <h3 className="text-primary-foreground font-black text-sm uppercase tracking-wide">{plan.name}</h3>
       </div>
-      <div className="flex flex-col flex-1 px-5 py-4 gap-4">
+      <div className={`flex flex-col flex-1 px-5 py-4 gap-4 ${copa?.bodyAccent ? "copa-card-body-accent" : ""}`}>
         <ul className="space-y-1.5">
           {plan.features.map((f, i) => (<li key={i} className="flex items-start gap-2 text-sm text-foreground"><span className="text-primary mt-0.5 text-xs">•</span><span>{f}</span></li>))}
         </ul>
@@ -112,9 +119,11 @@ function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive
         <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
           <p className="text-[10px] font-black uppercase tracking-widest text-primary">Bonus</p>
           <p className="text-xs text-foreground/80 leading-snug">Sem limite diario para o exame</p>
+          {copa && <span className="copa-micro-copy">{copa.microCopy}</span>}
         </div>
         <button onClick={onCta} className={`w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide mt-auto transition-all duration-300 ${isActive ? "bg-primary text-primary-foreground" : "bg-secondary text-foreground border border-border"}`}>COMPRAR AGORA</button>
       </div>
+      {copa && <CopaSvg variant={copa.svg} size={copa.svgSize} style={copa.svgStyle} />}
     </div>
   )
 }
@@ -248,8 +257,8 @@ function LeadModal({ planName, open, onClose }: LeadModalProps) {
 
 function formatBRL(value: number): string { return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }) }
 
-interface PlanCardProps { plan: Plan; isActive: boolean; isPix: boolean; onCta: () => void }
-function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
+interface PlanCardProps { plan: Plan; isActive: boolean; isPix: boolean; onCta: () => void; category: Category }
+function PlanCard({ plan, isActive, isPix, onCta, category }: PlanCardProps) {
   const hasFeatures = !!plan.features
   const isPrimePlus = hasFeatures && !!plan.taxaOnePix
   const isTitanOrSenior = hasFeatures && !plan.taxaOnePix
@@ -258,16 +267,22 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
   const priceCartao12x = (plan.pricePix * 1.9372) / 12
   const displayPrice = isPix ? plan.pricePix : priceCartao12x
   const bonusText = plan.bonusOverride || null
+  const copa: CopaConfig | undefined = isUnavailable ? undefined : getCopaConfig(category, plan.name)
+  const entranceRef = useCopaEntrance<HTMLDivElement>(!!copa)
   return (
-    <div className={`flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center rounded-2xl border-2 bg-card flex flex-col transition-all duration-300 ${isActive ? "border-primary shadow-[0_0_0_2px_theme(colors.orange.500)]" : "border-border opacity-80"} ${isUnavailable ? "opacity-50 pointer-events-none" : ""}`}>
+    <div
+      ref={entranceRef}
+      className={`relative overflow-visible flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center rounded-2xl border-2 bg-card flex flex-col transition-all duration-300 ${isActive ? "border-primary shadow-[0_0_0_2px_theme(colors.orange.500)]" : "border-border opacity-80"} ${isUnavailable ? "opacity-50 pointer-events-none" : ""} ${copa ? `copa-animate-entrance delay-${copa.delay ?? 0}` : ""} ${copa?.featured ? "copa-featured-card" : ""}`}
+    >
+      {copa && <CopaBadge>{copa.badge}</CopaBadge>}
       <div className="bg-primary rounded-t-2xl">
-        {plan.mostVendido && (<div className="flex items-center justify-center bg-green-600 border-y-2 border-white rounded-t-2xl py-1"><span className="text-white text-xs font-black uppercase tracking-widest">Mais Vendido</span></div>)}
+        {plan.mostVendido && (<div className={`flex items-center justify-center border-y-2 border-white rounded-t-2xl py-1 ${copa?.shimmer ? "copa-mais-vendido-shimmer" : "bg-green-600"}`}><span className="text-white text-xs font-black uppercase tracking-widest">{copa?.shimmer && copa.shimmerText ? copa.shimmerText : "Mais Vendido"}</span></div>)}
         <div className="px-5 py-3 flex items-center justify-between gap-2">
           <h3 className="text-sm font-black uppercase tracking-wide text-primary-foreground leading-tight">{plan.name}</h3>
           {plan.discountPercent > 0 && (<span className="flex-shrink-0 bg-primary-foreground text-primary text-[10px] font-black px-2 py-0.5 rounded-full">{plan.discountPercent}% OFF</span>)}
         </div>
       </div>
-      <div className="flex flex-col flex-1 px-5 py-4 gap-3">
+      <div className={`flex flex-col flex-1 px-5 py-4 gap-3 ${copa?.bodyAccent ? "copa-card-body-accent" : ""}`}>
         {isPrimePlus && (<>
           <ul className="space-y-1.5">{plan.features!.map((feat, i) => (<li key={i} className="flex items-start gap-2 text-sm text-foreground"><span className="text-primary mt-0.5 text-xs flex-shrink-0">•</span><span>{feat}</span></li>))}</ul>
           <div className="border-t border-border pt-3 text-center">{isPix ? (<span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}/mes</span>) : (<span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span>)}</div>
@@ -275,7 +290,7 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
         </>)}
         {isTitanOrSenior && (<>
           <div className="text-center"><p className="text-primary font-bold text-lg">{plan.contracts} CONTRATOS</p>{plan.asset && <p className="text-muted-foreground text-sm font-medium">{plan.asset}</p>}</div>
-          <ul className="space-y-1.5">{plan.features!.map((feat, i) => (<li key={i} className="flex items-start gap-2 text-sm text-foreground"><span className="text-primary mt-0.5 text-xs flex-shrink-0">•</span><span className="leading-snug">{feat}</span></li>))}</ul>
+          <ul className="space-y-1.5">{plan.features!.map((feat, i) => (<li key={i} className={`flex items-start gap-2 text-sm text-foreground ${copa?.highlightBullet && feat === "Direto no Simulador Remunerado" ? "copa-highlight-bullet" : ""}`}><span className="text-primary mt-0.5 text-xs flex-shrink-0">•</span><span className="leading-snug">{feat}</span></li>))}</ul>
           <div className="border-t border-border pt-3 text-center"><div className="mb-1"><span className="text-sm line-through text-muted-foreground">{formatBRL(plan.priceOriginal)}</span></div>{isPix ? (<span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}</span>) : (<div><span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span></div>)}</div>
         </>)}
         {!hasFeatures && (<>
@@ -296,10 +311,12 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
               {plan.bonusExtra && (<p className="text-xs text-foreground/80 leading-snug">{plan.bonusExtra}</p>)}
             </>
           )}
+          {copa && <span className="copa-micro-copy">{copa.microCopy}</span>}
         </div>
         <button onClick={onCta} disabled={isUnavailable} className={`w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide transition-all duration-300 mt-auto ${isUnavailable ? "bg-muted text-muted-foreground cursor-not-allowed" : isActive ? "bg-primary text-primary-foreground" : "bg-secondary text-foreground border border-border"}`}>{ctaLabel}</button>
         {!hasFeatures && !isUnavailable && (<p className="text-[10px] text-muted-foreground text-center leading-relaxed">Conta demo aplicavel de forma opcional. Caso o nivel decida utiliza-la ou nao.</p>)}
       </div>
+      {copa && <CopaSvg variant={copa.svg} size={copa.svgSize} style={copa.svgStyle} />}
     </div>
   )
 }
@@ -364,7 +381,7 @@ export function PricingSection() {
             <div className="flex-shrink-0 w-[calc(50vw-184px)] md:hidden" />
             {isBit
               ? bitPlans.map((plan, index) => (<BitPlanCard key={`${plan.name}-${index}`} plan={plan} isActive={index === activeCardIndex} isPix={isPix} onCta={() => { if (isPix && plan.indisponivel) return; if (isPix && plan.pixLink) { window.open(plan.pixLink, "_blank") } else if (!isPix && plan.cartaoLink) { window.open(plan.cartaoLink, "_blank") } else { handleCta(plan.name) } }} />))
-              : plans.map((plan, index) => (<PlanCard key={`${plan.name}-${plan.asset ?? ""}-${index}`} plan={plan} isActive={index === activeCardIndex} isPix={isPix} onCta={() => handleCta(plan)} />))}
+              : plans.map((plan, index) => (<PlanCard key={`${plan.name}-${plan.asset ?? ""}-${index}`} plan={plan} isActive={index === activeCardIndex} isPix={isPix} onCta={() => handleCta(plan)} category={activeCategory} />))}
             <div className="flex-shrink-0 w-[calc(50vw-184px)] md:hidden" />
           </div>
           {activeCardIndex < activeCount - 1 && (<button onClick={() => scrollTo(activeCardIndex + 1)} className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-10 w-10 h-10 rounded-full bg-secondary border border-border items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"><ChevronRight className="w-5 h-5" /></button>)}

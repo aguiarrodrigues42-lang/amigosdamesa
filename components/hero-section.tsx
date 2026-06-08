@@ -16,6 +16,7 @@ const TICKERS = [
 ]
 
 const STATS = [
+  // REVISAR: verificar número correto de traders ativos com o cliente (Hero mostra 20.000+, Quem Somos mostra 2.400+)
   { label: "Traders Ativos", value: "20.000+" },
   { label: "Repasses por Quinzena", value: "R$1,5M+" },
   { label: "Taxa de Aprovação", value: "80%" },
