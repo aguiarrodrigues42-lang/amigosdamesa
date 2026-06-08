@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle } from "lucide-react"
+import { CinematicBackground } from "@/components/cinematic"
 
 const BENEFITS = [
   "Opera com capital da mesa sem arriscar dinheiro próprio",

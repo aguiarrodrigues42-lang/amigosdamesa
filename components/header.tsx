@@ -32,7 +32,7 @@ export function Header() {
       <header
         className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled 
-            ? "top-0 bg-background/95 backdrop-blur-md border-b border-border shadow-sm" 
+            ? "top-0 bg-background/90 backdrop-blur-md border-b border-gold/15 shadow-[0_4px_30px_rgba(0,0,0,0.5)]" 
             : "top-[60px] sm:top-[80px] md:top-[100px] lg:top-[120px] bg-transparent"
         }`}
       >
@@ -55,7 +55,7 @@ export function Header() {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  className="text-sm text-muted-foreground hover:text-gold transition-colors"
                 >
                   {item.label}
                 </button>

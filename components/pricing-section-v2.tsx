@@ -2,8 +2,9 @@
 // pricing-section-v2 — ATUALIZADO: ESPECIAL COPA 2026 60% OFF em Exames Iniciante/Intermediario, Pegue e Monte 8/12/20, Senior Iniciante/Intermediario
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, X, Info } from "lucide-react"
+import { ChevronLeft, ChevronRight, X, Info, Trophy } from "lucide-react"
 import { RegulamentosModal } from "@/components/regulamentos-modal"
+import { CinematicBackground, SectionDivider } from "@/components/cinematic"
 
 type Category = "exames" | "prime-plus" | "titan" | "senior" | "pegue-monte" | "bit"
 
@@ -92,28 +93,29 @@ const BONUS_LABEL = "7 dias de Sala Educacional ao Vivo"
 
 function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive: boolean; isPix: boolean; onCta: () => void }) {
   return (
-    <div className={`flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center rounded-2xl border-2 bg-card flex flex-col transition-all duration-300 ${isActive ? "border-primary shadow-[0_0_0_2px_theme(colors.orange.500)]" : "border-border opacity-80"}`}>
-      <div className="bg-primary rounded-t-2xl px-5 py-3 flex items-center justify-between">
-        <h3 className="text-primary-foreground font-black text-sm uppercase tracking-wide">{plan.name}</h3>
+    <div className={`group flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center rounded-2xl border bg-card flex flex-col transition-all duration-300 overflow-hidden ${isActive ? "border-gold/60 shadow-[0_0_40px_-8px_oklch(0.82_0.16_88/0.35)]" : "border-border opacity-80"}`}>
+      <div className="relative bg-gradient-to-r from-brazil-green-deep to-brazil-green px-5 py-3 flex items-center justify-between">
+        <div aria-hidden className="absolute inset-0 gold-sweep opacity-30" />
+        <h3 className="relative font-display text-primary-foreground font-bold text-sm uppercase tracking-wide">{plan.name}</h3>
       </div>
       <div className="flex flex-col flex-1 px-5 py-4 gap-4">
         <ul className="space-y-1.5">
-          {plan.features.map((f, i) => (<li key={i} className="flex items-start gap-2 text-sm text-foreground"><span className="text-primary mt-0.5 text-xs">•</span><span>{f}</span></li>))}
+          {plan.features.map((f, i) => (<li key={i} className="flex items-start gap-2 text-sm text-foreground"><span className="text-gold mt-0.5 text-xs">•</span><span>{f}</span></li>))}
         </ul>
         <div className="space-y-2 border-t border-border pt-3">
           <div className="flex items-center justify-between">
             <span className="text-xs text-muted-foreground font-semibold uppercase tracking-wide">Exame</span>
             <div className="text-right">
-              {isPix ? (<span className="text-primary font-black text-base">{plan.precoPix}</span>) : (<span className="text-primary font-black text-base">12x {plan.precoCartao}</span>)}
+              {isPix ? (<span className="text-gold font-black text-base">{plan.precoPix}</span>) : (<span className="text-gold font-black text-base">12x {plan.precoCartao}</span>)}
             </div>
           </div>
           <p className="text-[10px] text-muted-foreground text-center font-semibold tracking-widest pt-1">PROFIT ONE</p>
         </div>
-        <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
-          <p className="text-[10px] font-black uppercase tracking-widest text-primary">Bonus</p>
+        <div className="bg-gold/10 border border-gold/30 rounded-lg px-3 py-2 text-center space-y-0.5">
+          <p className="text-[10px] font-black uppercase tracking-widest text-gold">Bonus</p>
           <p className="text-xs text-foreground/80 leading-snug">Sem limite diario para o exame</p>
         </div>
-        <button onClick={onCta} className={`w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide mt-auto transition-all duration-300 ${isActive ? "bg-primary text-primary-foreground" : "bg-secondary text-foreground border border-border"}`}>COMPRAR AGORA</button>
+        <button onClick={onCta} className={`w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide mt-auto transition-all duration-300 ${isActive ? "bg-primary text-primary-foreground shadow-[0_8px_30px_-8px_oklch(0.7_0.18_45/0.6)]" : "bg-secondary text-foreground border border-border"}`}>COMPRAR AGORA</button>
       </div>
     </div>
   )
@@ -258,33 +260,45 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
   const priceCartao12x = (plan.pricePix * 1.9372) / 12
   const displayPrice = isPix ? plan.pricePix : priceCartao12x
   const bonusText = plan.bonusOverride || null
+  const featured = !!plan.mostVendido
   return (
-    <div className={`flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center rounded-2xl border-2 bg-card flex flex-col transition-all duration-300 ${isActive ? "border-primary shadow-[0_0_0_2px_theme(colors.orange.500)]" : "border-border opacity-80"} ${isUnavailable ? "opacity-50 pointer-events-none" : ""}`}>
-      <div className="bg-primary rounded-t-2xl">
-        {plan.mostVendido && (<div className="flex items-center justify-center bg-green-600 border-y-2 border-white rounded-t-2xl py-1"><span className="text-white text-xs font-black uppercase tracking-widest">Mais Vendido</span></div>)}
-        <div className="px-5 py-3 flex items-center justify-between gap-2">
-          <h3 className="text-sm font-black uppercase tracking-wide text-primary-foreground leading-tight">{plan.name}</h3>
-          {plan.discountPercent > 0 && (<span className="flex-shrink-0 bg-primary-foreground text-primary text-[10px] font-black px-2 py-0.5 rounded-full">{plan.discountPercent}% OFF</span>)}
+    <div className={`group relative flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center rounded-2xl border bg-card flex flex-col transition-all duration-300 overflow-hidden ${featured ? "border-gold/70" : isActive ? "border-gold/50" : "border-border opacity-80"} ${isActive ? "shadow-[0_0_45px_-10px_oklch(0.82_0.16_88/0.4)]" : ""} ${isUnavailable ? "opacity-50 pointer-events-none" : ""}`}>
+      {/* championship glow for featured plan */}
+      {featured && (
+        <div aria-hidden className="pointer-events-none absolute inset-0 rounded-2xl" style={{ boxShadow: "inset 0 0 0 1px oklch(0.82 0.16 88 / 0.4), 0 0 60px -12px oklch(0.82 0.16 88 / 0.45)" }} />
+      )}
+      <div className={`relative ${featured ? "bg-gradient-to-r from-gold-dark via-gold to-gold-dark" : "bg-gradient-to-r from-brazil-green-deep to-brazil-green"} rounded-t-2xl`}>
+        {plan.mostVendido && (
+          <div className="relative flex items-center justify-center gap-1.5 bg-[#050505] border-b border-gold/40 py-1 overflow-hidden">
+            <div aria-hidden className="absolute inset-0 gold-sweep opacity-40" />
+            <Trophy className="relative w-3 h-3 text-gold" />
+            <span className="relative text-gold text-[11px] font-black uppercase tracking-[0.18em]">Mais Vendido</span>
+          </div>
+        )}
+        <div className="relative px-5 py-3 flex items-center justify-between gap-2">
+          <div aria-hidden className="absolute inset-0 gold-sweep opacity-20" />
+          <h3 className={`relative font-display text-sm font-bold uppercase tracking-wide leading-tight ${featured ? "text-[#050505]" : "text-primary-foreground"}`}>{plan.name}</h3>
+          {plan.discountPercent > 0 && (<span className={`relative flex-shrink-0 text-[10px] font-black px-2 py-0.5 rounded-full ${featured ? "bg-[#050505] text-gold" : "bg-primary-foreground text-brazil-green-deep"}`}>{plan.discountPercent}% OFF</span>)}
         </div>
       </div>
-      <div className="flex flex-col flex-1 px-5 py-4 gap-3">
+      <div className="relative flex flex-col flex-1 px-5 py-4 gap-3">
         {isPrimePlus && (<>
-          <ul className="space-y-1.5">{plan.features!.map((feat, i) => (<li key={i} className="flex items-start gap-2 text-sm text-foreground"><span className="text-primary mt-0.5 text-xs flex-shrink-0">•</span><span>{feat}</span></li>))}</ul>
-          <div className="border-t border-border pt-3 text-center">{isPix ? (<span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}/mes</span>) : (<span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span>)}</div>
-          <div className="border-t border-border pt-3 space-y-1"><p className="text-xs font-bold text-foreground uppercase tracking-wide">Taxa apos aprovado:</p><div className="flex items-center gap-2 flex-wrap"><span className="text-xs font-semibold text-muted-foreground">ONE</span><strong className="text-primary text-sm">{formatBRL(plan.taxaOnePix!)}</strong><span className="text-xs font-semibold text-muted-foreground">PRO</span><strong className="text-primary text-sm">{formatBRL(plan.taxaProPix!)}</strong></div></div>
+          <ul className="space-y-1.5">{plan.features!.map((feat, i) => (<li key={i} className="flex items-start gap-2 text-sm text-foreground"><span className="text-gold mt-0.5 text-xs flex-shrink-0">•</span><span>{feat}</span></li>))}</ul>
+          <div className="border-t border-border pt-3 text-center">{isPix ? (<span className="font-display text-2xl font-bold text-gold">{formatBRL(displayPrice)}/mes</span>) : (<span className="font-display text-lg font-bold text-gold">12x {formatBRL(displayPrice)}</span>)}</div>
+          <div className="border-t border-border pt-3 space-y-1"><p className="text-xs font-bold text-foreground uppercase tracking-wide">Taxa apos aprovado:</p><div className="flex items-center gap-2 flex-wrap"><span className="text-xs font-semibold text-muted-foreground">ONE</span><strong className="text-gold text-sm">{formatBRL(plan.taxaOnePix!)}</strong><span className="text-xs font-semibold text-muted-foreground">PRO</span><strong className="text-gold text-sm">{formatBRL(plan.taxaProPix!)}</strong></div></div>
         </>)}
         {isTitanOrSenior && (<>
-          <div className="text-center"><p className="text-primary font-bold text-lg">{plan.contracts} CONTRATOS</p>{plan.asset && <p className="text-muted-foreground text-sm font-medium">{plan.asset}</p>}</div>
-          <ul className="space-y-1.5">{plan.features!.map((feat, i) => (<li key={i} className="flex items-start gap-2 text-sm text-foreground"><span className="text-primary mt-0.5 text-xs flex-shrink-0">•</span><span className="leading-snug">{feat}</span></li>))}</ul>
-          <div className="border-t border-border pt-3 text-center"><div className="mb-1"><span className="text-sm line-through text-muted-foreground">{formatBRL(plan.priceOriginal)}</span></div>{isPix ? (<span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}</span>) : (<div><span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span></div>)}</div>
+          <div className="text-center"><p className="font-display text-gold font-bold text-lg">{plan.contracts} CONTRATOS</p>{plan.asset && <p className="text-muted-foreground text-sm font-medium">{plan.asset}</p>}</div>
+          <ul className="space-y-1.5">{plan.features!.map((feat, i) => (<li key={i} className="flex items-start gap-2 text-sm text-foreground"><span className="text-gold mt-0.5 text-xs flex-shrink-0">•</span><span className="leading-snug">{feat}</span></li>))}</ul>
+          <div className="border-t border-border pt-3 text-center"><div className="mb-1"><span className="text-sm line-through text-muted-foreground">{formatBRL(plan.priceOriginal)}</span></div>{isPix ? (<span className="font-display text-2xl font-bold text-gold">{formatBRL(displayPrice)}</span>) : (<div><span className="font-display text-lg font-bold text-gold">12x {formatBRL(displayPrice)}</span></div>)}</div>
         </>)}
         {!hasFeatures && (<>
-          <div className="text-center"><p className="text-primary font-bold text-lg">{plan.contracts} CONTRATOS</p>{plan.asset && <p className="text-muted-foreground text-sm font-medium">{plan.asset}</p>}</div>
+          <div className="text-center"><p className="font-display text-gold font-bold text-lg">{plan.contracts} CONTRATOS</p>{plan.asset && <p className="text-muted-foreground text-sm font-medium">{plan.asset}</p>}</div>
           <div className="space-y-2"><div className="flex items-center justify-between border-b border-border pb-2"><span className="text-xs text-muted-foreground">Meta de Aprovacao</span><span className="text-sm font-semibold text-foreground">{plan.meta}</span></div><div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">Stop Global</span><span className="text-sm font-semibold text-foreground">{plan.stopGlobal}</span></div></div>
-          {isUnavailable ? (<div className="text-center py-2"><span className="text-sm font-bold text-destructive">INDISPONIVEL</span></div>) : (<div className="text-center"><div className="mb-1"><span className="text-sm line-through text-muted-foreground">{formatBRL(plan.priceOriginal)}</span></div>{isPix ? (<span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}</span>) : (<div><span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span></div>)}</div>)}
+          {isUnavailable ? (<div className="text-center py-2"><span className="text-sm font-bold text-destructive">INDISPONIVEL</span></div>) : (<div className="text-center"><div className="mb-1"><span className="text-sm line-through text-muted-foreground">{formatBRL(plan.priceOriginal)}</span></div>{isPix ? (<span className="font-display text-2xl font-bold text-gold">{formatBRL(displayPrice)}</span>) : (<div><span className="font-display text-lg font-bold text-gold">12x {formatBRL(displayPrice)}</span></div>)}</div>)}
         </>)}
-        <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
-          <p className="text-[10px] font-black uppercase tracking-widest text-primary">Bonus</p>
+        <div className="bg-gold/10 border border-gold/30 rounded-lg px-3 py-2 text-center space-y-0.5">
+          <p className="text-[10px] font-black uppercase tracking-widest text-gold">Bonus</p>
           {bonusText ? (
             <>
               {plan.bonusExtra && (<p className="text-xs text-foreground/80 leading-snug">{plan.bonusExtra}</p>)}
@@ -297,7 +311,10 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
             </>
           )}
         </div>
-        <button onClick={onCta} disabled={isUnavailable} className={`w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide transition-all duration-300 mt-auto ${isUnavailable ? "bg-muted text-muted-foreground cursor-not-allowed" : isActive ? "bg-primary text-primary-foreground" : "bg-secondary text-foreground border border-border"}`}>{ctaLabel}</button>
+        <button onClick={onCta} disabled={isUnavailable} className={`relative overflow-hidden w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide transition-all duration-300 mt-auto ${isUnavailable ? "bg-muted text-muted-foreground cursor-not-allowed" : "bg-primary text-primary-foreground shadow-[0_8px_30px_-8px_oklch(0.7_0.18_45/0.6)] hover:brightness-110"}`}>
+          <span className="relative z-10">{ctaLabel}</span>
+          {!isUnavailable && (<span aria-hidden className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-white/20 skew-x-[-20deg] transition-transform duration-500" />)}
+        </button>
         {!hasFeatures && !isUnavailable && (<p className="text-[10px] text-muted-foreground text-center leading-relaxed">Conta demo aplicavel de forma opcional. Caso o nivel decida utiliza-la ou nao.</p>)}
       </div>
     </div>
@@ -347,14 +364,24 @@ export function PricingSection() {
   }
 
   return (
-    <section id="planos" className="py-16 bg-background scroll-mt-20">
-      <div className="mx-auto px-4 max-w-5xl">
+    <section id="planos" className="relative py-20 bg-background scroll-mt-20 overflow-hidden">
+      <CinematicBackground variant="gold" />
+      {/* Trophy ambience */}
+      <div aria-hidden className="pointer-events-none absolute -right-16 top-24 w-72 opacity-[0.10] hidden lg:block">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/images/wc-trophy.png" alt="" className="w-full h-auto" />
+      </div>
+      <div className="relative mx-auto px-4 max-w-5xl">
         <div className="text-center mb-8">
+          <div className="inline-flex items-center gap-2 mb-3 px-3 py-1.5 rounded-full border border-gold/40 bg-gold/10">
+            <Trophy className="w-3.5 h-3.5 text-gold" />
+            <span className="text-gold text-xs font-bold uppercase tracking-[0.2em]">Convocação Oficial</span>
+          </div>
           <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">Proposta de Mesa Proprietaria</p>
-          <h2 className="text-2xl md:text-3xl font-black text-foreground">Escolha seu Plano</h2>
+          <h2 className="font-display text-3xl md:text-4xl font-bold uppercase text-foreground tracking-tight">Escolha seu <span className="text-gold-gradient">Plano</span></h2>
         </div>
         <div className="flex flex-wrap justify-center gap-2 mb-6">
-          {categories.map((cat) => (<button key={cat.id} onClick={() => setActiveCategory(cat.id)} className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${activeCategory === cat.id ? "bg-secondary text-foreground ring-2 ring-primary" : "bg-primary text-primary-foreground hover:bg-primary/80"}`}>{cat.label}</button>))}
+          {categories.map((cat) => (<button key={cat.id} onClick={() => setActiveCategory(cat.id)} className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${activeCategory === cat.id ? "bg-gold text-[#050505] shadow-[0_4px_20px_-4px_oklch(0.82_0.16_88/0.5)]" : "bg-secondary text-foreground border border-border hover:border-gold/40 hover:text-gold"}`}>{cat.label}</button>))}
         </div>
         <div className="flex justify-center mb-6"><RegulamentosModal /></div>
         <div className="flex justify-center mb-8" suppressHydrationWarning><PaymentToggle isPix={isPix} onChange={setIsPix} /></div>

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ChevronDown, TrendingUp, TrendingDown } from "lucide-react"
+import { FlagsBanner } from "@/components/cinematic"
 
 const TICKERS = [
   { symbol: "WIN$", value: "131.420", change: "+0,82%", up: true },
@@ -24,7 +25,7 @@ const STATS = [
 
 export function HeroSection() {
   const trackRef = useRef<HTMLDivElement>(null)
-  const [tick, setTick] = useState(0)
+  const [, setTick] = useState(0)
 
   // animate ticker values slightly to simulate live market
   useEffect(() => {
@@ -41,10 +42,10 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden bg-[#0c0c0c]">
+    <section className="relative min-h-screen flex flex-col overflow-hidden bg-background">
 
       {/* ── Live ticker bar ─────────────────────────────── */}
-      <div className="absolute top-[124px] sm:top-[144px] md:top-[180px] lg:top-[200px] left-0 right-0 z-20 overflow-hidden h-9 bg-black/60 border-b border-white/5 backdrop-blur-sm">
+      <div className="absolute top-[124px] sm:top-[144px] md:top-[180px] lg:top-[200px] left-0 right-0 z-20 overflow-hidden h-9 bg-black/70 border-y border-gold/15 backdrop-blur-sm">
         <div
           ref={trackRef}
           className="flex items-center gap-8 whitespace-nowrap"
@@ -64,53 +65,68 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* ── Background image ────────────────────────────── */}
+      {/* ── Layer: cinematic stadium environment ─────────── */}
       <div className="absolute inset-0 z-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/amigos%20da%20mesa%201-tyClHdDkYHJw3zqwhrxvUGOavbyAb2.jpeg"
+          src="/images/wc-stadium-hero.png"
           alt=""
-          className="w-full h-full object-cover object-top"
+          className="w-full h-full object-cover object-center"
           aria-hidden="true"
         />
-        {/* Dark overlay — heavier on left for text, lighter on right */}
-        <div className="absolute inset-0 bg-[#0c0c0c]/60 md:bg-gradient-to-r md:from-[#0c0c0c]/90 md:via-[#0c0c0c]/60 md:to-[#0c0c0c]/30" />
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#0c0c0c] to-transparent" />
+        {/* Cinematic dark grade — heavier on left for text legibility */}
+        <div className="absolute inset-0 bg-background/70 md:bg-gradient-to-r md:from-background/95 md:via-background/70 md:to-background/35" />
+        {/* Green ambient from bottom */}
+        <div className="absolute bottom-0 left-0 right-0 h-2/3"
+          style={{ background: "radial-gradient(ellipse 90% 70% at 30% 120%, oklch(0.56 0.16 152 / 0.22) 0%, transparent 65%)" }} />
+        {/* Bottom fade into page */}
+        <div className="absolute bottom-0 left-0 right-0 h-56 bg-gradient-to-t from-background to-transparent" />
       </div>
 
-      {/* ── Animated grid lines (decorative) ───────────── */}
-      <div
-        className="absolute inset-0 z-[1] pointer-events-none opacity-[0.04]"
-        style={{
-          backgroundImage: "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
-        }}
-      />
+      {/* ── Volumetric light beams ───────────────────────── */}
+      <div aria-hidden className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
+        <div
+          className="absolute -top-40 left-[18%] h-[130%] w-48 origin-top rotate-[16deg] blur-3xl animate-beam-sway"
+          style={{ background: "linear-gradient(to bottom, oklch(0.85 0.16 90 / 0.18), transparent 70%)" }}
+        />
+        <div
+          className="absolute -top-40 right-[16%] h-[130%] w-52 origin-top -rotate-[14deg] blur-3xl animate-beam-sway"
+          style={{ background: "linear-gradient(to bottom, oklch(0.56 0.16 152 / 0.16), transparent 70%)", animationDelay: "3.5s" }}
+        />
+        <div
+          className="absolute -top-40 left-1/2 h-[120%] w-40 origin-top blur-3xl animate-beam-sway"
+          style={{ background: "linear-gradient(to bottom, oklch(0.32 0.13 264 / 0.16), transparent 65%)", animationDelay: "1.5s" }}
+        />
+      </div>
 
-      {/* ── Red accent glow bottom-left ──────────────────── */}
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] z-[1] pointer-events-none"
-        style={{ background: "radial-gradient(circle at 0% 100%, oklch(0.7 0.18 45 / 0.18) 0%, transparent 65%)" }} />
+      {/* ── Foreground hanging flags (top) ───────────────── */}
+      <FlagsBanner className="absolute top-0 left-0 right-0 z-[2] h-28 md:h-36 opacity-80" />
+
+      {/* ── Floating match ball (decorative, right) ──────── */}
+      <div aria-hidden className="absolute right-[6%] top-1/2 -translate-y-1/2 z-[3] hidden lg:block w-64 xl:w-80 animate-cinematic-float">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/images/wc-ball.png" alt="" className="w-full h-auto drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)]" />
+      </div>
 
       {/* ── Content ─────────────────────────────────────── */}
       <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-4 pt-44 pb-20 sm:pt-48 md:pt-56 lg:pt-60">
         <div className="max-w-2xl">
 
           {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full border border-primary/40 bg-primary/10">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            <span className="text-primary text-xs font-bold uppercase tracking-widest">Mesa Proprietária Aberta</span>
+          <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full border border-gold/40 bg-gold/10">
+            <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+            <span className="text-gold text-xs font-bold uppercase tracking-[0.2em]">Edição Copa · Mesa Proprietária Aberta</span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] mb-6 text-balance">
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold uppercase text-white leading-[1.02] mb-6 text-balance tracking-tight">
             Pare de operar com{" "}
-            <span className="text-primary">pouco capital</span>{" "}
+            <span className="text-gold-gradient">pouco capital</span>{" "}
             e risco próprio
           </h1>
 
           {/* Sub */}
-          <p className="text-base md:text-lg text-white/60 mb-10 max-w-xl leading-relaxed text-pretty">
+          <p className="text-base md:text-lg text-white/65 mb-10 max-w-xl leading-relaxed text-pretty">
             Aqui você opera com o capital da mesa e fica com 90% ou 100% dos lucros.
           </p>
 
@@ -119,16 +135,19 @@ export function HeroSection() {
             <Button
               size="lg"
               onClick={scrollToPlans}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-black text-base px-8 py-6 group"
+              className="relative overflow-hidden bg-primary hover:bg-primary/90 text-primary-foreground font-black text-base px-8 py-6 group shadow-[0_10px_40px_-10px_oklch(0.7_0.18_45/0.6)]"
             >
-              QUERO MEU PLANO
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <span className="relative z-10 inline-flex items-center">
+                QUERO MEU PLANO
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
+              <span aria-hidden className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-white/20 skew-x-[-20deg] transition-transform duration-500" />
             </Button>
             <Button
               size="lg"
               variant="outline"
               onClick={scrollToNext}
-              className="border-white/20 text-white hover:bg-white/10 font-semibold text-base px-8 py-6"
+              className="border-gold/40 text-white hover:bg-gold/10 hover:border-gold/60 font-semibold text-base px-8 py-6 bg-transparent"
             >
               Como funciona
             </Button>
@@ -137,9 +156,9 @@ export function HeroSection() {
           {/* Stats bar */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {STATS.map((s, i) => (
-              <div key={i} className="border-l-2 border-primary/60 pl-3">
-                <p className="text-xl font-black text-white">{s.value}</p>
-                <p className="text-xs text-white/40 leading-tight">{s.label}</p>
+              <div key={i} className="border-l-2 border-gold/60 pl-3">
+                <p className="font-display text-2xl font-bold text-white">{s.value}</p>
+                <p className="text-xs text-white/45 leading-tight">{s.label}</p>
               </div>
             ))}
           </div>
@@ -149,12 +168,15 @@ export function HeroSection() {
       {/* ── Scroll cue ──────────────────────────────────── */}
       <button
         onClick={scrollToNext}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-white/30 hover:text-white/60 transition-colors"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-white/30 hover:text-gold/70 transition-colors"
         aria-label="Rolar para baixo"
       >
-        <span className="text-[10px] uppercase tracking-widest">scroll</span>
+        <span className="text-[10px] uppercase tracking-[0.3em]">scroll</span>
         <ChevronDown className="w-5 h-5 animate-bounce" />
       </button>
+
+      {/* bottom Brazil tri-band accent */}
+      <div aria-hidden className="absolute bottom-0 left-0 right-0 h-1 brazil-band z-20 opacity-80" />
     </section>
   )
 }
