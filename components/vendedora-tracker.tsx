@@ -2,93 +2,92 @@
 import { useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 
-// ─── Vendedores válidos — adicione novos nomes aqui ───
 const VALID_SELLERS = ["milena", "talita", "james", "leonardo"]
 
-function cleanUtmSource(url: string): string {
-  return url
+function getVendedora() {
+  var m = document.cookie.match(/vendedora=([^;]+)/)
+  return m ? m[1] : null
+}
+
+function withUtm(url: string, vendedora: string): string {
+  if (!url || !url.includes("neoncheckout")) return url
+  var clean = url
     .replace(/([?&])utm_source=[^&]*/g, "$1")
-    .replace(/\?&/, "?")
-    .replace(/&&/g, "&")
-    .replace(/[?&]$/, "")
+    .replace(/\?&/, "?").replace(/&&/g, "&").replace(/[?&]$/, "")
+  var sep = clean.includes("?") ? "&" : "?"
+  return clean + sep + "utm_source=" + vendedora
 }
 
 function VendedoraTrackerInner() {
   const searchParams = useSearchParams()
 
-  // Salva o vendedor assim que o ?ref= aparece (cookie + localStorage)
   useEffect(() => {
     var ref = (searchParams.get("ref") || "").toLowerCase().trim()
     if (ref && VALID_SELLERS.includes(ref)) {
-      document.cookie = "vendedora=" + ref + ";path=/;max-age=" + (60 * 60 * 24 * 30) + ";SameSite=Lax"
-      try { localStorage.setItem("vendedora", ref) } catch (e) {}
+      // COOKIE DE SESSÃO (sem max-age) — limpa ao fechar o navegador.
+      // Evita que venda de meses passados contamine a atribuição atual.
+      document.cookie = "vendedora=" + ref + ";path=/;SameSite=Lax"
     }
   }, [searchParams])
 
   useEffect(() => {
-    var getVendedora = function () {
-      var match = document.cookie.match(/vendedora=([^;]+)/)
-      if (match) return match[1]
-      try { return localStorage.getItem("vendedora") } catch (e) { return null }
-    }
-
-    // Reescreve TODOS os links de checkout com o utm_source do vendedor
-    var rewriteLinks = function () {
-      var vendedora = getVendedora()
-      if (!vendedora) return
-      var links = document.querySelectorAll('a[href*="neoncheckout"]')
-      links.forEach(function (link) {
-        var href = link.getAttribute("href")
-        if (href) {
-          var clean = cleanUtmSource(href)
-          var sep = clean.includes("?") ? "&" : "?"
-          var novo = clean + sep + "utm_source=" + vendedora
-          if (href !== novo) link.setAttribute("href", novo)
-        }
-      })
-    }
-
-    // 1. Roda IMEDIATAMENTE (corrige clique rápido)
-    rewriteLinks()
-
-    // 2. Intercepta window.open
+    // 1. window.open
     var originalOpen = window.open
     window.open = function (url, target, features) {
-      var vendedora = getVendedora()
-      if (vendedora && typeof url === "string" && url.includes("neoncheckout")) {
-        var clean = cleanUtmSource(url)
-        var sep = clean.includes("?") ? "&" : "?"
-        url = clean + sep + "utm_source=" + vendedora
-      }
-      return originalOpen.call(window, url, target, features)
+      var v = getVendedora()
+      if (v && typeof url === "string") url = withUtm(url, v)
+      return originalOpen.call(window, url as any, target, features)
     }
 
-    // 3. Intercepta clique como rede de segurança
+    // 2. location.assign
+    var originalAssign = window.location.assign.bind(window.location)
+    try {
+      (window.location as any).assign = function (url: string) {
+        var v = getVendedora()
+        return originalAssign(v ? withUtm(url, v) : url)
+      }
+    } catch (e) {}
+
+    // 3. location.replace
+    var originalReplace = window.location.replace.bind(window.location)
+    try {
+      (window.location as any).replace = function (url: string) {
+        var v = getVendedora()
+        return originalReplace(v ? withUtm(url, v) : url)
+      }
+    } catch (e) {}
+
+    // 4. Cliques em <a> (rede de segurança)
     var handleClick = function (e: MouseEvent) {
-      var vendedora = getVendedora()
-      if (!vendedora) return
-      var anchor = (e.target as HTMLElement).closest("a")
-      if (anchor && anchor.href && anchor.href.includes("neoncheckout") && !anchor.href.includes("utm_source=" + vendedora)) {
+      var v = getVendedora()
+      if (!v) return
+      var a = (e.target as HTMLElement).closest("a")
+      if (a && a.href && a.href.includes("neoncheckout") && !a.href.includes("utm_source=" + v)) {
         e.preventDefault()
-        var clean = cleanUtmSource(anchor.href)
-        var sep = clean.includes("?") ? "&" : "?"
-        window.location.href = clean + sep + "utm_source=" + vendedora
+        window.location.href = withUtm(a.href, v)
       }
     }
     document.addEventListener("click", handleClick, true)
 
-    // 4. MutationObserver — pega links adicionados dinamicamente NA HORA
-    var observer = new MutationObserver(function () { rewriteLinks() })
+    // 5. Reescreve <a> dinâmicos
+    var rewrite = function () {
+      var v = getVendedora()
+      if (!v) return
+      document.querySelectorAll('a[href*="neoncheckout"]').forEach(function (l) {
+        var h = l.getAttribute("href")
+        if (h) { var n = withUtm(h, v); if (h !== n) l.setAttribute("href", n) }
+      })
+    }
+    rewrite()
+    var observer = new MutationObserver(rewrite)
     observer.observe(document.body, { childList: true, subtree: true })
-
-    // 5. Interval de fallback (a cada 1s)
-    var interval = setInterval(rewriteLinks, 1000)
 
     return function () {
       window.open = originalOpen
+      try { (window.location as any).assign = originalAssign } catch (e) {}
+      try { (window.location as any).replace = originalReplace } catch (e) {}
       document.removeEventListener("click", handleClick, true)
       observer.disconnect()
-      clearInterval(interval)
     }
   }, [])
 
@@ -96,9 +95,103 @@ function VendedoraTrackerInner() {
 }
 
 export function VendedoraTracker() {
-  return (
-    <Suspense fallback={null}>
-      <VendedoraTrackerInner />
-    </Suspense>
-  )
+  return <Suspense fallback={null}><VendedoraTrackerInner /></Suspense>
+}"use client"
+import { useEffect, Suspense } from "react"
+import { useSearchParams } from "next/navigation"
+
+const VALID_SELLERS = ["milena", "talita", "james", "leonardo"]
+
+function getVendedora() {
+  var m = document.cookie.match(/vendedora=([^;]+)/)
+  return m ? m[1] : null
+}
+
+function withUtm(url: string, vendedora: string): string {
+  if (!url || !url.includes("neoncheckout")) return url
+  var clean = url
+    .replace(/([?&])utm_source=[^&]*/g, "$1")
+    .replace(/\?&/, "?").replace(/&&/g, "&").replace(/[?&]$/, "")
+  var sep = clean.includes("?") ? "&" : "?"
+  return clean + sep + "utm_source=" + vendedora
+}
+
+function VendedoraTrackerInner() {
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    var ref = (searchParams.get("ref") || "").toLowerCase().trim()
+    if (ref && VALID_SELLERS.includes(ref)) {
+      // COOKIE DE SESSÃO (sem max-age) — limpa ao fechar o navegador.
+      // Evita que venda de meses passados contamine a atribuição atual.
+      document.cookie = "vendedora=" + ref + ";path=/;SameSite=Lax"
+    }
+  }, [searchParams])
+
+  useEffect(() => {
+    // 1. window.open
+    var originalOpen = window.open
+    window.open = function (url, target, features) {
+      var v = getVendedora()
+      if (v && typeof url === "string") url = withUtm(url, v)
+      return originalOpen.call(window, url as any, target, features)
+    }
+
+    // 2. location.assign
+    var originalAssign = window.location.assign.bind(window.location)
+    try {
+      (window.location as any).assign = function (url: string) {
+        var v = getVendedora()
+        return originalAssign(v ? withUtm(url, v) : url)
+      }
+    } catch (e) {}
+
+    // 3. location.replace
+    var originalReplace = window.location.replace.bind(window.location)
+    try {
+      (window.location as any).replace = function (url: string) {
+        var v = getVendedora()
+        return originalReplace(v ? withUtm(url, v) : url)
+      }
+    } catch (e) {}
+
+    // 4. Cliques em <a> (rede de segurança)
+    var handleClick = function (e: MouseEvent) {
+      var v = getVendedora()
+      if (!v) return
+      var a = (e.target as HTMLElement).closest("a")
+      if (a && a.href && a.href.includes("neoncheckout") && !a.href.includes("utm_source=" + v)) {
+        e.preventDefault()
+        window.location.href = withUtm(a.href, v)
+      }
+    }
+    document.addEventListener("click", handleClick, true)
+
+    // 5. Reescreve <a> dinâmicos
+    var rewrite = function () {
+      var v = getVendedora()
+      if (!v) return
+      document.querySelectorAll('a[href*="neoncheckout"]').forEach(function (l) {
+        var h = l.getAttribute("href")
+        if (h) { var n = withUtm(h, v); if (h !== n) l.setAttribute("href", n) }
+      })
+    }
+    rewrite()
+    var observer = new MutationObserver(rewrite)
+    observer.observe(document.body, { childList: true, subtree: true })
+
+    return function () {
+      window.open = originalOpen
+      try { (window.location as any).assign = originalAssign } catch (e) {}
+      try { (window.location as any).replace = originalReplace } catch (e) {}
+      document.removeEventListener("click", handleClick, true)
+      observer.disconnect()
+    }
+  }, [])
+
+  return null
+}
+
+export function VendedoraTracker() {
+  return <Suspense fallback={null}><VendedoraTrackerInner /></Suspense>
 }
