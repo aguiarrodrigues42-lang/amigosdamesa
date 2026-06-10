@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef, useMemo } from "react"
 import { motion, AnimatePresence, useInView, useReducedMotion } from "framer-motion"
-import { ArrowRight, MapPin, Users, Megaphone, CalendarDays } from "lucide-react"
+import { ArrowRight, MapPin, Users, Megaphone, CalendarDays, Trophy, ChevronUp, ChevronDown, Minus } from "lucide-react"
+import type { RankingPayload, RankingRound, RankingTopEntry, RoundStatus } from "@/lib/ranking"
 
 /* ============================================================
    LINKS — edite as URLs aqui (todas abrem em nova aba)
@@ -618,6 +619,216 @@ async function fetchMatches(): Promise<Match[]> {
 }
 
 /* ============================================================
+   RANKING DE RODADAS — fetch (API → fallback estático)
+   ============================================================ */
+async function fetchRanking(): Promise<RankingPayload> {
+  try {
+    const res = await fetch("/api/ranking", { cache: "no-store" })
+    if (!res.ok) throw new Error("api failed")
+    return (await res.json()) as RankingPayload
+  } catch {
+    const res = await fetch("/data/copa-ranking.json", { cache: "no-store" })
+    if (!res.ok) throw new Error("fallback failed")
+    return (await res.json()) as RankingPayload
+  }
+}
+
+const STATUS_META: Record<RoundStatus, { label: string; color: string; dot: boolean }> = {
+  "ao-vivo": { label: "Ao vivo", color: GREEN, dot: true },
+  encerrada: { label: "Encerrada", color: "#9a9891", dot: false },
+  agendada: { label: "Em breve", color: GOLD, dot: false },
+}
+
+function RoundStatusChip({ status }: { status: RoundStatus }) {
+  const meta = STATUS_META[status]
+  return (
+    <span
+      className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-sans text-[10px] font-semibold uppercase tracking-[0.16em]"
+      style={{ borderColor: `${meta.color}40`, color: meta.color }}
+    >
+      {meta.dot && (
+        <span className="relative flex h-1.5 w-1.5">
+          <span
+            className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-70"
+            style={{ background: meta.color }}
+          />
+          <span className="relative inline-flex h-1.5 w-1.5 rounded-full" style={{ background: meta.color }} />
+        </span>
+      )}
+      {meta.label}
+    </span>
+  )
+}
+
+function DeltaTag({ delta }: { delta?: number }) {
+  if (delta === undefined) return null
+  if (delta === 0) {
+    return (
+      <span className="inline-flex items-center gap-0.5 font-sans text-[11px] font-medium text-[#5f5e58]">
+        <Minus className="h-3 w-3" aria-hidden />
+      </span>
+    )
+  }
+  const up = delta > 0
+  return (
+    <span
+      className="inline-flex items-center gap-0.5 font-sans text-[11px] font-semibold"
+      style={{ color: up ? GREEN : "#d4564a" }}
+      title={up ? `Subiu ${delta}` : `Caiu ${Math.abs(delta)}`}
+    >
+      {up ? <ChevronUp className="h-3 w-3" aria-hidden /> : <ChevronDown className="h-3 w-3" aria-hidden />}
+      {Math.abs(delta)}
+    </span>
+  )
+}
+
+function RankRow({ entry, featured }: { entry: RankingTopEntry; featured: boolean }) {
+  const accent = RANK_ACCENT[entry.position]
+  return (
+    <li
+      className={`relative flex items-center gap-4 rounded-lg border px-4 py-3 transition-colors ${
+        featured ? "border-[#efbd24]/35 bg-[#0d0f08]" : "border-[#1b2024] bg-[#0b0e0f]"
+      }`}
+    >
+      <span className="absolute left-0 top-1/2 h-7 w-0.5 -translate-y-1/2 rounded-r" style={{ background: accent }} />
+      <span className="flex w-7 shrink-0 items-baseline gap-0.5 font-display text-2xl font-bold leading-none" style={{ color: accent }}>
+        {entry.position}
+        <span className="text-sm">º</span>
+      </span>
+      <div className="min-w-0 flex-1">
+        <p className="flex items-center gap-1.5 truncate font-display text-base font-semibold uppercase tracking-[-0.01em] text-[#f7f5ee]">
+          {featured && <Trophy className="h-3.5 w-3.5 shrink-0" aria-hidden style={{ color: GOLD }} />}
+          {entry.player}
+        </p>
+      </div>
+      <div className="flex shrink-0 flex-col items-end leading-tight">
+        <span className="font-display text-lg font-bold leading-none text-[#f7f5ee]">
+          {entry.points.toLocaleString("pt-BR")}
+          <span className="ml-1 font-sans text-[10px] font-medium uppercase tracking-[0.12em] text-[#9a9891]">pts</span>
+        </span>
+        <DeltaTag delta={entry.delta} />
+      </div>
+    </li>
+  )
+}
+
+function RoundCard({ round, index, inView, reduce }: { round: RankingRound; index: number; inView: boolean; reduce: boolean }) {
+  const top3 = [...round.top].sort((a, b) => a.position - b.position).slice(0, 3)
+  return (
+    <motion.div
+      initial={reduce ? { opacity: 1 } : { opacity: 0, y: 28 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: reduce ? 0 : 0.1 + index * 0.1, duration: 0.55, ease: "easeOut" }}
+      className="flex flex-col rounded-2xl border border-[#1b2024] bg-[#060809] p-6 shadow-[0_30px_60px_-40px_rgba(0,0,0,0.9)] transition-colors duration-300 hover:border-[#2a3036] md:p-7"
+    >
+      <div className="mb-5 flex items-center justify-between gap-3 border-b border-[#1b2024] pb-5">
+        <div className="min-w-0">
+          <h4 className="font-display text-xl font-bold uppercase tracking-[-0.02em] text-[#f7f5ee] md:text-2xl">
+            {round.label}
+          </h4>
+          {round.dateLabel && (
+            <p className="mt-1 font-sans text-xs font-medium uppercase tracking-[0.14em] text-[#9a9891]">
+              {round.dateLabel}
+            </p>
+          )}
+        </div>
+        <RoundStatusChip status={round.status} />
+      </div>
+      <ul className="flex flex-col gap-2.5">
+        {top3.map((e) => (
+          <RankRow key={e.position} entry={e} featured={e.position === 1} />
+        ))}
+      </ul>
+    </motion.div>
+  )
+}
+
+function formatUpdatedLabel(iso: string): string {
+  const d = new Date(iso)
+  if (Number.isNaN(d.getTime())) return ""
+  return new Intl.DateTimeFormat("pt-BR", {
+    timeZone: SP_TZ,
+    day: "2-digit",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(d)
+}
+
+function RankingRodadas() {
+  const reduce = useReducedMotion() ?? false
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: "-80px" })
+
+  const [data, setData] = useState<RankingPayload | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+
+  useEffect(() => {
+    let mounted = true
+    fetchRanking()
+      .then((d) => mounted && setData(d))
+      .catch(() => mounted && setError(true))
+      .finally(() => mounted && setLoading(false))
+    return () => {
+      mounted = false
+    }
+  }, [])
+
+  return (
+    <div ref={ref} className="mt-24">
+      <div className="mb-8 flex flex-col gap-3 border-b border-[#1b2024] pb-6 md:flex-row md:items-end md:justify-between">
+        <div>
+          <Kicker>Classificação atualizada</Kicker>
+          <h3 className="mt-4 font-display text-3xl font-bold uppercase tracking-[-0.02em] text-[#f7f5ee] md:text-4xl">
+            Ranking de rodadas
+          </h3>
+        </div>
+        {data?.updatedAt && (
+          <p className="font-sans text-sm text-[#9a9891] md:text-right">
+            Atualizado em {formatUpdatedLabel(data.updatedAt)}
+          </p>
+        )}
+      </div>
+
+      {loading ? (
+        <div className="grid gap-6 md:grid-cols-2">
+          {[0, 1].map((i) => (
+            <div key={i} className="rounded-2xl border border-[#1b2024] bg-[#060809] p-6">
+              <div className="mb-5 h-6 w-32 animate-pulse rounded bg-[#13171a]" />
+              <div className="flex flex-col gap-2.5">
+                {[0, 1, 2].map((j) => (
+                  <div key={j} className="h-14 animate-pulse rounded-lg bg-[#0b0e0f]" />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : error || !data || data.rounds.length === 0 ? (
+        <div className="flex flex-col items-center gap-4 rounded-2xl border border-[#1b2024] bg-[#060809] px-6 py-16 text-center">
+          <Trophy className="h-9 w-9" aria-hidden style={{ color: GOLD }} />
+          <p className="max-w-md text-pretty font-sans text-[#9a9891]">
+            O ranking aparece aqui assim que a primeira rodada for apurada. Volte em breve.
+          </p>
+        </div>
+      ) : (
+        <>
+          <div className="grid gap-6 md:grid-cols-2">
+            {data.rounds.map((r, i) => (
+              <RoundCard key={r.id} round={r} index={i} inView={inView} reduce={reduce} />
+            ))}
+          </div>
+          <p className="mt-6 font-sans text-xs leading-relaxed text-[#5f5e58]">
+            Pontuação consolidada pelos palpites de cada rodada. A classificação é atualizada automaticamente
+            ao fim de cada janela de jogos.
+          </p>
+        </>
+      )}
+    </div>
+  )
+}
+
+/* ============================================================
    COMPONENTE PRINCIPAL
    ============================================================ */
 export function CopaDosTraders() {
@@ -849,6 +1060,9 @@ export function CopaDosTraders() {
             </AnimatePresence>
           )}
         </div>
+
+        {/* ───── BLOCO 4 — RANKING DE RODADAS ───── */}
+        <RankingRodadas />
       </div>
     </section>
   )
