@@ -98,9 +98,9 @@ export function AboutSection() {
             <div className="relative rounded-3xl overflow-hidden aspect-[4/3] shadow-2xl">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/amigos%20da%20mesa%203-atlvqXw8SmvP66KYkz3TpgfGx5NvST.jpeg"
+                src="/images/founder-landscape.png"
                 alt="Fundadora da Amigos da Mesa Prop sentada à mesa com estátuas de touro e urso dourados"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
               />
               {/* gold ring + cinematic vignette */}
               <div className="absolute inset-0 ring-1 ring-inset ring-gold/25 rounded-3xl" />
