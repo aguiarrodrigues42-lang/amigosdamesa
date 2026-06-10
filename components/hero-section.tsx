@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ChevronDown, TrendingUp, TrendingDown } from "lucide-react"
-import { FlagsBanner } from "@/components/cinematic"
 
 const TICKERS = [
   { symbol: "WIN$", value: "131.420", change: "+0,82%", up: true },
@@ -53,11 +52,8 @@ export function HeroSection() {
           className="w-full h-full object-cover object-center animate-ken-burns"
           aria-hidden="true"
         />
-        {/* Cinematic dark grade — heavier on left for text legibility */}
-        <div className="absolute inset-0 bg-background/80 md:bg-gradient-to-r md:from-background md:via-background/85 md:to-background/45" />
-        {/* Green ambient from bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-2/3"
-          style={{ background: "radial-gradient(ellipse 90% 70% at 30% 120%, oklch(0.56 0.16 152 / 0.22) 0%, transparent 65%)" }} />
+        {/* Cinematic dark grade — heavier on left for text legibility, banner shows on right */}
+        <div className="absolute inset-0 bg-background/55 md:bg-gradient-to-r md:from-background md:via-background/75 md:to-background/10" />
         {/* Bottom fade into page */}
         <div className="absolute bottom-0 left-0 right-0 h-56 bg-gradient-to-t from-background to-transparent" />
       </div>
@@ -65,26 +61,9 @@ export function HeroSection() {
       {/* ── Volumetric light beams ───────────────────────── */}
       <div aria-hidden className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
         <div
-          className="absolute -top-40 left-[18%] h-[130%] w-48 origin-top rotate-[16deg] blur-3xl animate-beam-sway"
-          style={{ background: "linear-gradient(to bottom, oklch(0.86 0.18 95 / 0.18), transparent 70%)" }}
-        />
-        <div
-          className="absolute -top-40 right-[16%] h-[130%] w-52 origin-top -rotate-[14deg] blur-3xl animate-beam-sway"
-          style={{ background: "linear-gradient(to bottom, oklch(0.56 0.16 152 / 0.16), transparent 70%)", animationDelay: "3.5s" }}
-        />
-        <div
           className="absolute -top-40 left-1/2 h-[120%] w-40 origin-top blur-3xl animate-beam-sway"
-          style={{ background: "linear-gradient(to bottom, oklch(0.4 0.16 274 / 0.16), transparent 65%)", animationDelay: "1.5s" }}
+          style={{ background: "linear-gradient(to bottom, oklch(0.4 0.16 274 / 0.14), transparent 65%)", animationDelay: "1.5s" }}
         />
-      </div>
-
-      {/* ── Ambient hanging flags (decorative, behind content) ─ */}
-      <FlagsBanner className="absolute -top-4 right-0 w-[55%] md:w-[42%] lg:w-[34%] z-[2] opacity-25 md:opacity-30" />
-
-      {/* ── Floating match ball (decorative, right) ──────── */}
-      <div aria-hidden className="absolute right-[6%] top-1/2 -translate-y-1/2 z-[3] hidden lg:block w-64 xl:w-80 animate-cinematic-float">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/images/wc-ball.png" alt="" className="w-full h-auto drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)]" />
       </div>
 
       {/* ── Content ─────────────────────────────────────── */}

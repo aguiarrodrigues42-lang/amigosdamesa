@@ -115,7 +115,7 @@ function BitPlanCard({ plan, isActive, isPix, onCta }: { plan: BitPlan; isActive
           <p className="text-[10px] font-black uppercase tracking-widest text-gold">Bonus</p>
           <p className="text-xs text-foreground/80 leading-snug">Sem limite diario para o exame</p>
         </div>
-        <button onClick={onCta} className={`w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide mt-auto transition-all duration-300 ${isActive ? "bg-primary text-primary-foreground shadow-[0_8px_30px_-8px_oklch(0.7_0.18_45/0.6)]" : "bg-secondary text-foreground border border-border"}`}>COMPRAR AGORA</button>
+        <button onClick={onCta} className={`w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide mt-auto transition-all duration-300 ${isActive ? "bg-primary text-primary-foreground shadow-[0_8px_30px_-8px_oklch(0.56_0.21_263/0.6)]" : "bg-secondary text-foreground border border-border"}`}>COMPRAR AGORA</button>
       </div>
     </div>
   )
@@ -311,7 +311,7 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
             </>
           )}
         </div>
-        <button onClick={onCta} disabled={isUnavailable} className={`relative overflow-hidden w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide transition-all duration-300 mt-auto ${isUnavailable ? "bg-muted text-muted-foreground cursor-not-allowed" : "bg-primary text-primary-foreground shadow-[0_8px_30px_-8px_oklch(0.7_0.18_45/0.6)] hover:brightness-110"}`}>
+        <button onClick={onCta} disabled={isUnavailable} className={`relative overflow-hidden w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide transition-all duration-300 mt-auto ${isUnavailable ? "bg-muted text-muted-foreground cursor-not-allowed" : "bg-primary text-primary-foreground shadow-[0_8px_30px_-8px_oklch(0.56_0.21_263/0.6)] hover:brightness-110"}`}>
           <span className="relative z-10">{ctaLabel}</span>
           {!isUnavailable && (<span aria-hidden className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-white/20 skew-x-[-20deg] transition-transform duration-500" />)}
         </button>
@@ -381,7 +381,7 @@ export function PricingSection() {
           <h2 className="font-display text-3xl md:text-4xl font-bold uppercase text-foreground tracking-tight">Escolha seu <span className="text-gold-gradient">Plano</span></h2>
         </div>
         <div className="flex flex-wrap justify-center gap-2 mb-6">
-          {categories.map((cat) => (<button key={cat.id} onClick={() => setActiveCategory(cat.id)} className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${activeCategory === cat.id ? "bg-gold text-[#050505] shadow-[0_4px_20px_-4px_oklch(0.82_0.16_88/0.5)]" : "bg-secondary text-foreground border border-border hover:border-gold/40 hover:text-gold"}`}>{cat.label}</button>))}
+          {categories.map((cat) => (<button key={cat.id} onClick={() => setActiveCategory(cat.id)} className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${activeCategory === cat.id ? "bg-primary text-primary-foreground shadow-[0_4px_20px_-4px_oklch(0.56_0.21_263/0.5)]" : "bg-secondary text-foreground border border-border hover:border-gold/40 hover:text-gold"}`}>{cat.label}</button>))}
         </div>
         <div className="flex justify-center mb-6"><RegulamentosModal /></div>
         <div className="flex justify-center mb-8" suppressHydrationWarning><PaymentToggle isPix={isPix} onChange={setIsPix} /></div>
