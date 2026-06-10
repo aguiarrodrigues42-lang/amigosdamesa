@@ -70,12 +70,6 @@ export function HeroSection() {
       <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-4 pt-32 pb-28 sm:pt-36 md:pt-40 lg:pt-44">
         <div className="max-w-2xl">
 
-          {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full border border-gold/40 bg-gold/10">
-            <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-            <span className="text-gold text-xs font-bold uppercase tracking-[0.2em]">Edição Copa · Mesa Proprietária Aberta</span>
-          </div>
-
           {/* Headline */}
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold uppercase text-white leading-[1.02] mb-6 text-balance tracking-tight">
             Pare de operar com{" "}
