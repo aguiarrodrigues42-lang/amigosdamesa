@@ -1,0 +1,37 @@
+{
+  "matches": [
+    {
+      "id": "mex-rsa-grupoA",
+      "grupo": "Grupo A",
+      "kickoffISO": "2026-06-10T16:00:00-03:00",
+      "bettingClosesISO": "2026-06-10T15:50:00-03:00",
+      "home": { "nome": "México", "sigla": "MEX" },
+      "away": { "nome": "África do Sul", "sigla": "RSA" },
+      "estadio": "Estádio Azteca",
+      "palpites": 602,
+      "palpiteUrl": "{{URL_PALPITE}}"
+    },
+    {
+      "id": "kor-cze-grupoA",
+      "grupo": "Grupo A",
+      "kickoffISO": "2026-06-10T23:00:00-03:00",
+      "bettingClosesISO": "2026-06-10T22:50:00-03:00",
+      "home": { "nome": "Coreia do Sul", "sigla": "KOR" },
+      "away": { "nome": "Rep. Tcheca", "sigla": "CZE" },
+      "estadio": "Estádio Akron",
+      "palpites": 547,
+      "palpiteUrl": "{{URL_PALPITE}}"
+    },
+    {
+      "id": "can-bih-grupoB",
+      "grupo": "Grupo B",
+      "kickoffISO": "2026-06-11T16:00:00-03:00",
+      "bettingClosesISO": "2026-06-11T15:50:00-03:00",
+      "home": { "nome": "Canadá", "sigla": "CAN" },
+      "away": { "nome": "Bósnia", "sigla": "BIH" },
+      "estadio": "Toronto Field",
+      "palpites": 491,
+      "palpiteUrl": "{{URL_PALPITE}}"
+    }
+  ]
+}
