@@ -44,34 +44,13 @@ export function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden bg-background">
 
-      {/* ── Live ticker bar ─────────────────────────────── */}
-      <div className="absolute top-[124px] sm:top-[144px] md:top-[180px] lg:top-[200px] left-0 right-0 z-20 overflow-hidden h-9 bg-black/70 border-y border-gold/15 backdrop-blur-sm">
-        <div
-          ref={trackRef}
-          className="flex items-center gap-8 whitespace-nowrap"
-          style={{ animation: "ticker-scroll 28s linear infinite" }}
-        >
-          {[...TICKERS, ...TICKERS].map((t, i) => (
-            <span key={i} className="inline-flex items-center gap-2 text-xs font-mono">
-              <span className="text-white/50">{t.symbol}</span>
-              <span className="text-white font-semibold">{t.value}</span>
-              <span className={t.up ? "text-emerald-400" : "text-red-400"}>
-                {t.up ? <TrendingUp className="inline w-3 h-3" /> : <TrendingDown className="inline w-3 h-3" />}
-                {" "}{t.change}
-              </span>
-              <span className="text-white/10">|</span>
-            </span>
-          ))}
-        </div>
-      </div>
-
       {/* ── Layer: cinematic stadium environment ─────────── */}
       <div className="absolute inset-0 z-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/wc-stadium-hero.png"
           alt=""
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center animate-ken-burns"
           aria-hidden="true"
         />
         {/* Cinematic dark grade — heavier on left for text legibility */}
@@ -87,7 +66,7 @@ export function HeroSection() {
       <div aria-hidden className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
         <div
           className="absolute -top-40 left-[18%] h-[130%] w-48 origin-top rotate-[16deg] blur-3xl animate-beam-sway"
-          style={{ background: "linear-gradient(to bottom, oklch(0.85 0.16 90 / 0.18), transparent 70%)" }}
+          style={{ background: "linear-gradient(to bottom, oklch(0.86 0.18 95 / 0.18), transparent 70%)" }}
         />
         <div
           className="absolute -top-40 right-[16%] h-[130%] w-52 origin-top -rotate-[14deg] blur-3xl animate-beam-sway"
@@ -95,12 +74,12 @@ export function HeroSection() {
         />
         <div
           className="absolute -top-40 left-1/2 h-[120%] w-40 origin-top blur-3xl animate-beam-sway"
-          style={{ background: "linear-gradient(to bottom, oklch(0.32 0.13 264 / 0.16), transparent 65%)", animationDelay: "1.5s" }}
+          style={{ background: "linear-gradient(to bottom, oklch(0.4 0.16 274 / 0.16), transparent 65%)", animationDelay: "1.5s" }}
         />
       </div>
 
-      {/* ── Foreground hanging flags (top) ───────────────── */}
-      <FlagsBanner className="absolute top-0 left-0 right-0 z-[2] h-28 md:h-36 opacity-80" />
+      {/* ── Ambient hanging flags (decorative, behind content) ─ */}
+      <FlagsBanner className="absolute -top-4 right-0 w-[55%] md:w-[42%] lg:w-[34%] z-[2] opacity-25 md:opacity-30" />
 
       {/* ── Floating match ball (decorative, right) ──────── */}
       <div aria-hidden className="absolute right-[6%] top-1/2 -translate-y-1/2 z-[3] hidden lg:block w-64 xl:w-80 animate-cinematic-float">
@@ -109,7 +88,7 @@ export function HeroSection() {
       </div>
 
       {/* ── Content ─────────────────────────────────────── */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-4 pt-44 pb-20 sm:pt-48 md:pt-56 lg:pt-60">
+      <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-4 pt-32 pb-28 sm:pt-36 md:pt-40 lg:pt-44">
         <div className="max-w-2xl">
 
           {/* Eyebrow */}
@@ -135,7 +114,7 @@ export function HeroSection() {
             <Button
               size="lg"
               onClick={scrollToPlans}
-              className="relative overflow-hidden bg-primary hover:bg-primary/90 text-primary-foreground font-black text-base px-8 py-6 group shadow-[0_10px_40px_-10px_oklch(0.7_0.18_45/0.6)]"
+              className="relative overflow-hidden bg-primary hover:bg-primary/90 text-primary-foreground font-black text-base px-8 py-6 group shadow-[0_10px_40px_-10px_oklch(0.86_0.18_95/0.65)]"
             >
               <span className="relative z-10 inline-flex items-center">
                 QUERO MEU PLANO
@@ -165,10 +144,31 @@ export function HeroSection() {
         </div>
       </div>
 
+      {/* ── Live ticker bar — anchored to hero bottom (stadium ↔ market bridge) ── */}
+      <div className="absolute bottom-8 left-0 right-0 z-20 overflow-hidden h-9 bg-black/70 border-y border-gold/15 backdrop-blur-sm">
+        <div
+          ref={trackRef}
+          className="flex items-center gap-8 whitespace-nowrap h-full"
+          style={{ animation: "ticker-scroll 28s linear infinite" }}
+        >
+          {[...TICKERS, ...TICKERS].map((t, i) => (
+            <span key={i} className="inline-flex items-center gap-2 text-xs font-mono">
+              <span className="text-white/50">{t.symbol}</span>
+              <span className="text-white font-semibold">{t.value}</span>
+              <span className={t.up ? "text-emerald-400" : "text-red-400"}>
+                {t.up ? <TrendingUp className="inline w-3 h-3" /> : <TrendingDown className="inline w-3 h-3" />}
+                {" "}{t.change}
+              </span>
+              <span className="text-white/10">|</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
       {/* ── Scroll cue ──────────────────────────────────── */}
       <button
         onClick={scrollToNext}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-white/30 hover:text-gold/70 transition-colors"
+        className="absolute bottom-[68px] left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-white/30 hover:text-gold/70 transition-colors"
         aria-label="Rolar para baixo"
       >
         <span className="text-[10px] uppercase tracking-[0.3em]">scroll</span>
