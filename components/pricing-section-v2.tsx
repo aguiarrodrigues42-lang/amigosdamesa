@@ -32,6 +32,7 @@ interface Plan {
   mostVendido?: boolean
   bonusExtra?: string
   bonusOverride?: string
+  hideBonus?: boolean
 }
 
 const WHATSAPP_NUMBER = "5511988071345"
@@ -62,12 +63,12 @@ const plansByCategory: Record<Category, Plan[]> = {
     { name: "TITAN PRO 50", contracts: 80, meta: "R$10.000,00", dailyLimit: "", stopGlobal: "R$10.000,00", priceOriginal: 6641.33, pricePix: 1992.40, discountPercent: 70, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151514", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151514", features: ["Meta de aprovação R$ 10.000,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação", "Stop Global R$ 10.000,00"] },
   ],
   "senior": [
-    { name: "INICIANTE 7", contracts: 7, meta: "—", dailyLimit: "", stopGlobal: "R$2.000,00", priceOriginal: 2242.50, pricePix: 897.00, discountPercent: 60, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151515", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151515", features: [...seniorFeaturesCommon, "Stop Global R$ 2.000,00"], bonusOverride: "Repasse quinzenal" },
-    { name: "INTERMEDIÁRIO 15", contracts: 15, meta: "—", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 2747.50, pricePix: 1099.00, discountPercent: 60, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151516", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151516", features: [...seniorFeaturesCommon, "Stop Global R$ 2.500,00"], bonusOverride: "Repasse quinzenal" },
-    { name: "AVANÇADO 25", contracts: 25, meta: "—", dailyLimit: "", stopGlobal: "R$4.250,00", priceOriginal: 6122.64, pricePix: 2755.19, discountPercent: 55, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151517", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151517", features: [...seniorFeaturesCommon, "Stop Global R$ 4.250,00"] },
-    { name: "UNO 40 ÍNDICE", contracts: 40, asset: "", meta: "—", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 7599.20, pricePix: 3419.64, discountPercent: 55, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151519", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151519", features: [...seniorFeaturesCommon, "Stop Global R$ 6.250,00"] },
-    { name: "UNO 40 DÓLAR", contracts: 40, asset: "", meta: "—", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 7599.20, pricePix: 3419.64, discountPercent: 55, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151518", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151518", features: [...seniorFeaturesCommon, "Stop Global R$ 6.250,00"] },
-    { name: "MASTER 50", contracts: 50, meta: "—", dailyLimit: "", stopGlobal: "R$10.250,00", priceOriginal: 9297.73, pricePix: 4183.98, discountPercent: 55, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151520", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151520", features: [...seniorFeaturesCommon, "Stop Global R$ 10.250,00"] },
+    { name: "INICIANTE 7", contracts: 7, meta: "—", dailyLimit: "", stopGlobal: "R$2.000,00", priceOriginal: 2242.50, pricePix: 897.00, discountPercent: 60, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151515", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151515", features: [...seniorFeaturesCommon, "Stop Global R$ 2.000,00"], hideBonus: true },
+    { name: "INTERMEDIÁRIO 15", contracts: 15, meta: "—", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 2747.50, pricePix: 1099.00, discountPercent: 60, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151516", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151516", features: [...seniorFeaturesCommon, "Stop Global R$ 2.500,00"], hideBonus: true },
+    { name: "AVANÇADO 25", contracts: 25, meta: "—", dailyLimit: "", stopGlobal: "R$4.250,00", priceOriginal: 6122.64, pricePix: 2755.19, discountPercent: 55, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151517", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151517", features: [...seniorFeaturesCommon, "Stop Global R$ 4.250,00"], hideBonus: true },
+    { name: "UNO 40 ÍNDICE", contracts: 40, asset: "", meta: "—", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 7599.20, pricePix: 3419.64, discountPercent: 55, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151519", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151519", features: [...seniorFeaturesCommon, "Stop Global R$ 6.250,00"], hideBonus: true },
+    { name: "UNO 40 DÓLAR", contracts: 40, asset: "", meta: "—", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 7599.20, pricePix: 3419.64, discountPercent: 55, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151518", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151518", features: [...seniorFeaturesCommon, "Stop Global R$ 6.250,00"], hideBonus: true },
+    { name: "MASTER 50", contracts: 50, meta: "—", dailyLimit: "", stopGlobal: "R$10.250,00", priceOriginal: 9297.73, pricePix: 4183.98, discountPercent: 55, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151520", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151520", features: [...seniorFeaturesCommon, "Stop Global R$ 10.250,00"], hideBonus: true },
   ],
   "pegue-monte": [
     { name: "PEGUE E MONTE 8", contracts: 8, meta: "R$1.500,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 994.75, pricePix: 397.90, discountPercent: 60, features: ["Stop Global R$2.500,00", "Meta de Aprovação R$1.500,00", "Sem limite diário para o exame"], ctaWhatsApp: false, pixLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151521", cartaoLink: "https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151521" },
@@ -283,6 +284,7 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
           <div className="space-y-2"><div className="flex items-center justify-between border-b border-border pb-2"><span className="text-xs text-muted-foreground">Meta de Aprovacao</span><span className="text-sm font-semibold text-foreground">{plan.meta}</span></div><div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">Stop Global</span><span className="text-sm font-semibold text-foreground">{plan.stopGlobal}</span></div></div>
           {isUnavailable ? (<div className="text-center py-2"><span className="text-sm font-bold text-destructive">INDISPONIVEL</span></div>) : (<div className="text-center"><div className="mb-1"><span className="text-sm line-through text-muted-foreground">{formatBRL(plan.priceOriginal)}</span></div>{isPix ? (<span className="text-2xl font-black text-primary">{formatBRL(displayPrice)}</span>) : (<div><span className="text-lg font-black text-primary">12x {formatBRL(displayPrice)}</span></div>)}</div>)}
         </>)}
+        {!plan.hideBonus && (
         <div className="bg-primary/10 border border-primary/30 rounded-lg px-3 py-2 text-center space-y-0.5">
           <p className="text-[10px] font-black uppercase tracking-widest text-primary">Bonus</p>
           {bonusText ? (
@@ -297,6 +299,7 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
             </>
           )}
         </div>
+        )}
         <button onClick={onCta} disabled={isUnavailable} className={`w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide transition-all duration-300 mt-auto ${isUnavailable ? "bg-muted text-muted-foreground cursor-not-allowed" : isActive ? "bg-primary text-primary-foreground" : "bg-secondary text-foreground border border-border"}`}>{ctaLabel}</button>
         {!hasFeatures && !isUnavailable && (<p className="text-[10px] text-muted-foreground text-center leading-relaxed">Conta demo aplicavel de forma opcional. Caso o nivel decida utiliza-la ou nao.</p>)}
       </div>
