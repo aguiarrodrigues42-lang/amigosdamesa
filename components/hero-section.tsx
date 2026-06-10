@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ChevronDown, TrendingUp, TrendingDown } from "lucide-react"
+import { HeroBgVideo } from "@/components/hero-bg-video"
 
 const TICKERS = [
   { symbol: "WIN$", value: "131.420", change: "+0,82%", up: true },
@@ -41,19 +42,15 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden bg-background">
+    <section className="relative min-h-screen min-h-[100svh] flex flex-col overflow-hidden bg-background">
 
-      {/* ── Layer: cinematic stadium environment ─────────── */}
+      {/* ── Layer: cinematic stadium environment (looping video) ─ */}
       <div className="absolute inset-0 z-0">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/wc-stadium-hero.png"
-          alt=""
-          className="w-full h-full object-cover object-center animate-ken-burns"
-          aria-hidden="true"
-        />
-        {/* Cinematic dark grade — heavier on left for text legibility, banner shows on right */}
-        <div className="absolute inset-0 bg-background/55 md:bg-gradient-to-r md:from-background md:via-background/75 md:to-background/10" />
+        <HeroBgVideo />
+        {/* Light veil so the video stays vibrant while text remains legible */}
+        <div className="absolute inset-0 bg-background/20 md:bg-transparent" />
+        {/* Subtle directional grade only behind the text */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent md:bg-gradient-to-r md:from-background/60 md:via-background/20 md:to-transparent" />
         {/* Bottom fade into page */}
         <div className="absolute bottom-0 left-0 right-0 h-56 bg-gradient-to-t from-background to-transparent" />
       </div>
