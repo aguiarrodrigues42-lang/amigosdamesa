@@ -13,9 +13,9 @@
   --popover: oklch(0.12 0.006 240);
   --popover-foreground: oklch(0.97 0.01 95);
 
-  /* CTA = vibrant CBF gold-yellow, dark text (never white) */
-  --primary: oklch(0.86 0.18 95);
-  --primary-foreground: oklch(0.18 0.03 152);
+  /* CTA = official CBF cobalt blue, white text */
+  --primary: oklch(0.56 0.21 263);
+  --primary-foreground: oklch(0.99 0 0);
 
   --secondary: oklch(0.18 0.006 240);
   --secondary-foreground: oklch(0.97 0.01 95);
@@ -49,8 +49,8 @@
   --radius: 0.75rem;
   --sidebar: oklch(0.13 0.006 240);
   --sidebar-foreground: oklch(0.97 0.01 95);
-  --sidebar-primary: oklch(0.86 0.18 95);
-  --sidebar-primary-foreground: oklch(0.18 0.03 152);
+  --sidebar-primary: oklch(0.56 0.21 263);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
   --sidebar-accent: oklch(0.18 0.006 240);
   --sidebar-accent-foreground: oklch(0.97 0.01 95);
   --sidebar-border: oklch(0.24 0.01 240);
@@ -64,8 +64,8 @@
   --card-foreground: oklch(0.97 0.01 95);
   --popover: oklch(0.12 0.006 240);
   --popover-foreground: oklch(0.97 0.01 95);
-  --primary: oklch(0.86 0.18 95);
-  --primary-foreground: oklch(0.18 0.03 152);
+  --primary: oklch(0.56 0.21 263);
+  --primary-foreground: oklch(0.99 0 0);
   --secondary: oklch(0.18 0.006 240);
   --secondary-foreground: oklch(0.97 0.01 95);
   --muted: oklch(0.18 0.006 240);
@@ -91,8 +91,8 @@
   --chart-5: oklch(0.7 0.15 92);
   --sidebar: oklch(0.13 0.006 240);
   --sidebar-foreground: oklch(0.97 0.01 95);
-  --sidebar-primary: oklch(0.86 0.18 95);
-  --sidebar-primary-foreground: oklch(0.18 0.03 152);
+  --sidebar-primary: oklch(0.56 0.21 263);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
   --sidebar-accent: oklch(0.18 0.006 240);
   --sidebar-accent-foreground: oklch(0.97 0.01 95);
   --sidebar-border: oklch(0.24 0.01 240);

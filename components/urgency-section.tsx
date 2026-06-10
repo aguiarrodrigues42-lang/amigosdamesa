@@ -107,7 +107,7 @@ export function UrgencySection() {
               transition-all duration-300 inline-flex items-center gap-2
               ${isUrgent
                 ? "bg-red-600 hover:bg-red-500 text-white shadow-[0_0_40px_rgba(239,68,68,0.4)]"
-                : "bg-primary hover:brightness-110 text-primary-foreground shadow-[0_0_30px_oklch(0.7_0.18_45/0.3)]"
+                : "bg-primary hover:brightness-110 text-primary-foreground shadow-[0_0_30px_oklch(0.56_0.21_263/0.4)]"
               }
             `}
           >

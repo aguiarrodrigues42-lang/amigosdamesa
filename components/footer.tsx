@@ -30,7 +30,7 @@ export function Footer() {
             href="https://www.instagram.com/amigosdamesa/"
             target="_blank"
             rel="noopener noreferrer"
-            className="relative overflow-hidden group inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-8 py-3 rounded-full transition-colors text-sm shadow-[0_8px_30px_-8px_oklch(0.7_0.18_45/0.5)]"
+            className="relative overflow-hidden group inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-8 py-3 rounded-full transition-colors text-sm shadow-[0_8px_30px_-8px_oklch(0.56_0.21_263/0.55)]"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 relative z-10" aria-hidden="true">
               <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />

@@ -54,7 +54,7 @@ export function HeroSection() {
           aria-hidden="true"
         />
         {/* Cinematic dark grade — heavier on left for text legibility */}
-        <div className="absolute inset-0 bg-background/70 md:bg-gradient-to-r md:from-background/95 md:via-background/70 md:to-background/35" />
+        <div className="absolute inset-0 bg-background/80 md:bg-gradient-to-r md:from-background md:via-background/85 md:to-background/45" />
         {/* Green ambient from bottom */}
         <div className="absolute bottom-0 left-0 right-0 h-2/3"
           style={{ background: "radial-gradient(ellipse 90% 70% at 30% 120%, oklch(0.56 0.16 152 / 0.22) 0%, transparent 65%)" }} />
@@ -114,7 +114,7 @@ export function HeroSection() {
             <Button
               size="lg"
               onClick={scrollToPlans}
-              className="relative overflow-hidden bg-primary hover:bg-primary/90 text-primary-foreground font-black text-base px-8 py-6 group shadow-[0_10px_40px_-10px_oklch(0.86_0.18_95/0.65)]"
+              className="relative overflow-hidden bg-primary hover:bg-primary/90 text-primary-foreground font-black text-base px-8 py-6 group shadow-[0_10px_40px_-10px_oklch(0.56_0.21_263/0.7)]"
             >
               <span className="relative z-10 inline-flex items-center">
                 QUERO MEU PLANO

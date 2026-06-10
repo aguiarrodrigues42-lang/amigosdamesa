@@ -118,7 +118,7 @@ export function SocialProofSection() {
             <Button
               size="lg"
               onClick={scrollToPlans}
-              className="relative overflow-hidden bg-primary hover:bg-primary/90 text-primary-foreground font-black text-base px-8 py-6 group shadow-[0_10px_40px_-10px_oklch(0.7_0.18_45/0.6)]"
+              className="relative overflow-hidden bg-primary hover:bg-primary/90 text-primary-foreground font-black text-base px-8 py-6 group shadow-[0_10px_40px_-10px_oklch(0.56_0.21_263/0.7)]"
             >
               <span className="relative z-10 inline-flex items-center">
                 QUERO FAZER PARTE
