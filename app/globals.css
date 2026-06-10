@@ -191,7 +191,7 @@
                     repeating-linear-gradient(-45deg, oklch(1 0 0 / 0.02) 0 1px, transparent 1px 3px);
 }
 
-/* ── Animations ───────────────��─────────────────────────── */
+/* ── Animations ─────────────────────────────────────────── */
 @keyframes pulse-border {
   0%, 100% { box-shadow: 0 0 0 0 var(--primary); }
   50%       { box-shadow: 0 0 0 6px transparent; }
@@ -276,69 +276,12 @@
   animation: gold-sweep 5.5s linear infinite;
 }
 
-/* ── Copa dos Traders ─────────────────────────────────── */
-/* conic border spin */
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-/* stadium spotlight sweep */
-@keyframes spotlight-sweep {
-  0%, 100% { transform: translateX(0) rotate(-4deg); opacity: 0.5; }
-  50%       { transform: translateX(8%) rotate(4deg); opacity: 0.9; }
-}
-.animate-spotlight-sweep {
-  animation: spotlight-sweep 12s ease-in-out infinite;
-}
-@keyframes spotlight-sweep-rev {
-  0%, 100% { transform: translateX(0) rotate(4deg); opacity: 0.4; }
-  50%       { transform: translateX(-8%) rotate(-4deg); opacity: 0.8; }
-}
-.animate-spotlight-sweep-rev {
-  animation: spotlight-sweep-rev 14s ease-in-out infinite;
-}
-
-/* VS glow breathing */
-@keyframes vs-pulse {
-  0%, 100% { transform: scale(1); opacity: 0.6; }
-  50%       { transform: scale(1.2); opacity: 1; }
-}
-.animate-vs-pulse {
-  animation: vs-pulse 2.4s ease-in-out infinite;
-}
-
-/* fire flicker for hot matches */
-@keyframes flicker {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  25%       { opacity: 0.7; transform: scale(1.1); }
-  50%       { opacity: 0.9; transform: scale(0.95); }
-  75%       { opacity: 0.75; transform: scale(1.08); }
-}
-.animate-flicker {
-  animation: flicker 1.2s ease-in-out infinite;
-}
-
-/* subtle CTA pulse */
-@keyframes cta-pulse {
-  0%, 100% { transform: scale(1); }
-  50%       { transform: scale(1.03); }
-}
-.animate-cta-pulse {
-  animation: cta-pulse 3.5s ease-in-out infinite;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .animate-cinematic-float,
   .animate-slow-spin,
   .animate-beam-sway,
   .animate-flag-wave,
   .animate-ken-burns,
-  .animate-spotlight-sweep,
-  .animate-spotlight-sweep-rev,
-  .animate-vs-pulse,
-  .animate-flicker,
-  .animate-cta-pulse,
   .gold-sweep {
     animation: none;
   }
