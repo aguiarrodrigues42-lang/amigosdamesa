@@ -54,7 +54,7 @@ const SEED: RankingPayload = {
     {
       id: "rodada-1",
       label: "Rodada 1",
-      dateLabel: "07 jun — 09 jun",
+      dateLabel: "11 jun — 12 jul",
       status: "encerrada",
       top: [
         { position: 1, player: "Rafael Andrade", points: 184, delta: 0 },
@@ -65,7 +65,7 @@ const SEED: RankingPayload = {
     {
       id: "rodada-2",
       label: "Rodada 2",
-      dateLabel: "10 jun — 12 jun",
+      dateLabel: "12 jul — 19 jul",
       status: "ao-vivo",
       top: [
         { position: 1, player: "Bianca Ramos", points: 152, delta: 3 },
