@@ -9,7 +9,7 @@
       "away": { "nome": "África do Sul", "sigla": "RSA", "iso": "za", "flagUrl": "https://flagcdn.com/za.svg" },
       "estadio": "Estádio Azteca",
       "palpites": 602,
-      "palpiteUrl": "{{URL_PALPITE}}"
+      "palpiteUrl": "https://www.comunidade-amigosdamesa.online/copa"
     },
     {
       "id": "kor-cze-grupoA",
@@ -20,7 +20,7 @@
       "away": { "nome": "Rep. Tcheca", "sigla": "CZE", "iso": "cz", "flagUrl": "https://flagcdn.com/cz.svg" },
       "estadio": "Estádio Akron",
       "palpites": 547,
-      "palpiteUrl": "{{URL_PALPITE}}"
+      "palpiteUrl": "https://www.comunidade-amigosdamesa.online/copa"
     },
     {
       "id": "can-bih-grupoB",
@@ -31,7 +31,7 @@
       "away": { "nome": "Bósnia", "sigla": "BIH", "iso": "ba", "flagUrl": "https://flagcdn.com/ba.svg" },
       "estadio": "Toronto Field",
       "palpites": 491,
-      "palpiteUrl": "{{URL_PALPITE}}"
+      "palpiteUrl": "https://www.comunidade-amigosdamesa.online/copa"
     }
   ]
 }
