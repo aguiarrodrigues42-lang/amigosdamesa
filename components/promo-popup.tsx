@@ -15,6 +15,8 @@ export function PromoPopup() {
   const [isMuted, setIsMuted] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [showSoundHint, setShowSoundHint] = useState(false)
+  // real video aspect ratio (width / height); defaults to vertical until metadata loads
+  const [videoRatio, setVideoRatio] = useState(9 / 16)
 
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const confettiCanvasRef = useRef<HTMLCanvasElement | null>(null)
@@ -191,10 +193,10 @@ export function PromoPopup() {
 
       {/* Modal */}
       <div
-        className={`relative z-10 w-full transition-all duration-300 ${
+        className={`relative z-10 flex max-h-[94svh] w-full flex-col overflow-y-auto transition-all duration-300 ${
           isAnimatingOut ? "opacity-0 scale-95" : "opacity-100 scale-100 animate-in fade-in zoom-in-95"
         }`}
-        style={{ maxWidth: "560px" }}
+        style={{ maxWidth: "400px" }}
       >
         {/* Close button */}
         <button
@@ -232,7 +234,10 @@ export function PromoPopup() {
         </div>
 
         {/* ── VSL player ──────────────────────────────────────── */}
-        <div className="relative aspect-video w-full overflow-hidden border-x border-[oklch(0.24_0.01_240)] bg-black">
+        <div
+          className="relative w-full overflow-hidden border-x border-[oklch(0.24_0.01_240)] bg-black"
+          style={{ aspectRatio: videoRatio, maxHeight: "58svh" }}
+        >
           <video
             ref={videoRef}
             src={VIDEO_SRC}
@@ -241,7 +246,13 @@ export function PromoPopup() {
             onClick={togglePlay}
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
-            className="h-full w-full cursor-pointer object-cover"
+            onLoadedMetadata={(e) => {
+              const v = e.currentTarget
+              if (v.videoWidth && v.videoHeight) {
+                setVideoRatio(v.videoWidth / v.videoHeight)
+              }
+            }}
+            className="h-full w-full cursor-pointer object-contain"
           />
 
           {/* "Clique para ouvir" hint (only when muted fallback kicked in) */}
