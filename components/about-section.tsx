@@ -105,14 +105,7 @@ export function AboutSection() {
               {/* gold ring + cinematic vignette */}
               <div className="absolute inset-0 ring-1 ring-inset ring-gold/25 rounded-3xl" />
               <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-transparent" />
-              {/* floating jersey accent */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/wc-jersey.png"
-                alt=""
-                aria-hidden
-                className="absolute -top-6 -right-6 w-28 md:w-32 rotate-6 drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)] animate-flag-wave pointer-events-none hidden sm:block"
-              />
+
               {/* floating badge */}
               <div className="absolute bottom-4 left-4 bg-black/80 backdrop-blur-sm border border-gold/20 rounded-xl px-4 py-3">
                 <p className="text-xs text-white/50 uppercase tracking-[0.2em]">Fundada em</p>
