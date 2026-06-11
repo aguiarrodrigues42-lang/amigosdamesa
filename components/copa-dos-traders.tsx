@@ -8,12 +8,14 @@ import type { RankingPayload, RankingRound, RankingTopEntry, RoundStatus } from 
 /* ============================================================
    LINKS — edite as URLs aqui (todas abrem em nova aba)
    ============================================================ */
+const CAMPANHA_URL = "https://www.comunidade-amigosdamesa.online/copa"
+
 const LINKS = {
-  desconto70: "{{URL_DESCONTO_70}}",
-  faseClassificatoria: "{{URL_FASE_CLASSIFICATORIA}}",
-  grandeFinal: "{{URL_GRANDE_FINAL}}",
-  regulamento: "{{URL_REGULAMENTO}}",
-  rankingFallbackPalpite: "{{URL_PALPITE}}",
+  desconto70: CAMPANHA_URL,
+  faseClassificatoria: CAMPANHA_URL,
+  grandeFinal: CAMPANHA_URL,
+  regulamento: CAMPANHA_URL,
+  rankingFallbackPalpite: CAMPANHA_URL,
 } as const
 
 /* ============================================================
