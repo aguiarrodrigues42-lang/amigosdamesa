@@ -4,79 +4,105 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0.13 0.005 250);
-  --foreground: oklch(0.98 0 0);
-  --card: oklch(0.16 0.005 250);
-  --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.16 0.005 250);
-  --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.7 0.18 45);
-  --primary-foreground: oklch(0.13 0 0);
-  --secondary: oklch(0.22 0.005 250);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.22 0.005 250);
-  --muted-foreground: oklch(0.65 0 0);
-  --accent: oklch(0.7 0.18 45);
-  --accent-foreground: oklch(0.13 0 0);
+  /* ── World Cup cinematic palette ──────────────────────────
+     60% Deep Black · 20% Brazil Green · 15% Championship Gold · 5% Orange CTA */
+  --background: oklch(0.09 0.004 240);          /* #050505 deep black */
+  --foreground: oklch(0.97 0.01 95);
+  --card: oklch(0.13 0.006 240);
+  --card-foreground: oklch(0.97 0.01 95);
+  --popover: oklch(0.12 0.006 240);
+  --popover-foreground: oklch(0.97 0.01 95);
+
+  /* CTA = official CBF cobalt blue, white text */
+  --primary: oklch(0.56 0.21 263);
+  --primary-foreground: oklch(0.99 0 0);
+
+  --secondary: oklch(0.18 0.006 240);
+  --secondary-foreground: oklch(0.97 0.01 95);
+  --muted: oklch(0.18 0.006 240);
+  --muted-foreground: oklch(0.68 0.01 95);
+
+  /* Accent now reads as championship gold */
+  --accent: oklch(0.82 0.16 88);
+  --accent-foreground: oklch(0.12 0 0);
+
   --destructive: oklch(0.55 0.2 25);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.28 0.005 250);
-  --input: oklch(0.22 0.005 250);
-  --ring: oklch(0.7 0.18 45);
-  --chart-1: oklch(0.7 0.18 45);
-  --chart-2: oklch(0.75 0.15 80);
-  --chart-3: oklch(0.55 0.2 25);
-  --chart-4: oklch(0.6 0.1 200);
-  --chart-5: oklch(0.65 0.12 150);
+  --border: oklch(0.24 0.01 240);
+  --input: oklch(0.18 0.006 240);
+  --ring: oklch(0.82 0.16 88);
+
+  /* Brand campaign colors — CBF */
+  --brazil-green: oklch(0.56 0.16 152);         /* #009C3B */
+  --brazil-green-deep: oklch(0.32 0.09 158);    /* #04261A dark green surface */
+  --gold: oklch(0.86 0.18 95);                  /* #FFD500 CBF yellow */
+  --gold-dark: oklch(0.7 0.15 92);              /* deeper yellow */
+  --brazil-blue: oklch(0.4 0.16 274);           /* #2B2D7F CBF blue */
+  --accent-blue: oklch(0.46 0.17 272);          /* #3B43B8 support blue */
+  --orange-cta: oklch(0.86 0.18 95);            /* legacy alias → CBF yellow */
+
+  --chart-1: oklch(0.86 0.18 95);
+  --chart-2: oklch(0.56 0.16 152);
+  --chart-3: oklch(0.4 0.16 274);
+  --chart-4: oklch(0.46 0.17 272);
+  --chart-5: oklch(0.7 0.15 92);
   --radius: 0.75rem;
-  --sidebar: oklch(0.16 0.005 250);
-  --sidebar-foreground: oklch(0.98 0 0);
-  --sidebar-primary: oklch(0.7 0.18 45);
-  --sidebar-primary-foreground: oklch(0.13 0 0);
-  --sidebar-accent: oklch(0.22 0.005 250);
-  --sidebar-accent-foreground: oklch(0.98 0 0);
-  --sidebar-border: oklch(0.28 0.005 250);
-  --sidebar-ring: oklch(0.7 0.18 45);
+  --sidebar: oklch(0.13 0.006 240);
+  --sidebar-foreground: oklch(0.97 0.01 95);
+  --sidebar-primary: oklch(0.56 0.21 263);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.18 0.006 240);
+  --sidebar-accent-foreground: oklch(0.97 0.01 95);
+  --sidebar-border: oklch(0.24 0.01 240);
+  --sidebar-ring: oklch(0.82 0.16 88);
 }
 
 .dark {
-  --background: oklch(0.13 0.005 250);
-  --foreground: oklch(0.98 0 0);
-  --card: oklch(0.16 0.005 250);
-  --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.16 0.005 250);
-  --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.7 0.18 45);
-  --primary-foreground: oklch(0.13 0 0);
-  --secondary: oklch(0.22 0.005 250);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.22 0.005 250);
-  --muted-foreground: oklch(0.65 0 0);
-  --accent: oklch(0.7 0.18 45);
-  --accent-foreground: oklch(0.13 0 0);
+  --background: oklch(0.09 0.004 240);
+  --foreground: oklch(0.97 0.01 95);
+  --card: oklch(0.13 0.006 240);
+  --card-foreground: oklch(0.97 0.01 95);
+  --popover: oklch(0.12 0.006 240);
+  --popover-foreground: oklch(0.97 0.01 95);
+  --primary: oklch(0.56 0.21 263);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.18 0.006 240);
+  --secondary-foreground: oklch(0.97 0.01 95);
+  --muted: oklch(0.18 0.006 240);
+  --muted-foreground: oklch(0.68 0.01 95);
+  --accent: oklch(0.82 0.16 88);
+  --accent-foreground: oklch(0.12 0 0);
   --destructive: oklch(0.55 0.2 25);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.28 0.005 250);
-  --input: oklch(0.22 0.005 250);
-  --ring: oklch(0.7 0.18 45);
-  --chart-1: oklch(0.7 0.18 45);
-  --chart-2: oklch(0.75 0.15 80);
-  --chart-3: oklch(0.55 0.2 25);
-  --chart-4: oklch(0.6 0.1 200);
-  --chart-5: oklch(0.65 0.12 150);
-  --sidebar: oklch(0.16 0.005 250);
-  --sidebar-foreground: oklch(0.98 0 0);
-  --sidebar-primary: oklch(0.7 0.18 45);
-  --sidebar-primary-foreground: oklch(0.13 0 0);
-  --sidebar-accent: oklch(0.22 0.005 250);
-  --sidebar-accent-foreground: oklch(0.98 0 0);
-  --sidebar-border: oklch(0.28 0.005 250);
-  --sidebar-ring: oklch(0.7 0.18 45);
+  --border: oklch(0.24 0.01 240);
+  --input: oklch(0.18 0.006 240);
+  --ring: oklch(0.82 0.16 88);
+  --brazil-green: oklch(0.56 0.16 152);
+  --brazil-green-deep: oklch(0.32 0.09 158);
+  --gold: oklch(0.86 0.18 95);
+  --gold-dark: oklch(0.7 0.15 92);
+  --brazil-blue: oklch(0.4 0.16 274);
+  --accent-blue: oklch(0.46 0.17 272);
+  --orange-cta: oklch(0.86 0.18 95);
+  --chart-1: oklch(0.86 0.18 95);
+  --chart-2: oklch(0.56 0.16 152);
+  --chart-3: oklch(0.4 0.16 274);
+  --chart-4: oklch(0.46 0.17 272);
+  --chart-5: oklch(0.7 0.15 92);
+  --sidebar: oklch(0.13 0.006 240);
+  --sidebar-foreground: oklch(0.97 0.01 95);
+  --sidebar-primary: oklch(0.56 0.21 263);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.18 0.006 240);
+  --sidebar-accent-foreground: oklch(0.97 0.01 95);
+  --sidebar-border: oklch(0.24 0.01 240);
+  --sidebar-ring: oklch(0.82 0.16 88);
 }
 
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback';
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --font-sans: var(--font-geist), 'Geist Fallback';
+  --font-mono: var(--font-geist-mono), 'Geist Mono Fallback';
+  --font-display: var(--font-oswald), 'Geist Fallback';
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -96,6 +122,13 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-brazil-green: var(--brazil-green);
+  --color-brazil-green-deep: var(--brazil-green-deep);
+  --color-gold: var(--gold);
+  --color-gold-dark: var(--gold-dark);
+  --color-brazil-blue: var(--brazil-blue);
+  --color-accent-blue: var(--accent-blue);
+  --color-orange-cta: var(--orange-cta);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -124,6 +157,41 @@
   }
 }
 
+/* ──────────────────────────────────────────────────────────
+   CINEMATIC WORLD CUP UTILITIES
+   ────────────────────────────────────────────────────────── */
+
+/* Gold gradient text for championship headlines */
+.text-gold-gradient {
+  background: linear-gradient(180deg, oklch(0.93 0.16 98) 0%, oklch(0.86 0.18 95) 50%, oklch(0.74 0.16 92) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Brazil tri-band thin accent */
+.brazil-band {
+  background: linear-gradient(90deg,
+    var(--brazil-green) 0%, var(--brazil-green) 33%,
+    var(--gold) 33%, var(--gold) 66%,
+    var(--brazil-blue) 66%, var(--brazil-blue) 100%);
+}
+
+/* Premium glass surface for selection cards */
+.glass-card {
+  background: linear-gradient(155deg, oklch(0.16 0.008 240 / 0.85) 0%, oklch(0.1 0.006 240 / 0.9) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Subtle fabric / stadium texture overlay (2-5% opacity) */
+.texture-fabric {
+  background-image: repeating-linear-gradient(45deg, oklch(1 0 0 / 0.03) 0 1px, transparent 1px 3px),
+                    repeating-linear-gradient(-45deg, oklch(1 0 0 / 0.02) 0 1px, transparent 1px 3px);
+}
+
+/* ── Animations ─────────────────────────────────────────── */
 @keyframes pulse-border {
   0%, 100% { box-shadow: 0 0 0 0 var(--primary); }
   50%       { box-shadow: 0 0 0 6px transparent; }
@@ -143,3 +211,78 @@
   50%       { opacity: 0.07; }
 }
 
+/* slow cinematic float (ball) */
+@keyframes cinematic-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%       { transform: translateY(-18px) rotate(6deg); }
+}
+.animate-cinematic-float {
+  animation: cinematic-float 9s ease-in-out infinite;
+}
+
+/* extremely slow rotation for match ball */
+@keyframes slow-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.animate-slow-spin {
+  animation: slow-spin 40s linear infinite;
+}
+
+/* volumetric light beam sway */
+@keyframes beam-sway {
+  0%, 100% { opacity: 0.35; transform: translateX(0) scaleY(1); }
+  50%       { opacity: 0.6; transform: translateX(14px) scaleY(1.05); }
+}
+.animate-beam-sway {
+  animation: beam-sway 11s ease-in-out infinite;
+}
+
+/* slow cinematic Ken Burns zoom on hero photo */
+@keyframes ken-burns {
+  0%   { transform: scale(1) translate(0, 0); }
+  50%  { transform: scale(1.08) translate(-1%, -1%); }
+  100% { transform: scale(1) translate(0, 0); }
+}
+.animate-ken-burns {
+  animation: ken-burns 24s ease-in-out infinite;
+}
+
+/* flag fabric wave (gentle) */
+@keyframes flag-wave {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%       { transform: translateY(3px) rotate(0.6deg); }
+}
+.animate-flag-wave {
+  animation: flag-wave 6s ease-in-out infinite;
+}
+
+/* atmospheric particle drift */
+@keyframes particle-drift {
+  0%   { transform: translateY(0) translateX(0); opacity: 0; }
+  10%  { opacity: 0.5; }
+  90%  { opacity: 0.5; }
+  100% { transform: translateY(-120px) translateX(20px); opacity: 0; }
+}
+
+/* shimmering reflective sweep across gold surfaces */
+@keyframes gold-sweep {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.gold-sweep {
+  background: linear-gradient(110deg, transparent 30%, oklch(1 0.05 95 / 0.45) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: gold-sweep 5.5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-cinematic-float,
+  .animate-slow-spin,
+  .animate-beam-sway,
+  .animate-flag-wave,
+  .animate-ken-burns,
+  .gold-sweep {
+    animation: none;
+  }
+}
