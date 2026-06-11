@@ -242,6 +242,7 @@ export function PromoPopup() {
             ref={videoRef}
             src={VIDEO_SRC}
             playsInline
+            preload="auto"
             controls={false}
             onClick={togglePlay}
             onPlay={() => setIsPlaying(true)}
