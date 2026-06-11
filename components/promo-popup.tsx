@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react"
 import { X, Volume2, VolumeX, Play, Pause, Trophy } from "lucide-react"
 import confetti from "canvas-confetti"
 
-const VIDEO_SRC = "https://i.imgur.com/N8l4Dtl.mp4"
+const VIDEO_SRC = "/videos/fundo-amigos-da-mesa.mp4"
 
 // CBF palette for the confetti burst
 const BRAZIL_COLORS = ["#009C3B", "#FFD500", "#2B2D7F", "#FFFFFF", "#3B43B8"]
