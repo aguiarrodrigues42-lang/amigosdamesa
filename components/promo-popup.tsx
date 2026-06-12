@@ -225,7 +225,7 @@ export function PromoPopup() {
               </span>{" "}
               e ganhe{" "}
               <span className="font-bold" style={{ color: "var(--brazil-green)" }}>
-                50 pontos de largada
+                pontos de largada
               </span>{" "}
               no Ranking da Copa, aumentando suas chances de levar a{" "}
               <span className="font-semibold text-foreground">premiacao final</span>.
@@ -306,7 +306,7 @@ export function PromoPopup() {
             onClick={goToPlans}
             className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-primary px-6 py-3.5 font-display text-base font-bold uppercase tracking-wide text-primary-foreground shadow-[0_10px_30px_-8px_oklch(0.56_0.21_263/0.6)] transition-all hover:brightness-110"
           >
-            <span className="relative z-10">Quero meus 50 pontos de largada</span>
+            <span className="relative z-10">Quero meus pontos de largada</span>
             <span
               aria-hidden
               className="absolute inset-0 -translate-x-full bg-white/20 skew-x-[-20deg] transition-transform duration-500 group-hover:translate-x-full"
