@@ -195,11 +195,11 @@ As regras acima aplicam-se integralmente aos planos Master50, Unos40, Titan, Peg
   {
     id: "material-ii",
     titulo: "MATERIAL EXPLICATIVO COMPLEMENTAR II",
-    subtitulo: "Demais Planos (Iniciante, Intermediário, Avançado, Prime, Pegue e Monte)",
+    subtitulo: "Demais Planos (Iniciante, Intermediário, Avançado, Prime, Pegue e Monte, Bit)",
     conteudo: `MATERIAL EXPLICATIVO COMPLEMENTAR II
-DEMAIS PLANOS (INICIANTE, INTERMEDIÁRIO, AVANÇADO, PRIME, PEGUE E MONTE)
+DEMAIS PLANOS (INICIANTE, INTERMEDIÁRIO, AVANÇADO, PRIME, PEGUE E MONTE, BIT)
 
-Este material explica, de forma prática e objetiva, o funcionamento dos planos que não pertencem à família Master50 / Unos40 / Titan / Prime (se aplicável) / Pegue e Monte (se aplicável), respeitando integralmente o Regulamento Geral vigente.
+Este material explica, de forma prática e objetiva, o funcionamento dos planos que não pertencem à família Master50 / Unos40 / Titan / Prime (se aplicável) / Pegue e Monte (se aplicável) / Bit (se aplicável), respeitando integralmente o Regulamento Geral vigente.
 
 ESTRUTURA DOS PLANOS
 
