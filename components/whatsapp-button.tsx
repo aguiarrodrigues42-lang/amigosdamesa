@@ -3,7 +3,7 @@
 import { useState } from "react"
 
 const CONTACTS = [
-  { name: "Suporte Milena", phone: "5548988704468" },
+  { name: "Suporte Milena", phone: "5567984232108" },
 ]
 
 const MESSAGE = encodeURIComponent("Olá! Preciso de suporte na Amigos da Mesa.")
