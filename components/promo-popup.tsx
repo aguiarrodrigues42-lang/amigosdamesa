@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react"
 import { X } from "lucide-react"
 import confetti from "canvas-confetti"
 
-const POPUP_IMAGE = "/images/popup-60-off.png"
+const POPUP_IMAGE = "/images/popup-80-off.png"
 
 // CBF palette for the confetti burst
 const BRAZIL_COLORS = ["#009C3B", "#FFD500", "#2B2D7F", "#FFFFFF", "#3B43B8"]
@@ -104,7 +104,7 @@ export function PromoPopup() {
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="Oferta Amigos da Mesa - até 60% OFF"
+      aria-label="Oferta Amigos da Mesa - 80% de desconto"
       className={`fixed inset-0 z-[100] flex items-center justify-center p-4 transition-opacity duration-200 ${
         isAnimatingOut ? "opacity-0" : "opacity-100"
       }`}
@@ -144,7 +144,7 @@ export function PromoPopup() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={POPUP_IMAGE || "/placeholder.svg"}
-            alt="Amigos da Mesa — até 60% OFF. Mais capital, menos risco. Bônus especial Meia Meta. Garantir minha vaga."
+            alt="Amigos da Mesa — Promoção 80% de desconto, válida apenas hoje. Preços promocionais nos planos de Exames, Pegue e Monte e Sênior. Quero aproveitar agora."
             className="h-auto max-h-[90svh] w-full object-contain"
           />
         </button>
