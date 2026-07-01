@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react"
 import { X } from "lucide-react"
 import confetti from "canvas-confetti"
 
-const POPUP_IMAGE = "/images/popup-80-off.png"
+const POPUP_IMAGE = "/images/popup-70-off-planos.png"
 
 // CBF palette for the confetti burst
 const BRAZIL_COLORS = ["#009C3B", "#FFD500", "#2B2D7F", "#FFFFFF", "#3B43B8"]
