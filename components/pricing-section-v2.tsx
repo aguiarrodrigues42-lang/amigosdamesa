@@ -34,6 +34,7 @@ interface Plan {
   bonusExtra?: string
   bonusOverride?: string
   hideBonus?: boolean
+  inactive?: boolean
 }
 
 const WHATSAPP_NUMBER = "5511988071345"
@@ -60,8 +61,8 @@ const plansByCategory: Record<Category, Plan[]> = {
   "titan": [
     { name: "TITAN PRO 10", contracts: 30, meta: "R$5.000,00", dailyLimit: "", stopGlobal: "R$5.000,00", priceOriginal: 2622.00, pricePix: 786.60, discountPercent: 70, pixLink: "https://checkout.amigosdamesas.store/pay/titan-pro-10", cartaoLink: "https://checkout.amigosdamesas.store/pay/titan-pro-10", features: ["Meta de aprovação R$ 5.000,00", "Sem limite diário para o exame", "Stop Global R$ 5.000,00"] },
     { name: "TITAN PRO 20", contracts: 45, meta: "R$8.000,00", dailyLimit: "", stopGlobal: "R$8.000,00", priceOriginal: 3974.63, pricePix: 1192.39, discountPercent: 70, pixLink: "https://checkout.amigosdamesas.store/pay/titan-pro-20", cartaoLink: "https://checkout.amigosdamesas.store/pay/titan-pro-20", features: ["Meta de aprovação R$ 8.000,00", "Sem limite diário para o exame", "Stop Global R$ 8.000,00"] },
-    { name: "TITAN PRO 30", contracts: 65, meta: "R$14.000,00", dailyLimit: "", stopGlobal: "R$14.000,00", priceOriginal: 5308.00, pricePix: 1592.40, discountPercent: 70, pixLink: "https://checkout.amigosdamesas.store/pay/titan-pro-30", cartaoLink: "https://checkout.amigosdamesas.store/pay/titan-pro-30", features: ["Meta de aprovação R$ 14.000,00", "Sem limite diário para o exame", "Stop Global R$ 14.000,00"] },
-    { name: "TITAN PRO 50", contracts: 80, meta: "R$10.000,00", dailyLimit: "", stopGlobal: "R$10.000,00", priceOriginal: 6641.33, pricePix: 1992.40, discountPercent: 70, pixLink: "https://checkout.amigosdamesas.store/pay/titan-pro-50", cartaoLink: "https://checkout.amigosdamesas.store/pay/titan-pro-50", features: ["Meta de aprovação R$ 10.000,00", "Sem limite diário para o exame", "Stop Global R$ 10.000,00"] },
+    { name: "TITAN PRO 30", contracts: 65, meta: "R$14.000,00", dailyLimit: "", stopGlobal: "R$14.000,00", priceOriginal: 5308.00, pricePix: 1592.40, discountPercent: 70, inactive: true, pixLink: "https://checkout.amigosdamesas.store/pay/titan-pro-30", cartaoLink: "https://checkout.amigosdamesas.store/pay/titan-pro-30", features: ["Meta de aprovação R$ 14.000,00", "Sem limite diário para o exame", "Stop Global R$ 14.000,00"] },
+    { name: "TITAN PRO 50", contracts: 80, meta: "R$10.000,00", dailyLimit: "", stopGlobal: "R$10.000,00", priceOriginal: 6641.33, pricePix: 1992.40, discountPercent: 70, inactive: true, pixLink: "https://checkout.amigosdamesas.store/pay/titan-pro-50", cartaoLink: "https://checkout.amigosdamesas.store/pay/titan-pro-50", features: ["Meta de aprovação R$ 10.000,00", "Sem limite diário para o exame", "Stop Global R$ 10.000,00"] },
   ],
   "senior": [
     { name: "INICIANTE 7", contracts: 7, meta: "—", dailyLimit: "", stopGlobal: "R$2.000,00", priceOriginal: 2823.33, pricePix: 847.00, discountPercent: 70, pixLink: "https://checkout.amigosdamesas.store/pay/iniciante-7", cartaoLink: "https://checkout.amigosdamesas.store/pay/iniciante-7", features: [...seniorFeaturesCommon, "Stop Global R$ 2.000,00"] },
@@ -339,6 +340,7 @@ export function PricingSection() {
   const [activeCardIndex, setActiveCardIndex] = useState(0)
   const [isPix, setIsPix] = useState(true)
   const [leadModal, setLeadModal] = useState<{ open: boolean; planName: string }>({ open: false, planName: "" })
+  const [inactiveNotice, setInactiveNotice] = useState(false)
   const [pegueMonteOpen, setPegueMonteOpen] = useState(false)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const isBit = activeCategory === "bit"
@@ -360,6 +362,7 @@ export function PricingSection() {
 
   const handleCta = (plan: Plan | string) => {
     if (typeof plan === "string") { setLeadModal({ open: true, planName: plan }); return }
+    if (plan.inactive) { setInactiveNotice(true); return }
     if (isPix && plan.pixLink) { window.open(plan.pixLink, "_blank"); return }
     if (!isPix && plan.cartaoLink) { window.open(plan.cartaoLink, "_blank"); return }
     if (plan.ctaWhatsApp) { const msg = encodeURIComponent(`Ola! Tenho interesse no plano ${plan.name}`); window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank"); return }
@@ -406,6 +409,25 @@ export function PricingSection() {
           {Array.from({ length: activeCount }).map((_, index) => (<button key={index} onClick={() => scrollTo(index)} className={`h-2 rounded-full transition-all duration-300 ${index === activeCardIndex ? "bg-primary w-6" : "bg-muted-foreground/30 w-2"}`} />))}
         </div>
       </div>
+      {inactiveNotice && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/70" onClick={() => setInactiveNotice(false)} />
+          <div className="relative z-10 w-full max-w-sm bg-card border border-border rounded-2xl shadow-2xl overflow-hidden">
+            <div className="bg-primary px-6 py-4 flex items-center justify-between">
+              <h3 className="text-primary-foreground font-black text-base uppercase tracking-wide">Aviso</h3>
+              <button onClick={() => setInactiveNotice(false)} className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"><X className="w-5 h-5" /></button>
+            </div>
+            <div className="px-6 py-6 text-center space-y-4">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gold/15 border border-gold/40">
+                <Info className="w-6 h-6 text-gold" />
+              </div>
+              <p className="text-lg font-black uppercase tracking-wide text-foreground">Plano inativo temporariamente</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">Este plano está indisponível no momento. Em breve ele voltará a ser ativado.</p>
+              <button onClick={() => setInactiveNotice(false)} className="w-full py-3 bg-primary text-primary-foreground rounded-xl font-bold text-sm uppercase tracking-wide hover:bg-primary/90 transition-colors">Entendi</button>
+            </div>
+          </div>
+        </div>
+      )}
       <LeadModal open={leadModal.open} planName={leadModal.planName} onClose={() => setLeadModal({ open: false, planName: "" })} />
       <PegueMonteModal open={pegueMonteOpen} onClose={() => setPegueMonteOpen(false)} />
     </section>
