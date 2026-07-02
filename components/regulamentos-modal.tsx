@@ -257,6 +257,7 @@ As regras descritas neste material aplicam-se exclusivamente aos planos aqui men
     id: "regulamento-geral",
     titulo: "REGULAMENTO GERAL",
     subtitulo: "Regulamento oficial da AMIGOS DA MESA PROP",
+    pdf: "/docs/regulamento-geral.pdf",
     conteudo: `REGULAMENTO GERAL – AMIGOS DA MESA PROP
 "Uma mesa para todos"
 Atualizado em 01 de novembro de 2025
@@ -305,7 +306,7 @@ O exame será realizado em conta simulador. Não é permitida troca de plano ou 
 
 A pausa das contas é permitida por até 30 (trinta) dias, mediante comunicação prévia por e-mail.
 
-Não há dias mínimos nem máximos operados para aprovação quando aplicável, desde que a plataforma esteja devidamente paga mensalmente. A responsabilidade de entrar em contato com a mesa para efetuar o pagamento é do Trader e o não pagamento pode acarretar em cancelamento, taxas adicionais e outros.
+N��o há dias mínimos nem máximos operados para aprovação quando aplicável, desde que a plataforma esteja devidamente paga mensalmente. A responsabilidade de entrar em contato com a mesa para efetuar o pagamento é do Trader e o não pagamento pode acarretar em cancelamento, taxas adicionais e outros.
 
 A liberação de vouchers não será permitida nos 7 (sete) dias úteis que antecedem o fechamento quinzenal ou mensal.
 
@@ -631,7 +632,7 @@ A empresa se reserva o direito de recusar solicitações que não atendam integr
 
 export function RegulamentosModal() {
   const [isOpen, setIsOpen] = useState(false)
-  const [selectedDoc, setSelectedDoc] = useState<typeof documentos[0] | null>(null)
+  const [selectedDoc, setSelectedDoc] = useState<(typeof documentos)[number] | null>(null)
   const [agreed, setAgreed] = useState(false)
 
   const handleClose = () => {
@@ -754,13 +755,34 @@ export function RegulamentosModal() {
             </DialogHeader>
             
             {/* Conteúdo do documento */}
-            <div className="flex-1 overflow-y-auto pr-2 max-h-[60vh]">
-              <div className="border border-border rounded-lg p-4 md:p-6 bg-card/50">
-                <div className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
-                  {selectedDoc.conteudo}
+            {selectedDoc.pdf ? (
+              <div className="flex-1 flex flex-col min-h-0">
+                <div className="flex-1 min-h-0 overflow-hidden rounded-lg border border-border bg-card/50">
+                  <iframe
+                    src={`${selectedDoc.pdf}#view=FitH`}
+                    title={selectedDoc.titulo}
+                    className="w-full h-full min-h-[60vh]"
+                  />
+                </div>
+                <a
+                  href={selectedDoc.pdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center justify-center gap-2 text-sm font-medium text-primary hover:underline"
+                >
+                  <FileText className="w-4 h-4" />
+                  Abrir PDF em nova aba
+                </a>
+              </div>
+            ) : (
+              <div className="flex-1 overflow-y-auto pr-2 max-h-[60vh]">
+                <div className="border border-border rounded-lg p-4 md:p-6 bg-card/50">
+                  <div className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
+                    {selectedDoc.conteudo}
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
             {/* Botão voltar */}
             <div className="pt-4 mt-4 border-t border-border">
