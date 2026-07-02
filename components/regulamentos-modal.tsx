@@ -257,7 +257,6 @@ As regras descritas neste material aplicam-se exclusivamente aos planos aqui men
     id: "regulamento-geral",
     titulo: "REGULAMENTO GERAL",
     subtitulo: "Regulamento oficial da AMIGOS DA MESA PROP",
-    pdf: "/docs/regulamento-geral.pdf",
     conteudo: `REGULAMENTO GERAL – AMIGOS DA MESA PROP
 "Uma mesa para todos"
 Atualizado em 01 de novembro de 2025
@@ -348,9 +347,13 @@ O inadimplemento poderá acarretar bloqueio e/ou cancelamento da conta, conforme
 
 REATIVAÇÃO DE CONTA POR INADIMPLÊNCIA
 
-Nos casos de cancelamento da conta em decorrência de inadimplência no pagamento da licença da plataforma, a reativação ficará condicionada ao pagamento de taxa de reativação no valor de R$ 100,00 (cem reais), independentemente da versão de plataforma anteriormente contratada.
+Nos casos de cancelamento da conta em decorrência de inadimplência no pagamento da licença da plataforma, a eventual reativação ficará condicionada à regularização integral dos valores pendentes, observadas as seguintes condições:
 
-A reativação somente será processada após a regularização integral dos valores pendentes, incluindo, quando aplicável, a taxa de reativação prevista nesta cláusula.
+I. Durante a fase de Exame (Avaliação), a reativação dependerá do pagamento da taxa de ativação vigente, bem como da licença da plataforma correspondente ao período contratado;
+II. Durante a fase de Simulador Remunerado (SR), a reativação dependerá igualmente do pagamento da taxa de ativação vigente e da respectiva licença da plataforma;
+III. Caso o cancelamento por inadimplência ocorra durante período de fechamento operacional destinado à apuração de repasses, promoções ou transições de fase, o Trader perderá o ciclo vigente, podendo participar novamente apenas do ciclo subsequente, em razão do prazo necessário para regularização financeira, processamento da reativação e restabelecimento operacional da conta.
+
+A reativação não possui caráter automático, estando condicionada à validação operacional da AMIGOS DA MESA PROP.
 
 VALORES DE LICENÇA DE PLATAFORMA
 
@@ -472,6 +475,8 @@ Cada exame possui meta de ganho e limite de perda previamente definidos.
 O critério de aprovação ou reprovação na fase de teste será baseado exclusivamente no saldo líquido, conforme relatório de performance.
 
 Ao atingir a meta, o Trader deverá solicitar formalmente a análise de aprovação por e-mail. Após a solicitação, recomenda-se que não sejam realizadas novas operações, pois o saldo considerado será aquele existente no momento da avaliação.
+
+A solicitação de análise para aprovação somente poderá ser realizada após o cumprimento de, no mínimo, 5 (cinco) pregões válidos, independentemente do atingimento da meta financeira. Considera-se pregão válido aquele em que houver ao menos uma operação executada, não sendo computados dias sem movimentação operacional (0x0) ou operações fora de seu modelo operacional.
 
 SIMULADOR REMUNERADO E CONTA REAL
 
@@ -632,7 +637,7 @@ A empresa se reserva o direito de recusar solicitações que não atendam integr
 
 export function RegulamentosModal() {
   const [isOpen, setIsOpen] = useState(false)
-  const [selectedDoc, setSelectedDoc] = useState<(typeof documentos)[number] | null>(null)
+  const [selectedDoc, setSelectedDoc] = useState<typeof documentos[0] | null>(null)
   const [agreed, setAgreed] = useState(false)
 
   const handleClose = () => {
@@ -755,34 +760,13 @@ export function RegulamentosModal() {
             </DialogHeader>
             
             {/* Conteúdo do documento */}
-            {selectedDoc.pdf ? (
-              <div className="flex-1 flex flex-col min-h-0">
-                <div className="flex-1 min-h-0 overflow-hidden rounded-lg border border-border bg-card/50">
-                  <iframe
-                    src={`${selectedDoc.pdf}#view=FitH`}
-                    title={selectedDoc.titulo}
-                    className="w-full h-full min-h-[60vh]"
-                  />
-                </div>
-                <a
-                  href={selectedDoc.pdf}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 inline-flex items-center justify-center gap-2 text-sm font-medium text-primary hover:underline"
-                >
-                  <FileText className="w-4 h-4" />
-                  Abrir PDF em nova aba
-                </a>
-              </div>
-            ) : (
-              <div className="flex-1 overflow-y-auto pr-2 max-h-[60vh]">
-                <div className="border border-border rounded-lg p-4 md:p-6 bg-card/50">
-                  <div className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
-                    {selectedDoc.conteudo}
-                  </div>
+            <div className="flex-1 overflow-y-auto pr-2 max-h-[60vh]">
+              <div className="border border-border rounded-lg p-4 md:p-6 bg-card/50">
+                <div className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
+                  {selectedDoc.conteudo}
                 </div>
               </div>
-            )}
+            </div>
 
             {/* Botão voltar */}
             <div className="pt-4 mt-4 border-t border-border">
