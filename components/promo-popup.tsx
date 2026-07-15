@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react"
 import { X } from "lucide-react"
 import confetti from "canvas-confetti"
 
-const POPUP_IMAGE = "/images/popup-150-vagas.png"
+const POPUP_IMAGE = "/images/popup-ultima-trader.jpg"
 
 // CBF palette for the confetti burst
 const BRAZIL_COLORS = ["#009C3B", "#FFD500", "#2B2D7F", "#FFFFFF", "#3B43B8"]
@@ -104,7 +104,7 @@ export function PromoPopup() {
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="Oferta Amigos da Mesa - Abrimos 150 vagas, Meia Meta + 60% OFF"
+      aria-label="Oferta Amigos da Mesa - Última Trader que Saca, desconto de até 80% OFF"
       className={`fixed inset-0 z-[100] flex items-center justify-center p-4 transition-opacity duration-200 ${
         isAnimatingOut ? "opacity-0" : "opacity-100"
       }`}
@@ -144,7 +144,7 @@ export function PromoPopup() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={POPUP_IMAGE || "/placeholder.svg"}
-            alt="Amigos da Mesa — Abrimos 150 vagas. Meia Meta + 60% OFF. Iniciante 7 de R$619,45 por R$247,78 e Intermediário 15 de R$821,60 por R$328,64. A campanha perfeita está no ar."
+            alt="Amigos da Mesa — Última Trader que Saca! Desconto de até 80% OFF. A partir de R$ 199,71. 30 mil traders na base, foco na conta real, 5 janelas de saque no mês e gestão de risco inteligente."
             className="h-auto max-h-[90svh] w-full object-contain"
           />
         </button>
