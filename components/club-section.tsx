@@ -139,7 +139,7 @@ export function ClubSection() {
               </div>
 
               <button
-                onClick={() => window.open("https://checkout.amigosdamesas.store/subscribe/clube-do-valorsite", "_blank")}
+                onClick={() => window.open("https://checkout.amigosdamesas.store/pay/clube-do-valor-site", "_blank")}
                 className="relative overflow-hidden group w-full md:w-auto px-10 py-4 rounded-2xl bg-primary text-primary-foreground font-black text-sm uppercase tracking-widest transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_30px_oklch(0.56_0.21_263/0.45)]"
               >
                 <span className="relative z-10">Quero entrar no Clube</span>
