@@ -49,13 +49,13 @@ export interface RankingPayload {
    (fallback do cliente caso a API falhe).
    ============================================================ */
 const SEED: RankingPayload = {
-  updatedAt: "2026-06-11T00:00:00-03:00",
+  updatedAt: "2026-06-10T21:00:00-03:00",
   rounds: [
     {
       id: "rodada-1",
       label: "Rodada 1",
-      dateLabel: "11 jun — 12 jul",
-      status: "ao-vivo" as RoundStatus,
+      dateLabel: "07 jun — 09 jun",
+      status: "encerrada",
       top: [
         { position: 1, player: "Rafael Andrade", points: 184, delta: 0 },
         { position: 2, player: "Marina Costa", points: 171, delta: 2 },
@@ -65,8 +65,8 @@ const SEED: RankingPayload = {
     {
       id: "rodada-2",
       label: "Rodada 2",
-      dateLabel: "12 jul — 19 jul",
-      status: "agendada",
+      dateLabel: "10 jun — 12 jun",
+      status: "ao-vivo",
       top: [
         { position: 1, player: "Bianca Ramos", points: 152, delta: 3 },
         { position: 2, player: "Rafael Andrade", points: 149, delta: -1 },

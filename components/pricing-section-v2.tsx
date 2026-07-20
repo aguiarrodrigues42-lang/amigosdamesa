@@ -33,7 +33,6 @@ interface Plan {
   mostVendido?: boolean
   bonusExtra?: string
   bonusOverride?: string
-  hideBonus?: boolean
 }
 
 const WHATSAPP_NUMBER = "5511988071345"
@@ -298,7 +297,6 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
           <div className="space-y-2"><div className="flex items-center justify-between border-b border-border pb-2"><span className="text-xs text-muted-foreground">Meta de Aprovacao</span><span className="text-sm font-semibold text-foreground">{plan.meta}</span></div><div className="flex items-center justify-between"><span className="text-xs text-muted-foreground">Stop Global</span><span className="text-sm font-semibold text-foreground">{plan.stopGlobal}</span></div></div>
           {isUnavailable ? (<div className="text-center py-2"><span className="text-sm font-bold text-destructive">INDISPONIVEL</span></div>) : (<div className="text-center"><div className="mb-1"><span className="text-sm line-through text-muted-foreground">{formatBRL(plan.priceOriginal)}</span></div>{isPix ? (<span className="font-display text-2xl font-bold text-gold">{formatBRL(displayPrice)}</span>) : (<div><span className="font-display text-lg font-bold text-gold">12x {formatBRL(displayPrice)}</span></div>)}</div>)}
         </>)}
-        {!plan.hideBonus && (
         <div className="bg-gold/10 border border-gold/30 rounded-lg px-3 py-2 text-center space-y-0.5">
           <p className="text-[10px] font-black uppercase tracking-widest text-gold">Bonus</p>
           {bonusText ? (
@@ -313,7 +311,6 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
             </>
           )}
         </div>
-        )}
         <button onClick={onCta} disabled={isUnavailable} className={`relative overflow-hidden w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide transition-all duration-300 mt-auto ${isUnavailable ? "bg-muted text-muted-foreground cursor-not-allowed" : "bg-primary text-primary-foreground shadow-[0_8px_30px_-8px_oklch(0.56_0.21_263/0.6)] hover:brightness-110"}`}>
           <span className="relative z-10">{ctaLabel}</span>
           {!isUnavailable && (<span aria-hidden className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-white/20 skew-x-[-20deg] transition-transform duration-500" />)}

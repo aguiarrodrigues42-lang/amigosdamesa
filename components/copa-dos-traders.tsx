@@ -734,20 +734,11 @@ function RoundCard({ round, index, inView, reduce }: { round: RankingRound; inde
         </div>
         <RoundStatusChip status={round.status} />
       </div>
-      {round.status === "agendada" ? (
-        <div className="flex flex-1 flex-col items-center justify-center gap-3 py-8 text-center">
-          <Trophy className="h-8 w-8 opacity-20" aria-hidden style={{ color: GOLD }} />
-          <p className="font-sans text-sm leading-relaxed text-[#5f5e58]">
-            O ranking desta rodada será publicado<br />assim que os jogos começarem.
-          </p>
-        </div>
-      ) : (
-        <ul className="flex flex-col gap-2.5">
-          {top3.map((e) => (
-            <RankRow key={e.position} entry={e} featured={e.position === 1} />
-          ))}
-        </ul>
-      )}
+      <ul className="flex flex-col gap-2.5">
+        {top3.map((e) => (
+          <RankRow key={e.position} entry={e} featured={e.position === 1} />
+        ))}
+      </ul>
     </motion.div>
   )
 }
