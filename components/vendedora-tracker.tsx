@@ -2,72 +2,81 @@
 import { useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 
-function cleanUtmSource(url: string): string {
-  return url
+const VALID_SELLERS = ["milena", "talita", "james", "leonardo"]
+
+function getVendedora(): string | null {
+  if (typeof document === "undefined") return null
+  const m = document.cookie.match(/vendedora=([^;]+)/)
+  return m ? m[1] : null
+}
+
+function withUtm(url: string, vendedora: string): string {
+  if (!url || url.indexOf("neoncheckout") === -1) return url
+  const clean = url
     .replace(/([?&])utm_source=[^&]*/g, "$1")
     .replace(/\?&/, "?")
     .replace(/&&/g, "&")
     .replace(/[?&]$/, "")
+  const sep = clean.indexOf("?") === -1 ? "?" : "&"
+  return clean + sep + "utm_source=" + vendedora
 }
 
 function VendedoraTrackerInner() {
   const searchParams = useSearchParams()
 
   useEffect(() => {
-    var ref = searchParams.get("ref")
-    if (ref) {
-      document.cookie = "vendedora=" + ref + ";path=/;max-age=" + (60 * 60 * 24 * 30) + ";SameSite=Lax"
+    const ref = (searchParams.get("ref") || "").toLowerCase().trim()
+    if (ref && VALID_SELLERS.indexOf(ref) !== -1) {
+      document.cookie = "vendedora=" + ref + ";path=/;SameSite=Lax"
     }
   }, [searchParams])
 
   useEffect(() => {
-    var getVendedora = function() {
-      var match = document.cookie.match(/vendedora=([^;]+)/)
-      return match ? match[1] : null
-    }
+    const w = window as any
 
-    var originalOpen = window.open
-    window.open = function(url, target, features) {
-      var vendedora = getVendedora()
-      if (vendedora && typeof url === "string" && url.includes("neoncheckout")) {
-        var clean = cleanUtmSource(url)
-        var sep = clean.includes("?") ? "&" : "?"
-        url = clean + sep + "utm_source=" + vendedora
+    // Monkey-patch window.open via `any` — sem erro de tipo no build
+    const originalOpen = w.open
+    w.open = function (...args: any[]) {
+      const v = getVendedora()
+      if (v && typeof args[0] === "string") {
+        args[0] = withUtm(args[0], v)
       }
-      return originalOpen.call(window, url, target, features)
+      return originalOpen.apply(w, args)
     }
 
-    var handleClick = function(e: MouseEvent) {
-      var vendedora = getVendedora()
-      if (!vendedora) return
-      var anchor = (e.target as HTMLElement).closest("a")
-      if (anchor && anchor.href && anchor.href.includes("neoncheckout")) {
+    const handleClick = (e: MouseEvent) => {
+      const v = getVendedora()
+      if (!v) return
+      const a = (e.target as HTMLElement).closest("a")
+      if (a && a.href && a.href.indexOf("neoncheckout") !== -1 && a.href.indexOf("utm_source=" + v) === -1) {
         e.preventDefault()
-        var clean = cleanUtmSource(anchor.href)
-        var sep = clean.includes("?") ? "&" : "?"
-        window.location.href = clean + sep + "utm_source=" + vendedora
+        window.location.href = withUtm(a.href, v)
       }
     }
-
     document.addEventListener("click", handleClick, true)
 
-    var interval = setInterval(function() {
-      var vendedora = getVendedora()
-      if (!vendedora) return
-      var links = document.querySelectorAll('a[href*="neoncheckout"]')
-      links.forEach(function(link) {
-        var href = link.getAttribute("href")
-        if (href) {
-          var clean = cleanUtmSource(href)
-          var sep = clean.includes("?") ? "&" : "?"
-          link.setAttribute("href", clean + sep + "utm_source=" + vendedora)
+    const rewrite = () => {
+      const v = getVendedora()
+      if (!v) return
+      const links = document.querySelectorAll('a[href*="neoncheckout"]')
+      links.forEach((l) => {
+        const h = l.getAttribute("href")
+        if (h) {
+          const n = withUtm(h, v)
+          if (h !== n) l.setAttribute("href", n)
         }
       })
-    }, 1000)
+    }
 
-    return function() {
-      window.open = originalOpen
+    rewrite()
+    const observer = new MutationObserver(rewrite)
+    observer.observe(document.body, { childList: true, subtree: true })
+    const interval = setInterval(rewrite, 1500)
+
+    return () => {
+      w.open = originalOpen
       document.removeEventListener("click", handleClick, true)
+      observer.disconnect()
       clearInterval(interval)
     }
   }, [])
