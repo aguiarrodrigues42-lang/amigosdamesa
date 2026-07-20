@@ -84,6 +84,7 @@ export function HeroBgVideo({
           className="absolute inset-0 w-full h-full object-cover object-center"
         >
           <source src="/videos/fundo-amigos-da-mesa.mp4" type="video/mp4" />
+          <source src="/videos/fundo-amigos-da-mesa.webm" type="video/webm" />
         </video>
       )}
     </>

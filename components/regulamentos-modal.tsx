@@ -195,11 +195,11 @@ As regras acima aplicam-se integralmente aos planos Master50, Unos40, Titan, Peg
   {
     id: "material-ii",
     titulo: "MATERIAL EXPLICATIVO COMPLEMENTAR II",
-    subtitulo: "Demais Planos (Iniciante, Intermediário, Avançado, Prime, Pegue e Monte, Bit)",
+    subtitulo: "Demais Planos (Iniciante, Intermediário, Avançado, Prime, Pegue e Monte)",
     conteudo: `MATERIAL EXPLICATIVO COMPLEMENTAR II
-DEMAIS PLANOS (INICIANTE, INTERMEDIÁRIO, AVANÇADO, PRIME, PEGUE E MONTE, BIT)
+DEMAIS PLANOS (INICIANTE, INTERMEDIÁRIO, AVANÇADO, PRIME, PEGUE E MONTE)
 
-Este material explica, de forma prática e objetiva, o funcionamento dos planos que não pertencem à família Master50 / Unos40 / Titan / Prime (se aplicável) / Pegue e Monte (se aplicável) / Bit (se aplicável), respeitando integralmente o Regulamento Geral vigente.
+Este material explica, de forma prática e objetiva, o funcionamento dos planos que não pertencem à família Master50 / Unos40 / Titan / Prime (se aplicável) / Pegue e Monte (se aplicável), respeitando integralmente o Regulamento Geral vigente.
 
 ESTRUTURA DOS PLANOS
 
@@ -305,7 +305,7 @@ O exame será realizado em conta simulador. Não é permitida troca de plano ou 
 
 A pausa das contas é permitida por até 30 (trinta) dias, mediante comunicação prévia por e-mail.
 
-N��o há dias mínimos nem máximos operados para aprovação quando aplicável, desde que a plataforma esteja devidamente paga mensalmente. A responsabilidade de entrar em contato com a mesa para efetuar o pagamento é do Trader e o não pagamento pode acarretar em cancelamento, taxas adicionais e outros.
+Não há dias mínimos nem máximos operados para aprovação quando aplicável, desde que a plataforma esteja devidamente paga mensalmente. A responsabilidade de entrar em contato com a mesa para efetuar o pagamento é do Trader e o não pagamento pode acarretar em cancelamento, taxas adicionais e outros.
 
 A liberação de vouchers não será permitida nos 7 (sete) dias úteis que antecedem o fechamento quinzenal ou mensal.
 
@@ -347,13 +347,9 @@ O inadimplemento poderá acarretar bloqueio e/ou cancelamento da conta, conforme
 
 REATIVAÇÃO DE CONTA POR INADIMPLÊNCIA
 
-Nos casos de cancelamento da conta em decorrência de inadimplência no pagamento da licença da plataforma, a eventual reativação ficará condicionada à regularização integral dos valores pendentes, observadas as seguintes condições:
+Nos casos de cancelamento da conta em decorrência de inadimplência no pagamento da licença da plataforma, a reativação ficará condicionada ao pagamento de taxa de reativação no valor de R$ 100,00 (cem reais), independentemente da versão de plataforma anteriormente contratada.
 
-I. Durante a fase de Exame (Avaliação), a reativação dependerá do pagamento da taxa de ativação vigente, bem como da licença da plataforma correspondente ao período contratado;
-II. Durante a fase de Simulador Remunerado (SR), a reativação dependerá igualmente do pagamento da taxa de ativação vigente e da respectiva licença da plataforma;
-III. Caso o cancelamento por inadimplência ocorra durante período de fechamento operacional destinado à apuração de repasses, promoções ou transições de fase, o Trader perderá o ciclo vigente, podendo participar novamente apenas do ciclo subsequente, em razão do prazo necessário para regularização financeira, processamento da reativação e restabelecimento operacional da conta.
-
-A reativação não possui caráter automático, estando condicionada à validação operacional da AMIGOS DA MESA PROP.
+A reativação somente será processada após a regularização integral dos valores pendentes, incluindo, quando aplicável, a taxa de reativação prevista nesta cláusula.
 
 VALORES DE LICENÇA DE PLATAFORMA
 
@@ -475,8 +471,6 @@ Cada exame possui meta de ganho e limite de perda previamente definidos.
 O critério de aprovação ou reprovação na fase de teste será baseado exclusivamente no saldo líquido, conforme relatório de performance.
 
 Ao atingir a meta, o Trader deverá solicitar formalmente a análise de aprovação por e-mail. Após a solicitação, recomenda-se que não sejam realizadas novas operações, pois o saldo considerado será aquele existente no momento da avaliação.
-
-A solicitação de análise para aprovação somente poderá ser realizada após o cumprimento de, no mínimo, 5 (cinco) pregões válidos, independentemente do atingimento da meta financeira. Considera-se pregão válido aquele em que houver ao menos uma operação executada, não sendo computados dias sem movimentação operacional (0x0) ou operações fora de seu modelo operacional.
 
 SIMULADOR REMUNERADO E CONTA REAL
 

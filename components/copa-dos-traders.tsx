@@ -2,20 +2,17 @@
 
 import { useState, useEffect, useRef, useMemo } from "react"
 import { motion, AnimatePresence, useInView, useReducedMotion } from "framer-motion"
-import { ArrowRight, MapPin, Users, Megaphone, CalendarDays, Trophy, ChevronUp, ChevronDown, Minus } from "lucide-react"
-import type { RankingPayload, RankingRound, RankingTopEntry, RoundStatus } from "@/lib/ranking"
+import { ArrowRight, MapPin, Users, Megaphone, CalendarDays } from "lucide-react"
 
 /* ============================================================
    LINKS — edite as URLs aqui (todas abrem em nova aba)
    ============================================================ */
-const CAMPANHA_URL = "https://www.comunidade-amigosdamesa.online/copa"
-
 const LINKS = {
-  desconto70: CAMPANHA_URL,
-  faseClassificatoria: CAMPANHA_URL,
-  grandeFinal: CAMPANHA_URL,
-  regulamento: CAMPANHA_URL,
-  rankingFallbackPalpite: CAMPANHA_URL,
+  desconto70: "{{URL_DESCONTO_70}}",
+  faseClassificatoria: "{{URL_FASE_CLASSIFICATORIA}}",
+  grandeFinal: "{{URL_GRANDE_FINAL}}",
+  regulamento: "{{URL_REGULAMENTO}}",
+  rankingFallbackPalpite: "{{URL_PALPITE}}",
 } as const
 
 /* ============================================================
@@ -28,8 +25,6 @@ interface Team {
   flagUrl?: string
 }
 
-type MatchStatus = "scheduled" | "live" | "finished"
-
 interface Match {
   id: string
   grupo: string
@@ -40,10 +35,6 @@ interface Match {
   estadio: string
   palpites: number
   palpiteUrl: string
-  status?: MatchStatus
-  scoreHome?: number | null
-  scoreAway?: number | null
-  minute?: number | null
 }
 
 /* Preparado para ranking futuro (ainda não implementado) */
@@ -499,13 +490,8 @@ function MatchCard({ match, reduce, index }: { match: Match; reduce: boolean; in
   const kickoff = useCountdown(match.kickoffISO)
 
   const bettingClosed = betting.done
-  const isFinished = match.status === "finished"
-  const isLiveApi = match.status === "live"
-  // "iniciado" = ao vivo pela API OU horário de início já passou
-  const isLive = isLiveApi || (match.status !== "scheduled" && kickoff.done) || kickoff.done
+  const isLive = kickoff.done
   const closingSoon = !bettingClosed && betting.total <= 10 * 60 * 1000
-  const hasScore =
-    (isLiveApi || isFinished) && match.scoreHome != null && match.scoreAway != null
 
   return (
     <motion.div
@@ -534,24 +520,16 @@ function MatchCard({ match, reduce, index }: { match: Match; reduce: boolean; in
       {/* confronto */}
       <div className="mt-6 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
         <FlagSide team={match.home} align="left" />
-        {hasScore ? (
-          <div className="flex shrink-0 items-center gap-2 px-1">
-            <span className="font-display text-3xl font-bold tabular-nums text-[#f7f5ee]">{match.scoreHome}</span>
-            <span className="font-display text-lg font-bold text-[#5f5e58]">×</span>
-            <span className="font-display text-3xl font-bold tabular-nums text-[#f7f5ee]">{match.scoreAway}</span>
-          </div>
-        ) : (
-          <div className="relative grid h-12 w-12 shrink-0 place-items-center">
-            <span
-              className={`absolute inset-0 rounded-full ${reduce ? "" : "animate-vs-pulse"}`}
-              style={{ background: "rgba(0,140,69,0.16)" }}
-              aria-hidden
-            />
-            <span className="relative grid h-10 w-10 place-items-center rounded-full border border-[#1b2024] bg-[#0b0e0f] font-display text-sm font-bold text-[#9a9891]">
-              VS
-            </span>
-          </div>
-        )}
+        <div className="relative grid h-12 w-12 shrink-0 place-items-center">
+          <span
+            className={`absolute inset-0 rounded-full ${reduce ? "" : "animate-vs-pulse"}`}
+            style={{ background: "rgba(0,140,69,0.16)" }}
+            aria-hidden
+          />
+          <span className="relative grid h-10 w-10 place-items-center rounded-full border border-[#1b2024] bg-[#0b0e0f] font-display text-sm font-bold text-[#9a9891]">
+            VS
+          </span>
+        </div>
         <FlagSide team={match.away} align="right" />
       </div>
 
@@ -560,40 +538,19 @@ function MatchCard({ match, reduce, index }: { match: Match; reduce: boolean; in
 
       {/* estádio + palpites */}
       <div className="flex items-center justify-between font-sans text-xs text-[#9a9891]">
-        {match.estadio ? (
-          <span className="flex items-center gap-1.5">
-            <MapPin className="h-3.5 w-3.5" aria-hidden />
-            {match.estadio}
-          </span>
-        ) : (
-          <span className="font-medium uppercase tracking-[0.1em] text-[#5f5e58]">Copa do Mundo 2026</span>
-        )}
+        <span className="flex items-center gap-1.5">
+          <MapPin className="h-3.5 w-3.5" aria-hidden />
+          {match.estadio}
+        </span>
         <span className="flex items-center gap-1.5">
           <Users className="h-3.5 w-3.5" aria-hidden />
           <span className="font-medium text-[#c9c7bf]">{match.palpites.toLocaleString("pt-BR")}</span> palpites
         </span>
       </div>
 
-      {/* status / contador */}
+      {/* contador único */}
       <div className="mt-5 flex items-center justify-between rounded-xl border border-[#1b2024] bg-[#0b0e0f] px-3.5 py-3" aria-live="polite">
-        {isLiveApi ? (
-          <>
-            <span className="inline-flex items-center gap-2 font-sans text-[11px] font-bold uppercase tracking-[0.16em]" style={{ color: GREEN }}>
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-70" style={{ background: GREEN }} />
-                <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: GREEN }} />
-              </span>
-              Ao vivo
-            </span>
-            {match.minute != null && (
-              <span className="font-mono text-sm font-bold tabular-nums text-[#f7f5ee]">{match.minute}&apos;</span>
-            )}
-          </>
-        ) : isFinished ? (
-          <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-[#9a9891]">
-            Jogo encerrado
-          </span>
-        ) : bettingClosed ? (
+        {bettingClosed ? (
           <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-[#9a9891]">
             Apostas encerradas
           </span>
@@ -614,11 +571,7 @@ function MatchCard({ match, reduce, index }: { match: Match; reduce: boolean; in
 
       {/* CTA */}
       <div className="mt-4">
-        {isFinished ? (
-          <PrimaryCta href={match.palpiteUrl} block disabled disabledLabel="Jogo encerrado">
-            Jogo encerrado
-          </PrimaryCta>
-        ) : isLive ? (
+        {isLive ? (
           <PrimaryCta href={match.palpiteUrl} block disabled disabledLabel="Jogo iniciado">
             Jogo iniciado
           </PrimaryCta>
@@ -658,242 +611,10 @@ function MatchSkeleton() {
    FETCH
    ============================================================ */
 async function fetchMatches(): Promise<Match[]> {
-  // 1) API ao vivo (football-data.org via /api/copa-jogos)
-  try {
-    const res = await fetch("/api/copa-jogos", { cache: "no-store" })
-    if (res.ok) {
-      const data = await res.json()
-      if (Array.isArray(data.matches) && data.matches.length > 0) {
-        return data.matches as Match[]
-      }
-    }
-  } catch {
-    /* cai no fallback estático */
-  }
-  // 2) fallback estático
   const res = await fetch("/data/copa-jogos.json", { cache: "no-store" })
   if (!res.ok) throw new Error("fetch failed")
   const data = await res.json()
   return data.matches as Match[]
-}
-
-/* ============================================================
-   RANKING DE RODADAS — fetch (API → fallback estático)
-   ============================================================ */
-async function fetchRanking(): Promise<RankingPayload> {
-  try {
-    const res = await fetch("/api/ranking", { cache: "no-store" })
-    if (!res.ok) throw new Error("api failed")
-    return (await res.json()) as RankingPayload
-  } catch {
-    const res = await fetch("/data/copa-ranking.json", { cache: "no-store" })
-    if (!res.ok) throw new Error("fallback failed")
-    return (await res.json()) as RankingPayload
-  }
-}
-
-const STATUS_META: Record<RoundStatus, { label: string; color: string; dot: boolean }> = {
-  "ao-vivo": { label: "Ao vivo", color: GREEN, dot: true },
-  encerrada: { label: "Encerrada", color: "#9a9891", dot: false },
-  agendada: { label: "Em breve", color: GOLD, dot: false },
-}
-
-function RoundStatusChip({ status }: { status: RoundStatus }) {
-  const meta = STATUS_META[status]
-  return (
-    <span
-      className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-sans text-[10px] font-semibold uppercase tracking-[0.16em]"
-      style={{ borderColor: `${meta.color}40`, color: meta.color }}
-    >
-      {meta.dot && (
-        <span className="relative flex h-1.5 w-1.5">
-          <span
-            className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-70"
-            style={{ background: meta.color }}
-          />
-          <span className="relative inline-flex h-1.5 w-1.5 rounded-full" style={{ background: meta.color }} />
-        </span>
-      )}
-      {meta.label}
-    </span>
-  )
-}
-
-function DeltaTag({ delta }: { delta?: number }) {
-  if (delta === undefined) return null
-  if (delta === 0) {
-    return (
-      <span className="inline-flex items-center gap-0.5 font-sans text-[11px] font-medium text-[#5f5e58]">
-        <Minus className="h-3 w-3" aria-hidden />
-      </span>
-    )
-  }
-  const up = delta > 0
-  return (
-    <span
-      className="inline-flex items-center gap-0.5 font-sans text-[11px] font-semibold"
-      style={{ color: up ? GREEN : "#d4564a" }}
-      title={up ? `Subiu ${delta}` : `Caiu ${Math.abs(delta)}`}
-    >
-      {up ? <ChevronUp className="h-3 w-3" aria-hidden /> : <ChevronDown className="h-3 w-3" aria-hidden />}
-      {Math.abs(delta)}
-    </span>
-  )
-}
-
-function RankRow({ entry, featured }: { entry: RankingTopEntry; featured: boolean }) {
-  const accent = RANK_ACCENT[entry.position]
-  return (
-    <li
-      className={`relative flex items-center gap-4 rounded-lg border px-4 py-3 transition-colors ${
-        featured ? "border-[#efbd24]/35 bg-[#0d0f08]" : "border-[#1b2024] bg-[#0b0e0f]"
-      }`}
-    >
-      <span className="absolute left-0 top-1/2 h-7 w-0.5 -translate-y-1/2 rounded-r" style={{ background: accent }} />
-      <span className="flex w-7 shrink-0 items-baseline gap-0.5 font-display text-2xl font-bold leading-none" style={{ color: accent }}>
-        {entry.position}
-        <span className="text-sm">º</span>
-      </span>
-      <div className="min-w-0 flex-1">
-        <p className="flex items-center gap-1.5 truncate font-display text-base font-semibold uppercase tracking-[-0.01em] text-[#f7f5ee]">
-          {featured && <Trophy className="h-3.5 w-3.5 shrink-0" aria-hidden style={{ color: GOLD }} />}
-          {entry.player}
-        </p>
-      </div>
-      <div className="flex shrink-0 flex-col items-end leading-tight">
-        <span className="font-display text-lg font-bold leading-none text-[#f7f5ee]">
-          {entry.points.toLocaleString("pt-BR")}
-          <span className="ml-1 font-sans text-[10px] font-medium uppercase tracking-[0.12em] text-[#9a9891]">pts</span>
-        </span>
-        <DeltaTag delta={entry.delta} />
-      </div>
-    </li>
-  )
-}
-
-function RoundCard({ round, index, inView, reduce }: { round: RankingRound; index: number; inView: boolean; reduce: boolean }) {
-  const top3 = [...round.top].sort((a, b) => a.position - b.position).slice(0, 3)
-  return (
-    <motion.div
-      initial={reduce ? { opacity: 1 } : { opacity: 0, y: 28 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: reduce ? 0 : 0.1 + index * 0.1, duration: 0.55, ease: "easeOut" }}
-      className="flex flex-col rounded-2xl border border-[#1b2024] bg-[#060809] p-6 shadow-[0_30px_60px_-40px_rgba(0,0,0,0.9)] transition-colors duration-300 hover:border-[#2a3036] md:p-7"
-    >
-      <div className="mb-5 flex items-center justify-between gap-3 border-b border-[#1b2024] pb-5">
-        <div className="min-w-0">
-          <h4 className="font-display text-xl font-bold uppercase tracking-[-0.02em] text-[#f7f5ee] md:text-2xl">
-            {round.label}
-          </h4>
-          {round.dateLabel && (
-            <p className="mt-1 font-sans text-xs font-medium uppercase tracking-[0.14em] text-[#9a9891]">
-              {round.dateLabel}
-            </p>
-          )}
-        </div>
-        <RoundStatusChip status={round.status} />
-      </div>
-      {round.status === "agendada" ? (
-        <div className="flex flex-1 flex-col items-center justify-center gap-3 py-8 text-center">
-          <Trophy className="h-8 w-8 opacity-20" aria-hidden style={{ color: GOLD }} />
-          <p className="font-sans text-sm leading-relaxed text-[#5f5e58]">
-            O ranking desta rodada será publicado<br />assim que os jogos começarem.
-          </p>
-        </div>
-      ) : (
-        <ul className="flex flex-col gap-2.5">
-          {top3.map((e) => (
-            <RankRow key={e.position} entry={e} featured={e.position === 1} />
-          ))}
-        </ul>
-      )}
-    </motion.div>
-  )
-}
-
-function formatUpdatedLabel(iso: string): string {
-  const d = new Date(iso)
-  if (Number.isNaN(d.getTime())) return ""
-  return new Intl.DateTimeFormat("pt-BR", {
-    timeZone: SP_TZ,
-    day: "2-digit",
-    month: "short",
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(d)
-}
-
-function RankingRodadas() {
-  const reduce = useReducedMotion() ?? false
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: "-80px" })
-
-  const [data, setData] = useState<RankingPayload | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
-
-  useEffect(() => {
-    let mounted = true
-    fetchRanking()
-      .then((d) => mounted && setData(d))
-      .catch(() => mounted && setError(true))
-      .finally(() => mounted && setLoading(false))
-    return () => {
-      mounted = false
-    }
-  }, [])
-
-  return (
-    <div ref={ref} className="mt-24">
-      <div className="mb-8 flex flex-col gap-3 border-b border-[#1b2024] pb-6 md:flex-row md:items-end md:justify-between">
-        <div>
-          <Kicker>Classificação atualizada</Kicker>
-          <h3 className="mt-4 font-display text-3xl font-bold uppercase tracking-[-0.02em] text-[#f7f5ee] md:text-4xl">
-            Ranking de rodadas
-          </h3>
-        </div>
-        {data?.updatedAt && (
-          <p className="font-sans text-sm text-[#9a9891] md:text-right">
-            Atualizado em {formatUpdatedLabel(data.updatedAt)}
-          </p>
-        )}
-      </div>
-
-      {loading ? (
-        <div className="grid gap-6 md:grid-cols-2">
-          {[0, 1].map((i) => (
-            <div key={i} className="rounded-2xl border border-[#1b2024] bg-[#060809] p-6">
-              <div className="mb-5 h-6 w-32 animate-pulse rounded bg-[#13171a]" />
-              <div className="flex flex-col gap-2.5">
-                {[0, 1, 2].map((j) => (
-                  <div key={j} className="h-14 animate-pulse rounded-lg bg-[#0b0e0f]" />
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      ) : error || !data || data.rounds.length === 0 ? (
-        <div className="flex flex-col items-center gap-4 rounded-2xl border border-[#1b2024] bg-[#060809] px-6 py-16 text-center">
-          <Trophy className="h-9 w-9" aria-hidden style={{ color: GOLD }} />
-          <p className="max-w-md text-pretty font-sans text-[#9a9891]">
-            O ranking aparece aqui assim que a primeira rodada for apurada. Volte em breve.
-          </p>
-        </div>
-      ) : (
-        <>
-          <div className="grid gap-6 md:grid-cols-2">
-            {data.rounds.map((r, i) => (
-              <RoundCard key={r.id} round={r} index={i} inView={inView} reduce={reduce} />
-            ))}
-          </div>
-          <p className="mt-6 font-sans text-xs leading-relaxed text-[#5f5e58]">
-            Pontuação consolidada pelos palpites de cada rodada. A classificação é atualizada automaticamente
-            ao fim de cada janela de jogos.
-          </p>
-        </>
-      )}
-    </div>
-  )
 }
 
 /* ============================================================
@@ -918,37 +639,20 @@ export function CopaDosTraders() {
 
   useEffect(() => {
     let mounted = true
-
-    const load = (initial: boolean) => {
-      fetchMatches()
-        .then((m) => {
-          if (!mounted) return
-          setAllMatches(m)
-          setOffline(false)
-        })
-        .catch(() => {
-          if (!mounted) return
-          // só cai para o fallback estático na carga inicial; em refetch mantém o que já há
-          if (initial) {
-            setAllMatches(FALLBACK_MATCHES)
-            setOffline(true)
-          }
-        })
-        .finally(() => {
-          if (mounted && initial) setLoading(false)
-        })
-    }
-
-    load(true)
-
-    // polling para placar/status ao vivo (a cada 45s, só com a aba visível)
-    const interval = setInterval(() => {
-      if (document.visibilityState === "visible") load(false)
-    }, 45_000)
-
+    fetchMatches()
+      .then((m) => {
+        if (!mounted) return
+        setAllMatches(m)
+        setOffline(false)
+      })
+      .catch(() => {
+        if (!mounted) return
+        setAllMatches(FALLBACK_MATCHES)
+        setOffline(true)
+      })
+      .finally(() => mounted && setLoading(false))
     return () => {
       mounted = false
-      clearInterval(interval)
     }
   }, [])
 
@@ -986,20 +690,6 @@ export function CopaDosTraders() {
         .sort((a, b) => new Date(a.kickoffISO).getTime() - new Date(b.kickoffISO).getTime()),
     [allMatches, todayKey],
   )
-
-  /* nunca deixar o campo vazio: sem jogos hoje, mostra o próximo dia com jogos */
-  const upcomingMatches = useMemo(() => {
-    if (todayMatches.length > 0) return []
-    const future = allMatches
-      .filter((m) => getDayKeyFromISO(m.kickoffISO) > todayKey)
-      .sort((a, b) => new Date(a.kickoffISO).getTime() - new Date(b.kickoffISO).getTime())
-    if (future.length === 0) return []
-    const nextDay = getDayKeyFromISO(future[0].kickoffISO)
-    return future.filter((m) => getDayKeyFromISO(m.kickoffISO) === nextDay)
-  }, [allMatches, todayMatches, todayKey])
-
-  const isUpcomingFallback = todayMatches.length === 0 && upcomingMatches.length > 0
-  const displayMatches = todayMatches.length > 0 ? todayMatches : upcomingMatches
 
   const allClosedToday =
     todayMatches.length > 0 &&
@@ -1135,40 +825,30 @@ export function CopaDosTraders() {
             </p>
           )}
 
-          {isUpcomingFallback && !loading && (
-            <p className="mb-5 inline-flex items-center gap-2 rounded-lg border border-[#1b2024] bg-[#060809] px-3 py-1.5 font-sans text-xs text-[#9a9891]">
-              <CalendarDays className="h-3.5 w-3.5" aria-hidden style={{ color: GOLD }} />
-              Sem jogos hoje. Exibindo os próximos confrontos da Copa.
-            </p>
-          )}
-
           {loading ? (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {[0, 1, 2].map((i) => (
                 <MatchSkeleton key={i} />
               ))}
             </div>
-          ) : displayMatches.length === 0 ? (
+          ) : todayMatches.length === 0 ? (
             <div className="flex flex-col items-center gap-4 rounded-2xl border border-[#1b2024] bg-[#060809] px-6 py-16 text-center">
               <CalendarDays className="h-9 w-9" aria-hidden style={{ color: GOLD }} />
               <p className="max-w-md text-pretty font-sans text-[#9a9891]">
-                Estamos carregando os próximos confrontos da Copa. Atualize em instantes.
+                Nenhum jogo programado para hoje. A lista vira sozinha à meia-noite com os próximos confrontos.
               </p>
               <PrimaryCta href={LINKS.regulamento}>Ver regulamento</PrimaryCta>
             </div>
           ) : (
             <AnimatePresence mode="popLayout">
               <motion.div layout key={todayKey} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {displayMatches.map((m, i) => (
+                {todayMatches.map((m, i) => (
                   <MatchCard key={m.id} match={m} reduce={reduce} index={i} />
                 ))}
               </motion.div>
             </AnimatePresence>
           )}
         </div>
-
-        {/* ───── BLOCO 4 — RANKING DE RODADAS ───── */}
-        <RankingRodadas />
       </div>
     </section>
   )

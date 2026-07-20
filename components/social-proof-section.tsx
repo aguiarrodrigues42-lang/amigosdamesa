@@ -54,12 +54,12 @@ export function SocialProofSection() {
               transition: "opacity 0.7s ease, transform 0.7s ease",
             }}
           >
-            <div className="relative rounded-3xl overflow-hidden aspect-[3/4] max-w-md mx-auto shadow-2xl">
+            <div className="relative rounded-3xl overflow-hidden aspect-[4/3] shadow-2xl">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/founder-portrait.png"
-                alt="Fundadora da Amigos da Mesa Prop comemorando com canhão de confete e camisa do Brasil"
-                className="w-full h-full object-cover object-top"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/amigos%20da%20mesa%202-X98xWeZQyVydjcNAOaY56zUfw8QMXp.jpeg"
+                alt="Trader segurando dois tablets com gráficos de mercado verde e vermelho"
+                className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 ring-1 ring-inset ring-gold/25 rounded-3xl" />
               <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />

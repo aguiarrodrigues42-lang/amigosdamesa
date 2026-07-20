@@ -3,7 +3,6 @@ import { Geist, Geist_Mono, Oswald } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import Script from 'next/script'
 import { Suspense } from 'react'
-import { VendedoraTracker } from '@/components/vendedora-tracker'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
@@ -64,7 +63,8 @@ export default function RootLayout({
         </noscript>
       </head>
       <body className="font-sans antialiased">
-        <VendedoraTracker />
+        <Suspense fallback={null}>
+        </Suspense>
         {children}
         <Analytics />
       </body>
