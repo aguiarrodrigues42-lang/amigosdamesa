@@ -2,10 +2,10 @@
 // pricing-section-v2 — ATUALIZADO: ESPECIAL COPA 2026 60% OFF em Exames Iniciante/Intermediario, Pegue e Monte 8/12/20, Senior Iniciante/Intermediario
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, X, Info } from "lucide-react"
+import { ChevronLeft, ChevronRight, X, Info, Sparkles } from "lucide-react"
 import { RegulamentosModal } from "@/components/regulamentos-modal"
 
-type Category = "exames" | "prime-plus" | "titan" | "senior" | "pegue-monte" | "bit"
+type Category = "exames" | "prime-plus" | "titan" | "exclusive" | "senior" | "pegue-monte" | "bit"
 
 interface Plan {
   name: string
@@ -77,8 +77,26 @@ const plansByCategory: Record<Category, Plan[]> = {
     { name: "PEGUE E MONTE 27", contracts: 27, meta: "R$3.612,00", dailyLimit: "", stopGlobal: "R$6.020,00", priceOriginal: 1690.50, pricePix: 0, discountPercent: 70, features: ["Stop Global R$6.020,00", "Meta de Aprovação R$3.612,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Indisponível", ctaWhatsApp: false },
     { name: "PEGUE E MONTE 32", contracts: 32, meta: "R$4.890,00", dailyLimit: "", stopGlobal: "R$8.150,00", priceOriginal: 2120.60, pricePix: 0, discountPercent: 70, features: ["Stop Global R$8.150,00", "Meta de Aprovação R$4.890,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Indisponível", ctaWhatsApp: false },
   ],
+  "exclusive": [],
   "bit": [],
 }
+
+interface ExclusivePlan {
+  name: string
+  contracts: number
+  asset: string
+  features: string[]
+  priceOriginal: number
+  pricePix: number
+  discountPercent: number
+  pixLink?: string
+  cartaoLink?: string
+}
+
+const exclusivePlans: ExclusivePlan[] = [
+  { name: "EXCLUSIVE ENTRY", contracts: 20, asset: "WDO / WIN", features: ["Ativos: WDO / WIN", "Stop Global R$ 3.000,00", "Stop Diário R$ 1.500,00", "Meta de Aprovação 80%: R$ 2.000,00", "Resete Teste: R$ Fixo", "Resete pós aprovado: R$ Fixo"], priceOriginal: 1198.00, pricePix: 599.00, discountPercent: 50 },
+  { name: "EXCLUSIVE PRIME", contracts: 30, asset: "WDO / WIN", features: ["Ativos: WDO / WIN", "Stop Global R$ 4.500,00", "Stop Diário R$ 2.250,00", "Meta de Aprovação 80%: R$ 3.000,00", "Resete Teste: R$ Fixo", "Resete pós aprovado: R$ Fixo"], priceOriginal: 1594.00, pricePix: 797.00, discountPercent: 50 },
+]
 
 interface BitPlan { name: string; bitContracts: number; features: string[]; precoExame: string; precoExameOriginal: string; valorOriginal: number; precoPix: string; precoCartao: string; precoSeniorOriginal: string; pixLink?: string; cartaoLink?: string; indisponivel?: boolean }
 
@@ -213,7 +231,7 @@ function PegueMonteModal({ open, onClose }: PegueMonteModalProps) {
 }
 
 const categories: { id: Category; label: string }[] = [
-  {id:"exames",label:"Exames"},{id:"prime-plus",label:"Prime Plus"},{id:"titan",label:"Titan"},{id:"senior",label:"Senior"},{id:"pegue-monte",label:"Pegue e Monte"},{id:"bit",label:"BIT"},
+  {id:"exames",label:"Exames"},{id:"prime-plus",label:"Prime Plus"},{id:"titan",label:"Titan"},{id:"exclusive",label:"EXCLUSIVE"},{id:"senior",label:"Senior"},{id:"pegue-monte",label:"Pegue e Monte"},{id:"bit",label:"BIT"},
 ]
 
 interface LeadModalProps { planName: string; open: boolean; onClose: () => void }
@@ -307,6 +325,44 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
   )
 }
 
+function ExclusivePlanCard({ plan, isActive, isPix, onCta }: { plan: ExclusivePlan; isActive: boolean; isPix: boolean; onCta: () => void }) {
+  const priceCartao12x = (plan.pricePix * 1.9372) / 12
+  const displayPrice = isPix ? plan.pricePix : priceCartao12x
+  const silverGradient = "linear-gradient(135deg, #e8e8ec 0%, #b8bcc4 25%, #f4f4f6 50%, #a9adb5 75%, #d8dade 100%)"
+  return (
+    <div
+      className={`flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center rounded-2xl border-2 bg-[#0d0d0f] flex flex-col transition-all duration-300 overflow-hidden ${isActive ? "border-zinc-300 shadow-[0_0_20px_rgba(226,232,240,0.25)]" : "border-zinc-700 opacity-80"}`}
+    >
+      <div className="flex items-center justify-center gap-1.5 py-1.5" style={{ background: silverGradient }}>
+        <Sparkles className="w-3 h-3 text-zinc-900" />
+        <span className="text-zinc-900 text-[10px] font-black uppercase tracking-[0.2em]">Edição Limitada</span>
+      </div>
+      <div className="px-5 py-3 flex items-center justify-between gap-2 border-b border-zinc-800" style={{ background: "linear-gradient(135deg, #2a2a2e 0%, #1a1a1d 100%)" }}>
+        <h3 className="text-sm font-black uppercase tracking-wide text-white leading-tight">{plan.name}</h3>
+        <span className="flex-shrink-0 bg-black text-white text-[10px] font-black px-2 py-0.5 rounded-full border border-zinc-600">{plan.discountPercent}% OFF</span>
+      </div>
+      <div className="flex flex-col flex-1 px-5 py-4 gap-3">
+        <div className="text-center">
+          <p className="text-white font-black text-lg">{plan.contracts} CONTRATOS</p>
+          <p className="text-zinc-400 text-sm font-medium">{plan.asset}</p>
+        </div>
+        <ul className="space-y-1.5">
+          {plan.features.map((feat, i) => (<li key={i} className="flex items-start gap-2 text-sm text-zinc-200"><span className="text-zinc-400 mt-0.5 text-xs flex-shrink-0">•</span><span className="leading-snug">{feat}</span></li>))}
+        </ul>
+        <div className="border-t border-zinc-800 pt-3 text-center">
+          <div className="mb-1"><span className="text-sm line-through text-zinc-500">{formatBRL(plan.priceOriginal)}</span></div>
+          {isPix ? (<span className="text-2xl font-black text-white">{formatBRL(displayPrice)}</span>) : (<span className="text-lg font-black text-white">12x {formatBRL(displayPrice)}</span>)}
+        </div>
+        <div className="rounded-lg px-3 py-2 text-center space-y-0.5 border border-yellow-700/40 bg-yellow-950/30">
+          <p className="text-[10px] font-black uppercase tracking-widest text-yellow-500">Bonus</p>
+          <p className="text-xs text-zinc-300 leading-snug">Sem limite diario para o exame</p>
+        </div>
+        <button onClick={onCta} className="w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide text-zinc-900 mt-auto transition-all duration-300 hover:brightness-105" style={{ background: silverGradient }}>Comprar Agora</button>
+      </div>
+    </div>
+  )
+}
+
 function PaymentToggle({ isPix, onChange }: { isPix: boolean; onChange: (v: boolean) => void }) {
   return (
     <div className="flex items-center justify-center gap-4 bg-secondary/80 backdrop-blur-sm rounded-full px-6 py-2.5 border border-border">
@@ -325,8 +381,9 @@ export function PricingSection() {
   const [pegueMonteOpen, setPegueMonteOpen] = useState(false)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const isBit = activeCategory === "bit"
+  const isExclusive = activeCategory === "exclusive"
   const plans = plansByCategory[activeCategory]
-  const activeCount = isBit ? bitPlans.length : plans.length
+  const activeCount = isBit ? bitPlans.length : isExclusive ? exclusivePlans.length : plans.length
   const CARD_WIDTH = 320 + 16
 
   useEffect(() => {
@@ -357,7 +414,18 @@ export function PricingSection() {
           <h2 className="text-2xl md:text-3xl font-black text-foreground">Escolha seu Plano</h2>
         </div>
         <div className="flex flex-wrap justify-center gap-2 mb-6">
-          {categories.map((cat) => (<button key={cat.id} onClick={() => setActiveCategory(cat.id)} className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${activeCategory === cat.id ? "bg-secondary text-foreground ring-2 ring-primary" : "bg-primary text-primary-foreground hover:bg-primary/80"}`}>{cat.label}</button>))}
+          {categories.map((cat) => {
+            if (cat.id === "exclusive") {
+              const active = activeCategory === cat.id
+              return (
+                <button key={cat.id} onClick={() => setActiveCategory(cat.id)} className={`px-5 py-2 rounded-full text-sm font-black uppercase tracking-wide transition-all flex items-center gap-1.5 text-zinc-900 ${active ? "ring-2 ring-white shadow-[0_0_15px_rgba(226,232,240,0.4)]" : "hover:brightness-105"}`} style={{ background: "linear-gradient(135deg, #e8e8ec 0%, #b8bcc4 25%, #f4f4f6 50%, #a9adb5 75%, #d8dade 100%)" }}>
+                  <Sparkles className="w-3.5 h-3.5" />
+                  {cat.label}
+                </button>
+              )
+            }
+            return (<button key={cat.id} onClick={() => setActiveCategory(cat.id)} className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${activeCategory === cat.id ? "bg-secondary text-foreground ring-2 ring-primary" : "bg-primary text-primary-foreground hover:bg-primary/80"}`}>{cat.label}</button>)
+          })}
         </div>
         <div className="flex justify-center mb-6"><RegulamentosModal /></div>
         <div className="flex justify-center mb-8" suppressHydrationWarning><PaymentToggle isPix={isPix} onChange={setIsPix} /></div>
@@ -367,6 +435,8 @@ export function PricingSection() {
             <div className="flex-shrink-0 w-[calc(50vw-184px)] md:hidden" />
             {isBit
               ? bitPlans.map((plan, index) => (<BitPlanCard key={`${plan.name}-${index}`} plan={plan} isActive={index === activeCardIndex} isPix={isPix} onCta={() => { if (isPix && plan.indisponivel) return; if (isPix && plan.pixLink) { window.open(plan.pixLink, "_blank") } else if (!isPix && plan.cartaoLink) { window.open(plan.cartaoLink, "_blank") } else { handleCta(plan.name) } }} />))
+              : isExclusive
+              ? exclusivePlans.map((plan, index) => (<ExclusivePlanCard key={`${plan.name}-${index}`} plan={plan} isActive={index === activeCardIndex} isPix={isPix} onCta={() => { if (isPix && plan.pixLink) { window.open(plan.pixLink, "_blank") } else if (!isPix && plan.cartaoLink) { window.open(plan.cartaoLink, "_blank") } else { handleCta(plan.name) } }} />))
               : plans.map((plan, index) => (<PlanCard key={`${plan.name}-${plan.asset ?? ""}-${index}`} plan={plan} isActive={index === activeCardIndex} isPix={isPix} onCta={() => handleCta(plan)} />))}
             <div className="flex-shrink-0 w-[calc(50vw-184px)] md:hidden" />
           </div>
