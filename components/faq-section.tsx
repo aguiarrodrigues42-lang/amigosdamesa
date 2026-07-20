@@ -5,8 +5,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { HelpCircle } from "lucide-react"
-import { CinematicBackground } from "@/components/cinematic"
 
 export function FaqSection() {
   const faqs = [
@@ -41,16 +39,11 @@ export function FaqSection() {
   ]
 
   return (
-    <section id="faq" className="relative py-24 bg-background overflow-hidden scroll-mt-20">
-      <CinematicBackground variant="green" particles={false} />
-      <div className="container relative z-10 mx-auto px-4">
+    <section className="py-24 bg-background">
+      <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <div className="inline-flex items-center gap-2 mb-5 px-3 py-1.5 rounded-full border border-gold/30 bg-gold/10">
-            <HelpCircle className="w-3.5 h-3.5 text-gold" />
-            <span className="text-gold text-xs font-bold uppercase tracking-[0.2em]">Tire suas dúvidas</span>
-          </div>
-          <h2 className="font-display text-3xl md:text-5xl font-bold uppercase tracking-tight mb-6 text-balance">
-            Perguntas <span className="text-gold-gradient">Frequentes</span>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-balance">
+            Perguntas <span className="text-primary">Frequentes</span>
           </h2>
           <p className="text-lg text-muted-foreground text-pretty">
             Tire suas dúvidas antes de entrar.
@@ -62,12 +55,12 @@ export function FaqSection() {
               <AccordionItem
                 key={i}
                 value={`item-${i}`}
-                className="glass-card border border-gold/15 rounded-xl px-6 transition-colors data-[state=open]:border-gold/50"
+                className="bg-card border border-border rounded-xl px-6 data-[state=open]:border-primary/50"
               >
-                <AccordionTrigger className="text-left text-foreground hover:text-gold hover:no-underline py-6 font-semibold">
+                <AccordionTrigger className="text-left text-foreground hover:text-primary hover:no-underline py-6">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-6 leading-relaxed">
+                <AccordionContent className="text-muted-foreground pb-6">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

@@ -1,6 +1,5 @@
 import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
-import { CopaDosTraders } from "@/components/copa-dos-traders"
 import { AboutSection } from "@/components/about-section"
 import { TrilhaSection } from "@/components/trilha-section"
 import { SocialProofSection } from "@/components/social-proof-section"
@@ -20,7 +19,6 @@ export default function HomePage() {
       <PromoPopup />
       <Header />
       <HeroSection />
-      <CopaDosTraders />
       <AboutSection />
       <TrilhaSection />
       <SocialProofSection />
