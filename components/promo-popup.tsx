@@ -82,10 +82,10 @@ export function PromoPopup() {
         {/* Image with clickable CTA area */}
         <div className="relative rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
           <Image
-            src="/popup1.jpeg"
-            alt="Promocao 80% OFF - Amigos da Mesa"
-            width={500}
-            height={900}
+            src="/popup-trader-saca.jpg"
+            alt="Última trader que saca - Desconto de até 80% OFF - Amigos da Mesa"
+            width={1024}
+            height={1536}
             className="w-full h-auto object-contain"
             style={{ maxHeight: "90vh" }}
             priority
