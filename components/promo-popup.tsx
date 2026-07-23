@@ -82,8 +82,8 @@ export function PromoPopup() {
         {/* Image with clickable CTA area */}
         <div className="relative rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
           <Image
-            src="/popup-trader-saca.jpg"
-            alt="Última trader que saca - Desconto de até 80% OFF - Amigos da Mesa"
+            src="/popup-plano-60.jpg"
+            alt="Aquele plano que você gosta está com 60% de desconto - Amigos da Mesa"
             width={1024}
             height={1536}
             className="w-full h-auto object-contain"
@@ -91,11 +91,11 @@ export function PromoPopup() {
             priority
           />
           
-          {/* Clickable area over the CTA button (bottom 15% of image) */}
+          {/* Clickable area over the CTA button (bottom 10% of image) */}
           <button
             onClick={handleClick}
-            className="absolute bottom-0 left-0 right-0 h-[18%] cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-inset"
-            aria-label="Quero aproveitar agora - Ver planos"
+            className="absolute bottom-0 left-0 right-0 h-[10%] cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-inset"
+            aria-label="Escolha seu plano e comece agora - Ver planos"
           />
         </div>
       </div>
