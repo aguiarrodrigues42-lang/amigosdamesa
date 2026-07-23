@@ -1,13 +1,14 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist, Geist_Mono, Oswald } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import Script from 'next/script'
 import { Suspense } from 'react'
 import { VendedoraTracker } from '@/components/vendedora-tracker'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const _geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
+const _geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
+const _oswald = Oswald({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-oswald" });
 
 export const metadata: Metadata = {
   title: 'Amigos da Mesa PRO - Mesa Proprietária de Trading',
@@ -25,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR" className={`bg-background ${_geist.variable} ${_geistMono.variable} ${_oswald.variable}`}>
       <head>
         <Script id="meta-pixel" strategy="afterInteractive">
           {`

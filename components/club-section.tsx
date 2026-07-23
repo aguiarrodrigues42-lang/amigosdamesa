@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Check, Crown, TrendingUp, Users, BookOpen, Newspaper, CalendarCheck, RefreshCw, Banknote } from "lucide-react"
+import { CinematicBackground } from "@/components/cinematic"
 
 const clubBenefits = [
   { icon: CalendarCheck, text: "Sala AO VIVO zoom (Seg a Sex 9:00 às 11:00)" },
@@ -34,28 +35,25 @@ export function ClubSection() {
       id="clube"
       className="relative py-24 bg-background overflow-hidden"
     >
-      {/* subtle bg glow */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 50% at 50% 0%, oklch(0.7 0.18 45 / 0.07) 0%, transparent 70%)",
-        }}
-      />
+      <CinematicBackground variant="gold" beams particles={false} />
+      {/* trophy ambience */}
+      <div aria-hidden className="pointer-events-none absolute -left-12 bottom-10 w-60 opacity-[0.08] hidden lg:block">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/images/wc-trophy.png" alt="" className="w-full h-auto" />
+      </div>
 
-      <div className="container mx-auto px-4 max-w-5xl">
+      <div className="container relative z-10 mx-auto px-4 max-w-5xl">
         {/* Label */}
         <div
           className={`text-center mb-12 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
         >
-          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 rounded-full px-4 py-1.5 mb-4">
-            <Crown className="w-4 h-4 text-primary" />
-            <span className="text-xs font-black uppercase tracking-widest text-primary">Acesso exclusivo</span>
+          <div className="inline-flex items-center gap-2 bg-gold/10 border border-gold/30 rounded-full px-4 py-1.5 mb-4">
+            <Crown className="w-4 h-4 text-gold" />
+            <span className="text-xs font-black uppercase tracking-widest text-gold">Acesso exclusivo</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-foreground text-balance">
+          <h2 className="font-display text-4xl md:text-5xl font-bold uppercase tracking-tight text-foreground text-balance">
             Clube do{" "}
-            <span className="text-primary">Valor</span>
+            <span className="text-gold-gradient">Valor</span>
           </h2>
           <p className="mt-3 text-muted-foreground max-w-lg mx-auto text-sm leading-relaxed">
             A comunidade premium para traders sérios. Ferramentas, ao vivo e vantagens exclusivas para quem opera com a Amigos da Mesa.
@@ -64,11 +62,11 @@ export function ClubSection() {
 
         {/* Main card */}
         <div
-          className={`relative rounded-3xl border border-primary/30 bg-card overflow-hidden transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-          style={{ boxShadow: "0 0 60px -10px oklch(0.7 0.18 45 / 0.18), 0 0 0 1px oklch(0.7 0.18 45 / 0.12)" }}
+          className={`relative rounded-3xl border border-gold/30 bg-card overflow-hidden transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+          style={{ boxShadow: "0 0 60px -10px oklch(0.82 0.16 88 / 0.2), 0 0 0 1px oklch(0.82 0.16 88 / 0.12)" }}
         >
           {/* top accent line */}
-          <div className="h-1 w-full bg-primary" />
+          <div className="h-1 w-full brazil-band" />
 
           <div className="p-8 md:p-10">
             {/* Two benefit columns */}
@@ -76,8 +74,8 @@ export function ClubSection() {
               {/* Col 1 — Clube */}
               <div>
                 <div className="flex items-center gap-2 mb-5">
-                  <Crown className="w-4 h-4 text-primary flex-shrink-0" />
-                  <h3 className="text-xs font-black uppercase tracking-widest text-primary">Clube do Valor</h3>
+                  <Crown className="w-4 h-4 text-gold flex-shrink-0" />
+                  <h3 className="text-xs font-black uppercase tracking-widest text-gold">Clube do Valor</h3>
                 </div>
                 <ul className="space-y-3">
                   {clubBenefits.map((b, i) => (
@@ -86,8 +84,8 @@ export function ClubSection() {
                       className={`flex items-start gap-2.5 transition-all duration-500 ${visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"}`}
                       style={{ transitionDelay: `${200 + i * 50}ms` }}
                     >
-                      <span className="flex-shrink-0 mt-0.5 w-4 h-4 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center">
-                        <Check className="w-2.5 h-2.5 text-primary" />
+                      <span className="flex-shrink-0 mt-0.5 w-4 h-4 rounded-full bg-gold/20 border border-gold/40 flex items-center justify-center">
+                        <Check className="w-2.5 h-2.5 text-gold" />
                       </span>
                       <span className="text-sm text-foreground/80 leading-snug">{b.text}</span>
                     </li>
@@ -101,8 +99,8 @@ export function ClubSection() {
               {/* Col 2 — Para Traders */}
               <div>
                 <div className="flex items-center gap-2 mb-5">
-                  <TrendingUp className="w-4 h-4 text-primary flex-shrink-0" />
-                  <h3 className="text-xs font-black uppercase tracking-widest text-primary">Para Traders Amigos da Mesa</h3>
+                  <TrendingUp className="w-4 h-4 text-gold flex-shrink-0" />
+                  <h3 className="text-xs font-black uppercase tracking-widest text-gold">Para Traders Amigos da Mesa</h3>
                 </div>
                 <ul className="space-y-3 mb-6">
                   {traderBenefits.map((b, i) => (
@@ -111,8 +109,8 @@ export function ClubSection() {
                       className={`flex items-start gap-2.5 transition-all duration-500 ${visible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"}`}
                       style={{ transitionDelay: `${300 + i * 60}ms` }}
                     >
-                      <span className="flex-shrink-0 mt-0.5 w-4 h-4 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center">
-                        <Check className="w-2.5 h-2.5 text-primary" />
+                      <span className="flex-shrink-0 mt-0.5 w-4 h-4 rounded-full bg-gold/20 border border-gold/40 flex items-center justify-center">
+                        <Check className="w-2.5 h-2.5 text-gold" />
                       </span>
                       <span className="text-sm text-foreground/80 leading-snug">{b.text}</span>
                     </li>
@@ -134,15 +132,15 @@ export function ClubSection() {
                 <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">Investimento mensal</p>
                 <div className="flex items-baseline gap-3">
                   <span className="text-sm line-through text-muted-foreground">R$350,00</span>
-                  <span className="text-4xl font-black text-primary">R$197,00</span>
-                  <span className="text-xs bg-primary text-primary-foreground font-black px-2 py-0.5 rounded-full">44% OFF</span>
+                  <span className="font-display text-4xl font-bold text-gold">R$197,00</span>
+                  <span className="text-xs bg-gold text-[#050505] font-black px-2 py-0.5 rounded-full">44% OFF</span>
                 </div>
                 <p className="text-[11px] text-muted-foreground mt-1">Cobrança mensal recorrente. Cancele quando quiser.</p>
               </div>
 
               <button
-                onClick={() => window.open("https://app.neoncheckout.com/checkout/9MN5X0BRQWSBE?product=151548", "_blank")}
-                className="relative overflow-hidden group w-full md:w-auto px-10 py-4 rounded-2xl bg-primary text-primary-foreground font-black text-sm uppercase tracking-widest transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_30px_oklch(0.7_0.18_45/0.4)]"
+                onClick={() => window.open("https://checkout.amigosdamesas.store/pay/clube-do-valor-site", "_blank")}
+                className="relative overflow-hidden group w-full md:w-auto px-10 py-4 rounded-2xl bg-primary text-primary-foreground font-black text-sm uppercase tracking-widest transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_30px_oklch(0.56_0.21_263/0.45)]"
               >
                 <span className="relative z-10">Quero entrar no Clube</span>
                 <span

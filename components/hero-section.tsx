@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ChevronDown, TrendingUp, TrendingDown } from "lucide-react"
+import { HeroBgVideo } from "@/components/hero-bg-video"
 
 const TICKERS = [
   { symbol: "WIN$", value: "131.420", change: "+0,82%", up: true },
@@ -24,7 +25,7 @@ const STATS = [
 
 export function HeroSection() {
   const trackRef = useRef<HTMLDivElement>(null)
-  const [tick, setTick] = useState(0)
+  const [, setTick] = useState(0)
 
   // animate ticker values slightly to simulate live market
   useEffect(() => {
@@ -41,13 +42,83 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden bg-[#0c0c0c]">
+    <section className="relative min-h-screen min-h-[100svh] flex flex-col overflow-hidden bg-background">
 
-      {/* ── Live ticker bar ─────────────────────────────── */}
-      <div className="absolute top-[124px] sm:top-[144px] md:top-[180px] lg:top-[200px] left-0 right-0 z-20 overflow-hidden h-9 bg-black/60 border-b border-white/5 backdrop-blur-sm">
+      {/* ── Layer: cinematic stadium environment (looping video) ─ */}
+      <div className="absolute inset-0 z-0">
+        <HeroBgVideo />
+        {/* Light veil so the video stays vibrant while text remains legible */}
+        <div className="absolute inset-0 bg-background/20 md:bg-transparent" />
+        {/* Subtle directional grade only behind the text */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent md:bg-gradient-to-r md:from-background/60 md:via-background/20 md:to-transparent" />
+        {/* Bottom fade into page */}
+        <div className="absolute bottom-0 left-0 right-0 h-56 bg-gradient-to-t from-background to-transparent" />
+      </div>
+
+      {/* ── Volumetric light beams ───────────────────────── */}
+      <div aria-hidden className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
+        <div
+          className="absolute -top-40 left-1/2 h-[120%] w-40 origin-top blur-3xl animate-beam-sway"
+          style={{ background: "linear-gradient(to bottom, oklch(0.4 0.16 274 / 0.14), transparent 65%)", animationDelay: "1.5s" }}
+        />
+      </div>
+
+      {/* ── Content ─────────────────────────────────────── */}
+      <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-4 pt-32 pb-28 sm:pt-36 md:pt-40 lg:pt-44">
+        <div className="max-w-2xl">
+
+          {/* Headline */}
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold uppercase text-white leading-[1.02] mb-6 text-balance tracking-tight">
+            Pare de operar com{" "}
+            <span className="text-gold-gradient">pouco capital</span>{" "}
+            e risco próprio
+          </h1>
+
+          {/* Sub */}
+          <p className="text-base md:text-lg text-white/65 mb-10 max-w-xl leading-relaxed text-pretty">
+            Aqui você opera com o capital da mesa e fica com 90% ou 100% dos lucros.
+          </p>
+
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4 mb-16">
+            <Button
+              size="lg"
+              onClick={scrollToPlans}
+              className="relative overflow-hidden bg-primary hover:bg-primary/90 text-primary-foreground font-black text-base px-8 py-6 group shadow-[0_10px_40px_-10px_oklch(0.56_0.21_263/0.7)]"
+            >
+              <span className="relative z-10 inline-flex items-center">
+                QUERO MEU PLANO
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
+              <span aria-hidden className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-white/20 skew-x-[-20deg] transition-transform duration-500" />
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              onClick={scrollToNext}
+              className="border-gold/40 text-white hover:bg-gold/10 hover:border-gold/60 font-semibold text-base px-8 py-6 bg-transparent"
+            >
+              Como funciona
+            </Button>
+          </div>
+
+          {/* Stats bar */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {STATS.map((s, i) => (
+              <div key={i} className="border-l-2 border-gold/60 pl-3">
+                <p className="font-display text-2xl font-bold text-white">{s.value}</p>
+                <p className="text-xs text-white/45 leading-tight">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── Live ticker bar — anchored to hero bottom (stadium ↔ market bridge) ── */}
+      <div className="absolute bottom-8 left-0 right-0 z-20 overflow-hidden h-9 bg-black/70 border-y border-gold/15 backdrop-blur-sm">
         <div
           ref={trackRef}
-          className="flex items-center gap-8 whitespace-nowrap"
+          className="flex items-center gap-8 whitespace-nowrap h-full"
           style={{ animation: "ticker-scroll 28s linear infinite" }}
         >
           {[...TICKERS, ...TICKERS].map((t, i) => (
@@ -64,97 +135,18 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* ── Background image ────────────────────────────── */}
-      <div className="absolute inset-0 z-0">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/amigos%20da%20mesa%201-tyClHdDkYHJw3zqwhrxvUGOavbyAb2.jpeg"
-          alt=""
-          className="w-full h-full object-cover object-top"
-          aria-hidden="true"
-        />
-        {/* Dark overlay — heavier on left for text, lighter on right */}
-        <div className="absolute inset-0 bg-[#0c0c0c]/60 md:bg-gradient-to-r md:from-[#0c0c0c]/90 md:via-[#0c0c0c]/60 md:to-[#0c0c0c]/30" />
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#0c0c0c] to-transparent" />
-      </div>
-
-      {/* ── Animated grid lines (decorative) ───────────── */}
-      <div
-        className="absolute inset-0 z-[1] pointer-events-none opacity-[0.04]"
-        style={{
-          backgroundImage: "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
-        }}
-      />
-
-      {/* ── Red accent glow bottom-left ──────────────────── */}
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] z-[1] pointer-events-none"
-        style={{ background: "radial-gradient(circle at 0% 100%, oklch(0.7 0.18 45 / 0.18) 0%, transparent 65%)" }} />
-
-      {/* ── Content ─────────────────────────────────────── */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-4 pt-44 pb-20 sm:pt-48 md:pt-56 lg:pt-60">
-        <div className="max-w-2xl">
-
-          {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full border border-primary/40 bg-primary/10">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            <span className="text-primary text-xs font-bold uppercase tracking-widest">Mesa Proprietária Aberta</span>
-          </div>
-
-          {/* Headline */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] mb-6 text-balance">
-            Pare de operar com{" "}
-            <span className="text-primary">pouco capital</span>{" "}
-            e risco próprio
-          </h1>
-
-          {/* Sub */}
-          <p className="text-base md:text-lg text-white/60 mb-10 max-w-xl leading-relaxed text-pretty">
-            Aqui você opera com o capital da mesa e fica com 90% ou 100% dos lucros.
-          </p>
-
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-16">
-            <Button
-              size="lg"
-              onClick={scrollToPlans}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-black text-base px-8 py-6 group"
-            >
-              QUERO MEU PLANO
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={scrollToNext}
-              className="border-white/20 text-white hover:bg-white/10 font-semibold text-base px-8 py-6"
-            >
-              Como funciona
-            </Button>
-          </div>
-
-          {/* Stats bar */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {STATS.map((s, i) => (
-              <div key={i} className="border-l-2 border-primary/60 pl-3">
-                <p className="text-xl font-black text-white">{s.value}</p>
-                <p className="text-xs text-white/40 leading-tight">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* ── Scroll cue ──────────────────────────────────── */}
       <button
         onClick={scrollToNext}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-white/30 hover:text-white/60 transition-colors"
+        className="absolute bottom-[68px] left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-white/30 hover:text-gold/70 transition-colors"
         aria-label="Rolar para baixo"
       >
-        <span className="text-[10px] uppercase tracking-widest">scroll</span>
+        <span className="text-[10px] uppercase tracking-[0.3em]">scroll</span>
         <ChevronDown className="w-5 h-5 animate-bounce" />
       </button>
+
+      {/* bottom Brazil tri-band accent */}
+      <div aria-hidden className="absolute bottom-0 left-0 right-0 h-1 brazil-band z-20 opacity-80" />
     </section>
   )
 }
