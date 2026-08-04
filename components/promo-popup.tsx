@@ -49,7 +49,7 @@ export function PromoPopup() {
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="Popup promocional"
+      aria-label="Campanha Especial 70% OFF - Popup promocional"
       className={`fixed inset-0 z-[100] flex items-center justify-center p-4 transition-opacity duration-200 ${
         isAnimatingOut ? "opacity-0" : "opacity-100"
       }`}
@@ -82,20 +82,20 @@ export function PromoPopup() {
         {/* Image with clickable CTA area */}
         <div className="relative rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
           <Image
-            src="/popup-plano-60.jpg"
-            alt="Aquele plano que você gosta está com 60% de desconto - Amigos da Mesa"
-            width={1024}
-            height={1536}
+            src="/popup-campanha-70off.png"
+            alt="Campanha Especial 70% OFF + Sem Dias Mínimos Operados - Amigos da Mesa"
+            width={810}
+            height={1215}
             className="w-full h-auto object-contain"
             style={{ maxHeight: "90vh" }}
             priority
           />
-          
-          {/* Clickable area over the CTA button (bottom 10% of image) */}
+
+          {/* Clickable area over the bottom CTA region */}
           <button
             onClick={handleClick}
-            className="absolute bottom-0 left-0 right-0 h-[10%] cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-inset"
-            aria-label="Escolha seu plano e comece agora - Ver planos"
+            className="absolute bottom-0 left-0 right-0 h-[12%] cursor-pointer focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-inset"
+            aria-label="Ver planos com 70% OFF - Sem dias mínimos operados"
           />
         </div>
       </div>
