@@ -94,8 +94,8 @@ interface ExclusivePlan {
 }
 
 const exclusivePlans: ExclusivePlan[] = [
-  { name: "EXCLUSIVE ENTRY", contracts: 20, asset: "WDO / WIN", features: ["Ativos: WDO / WIN", "Stop Global R$ 3.000,00", "Stop Diário R$ 1.500,00", "Meta de Aprovação 80%: R$ 2.000,00", "Resete Teste: R$ Fixo", "Resete pós aprovado: R$ Fixo"], priceOriginal: 1198.00, pricePix: 599.00, discountPercent: 50, pixLink: "https://checkout.amigosdamesas.store/pay/plano-exclusive-entry", cartaoLink: "https://checkout.amigosdamesas.store/pay/plano-exclusive-entry" },
-  { name: "EXCLUSIVE PRIME", contracts: 30, asset: "WDO / WIN", features: ["Ativos: WDO / WIN", "Stop Global R$ 4.500,00", "Stop Diário R$ 2.250,00", "Meta de Aprovação 80%: R$ 3.000,00", "Resete Teste: R$ Fixo", "Resete pós aprovado: R$ Fixo"], priceOriginal: 1594.00, pricePix: 797.00, discountPercent: 50, pixLink: "https://checkout.amigosdamesas.store/pay/plano-exclusive-prime", cartaoLink: "https://checkout.amigosdamesas.store/pay/plano-exclusive-prime" },
+  { name: "EXCLUSIVE ENTRY", contracts: 20, asset: "WDO / WIN", features: ["Ativos: WDO / WIN", "Stop Global R$ 3.000,00", "Stop Diário R$ 1.500,00", "Meta de Aprovação 80%: R$ 2.000,00", "Resete Teste: R$ Fixo", "Resete pós aprovado: R$ Fixo"], priceOriginal: 1198.00, pricePix: 599.00, discountPercent: 50 },
+  { name: "EXCLUSIVE PRIME", contracts: 30, asset: "WDO / WIN", features: ["Ativos: WDO / WIN", "Stop Global R$ 4.500,00", "Stop Diário R$ 2.250,00", "Meta de Aprovação 80%: R$ 3.000,00", "Resete Teste: R$ Fixo", "Resete pós aprovado: R$ Fixo"], priceOriginal: 1594.00, pricePix: 797.00, discountPercent: 50 },
 ]
 
 interface BitPlan { name: string; bitContracts: number; features: string[]; precoExame: string; precoExameOriginal: string; valorOriginal: number; precoPix: string; precoCartao: string; precoSeniorOriginal: string; pixLink?: string; cartaoLink?: string; indisponivel?: boolean }
@@ -325,13 +325,13 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
   )
 }
 
-function ExclusivePlanCard({ plan, isActive, isPix, onCta }: { plan: ExclusivePlan; isActive: boolean; isPix: boolean; onCta: () => void }) {
+function ExclusivePlanCard({ plan, isActive, isPix }: { plan: ExclusivePlan; isActive: boolean; isPix: boolean; onCta: () => void }) {
   const priceCartao12x = (plan.pricePix * 1.9372) / 12
   const displayPrice = isPix ? plan.pricePix : priceCartao12x
   const silverGradient = "linear-gradient(135deg, #e8e8ec 0%, #b8bcc4 25%, #f4f4f6 50%, #a9adb5 75%, #d8dade 100%)"
   return (
     <div
-      className={`flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center rounded-2xl border-2 bg-[#0d0d0f] flex flex-col transition-all duration-300 overflow-hidden ${isActive ? "border-zinc-300 shadow-[0_0_20px_rgba(226,232,240,0.25)]" : "border-zinc-700 opacity-80"}`}
+      className={`flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center rounded-2xl border-2 bg-[#0d0d0f] flex flex-col transition-all duration-300 overflow-hidden opacity-75 ${isActive ? "border-zinc-500 shadow-[0_0_20px_rgba(226,232,240,0.10)]" : "border-zinc-700"}`}
     >
       <div className="flex items-center justify-center gap-1.5 py-1.5" style={{ background: silverGradient }}>
         <Sparkles className="w-3 h-3 text-zinc-900" />
@@ -339,7 +339,7 @@ function ExclusivePlanCard({ plan, isActive, isPix, onCta }: { plan: ExclusivePl
       </div>
       <div className="px-5 py-3 flex items-center justify-between gap-2 border-b border-zinc-800" style={{ background: "linear-gradient(135deg, #2a2a2e 0%, #1a1a1d 100%)" }}>
         <h3 className="text-sm font-black uppercase tracking-wide text-white leading-tight">{plan.name}</h3>
-        <span className="flex-shrink-0 bg-black text-white text-[10px] font-black px-2 py-0.5 rounded-full border border-zinc-600">{plan.discountPercent}% OFF</span>
+        <span className="flex-shrink-0 bg-red-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full border border-red-400 uppercase tracking-wider">Esgotado</span>
       </div>
       <div className="flex flex-col flex-1 px-5 py-4 gap-3">
         <div className="text-center">
@@ -351,13 +351,13 @@ function ExclusivePlanCard({ plan, isActive, isPix, onCta }: { plan: ExclusivePl
         </ul>
         <div className="border-t border-zinc-800 pt-3 text-center">
           <div className="mb-1"><span className="text-sm line-through text-zinc-500">{formatBRL(plan.priceOriginal)}</span></div>
-          {isPix ? (<span className="text-2xl font-black text-white">{formatBRL(displayPrice)}</span>) : (<span className="text-lg font-black text-white">12x {formatBRL(displayPrice)}</span>)}
+          {isPix ? (<span className="text-2xl font-black text-zinc-400">{formatBRL(displayPrice)}</span>) : (<span className="text-lg font-black text-zinc-400">12x {formatBRL(displayPrice)}</span>)}
         </div>
         <div className="rounded-lg px-3 py-2 text-center space-y-0.5 border border-yellow-700/40 bg-yellow-950/30">
           <p className="text-[10px] font-black uppercase tracking-widest text-yellow-500">Bonus</p>
           <p className="text-xs text-zinc-300 leading-snug">Sem limite diario para o exame</p>
         </div>
-        <button onClick={onCta} className="w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide text-zinc-900 mt-auto transition-all duration-300 hover:brightness-105" style={{ background: silverGradient }}>Comprar Agora</button>
+        <button disabled className="w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide mt-auto cursor-not-allowed bg-zinc-800 text-zinc-500 border border-zinc-700">Esgotado</button>
       </div>
     </div>
   )
