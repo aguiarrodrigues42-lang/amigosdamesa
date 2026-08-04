@@ -1,5 +1,5 @@
 "use client"
-// pricing-section-v2 — ATUALIZADO: ESPECIAL COPA 2026 60% OFF em Exames Iniciante/Intermediario, Pegue e Monte 8/12/20, Senior Iniciante/Intermediario
+// pricing-section-v2 — ATUALIZADO: 70% OFF em Exames Iniciante/Intermediario, Pegue e Monte 8/12/20, Senior Iniciante/Intermediario/Avançado
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, X, Info, Sparkles } from "lucide-react"
@@ -43,8 +43,8 @@ const seniorFeaturesCommon = [
 
 const plansByCategory: Record<Category, Plan[]> = {
   "exames": [
-    { name: "PLANO INICIANTE", contracts: 7, asset: "", meta: "R$800,00", dailyLimit: "", stopGlobal: "R$2.000,00", priceOriginal: 619.45, pricePix: 247.78, discountPercent: 60, pixLink: "https://checkout.amigosdamesas.store/pay/exame-plano-iniciante", cartaoLink: "https://checkout.amigosdamesas.store/pay/exame-plano-iniciante", features: ["Stop Global R$2.000,00", "Meta de Aprovação R$800,00"] },
-    { name: "PLANO INTERMEDIÁRIO", contracts: 15, asset: "", meta: "R$1.400,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 821.60, pricePix: 328.64, discountPercent: 60, mostVendido: true, pixLink: "https://checkout.amigosdamesas.store/pay/exame-plano-intermediario", cartaoLink: "https://checkout.amigosdamesas.store/pay/exame-plano-intermediario", features: ["Stop Global R$2.500,00", "Meta de Aprovação R$1.400,00"] },
+    { name: "PLANO INICIANTE", contracts: 7, asset: "", meta: "R$800,00", dailyLimit: "", stopGlobal: "R$2.000,00", priceOriginal: 812.00, pricePix: 243.60, discountPercent: 70, pixLink: "https://checkout.amigosdamesas.store/pay/exame-plano-iniciante", cartaoLink: "https://checkout.amigosdamesas.store/pay/exame-plano-iniciante", features: ["Stop Global R$2.000,00", "Meta de Aprovação R$800,00"] },
+    { name: "PLANO INTERMEDIÁRIO", contracts: 15, asset: "", meta: "R$1.400,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 1005.28, pricePix: 301.58, discountPercent: 70, mostVendido: true, pixLink: "https://checkout.amigosdamesas.store/pay/exame-plano-intermediario", cartaoLink: "https://checkout.amigosdamesas.store/pay/exame-plano-intermediario", features: ["Stop Global R$2.500,00", "Meta de Aprovação R$1.400,00"] },
     { name: "PLANO AVANÇADO", contracts: 25, asset: "", meta: "R$3.950,00", dailyLimit: "", stopGlobal: "R$4.250,00", priceOriginal: 2263.80, pricePix: 679.14, discountPercent: 60, pixLink: "https://checkout.amigosdamesas.store/pay/exame-plano-avancado", cartaoLink: "https://checkout.amigosdamesas.store/pay/exame-plano-avancado" },
     { name: "PLANO UNO 40", contracts: 40, asset: "Índice", meta: "R$4.980,00", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 2730.20, pricePix: 819.06, discountPercent: 60, pixLink: "https://checkout.amigosdamesas.store/pay/exame-plano-uno-40-indice1", cartaoLink: "https://checkout.amigosdamesas.store/pay/exame-plano-uno-40-indice1" },
     { name: "PLANO UNO 40", contracts: 40, asset: "Dólar", meta: "R$4.980,00", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 2730.20, pricePix: 819.06, discountPercent: 60, pixLink: "https://checkout.amigosdamesas.store/pay/exame-plano-uno-40-dolar1", cartaoLink: "https://checkout.amigosdamesas.store/pay/exame-plano-uno-40-dolar1" },
@@ -63,17 +63,17 @@ const plansByCategory: Record<Category, Plan[]> = {
     { name: "TITAN PRO 50", contracts: 80, meta: "R$10.000,00", dailyLimit: "", stopGlobal: "R$10.000,00", priceOriginal: 6641.33, pricePix: 1992.40, discountPercent: 60, pixLink: "https://checkout.amigosdamesas.store/pay/plano-titan-pro-50", cartaoLink: "https://checkout.amigosdamesas.store/pay/plano-titan-pro-50", features: ["Meta de aprovação R$ 10.000,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação", "Stop Global R$ 10.000,00"] },
   ],
   "senior": [
-    { name: "INICIANTE 7", contracts: 7, meta: "—", dailyLimit: "", stopGlobal: "R$2.000,00", priceOriginal: 3985.00, pricePix: 797.00, discountPercent: 80, pixLink: "https://checkout.amigosdamesas.store/pay/plano-senior-iniciante-7", cartaoLink: "https://checkout.amigosdamesas.store/pay/plano-senior-iniciante-7", features: [...seniorFeaturesCommon, "Stop Global R$ 2.000,00"], hideBonus: true },
-    { name: "INTERMEDIÁRIO 15", contracts: 15, meta: "—", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 4995.10, pricePix: 999.02, discountPercent: 80, pixLink: "https://checkout.amigosdamesas.store/pay/plano-senior-intermediario-15", cartaoLink: "https://checkout.amigosdamesas.store/pay/plano-senior-intermediario-15", features: [...seniorFeaturesCommon, "Stop Global R$ 2.500,00"], hideBonus: true },
-    { name: "AVANÇADO 25", contracts: 25, meta: "—", dailyLimit: "", stopGlobal: "R$4.250,00", priceOriginal: 6122.64, pricePix: 2755.19, discountPercent: 55, pixLink: "https://checkout.amigosdamesas.store/pay/plano-senior-avancado-25", cartaoLink: "https://checkout.amigosdamesas.store/pay/plano-senior-avancado-25", features: [...seniorFeaturesCommon, "Stop Global R$ 4.250,00"], hideBonus: true },
+    { name: "INICIANTE 7", contracts: 7, meta: "—", dailyLimit: "", stopGlobal: "R$2.000,00", priceOriginal: 2285.00, pricePix: 685.50, discountPercent: 70, pixLink: "https://checkout.amigosdamesas.store/pay/plano-senior-iniciante-7", cartaoLink: "https://checkout.amigosdamesas.store/pay/plano-senior-iniciante-7", features: [...seniorFeaturesCommon, "Stop Global R$ 2.000,00"], hideBonus: true },
+    { name: "INTERMEDIÁRIO 15", contracts: 15, meta: "—", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 3295.10, pricePix: 988.53, discountPercent: 70, pixLink: "https://checkout.amigosdamesas.store/pay/plano-senior-intermediario-15", cartaoLink: "https://checkout.amigosdamesas.store/pay/plano-senior-intermediario-15", features: [...seniorFeaturesCommon, "Stop Global R$ 2.500,00"], hideBonus: true },
+    { name: "AVANÇADO 25", contracts: 25, meta: "—", dailyLimit: "", stopGlobal: "R$4.250,00", priceOriginal: 6122.64, pricePix: 1836.79, discountPercent: 70, pixLink: "https://checkout.amigosdamesas.store/pay/plano-senior-avancado-25", cartaoLink: "https://checkout.amigosdamesas.store/pay/plano-senior-avancado-25", features: [...seniorFeaturesCommon, "Stop Global R$ 4.250,00"], hideBonus: true },
     { name: "UNO 40 ÍNDICE", contracts: 40, asset: "", meta: "—", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 7599.20, pricePix: 3419.64, discountPercent: 55, pixLink: "https://checkout.amigosdamesas.store/pay/plano-senior-uno-40-indice", cartaoLink: "https://checkout.amigosdamesas.store/pay/plano-senior-uno-40-indice", features: [...seniorFeaturesCommon, "Stop Global R$ 6.250,00"], hideBonus: true },
     { name: "UNO 40 DÓLAR", contracts: 40, asset: "", meta: "—", dailyLimit: "", stopGlobal: "R$6.250,00", priceOriginal: 7599.20, pricePix: 3419.64, discountPercent: 55, pixLink: "https://checkout.amigosdamesas.store/pay/plano-senior-uno-40-dolar", cartaoLink: "https://checkout.amigosdamesas.store/pay/plano-senior-uno-40-dolar", features: [...seniorFeaturesCommon, "Stop Global R$ 6.250,00"], hideBonus: true },
     { name: "MASTER 50", contracts: 50, meta: "—", dailyLimit: "", stopGlobal: "R$10.250,00", priceOriginal: 9297.73, pricePix: 4183.98, discountPercent: 55, pixLink: "https://checkout.amigosdamesas.store/pay/plano-senior-master-50", cartaoLink: "https://checkout.amigosdamesas.store/pay/plano-senior-master-50", features: [...seniorFeaturesCommon, "Stop Global R$ 10.250,00"], hideBonus: true },
   ],
   "pegue-monte": [
-    { name: "PEGUE E MONTE 8", contracts: 8, meta: "R$1.500,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 1048.10, pricePix: 419.24, discountPercent: 60, features: ["Stop Global R$2.500,00", "Meta de Aprovação R$1.500,00", "Sem limite diário para o exame"], ctaWhatsApp: false, pixLink: "https://checkout.amigosdamesas.store/pay/plano-pegue-e-monte-8", cartaoLink: "https://checkout.amigosdamesas.store/pay/plano-pegue-e-monte-8" },
-    { name: "PEGUE E MONTE 12", contracts: 12, meta: "R$1.920,00", dailyLimit: "", stopGlobal: "R$3.500,00", priceOriginal: 1326.00, pricePix: 530.40, discountPercent: 60, mostVendido: true, features: ["Stop Global R$3.500,00", "Meta de Aprovação R$1.920,00", "Sem limite diário para o exame"], ctaWhatsApp: false, pixLink: "https://checkout.amigosdamesas.store/pay/plano-pegue-e-monte-12", cartaoLink: "https://checkout.amigosdamesas.store/pay/plano-pegue-e-monte-12" },
-    { name: "PEGUE E MONTE 20", contracts: 20, meta: "R$2.832,00", dailyLimit: "", stopGlobal: "R$4.720,00", priceOriginal: 1684.00, pricePix: 673.60, discountPercent: 60, features: ["Stop Global R$4.720,00", "Meta de Aprovação R$2.832,00", "Sem limite diário para o exame"], ctaWhatsApp: false, pixLink: "https://checkout.amigosdamesas.store/pay/plano-pegue-e-monte-20", cartaoLink: "https://checkout.amigosdamesas.store/pay/plano-pegue-e-monte-20" },
+    { name: "PEGUE E MONTE 8", contracts: 8, meta: "R$1.500,00", dailyLimit: "", stopGlobal: "R$2.500,00", priceOriginal: 1338.10, pricePix: 401.43, discountPercent: 70, features: ["Stop Global R$2.500,00", "Meta de Aprovação R$1.500,00", "Sem limite diário para o exame"], ctaWhatsApp: false, pixLink: "https://checkout.amigosdamesas.store/pay/plano-pegue-e-monte-8", cartaoLink: "https://checkout.amigosdamesas.store/pay/plano-pegue-e-monte-8" },
+    { name: "PEGUE E MONTE 12", contracts: 12, meta: "R$1.920,00", dailyLimit: "", stopGlobal: "R$3.500,00", priceOriginal: 1726.00, pricePix: 517.80, discountPercent: 70, mostVendido: true, features: ["Stop Global R$3.500,00", "Meta de Aprovação R$1.920,00", "Sem limite diário para o exame"], ctaWhatsApp: false, pixLink: "https://checkout.amigosdamesas.store/pay/plano-pegue-e-monte-12", cartaoLink: "https://checkout.amigosdamesas.store/pay/plano-pegue-e-monte-12" },
+    { name: "PEGUE E MONTE 20", contracts: 20, meta: "R$2.832,00", dailyLimit: "", stopGlobal: "R$4.720,00", priceOriginal: 2194.00, pricePix: 658.20, discountPercent: 70, features: ["Stop Global R$4.720,00", "Meta de Aprovação R$2.832,00", "Sem limite diário para o exame"], ctaWhatsApp: false, pixLink: "https://checkout.amigosdamesas.store/pay/plano-pegue-e-monte-20", cartaoLink: "https://checkout.amigosdamesas.store/pay/plano-pegue-e-monte-20" },
     { name: "PEGUE E MONTE 27", contracts: 27, meta: "R$3.612,00", dailyLimit: "", stopGlobal: "R$6.020,00", priceOriginal: 1690.50, pricePix: 0, discountPercent: 60, features: ["Stop Global R$6.020,00", "Meta de Aprovação R$3.612,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Indisponível", ctaWhatsApp: false },
     { name: "PEGUE E MONTE 32", contracts: 32, meta: "R$4.890,00", dailyLimit: "", stopGlobal: "R$8.150,00", priceOriginal: 2120.60, pricePix: 0, discountPercent: 60, features: ["Stop Global R$8.150,00", "Meta de Aprovação R$4.890,00", "Sem limite diário para o exame", "Sem mínimos de dias operados para aprovação"], ctaLabel: "Indisponível", ctaWhatsApp: false },
   ],
@@ -94,8 +94,8 @@ interface ExclusivePlan {
 }
 
 const exclusivePlans: ExclusivePlan[] = [
-  { name: "EXCLUSIVE ENTRY", contracts: 20, asset: "WDO / WIN", features: ["Ativos: WDO / WIN", "Stop Global R$ 3.000,00", "Stop Diário R$ 1.500,00", "Meta de Aprovação 80%: R$ 2.000,00", "Resete Teste: R$ Fixo", "Resete pós aprovado: R$ Fixo"], priceOriginal: 1198.00, pricePix: 599.00, discountPercent: 50, pixLink: "https://checkout.amigosdamesas.store/pay/plano-exclusive-entry", cartaoLink: "https://checkout.amigosdamesas.store/pay/plano-exclusive-entry" },
-  { name: "EXCLUSIVE PRIME", contracts: 30, asset: "WDO / WIN", features: ["Ativos: WDO / WIN", "Stop Global R$ 4.500,00", "Stop Diário R$ 2.250,00", "Meta de Aprovação 80%: R$ 3.000,00", "Resete Teste: R$ Fixo", "Resete pós aprovado: R$ Fixo"], priceOriginal: 1594.00, pricePix: 797.00, discountPercent: 50, pixLink: "https://checkout.amigosdamesas.store/pay/plano-exclusive-prime", cartaoLink: "https://checkout.amigosdamesas.store/pay/plano-exclusive-prime" },
+  { name: "EXCLUSIVE ENTRY", contracts: 20, asset: "WDO / WIN", features: ["Ativos: WDO / WIN", "Stop Global R$ 3.000,00", "Stop Diário R$ 1.500,00", "Meta de Aprovação 80%: R$ 2.000,00", "Resete Teste: R$ Fixo", "Resete pós aprovado: R$ Fixo"], priceOriginal: 1198.00, pricePix: 599.00, discountPercent: 50 },
+  { name: "EXCLUSIVE PRIME", contracts: 30, asset: "WDO / WIN", features: ["Ativos: WDO / WIN", "Stop Global R$ 4.500,00", "Stop Diário R$ 2.250,00", "Meta de Aprovação 80%: R$ 3.000,00", "Resete Teste: R$ Fixo", "Resete pós aprovado: R$ Fixo"], priceOriginal: 1594.00, pricePix: 797.00, discountPercent: 50 },
 ]
 
 interface BitPlan { name: string; bitContracts: number; features: string[]; precoExame: string; precoExameOriginal: string; valorOriginal: number; precoPix: string; precoCartao: string; precoSeniorOriginal: string; pixLink?: string; cartaoLink?: string; indisponivel?: boolean }
@@ -325,13 +325,13 @@ function PlanCard({ plan, isActive, isPix, onCta }: PlanCardProps) {
   )
 }
 
-function ExclusivePlanCard({ plan, isActive, isPix, onCta }: { plan: ExclusivePlan; isActive: boolean; isPix: boolean; onCta: () => void }) {
+function ExclusivePlanCard({ plan, isActive, isPix }: { plan: ExclusivePlan; isActive: boolean; isPix: boolean; onCta: () => void }) {
   const priceCartao12x = (plan.pricePix * 1.9372) / 12
   const displayPrice = isPix ? plan.pricePix : priceCartao12x
   const silverGradient = "linear-gradient(135deg, #e8e8ec 0%, #b8bcc4 25%, #f4f4f6 50%, #a9adb5 75%, #d8dade 100%)"
   return (
     <div
-      className={`flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center rounded-2xl border-2 bg-[#0d0d0f] flex flex-col transition-all duration-300 overflow-hidden ${isActive ? "border-zinc-300 shadow-[0_0_20px_rgba(226,232,240,0.25)]" : "border-zinc-700 opacity-80"}`}
+      className={`flex-shrink-0 w-[calc(100vw-48px)] max-w-[320px] snap-center rounded-2xl border-2 bg-[#0d0d0f] flex flex-col transition-all duration-300 overflow-hidden opacity-75 ${isActive ? "border-zinc-500 shadow-[0_0_20px_rgba(226,232,240,0.10)]" : "border-zinc-700"}`}
     >
       <div className="flex items-center justify-center gap-1.5 py-1.5" style={{ background: silverGradient }}>
         <Sparkles className="w-3 h-3 text-zinc-900" />
@@ -339,7 +339,7 @@ function ExclusivePlanCard({ plan, isActive, isPix, onCta }: { plan: ExclusivePl
       </div>
       <div className="px-5 py-3 flex items-center justify-between gap-2 border-b border-zinc-800" style={{ background: "linear-gradient(135deg, #2a2a2e 0%, #1a1a1d 100%)" }}>
         <h3 className="text-sm font-black uppercase tracking-wide text-white leading-tight">{plan.name}</h3>
-        <span className="flex-shrink-0 bg-black text-white text-[10px] font-black px-2 py-0.5 rounded-full border border-zinc-600">{plan.discountPercent}% OFF</span>
+        <span className="flex-shrink-0 bg-red-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full border border-red-400 uppercase tracking-wider">Esgotado</span>
       </div>
       <div className="flex flex-col flex-1 px-5 py-4 gap-3">
         <div className="text-center">
@@ -351,13 +351,13 @@ function ExclusivePlanCard({ plan, isActive, isPix, onCta }: { plan: ExclusivePl
         </ul>
         <div className="border-t border-zinc-800 pt-3 text-center">
           <div className="mb-1"><span className="text-sm line-through text-zinc-500">{formatBRL(plan.priceOriginal)}</span></div>
-          {isPix ? (<span className="text-2xl font-black text-white">{formatBRL(displayPrice)}</span>) : (<span className="text-lg font-black text-white">12x {formatBRL(displayPrice)}</span>)}
+          {isPix ? (<span className="text-2xl font-black text-zinc-400">{formatBRL(displayPrice)}</span>) : (<span className="text-lg font-black text-zinc-400">12x {formatBRL(displayPrice)}</span>)}
         </div>
         <div className="rounded-lg px-3 py-2 text-center space-y-0.5 border border-yellow-700/40 bg-yellow-950/30">
           <p className="text-[10px] font-black uppercase tracking-widest text-yellow-500">Bonus</p>
           <p className="text-xs text-zinc-300 leading-snug">Sem limite diario para o exame</p>
         </div>
-        <button onClick={onCta} className="w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide text-zinc-900 mt-auto transition-all duration-300 hover:brightness-105" style={{ background: silverGradient }}>Comprar Agora</button>
+        <button disabled className="w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wide mt-auto cursor-not-allowed bg-zinc-800 text-zinc-500 border border-zinc-700">Esgotado</button>
       </div>
     </div>
   )
